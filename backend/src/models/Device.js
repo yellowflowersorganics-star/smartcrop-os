@@ -12,19 +12,31 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
+    organizationId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      comment: 'Organization for multi-tenant isolation'
+    },
+    unitId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Unit/building this device belongs to'
+    },
+    zoneId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Zone this device controls (for ESP32 controllers)'
+    },
     deviceId: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       comment: 'Physical device identifier (MAC address, serial, etc.)'
     },
-    zoneId: {
-      type: DataTypes.UUID,
-      allowNull: true
-    },
     deviceType: {
-      type: DataTypes.ENUM('controller', 'sensor', 'actuator', 'gateway'),
-      allowNull: false
+      type: DataTypes.ENUM('esp32_controller', 'raspberry_pi_gateway', 'sensor', 'actuator'),
+      allowNull: false,
+      comment: 'Type of device'
     },
     deviceModel: {
       type: DataTypes.STRING,
@@ -76,6 +88,14 @@ module.exports = (sequelize) => {
   });
 
   Device.associate = (models) => {
+    Device.belongsTo(models.Organization, {
+      foreignKey: 'organizationId',
+      as: 'organization'
+    });
+    Device.belongsTo(models.Unit, {
+      foreignKey: 'unitId',
+      as: 'unit'
+    });
     Device.belongsTo(models.Zone, {
       foreignKey: 'zoneId',
       as: 'zone'

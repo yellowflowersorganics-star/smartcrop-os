@@ -1,0 +1,209 @@
+/**
+ * SmartCrop OS - ESP32 Configuration
+ * Copy this to config.h and update with your settings
+ */
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// ============================================
+// Organization & Location
+// ============================================
+#define ORGANIZATION_ID "org_abc123"
+#define UNIT_ID "unit_001"
+#define ZONE_ID "zone_a"
+#define DEVICE_NAME "ESP32 Zone A Controller"
+
+// ============================================
+// WiFi Configuration (Local Unit Network)
+// ============================================
+#define WIFI_SSID "Unit1_Network"          // Connect to local unit WiFi
+#define WIFI_PASSWORD "your_wifi_password"
+#define WIFI_TIMEOUT_MS 20000
+
+// ============================================
+// MQTT Configuration (Local Raspberry Pi)
+// ============================================
+#define MQTT_BROKER "192.168.1.100"        // Raspberry Pi Gateway IP
+#define MQTT_PORT 1883
+#define MQTT_USERNAME "esp32_zone_a"       // Generated in dashboard
+#define MQTT_PASSWORD "mqtt_password"      // Generated in dashboard
+#define MQTT_CLIENT_ID "esp32_aabbccddeeff"
+#define MQTT_KEEPALIVE 60
+
+// ============================================
+// MQTT Topics (Local to Raspberry Pi)
+// ============================================
+// Publishing topics
+#define TOPIC_TELEMETRY "unit1/zone_a/telemetry"
+#define TOPIC_STATUS "unit1/zone_a/status"
+#define TOPIC_ALERT "unit1/zone_a/alert"
+
+// Subscription topics
+#define TOPIC_SETPOINTS "unit1/zone_a/setpoints"
+#define TOPIC_COMMAND "unit1/zone_a/command"
+#define TOPIC_CONFIG "unit1/zone_a/config"
+#define TOPIC_OTA "unit1/zone_a/ota"
+
+// ============================================
+// Sensor Configuration
+// ============================================
+
+// Temperature & Humidity Sensor (SHT31)
+#define SHT31_ENABLED true
+#define SHT31_I2C_ADDRESS 0x44
+#define SHT31_SDA_PIN 21
+#define SHT31_SCL_PIN 22
+
+// CO2 Sensor (MH-Z19C)
+#define MHZ19_ENABLED true
+#define MHZ19_RX_PIN 16
+#define MHZ19_TX_PIN 17
+#define MHZ19_BAUD 9600
+
+// Light Sensor (BH1750 or TSL2561)
+#define LIGHT_SENSOR_ENABLED true
+#define LIGHT_SENSOR_I2C_ADDRESS 0x23
+
+// Soil Moisture Sensor (Capacitive)
+#define SOIL_MOISTURE_ENABLED false
+#define SOIL_MOISTURE_PIN 36
+
+// Water Level Sensor
+#define WATER_LEVEL_ENABLED false
+#define WATER_LEVEL_PIN 39
+
+// ============================================
+// Actuator/Relay Configuration
+// ============================================
+
+// Fan Control
+#define RELAY_FAN_PIN 25
+#define RELAY_FAN_ENABLED true
+
+// Humidifier Control
+#define RELAY_HUMIDIFIER_PIN 26
+#define RELAY_HUMIDIFIER_ENABLED true
+
+// Heater/Boiler Control
+#define RELAY_HEATER_PIN 27
+#define RELAY_HEATER_ENABLED true
+
+// Chiller Control
+#define RELAY_CHILLER_PIN 33
+#define RELAY_CHILLER_ENABLED false
+
+// Light Control
+#define RELAY_LIGHT_PIN 32
+#define RELAY_LIGHT_ENABLED true
+
+// FCU (Fan Coil Unit) Control
+#define RELAY_FCU_PIN 14
+#define RELAY_FCU_ENABLED false
+
+// AHU (Air Handling Unit) Control
+#define RELAY_AHU_PIN 12
+#define RELAY_AHU_ENABLED false
+
+// Dehumidifier Control
+#define RELAY_DEHUMIDIFIER_PIN 13
+#define RELAY_DEHUMIDIFIER_ENABLED false
+
+// ============================================
+// Control Settings
+// ============================================
+
+// Temperature Control
+#define TEMP_DEADBAND 0.5         // ±0.5°C
+#define TEMP_MIN 10.0
+#define TEMP_MAX 35.0
+#define TEMP_DEFAULT_SETPOINT 24.0
+
+// Humidity Control
+#define RH_DEADBAND 2.0           // ±2%
+#define RH_MIN 30.0
+#define RH_MAX 95.0
+#define RH_DEFAULT_SETPOINT 75.0
+
+// CO2 Control
+#define CO2_DEADBAND 50           // ±50 ppm
+#define CO2_MIN 400
+#define CO2_MAX 2000
+#define CO2_DEFAULT_SETPOINT 900
+
+// ============================================
+// Timing Configuration
+// ============================================
+
+// Sensor reading intervals
+#define SENSOR_READ_INTERVAL_MS 10000     // 10 seconds
+#define TELEMETRY_PUBLISH_INTERVAL_MS 60000  // 60 seconds (1 minute)
+#define STATUS_PUBLISH_INTERVAL_MS 300000    // 5 minutes
+
+// Control loop intervals
+#define CONTROL_LOOP_INTERVAL_MS 5000     // 5 seconds
+#define ACTUATOR_MIN_ON_TIME_MS 60000     // Minimum 1 minute on time
+#define ACTUATOR_MIN_OFF_TIME_MS 60000    // Minimum 1 minute off time
+
+// Connection timeouts
+#define MQTT_RECONNECT_INTERVAL_MS 5000
+#define WIFI_RECONNECT_INTERVAL_MS 10000
+
+// ============================================
+// Safety Limits
+// ============================================
+
+// Maximum continuous relay on-time (prevent damage)
+#define MAX_RELAY_ON_TIME_MS 3600000      // 1 hour max continuous
+
+// Temperature safety limits
+#define TEMP_CRITICAL_HIGH 38.0
+#define TEMP_CRITICAL_LOW 8.0
+
+// Humidity safety limits
+#define RH_CRITICAL_HIGH 98.0
+#define RH_CRITICAL_LOW 20.0
+
+// CO2 safety limits
+#define CO2_CRITICAL_HIGH 2500
+#define CO2_CRITICAL_LOW 300
+
+// ============================================
+// Debug & Logging
+// ============================================
+#define SERIAL_BAUD 115200
+#define DEBUG_ENABLED true
+
+#if DEBUG_ENABLED
+  #define DEBUG_PRINT(x) Serial.print(x)
+  #define DEBUG_PRINTLN(x) Serial.println(x)
+  #define DEBUG_PRINTF(x, ...) Serial.printf(x, __VA_ARGS__)
+#else
+  #define DEBUG_PRINT(x)
+  #define DEBUG_PRINTLN(x)
+  #define DEBUG_PRINTF(x, ...)
+#endif
+
+// ============================================
+// LED Indicators
+// ============================================
+#define LED_STATUS_PIN 2          // Built-in LED
+#define LED_WIFI_CONNECTED_PATTERN 1000    // Slow blink
+#define LED_MQTT_CONNECTED_PATTERN 100     // Fast blink
+#define LED_ERROR_PATTERN 200               // Very fast blink
+
+// ============================================
+// OTA Updates
+// ============================================
+#define OTA_ENABLED true
+#define OTA_PORT 3232
+#define OTA_HOSTNAME "esp32-zone-a"
+#define OTA_PASSWORD "ota_update_password"
+
+// ============================================
+// Watchdog
+// ============================================
+#define WATCHDOG_TIMEOUT_S 30     // Reset if frozen for 30 seconds
+
+#endif // CONFIG_H
+

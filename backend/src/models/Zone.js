@@ -12,9 +12,20 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
+    organizationId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      comment: 'Organization for multi-tenant isolation'
+    },
+    unitId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      comment: 'Unit/building this zone belongs to'
+    },
     farmId: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: true,
+      comment: 'Optional farm grouping (for backwards compatibility)'
     },
     name: {
       type: DataTypes.STRING,
@@ -23,7 +34,7 @@ module.exports = (sequelize) => {
     zoneNumber: {
       type: DataTypes.STRING,
       allowNull: true,
-      comment: 'Physical zone identifier'
+      comment: 'Physical zone identifier (e.g., "Room-A1")'
     },
     area: {
       type: DataTypes.FLOAT,
@@ -83,6 +94,14 @@ module.exports = (sequelize) => {
   });
 
   Zone.associate = (models) => {
+    Zone.belongsTo(models.Organization, {
+      foreignKey: 'organizationId',
+      as: 'organization'
+    });
+    Zone.belongsTo(models.Unit, {
+      foreignKey: 'unitId',
+      as: 'unit'
+    });
     Zone.belongsTo(models.Farm, {
       foreignKey: 'farmId',
       as: 'farm'
@@ -90,6 +109,11 @@ module.exports = (sequelize) => {
     Zone.belongsTo(models.CropRecipe, {
       foreignKey: 'activeRecipeId',
       as: 'activeRecipe'
+    });
+    Zone.hasOne(models.Device, {
+      foreignKey: 'zoneId',
+      as: 'controller',
+      scope: { deviceType: 'controller' }
     });
     Zone.hasMany(models.Device, {
       foreignKey: 'zoneId',

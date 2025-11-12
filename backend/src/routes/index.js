@@ -10,6 +10,7 @@ const router = express.Router();
 const authRoutes = require('./auth.routes');
 const cropRecipeRoutes = require('./cropRecipe.routes');
 const farmRoutes = require('./farm.routes');
+const unitRoutes = require('./unit.routes');
 const zoneRoutes = require('./zone.routes');
 const deviceRoutes = require('./device.routes');
 const telemetryRoutes = require('./telemetry.routes');
@@ -31,6 +32,7 @@ router.get('/', (req, res) => {
 router.use('/auth', authRoutes);
 router.use('/crop-recipes', cropRecipeRoutes);
 router.use('/farms', farmRoutes);
+router.use('/units', unitRoutes);
 router.use('/zones', zoneRoutes);
 router.use('/devices', deviceRoutes);
 router.use('/telemetry', telemetryRoutes);

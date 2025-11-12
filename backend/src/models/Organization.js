@@ -213,6 +213,10 @@ module.exports = (sequelize) => {
       foreignKey: 'organizationId',
       as: 'farms'
     });
+    Organization.hasMany(models.Unit, {
+      foreignKey: 'organizationId',
+      as: 'units'
+    });
     Organization.hasMany(models.Zone, {
       foreignKey: 'organizationId',
       as: 'zones'
@@ -220,6 +224,10 @@ module.exports = (sequelize) => {
     Organization.hasMany(models.Device, {
       foreignKey: 'organizationId',
       as: 'devices'
+    });
+    Organization.hasOne(models.Subscription, {
+      foreignKey: 'organizationId',
+      as: 'subscription'
     });
   };
 

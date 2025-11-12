@@ -23,6 +23,7 @@ const sequelize = new Sequelize(
 const User = require('./User')(sequelize);
 const Organization = require('./Organization')(sequelize);
 const Farm = require('./Farm')(sequelize);
+const Unit = require('./Unit')(sequelize);
 const Zone = require('./Zone')(sequelize);
 const Device = require('./Device')(sequelize);
 const CropRecipe = require('./CropRecipe')(sequelize);
@@ -36,6 +37,7 @@ const db = {
   User,
   Organization,
   Farm,
+  Unit,
   Zone,
   Device,
   CropRecipe,
