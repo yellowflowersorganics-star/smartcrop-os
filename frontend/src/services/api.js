@@ -1,0 +1,96 @@
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Request interceptor
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('auth-storage');
+    if (token) {
+      try {
+        const parsed = JSON.parse(token);
+        if (parsed.state?.token) {
+          config.headers.Authorization = `Bearer ${parsed.state.token}`;
+        }
+      } catch (e) {
+        console.error('Error parsing auth token:', e);
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Response interceptor
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem('auth-storage');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default api;
+
+// Service methods
+export const authService = {
+  login: (email, password) => api.post('/auth/login', { email, password }),
+  register: (userData) => api.post('/auth/register', userData),
+  getCurrentUser: () => api.get('/auth/me'),
+};
+
+export const farmService = {
+  getAll: () => api.get('/farms'),
+  getById: (id) => api.get(`/farms/${id}`),
+  create: (data) => api.post('/farms', data),
+  update: (id, data) => api.put(`/farms/${id}`, data),
+  delete: (id) => api.delete(`/farms/${id}`),
+  getStats: (id) => api.get(`/farms/${id}/stats`),
+};
+
+export const zoneService = {
+  getAll: () => api.get('/zones'),
+  getById: (id) => api.get(`/zones/${id}`),
+  create: (data) => api.post('/zones', data),
+  update: (id, data) => api.put(`/zones/${id}`, data),
+  delete: (id) => api.delete(`/zones/${id}`),
+  assignRecipe: (id, recipeId) => api.post(`/zones/${id}/assign-recipe`, { recipeId }),
+  startBatch: (id, data) => api.post(`/zones/${id}/start-batch`, data),
+  stopBatch: (id) => api.post(`/zones/${id}/stop-batch`),
+  getStatus: (id) => api.get(`/zones/${id}/status`),
+};
+
+export const recipeService = {
+  getAll: () => api.get('/crop-recipes'),
+  getPublic: () => api.get('/crop-recipes/public'),
+  getById: (id) => api.get(`/crop-recipes/${id}`),
+  create: (data) => api.post('/crop-recipes', data),
+  update: (id, data) => api.put(`/crop-recipes/${id}`, data),
+  delete: (id) => api.delete(`/crop-recipes/${id}`),
+  clone: (id) => api.post(`/crop-recipes/${id}/clone`),
+};
+
+export const telemetryService = {
+  getZoneData: (zoneId, params) => api.get(`/telemetry/zone/${zoneId}`, { params }),
+  getLatest: (zoneId) => api.get(`/telemetry/zone/${zoneId}/latest`),
+  getHistory: (zoneId, params) => api.get(`/telemetry/zone/${zoneId}/history`, { params }),
+};
+
+export const deviceService = {
+  getAll: () => api.get('/devices'),
+  getById: (id) => api.get(`/devices/${id}`),
+  register: (data) => api.post('/devices/register', data),
+  update: (id, data) => api.put(`/devices/${id}`, data),
+  delete: (id) => api.delete(`/devices/${id}`),
+};
+

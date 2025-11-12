@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smartcrop.io/schemas/mqtt-message.json",
+  "title": "MQTT Message Schemas",
+  "description": "Message formats for MQTT communication between devices and backend",
+  "definitions": {
+    "telemetry": {
+      "type": "object",
+      "required": ["deviceId", "timestamp", "environment"],
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "description": "Unique device identifier"
+        },
+        "zoneId": {
+          "type": "string",
+          "description": "Zone this device belongs to"
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Unix timestamp in milliseconds"
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "type": "number",
+              "description": "Temperature in Celsius"
+            },
+            "humidity": {
+              "type": "number",
+              "description": "Relative humidity percentage"
+            },
+            "co2": {
+              "type": "integer",
+              "description": "CO₂ concentration in ppm"
+            },
+            "lightLevel": {
+              "type": "integer",
+              "description": "Light level in lux"
+            },
+            "soilMoisture": {
+              "type": "integer",
+              "description": "Soil moisture percentage"
+            }
+          }
+        },
+        "actuators": {
+          "type": "object",
+          "properties": {
+            "fan": {
+              "type": "boolean"
+            },
+            "humidifier": {
+              "type": "boolean"
+            },
+            "heater": {
+              "type": "boolean"
+            },
+            "light": {
+              "type": "boolean"
+            },
+            "pump": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "setpoints": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": -10,
+          "maximum": 50
+        },
+        "humidity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "co2": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5000
+        },
+        "lightHours": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "lightIntensity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "required": ["command", "timestamp", "messageId"],
+      "properties": {
+        "command": {
+          "type": "string",
+          "enum": ["override", "emergency_stop", "restart", "calibrate"]
+        },
+        "actuator": {
+          "type": "string",
+          "description": "Target actuator (for override command)"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["on", "off"],
+          "description": "Action to perform (for override command)"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "messageId": {
+          "type": "string",
+          "description": "Unique message identifier for tracking"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": ["status", "deviceId", "firmwareVersion"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["online", "offline", "running", "error", "maintenance"]
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "zoneId": {
+          "type": "string"
+        },
+        "firmwareVersion": {
+          "type": "string"
+        },
+        "uptime": {
+          "type": "integer",
+          "description": "Uptime in seconds"
+        },
+        "freeHeap": {
+          "type": "integer",
+          "description": "Free heap memory in bytes"
+        },
+        "rssi": {
+          "type": "integer",
+          "description": "WiFi signal strength in dBm"
+        }
+      }
+    },
+    "alert": {
+      "type": "object",
+      "required": ["level", "message", "deviceId", "timestamp"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["info", "warning", "error", "critical"]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "zoneId": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "code": {
+          "type": "string",
+          "description": "Error/alert code for categorization"
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smartcrop.io/schemas/crop-recipe.json",
+  "title": "Crop Recipe",
+  "description": "Software-defined environmental parameters for controlled-environment crop cultivation",
+  "type": "object",
+  "required": ["cropId", "cropName", "cropType", "stages"],
+  "properties": {
+    "cropId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique identifier for the crop recipe",
+      "examples": ["cherry-tomato-v1", "oyster-mushroom-basic"]
+    },
+    "cropName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Display name of the crop",
+      "examples": ["Cherry Tomato", "Oyster Mushroom"]
+    },
+    "cropType": {
+      "type": "string",
+      "enum": ["mushroom", "vegetable", "leafy-green", "berry", "herb"],
+      "description": "Category of crop"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Detailed description of the crop and recipe"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "default": "1.0.0",
+      "description": "Semantic version of the recipe"
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of growth stages with environmental parameters",
+      "items": {
+        "$ref": "#/definitions/stage"
+      }
+    },
+    "requiredSensors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["temperature", "humidity", "co2", "light", "soil-moisture", "ec", "ph"]
+      },
+      "description": "List of required sensor types"
+    },
+    "requiredActuators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["fan", "humidifier", "heater", "light", "pump", "valve", "co2-injector"]
+      },
+      "description": "List of required actuator types"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "default": "intermediate",
+      "description": "Difficulty level for growing this crop"
+    },
+    "estimatedYield": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["kg", "g", "lbs", "units"]
+        },
+        "perPlant": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorization and search"
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional custom metadata"
+    }
+  },
+  "definitions": {
+    "stage": {
+      "type": "object",
+      "required": ["name", "duration", "temperature", "humidity", "lightHours"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the growth stage",
+          "examples": ["Germination", "Vegetative", "Flowering", "Fruiting", "Ripening"]
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Duration of this stage in days"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": -10,
+          "maximum": 50,
+          "description": "Target temperature in Celsius"
+        },
+        "humidity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Target relative humidity percentage"
+        },
+        "co2": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Target CO₂ concentration in ppm"
+        },
+        "lightHours": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24,
+          "description": "Daily light duration in hours"
+        },
+        "lightIntensity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Light intensity percentage (0-100%)"
+        },
+        "irrigation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Daily water amount in ml per plant"
+        },
+        "nutrients": {
+          "type": "string",
+          "description": "Nutrient formula identifier",
+          "examples": ["A", "B", "A+B", "NPK-10-10-10"]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Additional notes for this stage"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "cropId": "cherry-tomato-v1",
+      "cropName": "Cherry Tomato",
+      "cropType": "vegetable",
+      "description": "Optimized recipe for cherry tomatoes in controlled environment",
+      "version": "1.0.0",
+      "difficulty": "intermediate",
+      "stages": [
+        {
+          "name": "Germination",
+          "duration": 5,
+          "temperature": 26,
+          "humidity": 85,
+          "co2": 1000,
+          "lightHours": 0,
+          "irrigation": 100
+        },
+        {
+          "name": "Vegetative",
+          "duration": 20,
+          "temperature": 24,
+          "humidity": 75,
+          "co2": 900,
+          "lightHours": 14,
+          "lightIntensity": 80,
+          "irrigation": 500,
+          "nutrients": "A"
+        },
+        {
+          "name": "Flowering",
+          "duration": 15,
+          "temperature": 22,
+          "humidity": 70,
+          "co2": 900,
+          "lightHours": 16,
+          "lightIntensity": 90,
+          "irrigation": 700,
+          "nutrients": "A+B"
+        },
+        {
+          "name": "Fruiting",
+          "duration": 30,
+          "temperature": 20,
+          "humidity": 65,
+          "co2": 850,
+          "lightHours": 16,
+          "lightIntensity": 85,
+          "irrigation": 900,
+          "nutrients": "B"
+        },
+        {
+          "name": "Ripening",
+          "duration": 20,
+          "temperature": 22,
+          "humidity": 70,
+          "co2": 1000,
+          "lightHours": 14,
+          "lightIntensity": 75,
+          "irrigation": 800,
+          "nutrients": "B"
+        }
+      ],
+      "requiredSensors": ["temperature", "humidity", "co2", "light", "soil-moisture"],
+      "requiredActuators": ["fan", "humidifier", "heater", "light", "pump", "valve"],
+      "estimatedYield": {
+        "amount": 2.5,
+        "unit": "kg",
+        "perPlant": true
+      },
+      "tags": ["tomato", "vegetable", "fruiting", "hydroponic"]
+    }
+  ]
+}
+

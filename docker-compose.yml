@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: smartcrop-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: smartcrop_db
+      POSTGRES_USER: smartcrop_user
+      POSTGRES_PASSWORD: smartcrop_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - smartcrop-network
+
+  # Redis for caching and pub/sub
+  redis:
+    image: redis:7-alpine
+    container_name: smartcrop-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - smartcrop-network
+
+  # MQTT Broker (Eclipse Mosquitto)
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: smartcrop-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./docker/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./docker/mosquitto/password.txt:/mosquitto/config/password.txt
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_logs:/mosquitto/log
+    networks:
+      - smartcrop-network
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smartcrop-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: smartcrop_db
+      DB_USER: smartcrop_user
+      DB_PASSWORD: smartcrop_password
+      MQTT_BROKER_URL: mqtt://mosquitto:1883
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+      - mosquitto
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - smartcrop-network
+
+  # Frontend Dashboard
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: smartcrop-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      API_BASE_URL: http://backend:3000/api
+    depends_on:
+      - backend
+    networks:
+      - smartcrop-network
+
+  # Node-RED for advanced automation (optional)
+  node-red:
+    image: nodered/node-red:latest
+    container_name: smartcrop-nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    environment:
+      TZ: Asia/Kolkata
+    volumes:
+      - nodered_data:/data
+      - ./edge/node-red/flows:/data/flows
+    networks:
+      - smartcrop-network
+
+  # TimescaleDB for time-series data (alternative to PostgreSQL)
+  # Uncomment if you need time-series optimization
+  # timescaledb:
+  #   image: timescale/timescaledb:latest-pg15
+  #   container_name: smartcrop-timescale
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_DB: smartcrop_timeseries
+  #     POSTGRES_USER: smartcrop_user
+  #     POSTGRES_PASSWORD: smartcrop_password
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - timescale_data:/var/lib/postgresql/data
+  #   networks:
+  #     - smartcrop-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  mosquitto_data:
+  mosquitto_logs:
+  nodered_data:
+  # timescale_data:
+
+networks:
+  smartcrop-network:
+    driver: bridge
+

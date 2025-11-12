@@ -1,0 +1,67 @@
+{
+  "cropId": "oyster-mushroom-v1",
+  "cropName": "Oyster Mushroom",
+  "cropType": "mushroom",
+  "description": "Optimized recipe for oyster mushroom (Pleurotus ostreatus) cultivation in controlled environment",
+  "version": "1.0.0",
+  "difficulty": "beginner",
+  "stages": [
+    {
+      "name": "Spawn Run (Incubation)",
+      "duration": 14,
+      "temperature": 24,
+      "humidity": 90,
+      "co2": 5000,
+      "lightHours": 0,
+      "notes": "Keep in complete darkness. High CO₂ promotes mycelium growth."
+    },
+    {
+      "name": "Pinning (Initiation)",
+      "duration": 5,
+      "temperature": 18,
+      "humidity": 95,
+      "co2": 1000,
+      "lightHours": 12,
+      "lightIntensity": 30,
+      "notes": "Introduce light and fresh air to trigger fruiting body formation."
+    },
+    {
+      "name": "Fruiting",
+      "duration": 7,
+      "temperature": 20,
+      "humidity": 85,
+      "co2": 800,
+      "lightHours": 12,
+      "lightIntensity": 40,
+      "notes": "Maintain high humidity and good air circulation. Monitor for contaminants."
+    },
+    {
+      "name": "Harvest",
+      "duration": 3,
+      "temperature": 18,
+      "humidity": 85,
+      "co2": 800,
+      "lightHours": 12,
+      "lightIntensity": 40,
+      "notes": "Harvest when caps begin to flatten. Can expect 2-3 flushes."
+    }
+  ],
+  "requiredSensors": ["temperature", "humidity", "co2"],
+  "requiredActuators": ["fan", "humidifier", "light"],
+  "estimatedYield": {
+    "amount": 450,
+    "unit": "g",
+    "perPlant": false
+  },
+  "tags": ["mushroom", "oyster", "pleurotus", "gourmet"],
+  "author": {
+    "name": "SmartCrop Team",
+    "organization": "Yellow Flowers Technologies"
+  },
+  "metadata": {
+    "substrateType": "straw",
+    "containerSize": "2kg bag",
+    "flushCount": 3
+  }
+}
+

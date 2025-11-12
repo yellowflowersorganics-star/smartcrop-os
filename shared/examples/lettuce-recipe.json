@@ -1,0 +1,67 @@
+{
+  "cropId": "butterhead-lettuce-v1",
+  "cropName": "Butterhead Lettuce",
+  "cropType": "leafy-green",
+  "description": "Hydroponic butterhead lettuce recipe optimized for NFT systems",
+  "version": "1.0.0",
+  "difficulty": "beginner",
+  "stages": [
+    {
+      "name": "Germination",
+      "duration": 3,
+      "temperature": 22,
+      "humidity": 80,
+      "lightHours": 18,
+      "lightIntensity": 60,
+      "notes": "Keep seeds moist but not waterlogged"
+    },
+    {
+      "name": "Seedling",
+      "duration": 7,
+      "temperature": 20,
+      "humidity": 70,
+      "lightHours": 18,
+      "lightIntensity": 70,
+      "nutrients": "Half-strength nutrient solution",
+      "notes": "EC: 0.8-1.0 mS/cm, pH: 5.5-6.0"
+    },
+    {
+      "name": "Vegetative Growth",
+      "duration": 15,
+      "temperature": 18,
+      "humidity": 65,
+      "lightHours": 16,
+      "lightIntensity": 80,
+      "nutrients": "Full-strength nutrient solution",
+      "notes": "EC: 1.2-1.8 mS/cm, pH: 5.5-6.0. Increase spacing as plants grow."
+    },
+    {
+      "name": "Maturation",
+      "duration": 7,
+      "temperature": 18,
+      "humidity": 60,
+      "lightHours": 14,
+      "lightIntensity": 75,
+      "nutrients": "Full-strength nutrient solution",
+      "notes": "Monitor for tip burn. Ready to harvest when heads are firm."
+    }
+  ],
+  "requiredSensors": ["temperature", "humidity", "ec", "ph", "light"],
+  "requiredActuators": ["fan", "pump", "light"],
+  "estimatedYield": {
+    "amount": 250,
+    "unit": "g",
+    "perPlant": true
+  },
+  "tags": ["lettuce", "hydroponic", "leafy-green", "NFT"],
+  "author": {
+    "name": "SmartCrop Team",
+    "organization": "Yellow Flowers Technologies"
+  },
+  "metadata": {
+    "systemType": "NFT",
+    "plantSpacing": "20cm",
+    "harvestCycle": "32 days"
+  }
+}
+
