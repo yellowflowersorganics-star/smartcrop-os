@@ -1,0 +1,1168 @@
+{
+  "recipe_id": "oyster_mushroom_enhanced_v2",
+  "name": "Oyster Mushroom Enhanced (with Harvest Tracking) v2",
+  "crop_type": "mushroom",
+  "version": "2.0",
+  "author": "Yellow Flowers Organics",
+  "description": "Production-grade oyster mushroom recipe with harvest tracking, multi-flush support, yield analytics, and advanced safety features. Optimized for North India ambient conditions with commercial scale operations.",
+  "tags": ["oyster", "mushroom", "high-humidity", "multi-flush", "commercial", "harvest-tracking"],
+  "default_duration_unit": "days",
+  "metadata": {
+    "created_ts": "2025-11-12T10:00:00Z",
+    "updated_ts": "2025-11-12T15:00:00Z",
+    "notes": "Enhanced version with harvest tracking, second flush, alerts, and yield analytics",
+    "target_substrate": "wheat_straw_sawdust",
+    "expected_be_percent": 25,
+    "flushes_expected": 2,
+    "cycle_duration_days": 35
+  },
+  "substrate_config": {
+    "type": "supplemented_straw",
+    "bags_per_zone": 100,
+    "weight_per_bag_kg": 2.5,
+    "total_substrate_kg": 250,
+    "spawn_rate_percent": 3,
+    "expected_yield_per_bag_g": 500
+  },
+  "safety_limits": {
+    "temperature": {
+      "critical_high_c": 32,
+      "critical_low_c": 15,
+      "emergency_action": "alert_and_adjust"
+    },
+    "humidity": {
+      "critical_high_percent": 98,
+      "critical_low_percent": 50,
+      "emergency_action": "alert_and_adjust"
+    },
+    "co2": {
+      "critical_high_ppm": 3000,
+      "emergency_action": "force_purge"
+    },
+    "water_level": {
+      "critical_low_percent": 10,
+      "warning_low_percent": 30,
+      "emergency_action": "alert_operator"
+    }
+  },
+  "stages": [
+    {
+      "id": "incubation",
+      "name": "Incubation (Colonization)",
+      "stage_number": 1,
+      "duration": {
+        "value": 15,
+        "unit": "days",
+        "type": "fixed"
+      },
+      "description": "Mycelium colonizes substrate in darkness. High CO2 and humidity promote aggressive growth.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 26,
+            "tolerance_c": 0.8,
+            "control_mode": "PID",
+            "priority": "high"
+          },
+          "humidity": {
+            "setpoint_percent": 88,
+            "tolerance_percent": 4,
+            "control_mode": "PID",
+            "priority": "high"
+          },
+          "co2": {
+            "setpoint_ppm": 1500,
+            "max_ppm": 2500,
+            "purge_duration_s": 45,
+            "purge_trigger_ppm": 2000
+          }
+        },
+        "ventilation": {
+          "min_ach": 2,
+          "target_ach": 4,
+          "max_ach": 6,
+          "mode": "co2_driven"
+        },
+        "lighting": {
+          "mode": "off",
+          "description": "Complete darkness for optimal colonization"
+        }
+      },
+      "sensors": {
+        "required": ["temp_rh", "co2"],
+        "recommended": ["water_level"],
+        "telemetry_interval_s": 60
+      },
+      "actions": [
+        {
+          "type": "notify",
+          "trigger": "stage_start",
+          "params": {
+            "message": "Incubation started for batch {{batch_id}}. System will auto-advance after 15 days.",
+            "channels": ["dashboard", "email"],
+            "priority": "info"
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "stage_start",
+          "params": {
+            "event_type": "incubation_started",
+            "data": {
+              "substrate_weight_kg": "{{substrate_config.total_substrate_kg}}",
+              "bags_count": "{{substrate_config.bags_per_zone}}",
+              "expected_yield_kg": "{{substrate_config.expected_yield_per_bag_g * substrate_config.bags_per_zone / 1000}}"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "trigger": "condition",
+          "condition": "temperature > 28 OR temperature < 22",
+          "params": {
+            "message": "⚠️ Temperature out of optimal range for incubation!",
+            "severity": "warning"
+          }
+        },
+        {
+          "type": "alert",
+          "trigger": "condition",
+          "condition": "co2 > 2500",
+          "params": {
+            "message": "🚨 CO2 critically high! Forced purge initiated.",
+            "severity": "critical",
+            "action": "force_purge"
+          }
+        }
+      ],
+      "success_criteria": {
+        "avg_temperature_c": [24, 28],
+        "avg_humidity_percent": [84, 92],
+        "duration_days": [14, 17]
+      }
+    },
+    {
+      "id": "incubation_review",
+      "name": "Incubation Review & QC",
+      "stage_number": 2,
+      "duration": {
+        "value": 0,
+        "unit": "days",
+        "type": "until_confirm"
+      },
+      "description": "Quality control checkpoint. Operator inspects colonization completion before proceeding.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 26,
+            "tolerance_c": 1,
+            "control_mode": "PID"
+          },
+          "humidity": {
+            "setpoint_percent": 88,
+            "tolerance_percent": 4,
+            "control_mode": "PID"
+          },
+          "co2": {
+            "setpoint_ppm": 1500,
+            "max_ppm": 2500
+          }
+        },
+        "lighting": {
+          "mode": "off"
+        }
+      },
+      "actions": [
+        {
+          "type": "prompt_user",
+          "trigger": "stage_start",
+          "params": {
+            "prompt_id": "incubation_15d_review",
+            "title": "Incubation Review - Day 15",
+            "text": "15 days elapsed. Please inspect bags:\n\n✓ Mycelium coverage: 95-100% white\n✓ Smell test: Pleasant mushroom smell (not sour/ammonia)\n✓ Firmness: Bags should be solid and fully colonized\n✓ Contamination: No green/black mold visible\n\nIs incubation complete?",
+            "options": [
+              {
+                "value": "extend_1d",
+                "label": "Extend 1 Day",
+                "description": "Need more time for colonization"
+              },
+              {
+                "value": "extend_2d",
+                "label": "Extend 2 Days",
+                "description": "Significant areas still uncolonized"
+              },
+              {
+                "value": "confirm_done",
+                "label": "✓ Confirm Complete",
+                "description": "Colonization looks perfect, proceed to cutting",
+                "color": "success"
+              },
+              {
+                "value": "abort_contaminated",
+                "label": "⚠️ Abort - Contaminated",
+                "description": "Significant contamination detected",
+                "color": "danger",
+                "requires_confirmation": true
+              }
+            ],
+            "input_fields": [
+              {
+                "name": "colonization_percent",
+                "label": "Estimated Colonization %",
+                "type": "number",
+                "min": 0,
+                "max": 100,
+                "required": true
+              },
+              {
+                "name": "contaminated_bags",
+                "label": "Number of Contaminated Bags (if any)",
+                "type": "number",
+                "min": 0,
+                "required": false
+              },
+              {
+                "name": "notes",
+                "label": "Inspection Notes",
+                "type": "textarea",
+                "placeholder": "Any observations about colonization quality, smell, appearance, etc.",
+                "required": false
+              }
+            ]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "user_action",
+          "params": {
+            "event_type": "incubation_reviewed",
+            "capture_user_input": true
+          }
+        }
+      ],
+      "validation": {
+        "min_colonization_percent": 80,
+        "max_contaminated_bags_percent": 10
+      }
+    },
+    {
+      "id": "cut_bags",
+      "name": "Cut Bags (Fruiting Preparation)",
+      "stage_number": 3,
+      "duration": {
+        "value": 2,
+        "unit": "hours",
+        "type": "fixed"
+      },
+      "description": "Prepare bags for fruiting by cutting openings. Critical contamination control point.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 25,
+            "tolerance_c": 1,
+            "control_mode": "PID"
+          },
+          "humidity": {
+            "setpoint_percent": 90,
+            "tolerance_percent": 5,
+            "control_mode": "PID",
+            "description": "High humidity prevents substrate from drying during cutting"
+          },
+          "co2": {
+            "setpoint_ppm": 1000,
+            "max_ppm": 1500
+          }
+        },
+        "ventilation": {
+          "min_ach": 4,
+          "target_ach": 6,
+          "max_ach": 8
+        },
+        "lighting": {
+          "mode": "manual",
+          "intensity_lux": 300,
+          "description": "Bright working light for cutting operation"
+        }
+      },
+      "actions": [
+        {
+          "type": "prompt_user",
+          "trigger": "stage_start",
+          "params": {
+            "prompt_id": "cut_bags_sop",
+            "title": "Bag Cutting SOP",
+            "text": "Please follow the Standard Operating Procedure for cutting bags:\n\n1. **Sanitize**: Wipe cutting tools with 70% alcohol\n2. **Cut Pattern**: Make 3-4 cuts per bag (2-3 inches each)\n   - Position: Upper 1/3 and lower 1/3 of bag\n   - Shape: X-pattern or straight slits\n3. **Spacing**: Leave 6-8 inches between cuts\n4. **Remove**: Discard any contaminated bags\n5. **Arrange**: Position bags for optimal air circulation\n\n⏱️ Estimated time: 2 hours for {{substrate_config.bags_per_zone}} bags\n\nConfirm when cutting is complete.",
+            "options": [
+              {
+                "value": "confirm_cut",
+                "label": "✓ Cutting Complete",
+                "description": "All bags cut according to SOP",
+                "color": "success"
+              },
+              {
+                "value": "extend_time",
+                "label": "Need More Time",
+                "description": "Extend by 1 hour"
+              }
+            ],
+            "input_fields": [
+              {
+                "name": "bags_cut",
+                "label": "Number of Bags Cut",
+                "type": "number",
+                "min": 0,
+                "max": "{{substrate_config.bags_per_zone}}",
+                "required": true
+              },
+              {
+                "name": "bags_discarded",
+                "label": "Bags Discarded (contaminated)",
+                "type": "number",
+                "min": 0,
+                "required": true
+              },
+              {
+                "name": "operator_name",
+                "label": "Operator Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "cutting_notes",
+                "label": "Notes",
+                "type": "textarea",
+                "placeholder": "Any issues during cutting?",
+                "required": false
+              }
+            ]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "user_action",
+          "params": {
+            "event_type": "bags_cut",
+            "capture_user_input": true
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "stage_complete",
+          "params": {
+            "message": "Bags cut successfully. Transitioning to fruiting stage.",
+            "channels": ["dashboard"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fruiting_flush_1",
+      "name": "Fruiting - First Flush",
+      "stage_number": 4,
+      "flush_number": 1,
+      "duration": {
+        "value": 10,
+        "unit": "days",
+        "type": "fixed"
+      },
+      "description": "First fruiting cycle. Temperature drop triggers pinning, then rapid growth.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 23,
+            "tolerance_c": 0.8,
+            "control_mode": "PID",
+            "priority": "high",
+            "description": "Cool temp triggers fruiting response"
+          },
+          "humidity": {
+            "setpoint_percent": 85,
+            "tolerance_percent": 5,
+            "control_mode": "PID",
+            "priority": "high",
+            "description": "High humidity prevents mushroom drying"
+          },
+          "co2": {
+            "setpoint_ppm": 800,
+            "max_ppm": 1200,
+            "purge_duration_s": 60,
+            "purge_trigger_ppm": 1000,
+            "description": "Low CO2 triggers pinning and maintains fruit quality"
+          }
+        },
+        "lighting": {
+          "mode": "auto",
+          "intensity_lux": 150,
+          "photoperiod": {
+            "on_time": "07:00",
+            "off_time": "19:00",
+            "hours_per_day": 12
+          },
+          "ramp_minutes": 10,
+          "description": "12/12 photoperiod for pin formation"
+        },
+        "ventilation": {
+          "min_ach": 6,
+          "target_ach": 10,
+          "max_ach": 12,
+          "mode": "continuous",
+          "description": "High fresh air exchange for fruiting"
+        }
+      },
+      "sensors": {
+        "required": ["temp_rh", "co2", "lux"],
+        "recommended": ["water_level"],
+        "telemetry_interval_s": 60
+      },
+      "actions": [
+        {
+          "type": "notify",
+          "trigger": "stage_start",
+          "params": {
+            "message": "🍄 First flush started! Lights scheduled 12/12. Pins expected in 2-3 days.",
+            "channels": ["dashboard", "email"],
+            "priority": "info"
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "stage_start",
+          "params": {
+            "event_type": "fruiting_started",
+            "data": {
+              "flush_number": 1,
+              "bags_active": "{{bags_cut - bags_discarded}}"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "trigger": "condition",
+          "condition": "humidity < 75",
+          "params": {
+            "message": "⚠️ Humidity too low for fruiting! Mushrooms may dry out.",
+            "severity": "warning"
+          }
+        },
+        {
+          "type": "alert",
+          "trigger": "condition",
+          "condition": "co2 > 1200",
+          "params": {
+            "message": "⚠️ CO2 too high! May cause long stems and small caps.",
+            "severity": "warning",
+            "action": "increase_ventilation"
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "time_based",
+          "time_offset_days": 3,
+          "params": {
+            "message": "📌 Day 3: Check for pins (tiny mushroom buds). Should be visible now.",
+            "channels": ["dashboard"]
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "time_based",
+          "time_offset_days": 7,
+          "params": {
+            "message": "🍄 Day 7: Mushrooms should be in rapid growth phase. Harvest expected in 2-3 days.",
+            "channels": ["dashboard", "email"]
+          }
+        }
+      ],
+      "milestones": [
+        {
+          "day": 1,
+          "name": "Initiation",
+          "description": "Temperature drop triggers fruiting response"
+        },
+        {
+          "day": 3,
+          "name": "Pinning",
+          "description": "Tiny mushroom primordia (pins) should be visible"
+        },
+        {
+          "day": 5,
+          "name": "Early Growth",
+          "description": "Mushrooms double in size daily"
+        },
+        {
+          "day": 8,
+          "name": "Rapid Growth",
+          "description": "Mushrooms approaching harvest size"
+        },
+        {
+          "day": 10,
+          "name": "Harvest Window",
+          "description": "Optimal harvest time"
+        }
+      ]
+    },
+    {
+      "id": "harvest_flush_1",
+      "name": "Harvest - First Flush",
+      "stage_number": 5,
+      "flush_number": 1,
+      "duration": {
+        "value": 3,
+        "unit": "days",
+        "type": "until_confirm"
+      },
+      "description": "First harvest window. Track yield, quality, and prepare for second flush.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 18,
+            "tolerance_c": 1,
+            "control_mode": "PID",
+            "description": "Cool temp extends shelf life during harvest"
+          },
+          "humidity": {
+            "setpoint_percent": 80,
+            "tolerance_percent": 5,
+            "control_mode": "PID"
+          },
+          "co2": {
+            "setpoint_ppm": 800,
+            "max_ppm": 1200
+          }
+        },
+        "lighting": {
+          "mode": "manual",
+          "intensity_lux": 400,
+          "description": "Bright light for harvest operations"
+        },
+        "ventilation": {
+          "min_ach": 8,
+          "target_ach": 10,
+          "max_ach": 12
+        }
+      },
+      "actions": [
+        {
+          "type": "prompt_user",
+          "trigger": "stage_start",
+          "params": {
+            "prompt_id": "harvest_flush_1",
+            "title": "First Flush Harvest",
+            "text": "🍄 **Harvest Criteria**:\n\n**Ready to Harvest When**:\n✓ Caps fully opened (flat, not cupped)\n✓ Gills visible underneath\n✓ Edges begin to curl upward\n✓ Size: 3-5 inches diameter\n\n**Harvest Method**:\n1. Twist and pull from base (don't cut)\n2. Remove entire cluster\n3. Trim base with clean knife\n4. Weigh immediately\n5. Place in clean containers\n\n**Don't Over-Wait**: Harvest before spores drop (white dust)",
+            "options": [
+              {
+                "value": "harvest_complete",
+                "label": "✓ Harvest Complete",
+                "description": "All mature mushrooms harvested",
+                "color": "success"
+              },
+              {
+                "value": "partial_harvest",
+                "label": "Partial Harvest",
+                "description": "Some bags still growing"
+              },
+              {
+                "value": "extend_1d",
+                "label": "Extend 1 Day",
+                "description": "Not quite ready yet"
+              }
+            ],
+            "input_fields": [
+              {
+                "name": "total_weight_kg",
+                "label": "Total Harvest Weight (kg) *",
+                "type": "number",
+                "min": 0,
+                "step": 0.1,
+                "required": true,
+                "placeholder": "e.g., 12.5"
+              },
+              {
+                "name": "bags_harvested",
+                "label": "Number of Bags Harvested *",
+                "type": "number",
+                "min": 0,
+                "required": true
+              },
+              {
+                "name": "quality_grade",
+                "label": "Quality Grade *",
+                "type": "select",
+                "required": true,
+                "options": [
+                  { "value": "premium", "label": "Premium (A+)", "description": "Perfect caps, uniform size, no damage" },
+                  { "value": "grade_a", "label": "Grade A", "description": "Good quality, minor imperfections" },
+                  { "value": "grade_b", "label": "Grade B", "description": "Irregular shape, but edible" },
+                  { "value": "rejected", "label": "Rejected", "description": "Damaged, diseased, or poor quality" }
+                ]
+              },
+              {
+                "name": "avg_mushroom_weight_g",
+                "label": "Average Mushroom Weight (g)",
+                "type": "number",
+                "min": 0,
+                "step": 1,
+                "required": false,
+                "placeholder": "e.g., 50"
+              },
+              {
+                "name": "defect_notes",
+                "label": "Quality Issues (if any)",
+                "type": "checkboxes",
+                "options": [
+                  "Long stems (high CO2)",
+                  "Small caps (low humidity)",
+                  "Dry/cracked edges",
+                  "Yellowing",
+                  "Insect damage",
+                  "Bacterial spots",
+                  "Other"
+                ]
+              },
+              {
+                "name": "harvest_photos",
+                "label": "Upload Harvest Photos",
+                "type": "file",
+                "accept": "image/*",
+                "multiple": true,
+                "required": false
+              },
+              {
+                "name": "harvester_name",
+                "label": "Harvester Name *",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "market_destination",
+                "label": "Market Destination",
+                "type": "select",
+                "options": [
+                  "Local Market",
+                  "Wholesale",
+                  "Restaurant",
+                  "Direct Consumer",
+                  "Export",
+                  "Self-Consumption"
+                ]
+              },
+              {
+                "name": "harvest_notes",
+                "label": "Harvest Notes",
+                "type": "textarea",
+                "placeholder": "Any observations about yield, quality, issues, etc.",
+                "required": false
+              }
+            ]
+          }
+        },
+        {
+          "type": "calculate_metrics",
+          "trigger": "user_action",
+          "params": {
+            "metrics": [
+              {
+                "name": "biological_efficiency",
+                "formula": "(total_weight_kg / substrate_config.total_substrate_kg) * 100",
+                "unit": "percent",
+                "display_name": "Biological Efficiency (BE%)"
+              },
+              {
+                "name": "yield_per_bag",
+                "formula": "total_weight_kg / bags_harvested",
+                "unit": "kg",
+                "display_name": "Yield per Bag"
+              },
+              {
+                "name": "yield_vs_expected",
+                "formula": "(total_weight_kg / (substrate_config.expected_yield_per_bag_g * substrate_config.bags_per_zone / 1000)) * 100",
+                "unit": "percent",
+                "display_name": "Yield vs Expected"
+              }
+            ]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "user_action",
+          "params": {
+            "event_type": "harvest_completed",
+            "flush_number": 1,
+            "capture_user_input": true,
+            "capture_metrics": true
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "stage_complete",
+          "params": {
+            "message": "✅ First flush harvested! Total: {{total_weight_kg}} kg. BE: {{biological_efficiency}}%. Preparing for second flush.",
+            "channels": ["dashboard", "email"],
+            "priority": "info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rest_rehydration",
+      "name": "Rest & Rehydration",
+      "stage_number": 6,
+      "duration": {
+        "value": 7,
+        "unit": "days",
+        "type": "fixed"
+      },
+      "description": "Allow substrate to recover and rehydrate before second flush.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 18,
+            "tolerance_c": 1,
+            "control_mode": "PID",
+            "description": "Cool temperature for mycelium recovery"
+          },
+          "humidity": {
+            "setpoint_percent": 95,
+            "tolerance_percent": 3,
+            "control_mode": "PID",
+            "description": "Very high humidity for rehydration"
+          },
+          "co2": {
+            "setpoint_ppm": 2000,
+            "max_ppm": 3000,
+            "description": "High CO2 suppresses fruiting during recovery"
+          }
+        },
+        "lighting": {
+          "mode": "off",
+          "description": "Darkness during rest period"
+        },
+        "ventilation": {
+          "min_ach": 2,
+          "target_ach": 3,
+          "max_ach": 4,
+          "description": "Minimal ventilation to maintain high CO2"
+        }
+      },
+      "actions": [
+        {
+          "type": "notify",
+          "trigger": "stage_start",
+          "params": {
+            "message": "💤 Rest period started. Substrate rehydrating for second flush. Duration: 7 days.",
+            "channels": ["dashboard"]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "stage_start",
+          "params": {
+            "event_type": "rest_period_started"
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "time_based",
+          "time_offset_days": 5,
+          "params": {
+            "message": "⏰ Rest period ending in 2 days. Second flush will start automatically.",
+            "channels": ["dashboard"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fruiting_flush_2",
+      "name": "Fruiting - Second Flush",
+      "stage_number": 7,
+      "flush_number": 2,
+      "duration": {
+        "value": 10,
+        "unit": "days",
+        "type": "fixed"
+      },
+      "description": "Second fruiting cycle. Typically 50-70% of first flush yield.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 22,
+            "tolerance_c": 1,
+            "control_mode": "PID",
+            "description": "Slightly cooler for second flush"
+          },
+          "humidity": {
+            "setpoint_percent": 85,
+            "tolerance_percent": 5,
+            "control_mode": "PID"
+          },
+          "co2": {
+            "setpoint_ppm": 800,
+            "max_ppm": 1200,
+            "purge_duration_s": 60
+          }
+        },
+        "lighting": {
+          "mode": "auto",
+          "intensity_lux": 150,
+          "photoperiod": {
+            "on_time": "07:00",
+            "off_time": "19:00",
+            "hours_per_day": 12
+          },
+          "ramp_minutes": 10
+        },
+        "ventilation": {
+          "min_ach": 6,
+          "target_ach": 10,
+          "max_ach": 12
+        }
+      },
+      "sensors": {
+        "required": ["temp_rh", "co2", "lux"],
+        "recommended": ["water_level"],
+        "telemetry_interval_s": 60
+      },
+      "actions": [
+        {
+          "type": "notify",
+          "trigger": "stage_start",
+          "params": {
+            "message": "🍄 Second flush started! Expect 50-70% of first flush yield.",
+            "channels": ["dashboard", "email"]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "stage_start",
+          "params": {
+            "event_type": "fruiting_started",
+            "data": {
+              "flush_number": 2
+            }
+          }
+        }
+      ],
+      "milestones": [
+        {
+          "day": 3,
+          "name": "Pinning",
+          "description": "Pins forming for second flush"
+        },
+        {
+          "day": 8,
+          "name": "Harvest Window",
+          "description": "Ready for second harvest"
+        }
+      ]
+    },
+    {
+      "id": "harvest_flush_2",
+      "name": "Harvest - Second Flush",
+      "stage_number": 8,
+      "flush_number": 2,
+      "duration": {
+        "value": 3,
+        "unit": "days",
+        "type": "until_confirm"
+      },
+      "description": "Second harvest. Final yield tracking and batch completion.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 18,
+            "tolerance_c": 1,
+            "control_mode": "PID"
+          },
+          "humidity": {
+            "setpoint_percent": 80,
+            "tolerance_percent": 5,
+            "control_mode": "PID"
+          },
+          "co2": {
+            "setpoint_ppm": 800,
+            "max_ppm": 1200
+          }
+        },
+        "lighting": {
+          "mode": "manual",
+          "intensity_lux": 400
+        },
+        "ventilation": {
+          "min_ach": 8,
+          "target_ach": 10,
+          "max_ach": 12
+        }
+      },
+      "actions": [
+        {
+          "type": "prompt_user",
+          "trigger": "stage_start",
+          "params": {
+            "prompt_id": "harvest_flush_2",
+            "title": "Second Flush Harvest",
+            "text": "🍄 Final harvest for this batch.\n\nFollow same harvest procedure as first flush.",
+            "options": [
+              {
+                "value": "harvest_complete",
+                "label": "✓ Harvest Complete",
+                "description": "Second flush harvested",
+                "color": "success"
+              },
+              {
+                "value": "attempt_third_flush",
+                "label": "Attempt Third Flush",
+                "description": "Substrate still looks good"
+              }
+            ],
+            "input_fields": [
+              {
+                "name": "total_weight_kg",
+                "label": "Total Harvest Weight (kg) *",
+                "type": "number",
+                "min": 0,
+                "step": 0.1,
+                "required": true
+              },
+              {
+                "name": "bags_harvested",
+                "label": "Number of Bags Harvested *",
+                "type": "number",
+                "min": 0,
+                "required": true
+              },
+              {
+                "name": "quality_grade",
+                "label": "Quality Grade *",
+                "type": "select",
+                "required": true,
+                "options": [
+                  { "value": "premium", "label": "Premium (A+)" },
+                  { "value": "grade_a", "label": "Grade A" },
+                  { "value": "grade_b", "label": "Grade B" },
+                  { "value": "rejected", "label": "Rejected" }
+                ]
+              },
+              {
+                "name": "harvester_name",
+                "label": "Harvester Name *",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "market_destination",
+                "label": "Market Destination",
+                "type": "select",
+                "options": [
+                  "Local Market",
+                  "Wholesale",
+                  "Restaurant",
+                  "Direct Consumer",
+                  "Export"
+                ]
+              },
+              {
+                "name": "harvest_notes",
+                "label": "Harvest Notes",
+                "type": "textarea",
+                "required": false
+              }
+            ]
+          }
+        },
+        {
+          "type": "calculate_metrics",
+          "trigger": "user_action",
+          "params": {
+            "metrics": [
+              {
+                "name": "biological_efficiency_flush2",
+                "formula": "(total_weight_kg / substrate_config.total_substrate_kg) * 100",
+                "unit": "percent"
+              },
+              {
+                "name": "total_batch_yield",
+                "formula": "harvest_flush_1.total_weight_kg + total_weight_kg",
+                "unit": "kg"
+              },
+              {
+                "name": "total_be_percent",
+                "formula": "(total_batch_yield / substrate_config.total_substrate_kg) * 100",
+                "unit": "percent"
+              },
+              {
+                "name": "flush2_vs_flush1_percent",
+                "formula": "(total_weight_kg / harvest_flush_1.total_weight_kg) * 100",
+                "unit": "percent"
+              }
+            ]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "user_action",
+          "params": {
+            "event_type": "harvest_completed",
+            "flush_number": 2,
+            "capture_user_input": true,
+            "capture_metrics": true
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "stage_complete",
+          "params": {
+            "message": "🎉 Batch complete! Total yield: {{total_batch_yield}} kg ({{total_be_percent}}% BE). Second flush: {{total_weight_kg}} kg ({{flush2_vs_flush1_percent}}% of first flush).",
+            "channels": ["dashboard", "email"],
+            "priority": "success"
+          }
+        }
+      ]
+    },
+    {
+      "id": "batch_complete",
+      "name": "Batch Complete & Cleanup",
+      "stage_number": 9,
+      "duration": {
+        "value": 1,
+        "unit": "days",
+        "type": "until_confirm"
+      },
+      "description": "Final batch summary and cleanup preparation.",
+      "controls": {
+        "environment": {
+          "temperature": {
+            "setpoint_c": 20,
+            "tolerance_c": 2
+          },
+          "humidity": {
+            "setpoint_percent": 70,
+            "tolerance_percent": 10
+          }
+        },
+        "lighting": {
+          "mode": "off"
+        },
+        "ventilation": {
+          "min_ach": 4,
+          "target_ach": 6,
+          "max_ach": 8
+        }
+      },
+      "actions": [
+        {
+          "type": "generate_report",
+          "trigger": "stage_start",
+          "params": {
+            "report_type": "batch_summary",
+            "include": [
+              "total_yield",
+              "biological_efficiency",
+              "yield_per_flush",
+              "quality_distribution",
+              "environmental_stats",
+              "timeline",
+              "costs",
+              "revenue"
+            ]
+          }
+        },
+        {
+          "type": "prompt_user",
+          "trigger": "stage_start",
+          "params": {
+            "prompt_id": "batch_complete",
+            "title": "Batch Complete - Final Summary",
+            "text": "📊 **Batch Summary**\n\nTotal Yield: {{total_batch_yield}} kg\nBiological Efficiency: {{total_be_percent}}%\nFlush 1: {{harvest_flush_1.total_weight_kg}} kg\nFlush 2: {{harvest_flush_2.total_weight_kg}} kg\n\nReady for cleanup?",
+            "options": [
+              {
+                "value": "confirm_cleanup",
+                "label": "✓ Ready for Cleanup",
+                "color": "success"
+              }
+            ],
+            "input_fields": [
+              {
+                "name": "substrate_disposal_method",
+                "label": "Substrate Disposal Method *",
+                "type": "select",
+                "required": true,
+                "options": [
+                  "Composting",
+                  "Animal Feed",
+                  "Biogas",
+                  "Landfill",
+                  "Other"
+                ]
+              },
+              {
+                "name": "zone_sanitized",
+                "label": "Zone Sanitized? *",
+                "type": "checkbox",
+                "required": true,
+                "label_text": "Confirm zone has been cleaned and sanitized"
+              },
+              {
+                "name": "lessons_learned",
+                "label": "Lessons Learned",
+                "type": "textarea",
+                "placeholder": "What went well? What could be improved?",
+                "required": false
+              }
+            ]
+          }
+        },
+        {
+          "type": "log_event",
+          "trigger": "user_action",
+          "params": {
+            "event_type": "batch_completed",
+            "capture_user_input": true
+          }
+        },
+        {
+          "type": "notify",
+          "trigger": "stage_complete",
+          "params": {
+            "message": "✅ Batch {{batch_id}} complete! Zone ready for next cycle.",
+            "channels": ["dashboard", "email"],
+            "priority": "success"
+          }
+        }
+      ]
+    }
+  ],
+  "analytics": {
+    "key_metrics": [
+      "total_yield_kg",
+      "biological_efficiency_percent",
+      "yield_per_bag_kg",
+      "quality_grade_distribution",
+      "flush1_vs_flush2_ratio",
+      "cycle_duration_days",
+      "contamination_rate_percent",
+      "cost_per_kg",
+      "revenue_per_kg"
+    ],
+    "benchmarks": {
+      "biological_efficiency": {
+        "poor": "< 15%",
+        "acceptable": "15-20%",
+        "good": "20-25%",
+        "excellent": "> 25%"
+      },
+      "flush2_vs_flush1": {
+        "poor": "< 40%",
+        "acceptable": "40-60%",
+        "good": "60-70%",
+        "excellent": "> 70%"
+      },
+      "contamination_rate": {
+        "excellent": "< 5%",
+        "good": "5-10%",
+        "acceptable": "10-15%",
+        "poor": "> 15%"
+      }
+    }
+  }
+}
+
