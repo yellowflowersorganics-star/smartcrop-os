@@ -928,9 +928,14 @@ export default function Landing() {
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-3">
                 <li>
-                  <button onClick={() => scrollToSection('about')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <Link to="/about" className="text-gray-400 hover:text-white transition-colors text-sm">
                     About Us
-                  </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/faq" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    FAQ
+                  </Link>
                 </li>
                 <li>
                   <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition-colors text-sm">
@@ -950,11 +955,6 @@ export default function Landing() {
                 <li>
                   <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Partners
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    Investors
                   </a>
                 </li>
               </ul>

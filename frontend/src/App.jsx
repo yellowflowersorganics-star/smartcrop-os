@@ -7,6 +7,8 @@ import AuthLayout from './layouts/AuthLayout';
 
 // Pages
 import Landing from './pages/Landing';
+import About from './pages/About';
+import FAQ from './pages/FAQ';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import GoogleAuthSuccess from './pages/GoogleAuthSuccess';
@@ -44,6 +46,8 @@ function App() {
     <Routes>
       {/* Public Landing Page */}
       <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/faq" element={<FAQ />} />
 
       {/* Auth Routes */}
       <Route element={<AuthLayout />}>
