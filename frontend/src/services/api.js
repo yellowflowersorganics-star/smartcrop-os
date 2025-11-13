@@ -107,3 +107,17 @@ export const inventoryService = {
   recordUsage: (data) => api.post('/inventory/usage', data),
 };
 
+export const notificationService = {
+  getAll: (params) => api.get('/notifications/alerts', { params }),
+  getById: (id) => api.get(`/notifications/alerts/${id}`),
+  getUnreadCount: () => api.get('/notifications/alerts/unread-count'),
+  markAsRead: (id) => api.post(`/notifications/alerts/${id}/read`),
+  markAsUnread: (id) => api.post(`/notifications/alerts/${id}/unread`),
+  dismiss: (id) => api.post(`/notifications/alerts/${id}/dismiss`),
+  acknowledge: (id) => api.post(`/notifications/alerts/${id}/acknowledge`),
+  markAllAsRead: () => api.post('/notifications/alerts/read-all'),
+  dismissAll: () => api.post('/notifications/alerts/dismiss-all'),
+  getPreferences: () => api.get('/notifications/preferences'),
+  updatePreferences: (data) => api.put('/notifications/preferences', data),
+};
+

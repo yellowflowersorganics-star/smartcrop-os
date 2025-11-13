@@ -6,6 +6,7 @@
 const { Telemetry, Zone } = require('../models');
 const { Op } = require('sequelize');
 const logger = require('../utils/logger');
+const alertService = require('../services/alert.service');
 
 class TelemetryController {
   constructor() {
@@ -57,6 +58,21 @@ class TelemetryController {
           timestamp: new Date()
         }
       });
+
+      // Check environmental thresholds and generate alerts if needed
+      try {
+        await alertService.checkEnvironmentalData(zoneId, {
+          temperature,
+          humidity,
+          co2,
+          light,
+          airflow,
+          soilMoisture
+        });
+      } catch (alertError) {
+        logger.error('Error checking environmental alerts:', alertError);
+        // Don't fail the request if alert generation fails
+      }
 
       res.status(201).json({
         success: true,

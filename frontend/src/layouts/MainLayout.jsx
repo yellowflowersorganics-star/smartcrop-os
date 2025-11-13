@@ -11,6 +11,7 @@ import {
   LogOut
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
+import NotificationBell from '../components/NotificationBell';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -31,9 +32,12 @@ export default function MainLayout() {
     <div className="min-h-screen flex">
       {/* Sidebar */}
       <div className="w-64 bg-primary-800 text-white flex flex-col">
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">🌱 SmartCrop OS</h1>
-          <p className="text-sm text-primary-200 mt-1">Multi-Crop Platform</p>
+        <div className="p-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">🌱 SmartCrop OS</h1>
+            <p className="text-sm text-primary-200 mt-1">Multi-Crop Platform</p>
+          </div>
+          <NotificationBell />
         </div>
 
         <nav className="flex-1 px-4 space-y-1">

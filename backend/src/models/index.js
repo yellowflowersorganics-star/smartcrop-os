@@ -34,6 +34,8 @@ const Subscription = require('./Subscription')(sequelize);
 const Invoice = require('./Invoice')(sequelize);
 const InventoryItem = require('./InventoryItem')(sequelize);
 const InventoryTransaction = require('./InventoryTransaction')(sequelize);
+const Alert = require('./Alert')(sequelize);
+const NotificationPreference = require('./NotificationPreference')(sequelize);
 
 // Store models in db object
 const db = {
@@ -52,7 +54,9 @@ const db = {
   Subscription,
   Invoice,
   InventoryItem,
-  InventoryTransaction
+  InventoryTransaction,
+  Alert,
+  NotificationPreference
 };
 
 // Setup associations
