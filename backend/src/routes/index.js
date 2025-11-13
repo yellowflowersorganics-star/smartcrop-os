@@ -22,6 +22,10 @@ const subscriptionRoutes = require('./subscription.routes');
 const inventoryRoutes = require('./inventory.routes');
 const alertRoutes = require('./alert.routes');
 const taskRoutes = require('./task.routes');
+const laborRoutes = require('./labor.routes');
+const costRoutes = require('./cost.routes');
+const revenueRoutes = require('./revenue.routes');
+const profitabilityRoutes = require('./profitability.routes');
 
 // API version info
 router.get('/', (req, res) => {
@@ -49,6 +53,10 @@ router.use('/subscriptions', subscriptionRoutes);
 router.use('/inventory', inventoryRoutes);
 router.use('/notifications', alertRoutes);
 router.use('/tasks', taskRoutes);
+router.use('/labor', laborRoutes);
+router.use('/cost', costRoutes);
+router.use('/revenue', revenueRoutes);
+router.use('/profitability', profitabilityRoutes);
 
 module.exports = router;
 

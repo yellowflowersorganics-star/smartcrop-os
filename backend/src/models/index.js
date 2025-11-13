@@ -38,6 +38,9 @@ const Alert = require('./Alert')(sequelize);
 const NotificationPreference = require('./NotificationPreference')(sequelize);
 const Task = require('./Task')(sequelize);
 const TaskTemplate = require('./TaskTemplate')(sequelize);
+const WorkLog = require('./WorkLog')(sequelize);
+const CostEntry = require('./CostEntry')(sequelize);
+const Revenue = require('./Revenue')(sequelize);
 
 // Store models in db object
 const db = {
@@ -60,7 +63,10 @@ const db = {
   Alert,
   NotificationPreference,
   Task,
-  TaskTemplate
+  TaskTemplate,
+  WorkLog,
+  CostEntry,
+  Revenue
 };
 
 // Setup associations
