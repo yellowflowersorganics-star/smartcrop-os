@@ -349,7 +349,7 @@ export default function CropRecipes() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Crop Recipes</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Growing Recipes</h1>
           <p className="text-gray-600 mt-1">Manage your growing recipes and environmental parameters</p>
         </div>
         <div className="flex gap-3">
@@ -384,7 +384,7 @@ export default function CropRecipes() {
           <Book className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No recipes yet</h3>
           <p className="text-gray-600 mb-6">
-            Get started by creating your first crop recipe or use our Oyster Mushroom template
+            Get started by creating your first growing recipe or use our Oyster Mushroom template
           </p>
           <div className="flex gap-3 justify-center">
             <button

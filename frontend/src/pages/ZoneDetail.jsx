@@ -464,7 +464,7 @@ export default function ZoneDetail() {
             <form onSubmit={handleStartBatch} className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Crop Recipe *
+                  Growing Recipe *
                 </label>
                 <select
                   required
@@ -472,7 +472,7 @@ export default function ZoneDetail() {
                   onChange={(e) => setStartBatchData({ ...startBatchData, recipeId: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 >
-                  <option value="">Select a crop recipe</option>
+                  <option value="">Select a growing recipe</option>
                   {recipes.map((recipe) => (
                     <option key={recipe.id} value={recipe.id}>
                       {recipe.cropName} ({recipe.totalDuration} days)
