@@ -50,6 +50,9 @@ const SOPExecution = require('./SOPExecution')(sequelize);
 const Department = require('./Department')(sequelize);
 const Role = require('./Role')(sequelize);
 const Employee = require('./Employee')(sequelize);
+const Equipment = require('./Equipment')(sequelize);
+const ControlCommand = require('./ControlCommand')(sequelize);
+const RecipeExecution = require('./RecipeExecution')(sequelize);
 
 // Store models in db object
 const db = {
@@ -84,7 +87,10 @@ const db = {
   SOPExecution,
   Department,
   Role,
-  Employee
+  Employee,
+  Equipment,
+  ControlCommand,
+  RecipeExecution
 };
 
 // Setup associations
