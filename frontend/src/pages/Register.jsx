@@ -23,7 +23,7 @@ export default function Register() {
     const result = await register(formData);
     
     if (result.success) {
-      navigate('/');
+      navigate('/dashboard');
     } else {
       setError(result.message);
     }

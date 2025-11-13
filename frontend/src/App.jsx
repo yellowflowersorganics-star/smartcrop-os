@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 
 // Pages
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -27,6 +28,9 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <Routes>
+      {/* Public Landing Page */}
+      <Route path="/" element={<Landing />} />
+
       {/* Auth Routes */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
@@ -35,7 +39,7 @@ function App() {
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/farms" element={<Farms />} />
         <Route path="/zones" element={<Zones />} />
         <Route path="/zones/:id" element={<ZoneDetail />} />
