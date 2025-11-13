@@ -41,6 +41,9 @@ const TaskTemplate = require('./TaskTemplate')(sequelize);
 const WorkLog = require('./WorkLog')(sequelize);
 const CostEntry = require('./CostEntry')(sequelize);
 const Revenue = require('./Revenue')(sequelize);
+const QualityCheck = require('./QualityCheck')(sequelize);
+const Defect = require('./Defect')(sequelize);
+const QualityStandard = require('./QualityStandard')(sequelize);
 
 // Store models in db object
 const db = {
@@ -66,7 +69,10 @@ const db = {
   TaskTemplate,
   WorkLog,
   CostEntry,
-  Revenue
+  Revenue,
+  QualityCheck,
+  Defect,
+  QualityStandard
 };
 
 // Setup associations
