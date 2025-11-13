@@ -32,6 +32,8 @@ const sopRoutes = require('./sop.routes');
 const employeeRoutes = require('./employee.routes');
 const roleRoutes = require('./role.routes');
 const departmentRoutes = require('./department.routes');
+const equipmentRoutes = require('./equipment.routes');
+const recipeExecutionRoutes = require('./recipeExecution.routes');
 
 // API version info
 router.get('/', (req, res) => {
@@ -69,6 +71,8 @@ router.use('/sop', sopRoutes);
 router.use('/', employeeRoutes);
 router.use('/', roleRoutes);
 router.use('/', departmentRoutes);
+router.use('/equipment', equipmentRoutes);
+router.use('/recipe-execution', recipeExecutionRoutes);
 
 module.exports = router;
 

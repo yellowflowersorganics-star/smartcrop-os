@@ -1,5 +1,6 @@
 const cron = require('node-cron');
 const alertService = require('./alert.service');
+const recipeExecutionService = require('./recipeExecution.service');
 const logger = require('../utils/logger');
 
 class SchedulerService {
@@ -70,11 +71,23 @@ class SchedulerService {
       }
     });
 
+    // Check recipe executions every hour (for stage approval requests)
+    this.jobs.recipeExecutionCheck = cron.schedule('0 * * * *', async () => {
+      logger.info('⏰ Checking recipe executions...');
+      try {
+        await recipeExecutionService.checkAllExecutions();
+        logger.info('✅ Recipe execution check complete');
+      } catch (error) {
+        logger.error('❌ Error checking recipe executions:', error);
+      }
+    });
+
     logger.info('✅ Scheduled tasks initialized:');
     logger.info('  - Daily summary: 7:00 AM');
     logger.info('  - Inventory check: Every 6 hours');
     logger.info('  - Batch milestones: Every 12 hours');
     logger.info('  - Task reminders: Every 15 minutes');
+    logger.info('  - Recipe execution check: Every hour');
     logger.info('  - Alert cleanup: 3:00 AM daily');
   }
 
@@ -140,6 +153,9 @@ class SchedulerService {
       
       case 'cleanupAlerts':
         return await alertService.cleanupOldAlerts(30);
+      
+      case 'recipeExecutionCheck':
+        return await recipeExecutionService.checkAllExecutions();
       
       default:
         throw new Error(`Unknown job: ${jobName}`);
