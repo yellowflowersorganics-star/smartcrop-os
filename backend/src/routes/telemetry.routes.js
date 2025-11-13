@@ -9,11 +9,11 @@ const { authenticate } = require('../middleware/auth');
 
 router.use(authenticate);
 
+// Record a new reading
+router.post('/readings', telemetryController.recordReading);
+
 // Get telemetry data for a zone
 router.get('/zone/:zoneId', telemetryController.getZoneTelemetry);
-
-// Get telemetry data for a device
-router.get('/device/:deviceId', telemetryController.getDeviceTelemetry);
 
 // Get latest readings for a zone
 router.get('/zone/:zoneId/latest', telemetryController.getLatestReadings);
@@ -21,8 +21,11 @@ router.get('/zone/:zoneId/latest', telemetryController.getLatestReadings);
 // Get historical data with aggregation
 router.get('/zone/:zoneId/history', telemetryController.getHistoricalData);
 
-// Export telemetry data
-router.get('/zone/:zoneId/export', telemetryController.exportData);
+// Get averages for a time period
+router.get('/zone/:zoneId/averages', telemetryController.getAverages);
+
+// Generate simulated data for testing (development only)
+router.post('/zone/:zoneId/simulate', telemetryController.generateSimulatedData);
 
 module.exports = router;
 

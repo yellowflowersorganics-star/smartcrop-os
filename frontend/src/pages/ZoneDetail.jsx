@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import api from '../services/api';
 import HarvestRecording from '../components/HarvestRecording';
+import EnvironmentalMonitoring from '../components/EnvironmentalMonitoring';
 
 export default function ZoneDetail() {
   const { id } = useParams();
@@ -441,6 +442,12 @@ export default function ZoneDetail() {
           <p className="text-2xl font-bold text-gray-900">{batchHistory.length}</p>
         </div>
       </div>
+
+      {/* Environmental Monitoring */}
+      <EnvironmentalMonitoring 
+        zoneId={id}
+        activeRecipe={zone?.activeRecipe}
+      />
 
       {/* Harvest History */}
       {activeBatch && harvests.length > 0 && (
