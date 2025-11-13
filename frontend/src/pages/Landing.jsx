@@ -3,10 +3,19 @@ import {
   Sprout, Cpu, BarChart3, Cloud, Zap, Shield, 
   CheckCircle, TrendingUp, Droplets, Thermometer,
   Users, Globe, Package, ArrowRight, Bell, CheckSquare,
-  Clock, DollarSign, ClipboardCheck, FileText, Microscope
+  Clock, DollarSign, ClipboardCheck, FileText, Microscope,
+  Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Github,
+  Send
 } from 'lucide-react';
 
 export default function Landing() {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
       {/* Header/Navigation */}
@@ -17,7 +26,33 @@ export default function Landing() {
               <Sprout className="w-8 h-8 text-green-600" />
               <span className="text-2xl font-bold text-gray-900">SmartCrop OS</span>
             </div>
-            <div className="flex items-center space-x-4">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection('features')}
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                Features
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('pricing')}
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                Pricing
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                Contact
+              </button>
               <Link
                 to="/login"
                 className="text-gray-700 hover:text-green-600 font-medium transition-colors"
@@ -27,6 +62,22 @@ export default function Landing() {
               <Link
                 to="/register"
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium"
+              >
+                Get Started
+              </Link>
+            </div>
+
+            {/* Mobile - Just show login buttons */}
+            <div className="md:hidden flex items-center space-x-4">
+              <Link
+                to="/login"
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium"
               >
                 Get Started
               </Link>
@@ -71,7 +122,7 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
           Complete Farm Management Solution
         </h2>
@@ -247,7 +298,7 @@ export default function Landing() {
       </section>
 
       {/* About Section - What We Do */}
-      <section className="bg-white py-16">
+      <section id="about" className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -434,7 +485,7 @@ export default function Landing() {
       </section>
 
       {/* Pricing Plans Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="pricing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
           Simple, Transparent Pricing
         </h2>
@@ -598,6 +649,160 @@ export default function Landing() {
         </p>
       </section>
 
+      {/* Contact Us Section */}
+      <section id="contact" className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="+1 (555) 000-0000"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    rows="5"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="Tell us about your farming operation and how we can help..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold flex items-center justify-center"
+                >
+                  <Send className="w-5 h-5 mr-2" />
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="bg-green-100 p-3 rounded-lg">
+                      <Mail className="w-6 h-6 text-green-600" />
+                    </div>
+                    <div className="ml-4">
+                      <h4 className="font-semibold text-gray-900">Email</h4>
+                      <p className="text-gray-600">support@smartcropos.com</p>
+                      <p className="text-gray-600">sales@smartcropos.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="bg-blue-100 p-3 rounded-lg">
+                      <Phone className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div className="ml-4">
+                      <h4 className="font-semibold text-gray-900">Phone</h4>
+                      <p className="text-gray-600">+1 (555) 123-4567</p>
+                      <p className="text-sm text-gray-500">Mon-Fri 9am-6pm EST</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="bg-purple-100 p-3 rounded-lg">
+                      <MapPin className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div className="ml-4">
+                      <h4 className="font-semibold text-gray-900">Office</h4>
+                      <p className="text-gray-600">
+                        123 Agriculture Tech Park<br />
+                        San Francisco, CA 94105<br />
+                        United States
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl">
+                <h4 className="font-semibold text-gray-900 mb-3">Business Hours</h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Monday - Friday:</span>
+                    <span className="font-medium text-gray-900">9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Saturday:</span>
+                    <span className="font-medium text-gray-900">10:00 AM - 4:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Sunday:</span>
+                    <span className="font-medium text-gray-900">Closed</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Follow Us</h4>
+                <div className="flex space-x-4">
+                  <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-green-100 transition-colors">
+                    <Twitter className="w-5 h-5 text-gray-700" />
+                  </a>
+                  <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-green-100 transition-colors">
+                    <Facebook className="w-5 h-5 text-gray-700" />
+                  </a>
+                  <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-green-100 transition-colors">
+                    <Linkedin className="w-5 h-5 text-gray-700" />
+                  </a>
+                  <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-green-100 transition-colors">
+                    <Github className="w-5 h-5 text-gray-700" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-2xl p-12 text-center text-white">
@@ -616,15 +821,166 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Sprout className="w-6 h-6" />
-              <span className="text-lg font-bold">SmartCrop OS</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            {/* Company Info */}
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Sprout className="w-8 h-8 text-green-500" />
+                <span className="text-xl font-bold">SmartCrop OS</span>
+              </div>
+              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+                Revolutionary IoT platform for modern agriculture. Empowering farmers with data-driven precision farming solutions.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-green-500 transition-colors">
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-green-500 transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-green-500 transition-colors">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-green-500 transition-colors">
+                  <Github className="w-5 h-5" />
+                </a>
+              </div>
             </div>
-            <div className="text-gray-400 text-sm">
-              © 2024 SmartCrop OS. Professional agriculture platform.
+
+            {/* Product */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Product</h3>
+              <ul className="space-y-3">
+                <li>
+                  <button onClick={() => scrollToSection('features')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Features
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('pricing')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Pricing
+                  </button>
+                </li>
+                <li>
+                  <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    API Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Changelog
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Resources</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    User Guide
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Video Tutorials
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Case Studies
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Community Forum
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <ul className="space-y-3">
+                <li>
+                  <button onClick={() => scrollToSection('about')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Contact
+                  </button>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Press Kit
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Partners
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Investors
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-gray-400 text-sm mb-4 md:mb-0">
+                © {new Date().getFullYear()} SmartCrop OS. All rights reserved. Professional IoT agriculture platform.
+              </div>
+              <div className="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Terms of Service
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  Cookie Policy
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  GDPR
+                </a>
+              </div>
             </div>
           </div>
         </div>
