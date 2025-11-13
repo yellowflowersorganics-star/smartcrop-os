@@ -39,6 +39,17 @@ export default function FarmDetail() {
     }
   };
 
+  // Format units for display
+  const formatUnits = (unit) => {
+    const unitMap = {
+      'sqft': 'sq ft',
+      'sqm': 'm²',
+      'acre': 'acres',
+      'hectare': 'hectares'
+    };
+    return unitMap[unit] || unit;
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -130,7 +141,7 @@ export default function FarmDetail() {
                 <div className="text-3xl font-bold text-gray-900">
                   {farm.totalArea}
                   <span className="text-lg font-normal text-gray-600 ml-2">
-                    {farm.units}
+                    {formatUnits(farm.units)}
                   </span>
                 </div>
               </div>

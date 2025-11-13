@@ -96,6 +96,17 @@ export default function Farms() {
     setError('');
   };
 
+  // Format units for display
+  const formatUnits = (unit) => {
+    const unitMap = {
+      'sqft': 'sq ft',
+      'sqm': 'm²',
+      'acre': 'acres',
+      'hectare': 'hectares'
+    };
+    return unitMap[unit] || unit;
+  };
+
   const getFarmTypeIcon = (type) => {
     switch(type) {
       case 'vertical': return '🏢';
@@ -202,7 +213,7 @@ export default function Farms() {
                     <div className="text-2xl font-bold text-gray-900">
                       {farm.totalArea}
                       <span className="text-sm font-normal text-gray-600 ml-1">
-                        {farm.units}
+                        {formatUnits(farm.units)}
                       </span>
                     </div>
                   </div>
