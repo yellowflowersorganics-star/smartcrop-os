@@ -4,14 +4,29 @@
 
 const Joi = require('joi');
 
+// Environmental parameter schema (supports both simple values and min/max/optimal ranges)
+const environmentalParamSchema = Joi.alternatives().try(
+  Joi.number(),
+  Joi.object({
+    min: Joi.number().required(),
+    max: Joi.number().required(),
+    optimal: Joi.number().required()
+  })
+);
+
 // Crop recipe stage schema
 const stageSchema = Joi.object({
   name: Joi.string().required(),
   duration: Joi.number().min(0).required(),
-  temperature: Joi.number().min(-10).max(50).required(),
-  humidity: Joi.number().min(0).max(100).required(),
-  co2: Joi.number().min(0).max(5000).optional(),
-  lightHours: Joi.number().min(0).max(24).required(),
+  daysFromStart: Joi.number().min(0).optional(),
+  description: Joi.string().optional(),
+  // Support both old format (single values) and new format (min/max/optimal)
+  temperature: environmentalParamSchema.required(),
+  humidity: environmentalParamSchema.required(),
+  co2: environmentalParamSchema.optional(),
+  light: environmentalParamSchema.optional(),
+  // Legacy fields for backward compatibility
+  lightHours: Joi.number().min(0).max(24).optional(),
   lightIntensity: Joi.number().min(0).max(100).optional(),
   irrigation: Joi.number().min(0).optional(),
   nutrients: Joi.string().optional(),
