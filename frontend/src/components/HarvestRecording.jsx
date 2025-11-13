@@ -31,12 +31,16 @@ export default function HarvestRecording({ batch, onClose, onSuccess }) {
         flushNumber: parseInt(formData.flushNumber)
       };
 
+      console.log('Submitting harvest data:', submitData);
       await api.post('/harvests', submitData);
       onSuccess?.();
       onClose();
     } catch (error) {
       console.error('Error recording harvest:', error);
-      setError(error.response?.data?.message || 'Failed to record harvest');
+      console.error('Full error response:', error.response?.data);
+      const errorMsg = error.response?.data?.message || 'Failed to record harvest';
+      const errorDetails = error.response?.data?.error;
+      setError(errorDetails ? `${errorMsg}\n\n${errorDetails}` : errorMsg);
     } finally {
       setLoading(false);
     }

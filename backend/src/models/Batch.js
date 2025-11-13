@@ -16,6 +16,7 @@ module.exports = (sequelize) => {
     batchNumber: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       comment: 'Human-readable batch identifier (e.g., ZONE-A1-2024-001)'
     },
     ownerId: {

@@ -40,7 +40,8 @@ class HarvestController {
       logger.error('Error recording harvest:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to record harvest'
+        message: error.message || 'Failed to record harvest',
+        error: process.env.NODE_ENV === 'development' ? error.stack : undefined
       });
     }
   }
