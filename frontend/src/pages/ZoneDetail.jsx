@@ -112,6 +112,12 @@ export default function ZoneDetail() {
   const handleStartBatch = async (e) => {
     e.preventDefault();
     try {
+      console.log('Starting batch with data:', {
+        zoneId: id,
+        ...startBatchData,
+        plantCount: parseInt(startBatchData.plantCount) || 0
+      });
+      
       await api.post('/batches/start', {
         zoneId: id,
         ...startBatchData,
@@ -129,7 +135,11 @@ export default function ZoneDetail() {
       await fetchAllData();
     } catch (error) {
       console.error('Error starting batch:', error);
-      setError(error.response?.data?.message || 'Failed to start batch');
+      console.error('Full error response:', error.response?.data);
+      const errorMsg = error.response?.data?.message || 'Failed to start batch';
+      const errorDetails = error.response?.data?.error;
+      setError(errorDetails ? `${errorMsg}\n${errorDetails}` : errorMsg);
+      alert(`Failed to start batch: ${errorMsg}`);
     }
   };
 

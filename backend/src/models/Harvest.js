@@ -220,6 +220,11 @@ module.exports = (sequelize) => {
       foreignKey: 'zoneId',
       as: 'zone'
     });
+    Harvest.belongsTo(models.Batch, {
+      foreignKey: 'batchId',
+      targetKey: 'batchNumber',
+      as: 'batch'
+    });
     Harvest.belongsTo(models.User, {
       foreignKey: 'harvesterUserId',
       as: 'harvester'
