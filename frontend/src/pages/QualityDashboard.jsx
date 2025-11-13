@@ -81,10 +81,11 @@ const QualityDashboard = () => {
           </select>
           <Link
             to="/quality/inspection"
-            className="btn-primary flex items-center gap-2"
+            className="btn-primary flex items-center gap-2 whitespace-nowrap"
           >
             <Plus className="w-5 h-5" />
-            New Inspection
+            <span className="hidden sm:inline">New Inspection</span>
+            <span className="sm:hidden">New</span>
           </Link>
         </div>
       </div>
