@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import GoogleAuthSuccess from './pages/GoogleAuthSuccess';
 import Dashboard from './pages/Dashboard';
 import Farms from './pages/Farms';
+import FarmDetail from './pages/FarmDetail';
 import Zones from './pages/Zones';
 import ZoneDetail from './pages/ZoneDetail';
 import CropRecipes from './pages/CropRecipes';
@@ -45,6 +46,7 @@ function App() {
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/farms" element={<Farms />} />
+        <Route path="/farms/:id" element={<FarmDetail />} />
         <Route path="/zones" element={<Zones />} />
         <Route path="/zones/:id" element={<ZoneDetail />} />
         <Route path="/recipes" element={<CropRecipes />} />
