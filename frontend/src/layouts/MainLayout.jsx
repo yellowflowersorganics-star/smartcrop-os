@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Farms', href: '/farms', icon: Building2 },
   { name: 'Zones', href: '/zones', icon: Box },
-  { name: 'Crop Recipes', href: '/recipes', icon: BookOpen },
+  { name: 'Growing Recipes', href: '/recipes', icon: BookOpen },
   { name: 'Devices', href: '/devices', icon: Cpu },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
   { name: 'Settings', href: '/settings', icon: Settings },
