@@ -267,6 +267,19 @@ export default function Labor() {
           }}
         />
       )}
+
+      {/* Clock Out Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={clockOutDialog}
+        onClose={() => setClockOutDialog(false)}
+        onConfirm={handleClockOut}
+        loading={clockInLoading}
+        title="Clock Out"
+        message="Are you sure you want to clock out from your current shift? Your total hours will be calculated automatically."
+        confirmText="Clock Out"
+        cancelText="Cancel"
+        type="warning"
+      />
     </div>
   );
 }
@@ -531,19 +544,6 @@ function ManualEntryModal({ onClose, onSuccess }) {
         </form>
       </div>
     </div>
-
-    {/* Clock Out Confirmation Dialog */}
-    <ConfirmDialog
-      isOpen={clockOutDialog}
-      onClose={() => setClockOutDialog(false)}
-      onConfirm={handleClockOut}
-      loading={clockInLoading}
-      title="Clock Out"
-      message="Are you sure you want to clock out from your current shift? Your total hours will be calculated automatically."
-      confirmText="Clock Out"
-      cancelText="Cancel"
-      type="warning"
-    />
   );
 }
 
