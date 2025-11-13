@@ -224,3 +224,24 @@ export const qualityStandardService = {
   duplicate: (id) => api.post(`/quality/standards/${id}/duplicate`),
 };
 
+export const sopService = {
+  // SOP Management
+  getAll: (params) => api.get('/sop/sops', { params }),
+  getById: (id) => api.get(`/sop/sops/${id}`),
+  create: (data) => api.post('/sop/sops', data),
+  update: (id, data) => api.put(`/sop/sops/${id}`, data),
+  delete: (id) => api.delete(`/sop/sops/${id}`),
+  approve: (id) => api.post(`/sop/sops/${id}/approve`),
+  duplicate: (id) => api.post(`/sop/sops/${id}/duplicate`),
+  getStats: () => api.get('/sop/sops/stats'),
+  
+  // SOP Execution
+  startExecution: (data) => api.post('/sop/executions', data),
+  getAllExecutions: (params) => api.get('/sop/executions', { params }),
+  getMyExecutions: (params) => api.get('/sop/executions/my', { params }),
+  getExecutionById: (id) => api.get(`/sop/executions/${id}`),
+  updateExecution: (id, data) => api.put(`/sop/executions/${id}`, data),
+  completeStep: (id, data) => api.post(`/sop/executions/${id}/step`, data),
+  completeExecution: (id, data) => api.post(`/sop/executions/${id}/complete`, data),
+};
+

@@ -26,6 +26,9 @@ import Notifications from './pages/Notifications';
 import QualityDashboard from './pages/QualityDashboard';
 import QualityInspection from './pages/QualityInspection';
 import QualityStandards from './pages/QualityStandards';
+import SOPDashboard from './pages/SOPDashboard';
+import SOPEditor from './pages/SOPEditor';
+import SOPExecution from './pages/SOPExecution';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
@@ -69,6 +72,10 @@ function App() {
         <Route path="/quality" element={<QualityDashboard />} />
         <Route path="/quality/inspection" element={<QualityInspection />} />
         <Route path="/quality/standards" element={<QualityStandards />} />
+        <Route path="/sop" element={<SOPDashboard />} />
+        <Route path="/sop/editor" element={<SOPEditor />} />
+        <Route path="/sop/editor/:id" element={<SOPEditor />} />
+        <Route path="/sop/execute/:id" element={<SOPExecution />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/settings" element={<Settings />} />

@@ -224,7 +224,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 border-purple-200">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
               <FileText className="w-7 h-7 text-purple-600" />
             </div>
@@ -232,7 +232,6 @@ export default function Landing() {
             <p className="text-gray-600 text-sm">
               Standard operating procedures with step-by-step execution tracking
             </p>
-            <span className="text-xs text-purple-600 font-semibold">Coming Soon</span>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
