@@ -19,6 +19,7 @@ import CropRecipes from './pages/CropRecipes';
 import RecipeDetail from './pages/RecipeDetail';
 import Inventory from './pages/Inventory';
 import Tasks from './pages/Tasks';
+import Profitability from './pages/Profitability';
 import Notifications from './pages/Notifications';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
@@ -56,6 +57,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/profitability" element={<Profitability />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/analytics" element={<Analytics />} />

@@ -142,3 +142,53 @@ export const taskService = {
   createFromTemplate: (id, data) => api.post(`/tasks/templates/${id}/create-task`, data),
 };
 
+export const laborService = {
+  clockIn: (data) => api.post('/labor/clock-in', data),
+  clockOut: (data) => api.post('/labor/clock-out', data),
+  getCurrentShift: () => api.get('/labor/current-shift'),
+  getAll: (params) => api.get('/labor/work-logs', { params }),
+  getMy: (params) => api.get('/labor/my-work-logs', { params }),
+  getById: (id) => api.get(`/labor/work-logs/${id}`),
+  create: (data) => api.post('/labor/work-logs', data),
+  update: (id, data) => api.put(`/labor/work-logs/${id}`, data),
+  delete: (id) => api.delete(`/labor/work-logs/${id}`),
+  approve: (id, approved) => api.post(`/labor/work-logs/${id}/approve`, { approved }),
+  getStats: (params) => api.get('/labor/work-logs/stats', { params }),
+  getCosts: (params) => api.get('/labor/work-logs/costs', { params }),
+};
+
+export const costService = {
+  getAll: (params) => api.get('/cost/costs', { params }),
+  getById: (id) => api.get(`/cost/costs/${id}`),
+  create: (data) => api.post('/cost/costs', data),
+  update: (id, data) => api.put(`/cost/costs/${id}`, data),
+  delete: (id) => api.delete(`/cost/costs/${id}`),
+  getStats: (params) => api.get('/cost/costs/stats', { params }),
+  getBreakdown: (params) => api.get('/cost/costs/breakdown', { params }),
+  getTrends: (params) => api.get('/cost/costs/trends', { params }),
+  getBatchCosts: (batchId) => api.get(`/cost/costs/batch/${batchId}`),
+  getZoneCosts: (zoneId, params) => api.get(`/cost/costs/zone/${zoneId}`, { params }),
+};
+
+export const revenueService = {
+  getAll: (params) => api.get('/revenue/revenue', { params }),
+  getById: (id) => api.get(`/revenue/revenue/${id}`),
+  create: (data) => api.post('/revenue/revenue', data),
+  update: (id, data) => api.put(`/revenue/revenue/${id}`, data),
+  delete: (id) => api.delete(`/revenue/revenue/${id}`),
+  getStats: (params) => api.get('/revenue/revenue/stats', { params }),
+  getTrends: (params) => api.get('/revenue/revenue/trends', { params }),
+  getCustomers: (params) => api.get('/revenue/revenue/customers', { params }),
+  getPendingPayments: () => api.get('/revenue/revenue/pending-payments'),
+  getBatchRevenue: (batchId) => api.get(`/revenue/revenue/batch/${batchId}`),
+};
+
+export const profitabilityService = {
+  getOverall: (params) => api.get('/profitability/overall', { params }),
+  getTrends: (params) => api.get('/profitability/trends', { params }),
+  getCostBreakdown: (params) => api.get('/profitability/cost-breakdown', { params }),
+  getRevenueBreakdown: (params) => api.get('/profitability/revenue-breakdown', { params }),
+  getBatchProfitability: (batchId) => api.get(`/profitability/batch/${batchId}`),
+  compareBatches: (batchIds) => api.get('/profitability/compare', { params: { batchIds: batchIds.join(',') } }),
+};
+
