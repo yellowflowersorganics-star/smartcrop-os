@@ -7,25 +7,25 @@ const router = express.Router();
 const analyticsController = require('../controllers/analytics.controller');
 const { authenticate } = require('../middleware/auth');
 
+// Apply authentication to all routes
 router.use(authenticate);
 
-// Get farm analytics dashboard
-router.get('/dashboard/:farmId', analyticsController.getFarmDashboard);
+// Overview statistics
+router.get('/overview', analyticsController.getOverview);
 
-// Get zone performance metrics
-router.get('/zone/:zoneId/performance', analyticsController.getZonePerformance);
+// Yield trends over time
+router.get('/yield-trends', analyticsController.getYieldTrends);
 
-// Get crop yield predictions
-router.get('/zone/:zoneId/predictions', analyticsController.getYieldPredictions);
+// Batch performance comparison
+router.get('/batch-performance', analyticsController.getBatchPerformance);
 
-// Get energy consumption
-router.get('/farm/:farmId/energy', analyticsController.getEnergyAnalytics);
+// Recipe performance comparison
+router.get('/recipe-performance', analyticsController.getRecipePerformance);
 
-// Get environmental compliance report
-router.get('/zone/:zoneId/compliance', analyticsController.getComplianceReport);
+// Quality distribution
+router.get('/quality-distribution', analyticsController.getQualityDistribution);
 
-// Compare different crop batches
-router.get('/compare', analyticsController.compareBatches);
+// Recent activity
+router.get('/recent-activity', analyticsController.getRecentActivity);
 
 module.exports = router;
-
