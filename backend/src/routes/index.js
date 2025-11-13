@@ -29,6 +29,9 @@ const profitabilityRoutes = require('./profitability.routes');
 const qualityControlRoutes = require('./qualityControl.routes');
 const qualityStandardRoutes = require('./qualityStandard.routes');
 const sopRoutes = require('./sop.routes');
+const employeeRoutes = require('./employee.routes');
+const roleRoutes = require('./role.routes');
+const departmentRoutes = require('./department.routes');
 
 // API version info
 router.get('/', (req, res) => {
@@ -63,6 +66,9 @@ router.use('/profitability', profitabilityRoutes);
 router.use('/quality', qualityControlRoutes);
 router.use('/quality', qualityStandardRoutes);
 router.use('/sop', sopRoutes);
+router.use('/', employeeRoutes);
+router.use('/', roleRoutes);
+router.use('/', departmentRoutes);
 
 module.exports = router;
 

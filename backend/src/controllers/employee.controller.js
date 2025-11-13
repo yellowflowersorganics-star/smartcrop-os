@@ -1,86 +1,156 @@
-/**
- * Employee Management Controller
- */
-
-const { Employee, LaborEntry, User } = require('../models');
+const { Employee, Role, Department, User, Task, WorkLog } = require('../models');
 const { Op } = require('sequelize');
 const logger = require('../utils/logger');
 
 class EmployeeController {
   constructor() {
-    // Bind methods
+    // Bind methods to preserve 'this' context
+    this.createEmployee = this.createEmployee.bind(this);
     this.getAllEmployees = this.getAllEmployees.bind(this);
     this.getEmployeeById = this.getEmployeeById.bind(this);
-    this.createEmployee = this.createEmployee.bind(this);
     this.updateEmployee = this.updateEmployee.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.getEmployeeStats = this.getEmployeeStats.bind(this);
-    this.getEmployeeLaborSummary = this.getEmployeeLaborSummary.bind(this);
+    this.getEmployeeTasks = this.getEmployeeTasks.bind(this);
+    this.getEmployeeWorkLogs = this.getEmployeeWorkLogs.bind(this);
     this.generateEmployeeId = this.generateEmployeeId.bind(this);
+    this.linkUserAccount = this.linkUserAccount.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
   }
 
-  /**
-   * Get all employees with filtering
-   */
+  // Generate unique employee ID
+  async generateEmployeeId(req, res) {
+    try {
+      const { ownerId } = req.user;
+      
+      // Count existing employees
+      const count = await Employee.count({ where: { ownerId } });
+      const nextNumber = count + 1;
+      const employeeId = `EMP-${String(nextNumber).padStart(4, '0')}`;
+      
+      res.json({ employeeId });
+    } catch (error) {
+      logger.error('Error generating employee ID:', error);
+      res.status(500).json({ error: 'Failed to generate employee ID' });
+    }
+  }
+
+  // Create new employee
+  async createEmployee(req, res) {
+    try {
+      const { id: ownerId, organizationId } = req.user;
+      const employeeData = {
+        ...req.body,
+        ownerId,
+        organizationId
+      };
+
+      // Check if employeeId already exists
+      const existing = await Employee.findOne({
+        where: { employeeId: employeeData.employeeId }
+      });
+
+      if (existing) {
+        return res.status(400).json({ error: 'Employee ID already exists' });
+      }
+
+      // Validate role exists
+      if (employeeData.roleId) {
+        const role = await Role.findByPk(employeeData.roleId);
+        if (!role) {
+          return res.status(400).json({ error: 'Invalid role ID' });
+        }
+      }
+
+      // Validate department exists
+      if (employeeData.departmentId) {
+        const department = await Department.findByPk(employeeData.departmentId);
+        if (!department) {
+          return res.status(400).json({ error: 'Invalid department ID' });
+        }
+      }
+
+      const employee = await Employee.create(employeeData);
+
+      // Fetch complete employee with associations
+      const completeEmployee = await Employee.findByPk(employee.id, {
+        include: [
+          { model: Role, as: 'role' },
+          { model: Department, as: 'department' }
+        ]
+      });
+
+      logger.info(`Employee created: ${employee.employeeId} by user ${ownerId}`);
+      res.status(201).json(completeEmployee);
+    } catch (error) {
+      logger.error('Error creating employee:', error);
+      res.status(500).json({ error: 'Failed to create employee', details: error.message });
+    }
+  }
+
+  // Get all employees
   async getAllEmployees(req, res) {
     try {
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
-      const {
-        status,
-        role,
-        department,
+      const { id: ownerId, organizationId } = req.user;
+      const { 
+        status, 
+        roleId, 
+        departmentId, 
         search,
         page = 1,
         limit = 50
       } = req.query;
 
-      const where = {
-        [Op.or]: [
-          { ownerId: userId },
-          ...(organizationId ? [{ organizationId }] : [])
-        ]
-      };
+      const where = organizationId 
+        ? { organizationId }
+        : { ownerId };
 
-      if (status) where.status = status;
-      if (role) where.role = role;
-      if (department) where.department = department;
+      // Filter by status
+      if (status) {
+        where.status = status;
+      }
 
+      // Filter by role
+      if (roleId) {
+        where.roleId = roleId;
+      }
+
+      // Filter by department
+      if (departmentId) {
+        where.departmentId = departmentId;
+      }
+
+      // Search by name, email, phone, employeeId
       if (search) {
         where[Op.or] = [
           { firstName: { [Op.like]: `%${search}%` } },
           { lastName: { [Op.like]: `%${search}%` } },
-          { employeeId: { [Op.like]: `%${search}%` } },
-          { email: { [Op.like]: `%${search}%` } }
+          { email: { [Op.like]: `%${search}%` } },
+          { phone: { [Op.like]: `%${search}%` } },
+          { employeeId: { [Op.like]: `%${search}%` } }
         ];
       }
 
       const offset = (page - 1) * limit;
 
-      const { rows: employees, count: total } = await Employee.findAndCountAll({
+      const { count, rows: employees } = await Employee.findAndCountAll({
         where,
         include: [
-          {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'email', 'firstName', 'lastName'],
-            required: false
-          }
+          { model: Role, as: 'role' },
+          { model: Department, as: 'department' }
         ],
-        order: [['firstName', 'ASC'], ['lastName', 'ASC']],
+        order: [['createdAt', 'DESC']],
         limit: parseInt(limit),
         offset: parseInt(offset)
       });
 
-      logger.info(`Retrieved ${employees.length} employees for user ${userId}`);
-
       res.json({
         employees,
         pagination: {
-          total,
+          total: count,
           page: parseInt(page),
           limit: parseInt(limit),
-          pages: Math.ceil(total / limit)
+          pages: Math.ceil(count / limit)
         }
       });
     } catch (error) {
@@ -89,26 +159,22 @@ class EmployeeController {
     }
   }
 
-  /**
-   * Get single employee by ID
-   */
+  // Get employee by ID
   async getEmployeeById(req, res) {
     try {
       const { id } = req.params;
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
+      const { id: ownerId, organizationId } = req.user;
+
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
 
       const employee = await Employee.findOne({
-        where: {
-          id,
-          [Op.or]: [
-            { ownerId: userId },
-            ...(organizationId ? [{ organizationId }] : [])
-          ]
-        },
+        where,
         include: [
-          { model: User, as: 'user', required: false },
-          { model: User, as: 'owner', required: false }
+          { model: Role, as: 'role' },
+          { model: Department, as: 'department' },
+          { model: User, as: 'user', attributes: ['id', 'firstName', 'lastName', 'email'] }
         ]
       });
 
@@ -123,111 +189,91 @@ class EmployeeController {
     }
   }
 
-  /**
-   * Create new employee
-   */
-  async createEmployee(req, res) {
-    try {
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
-
-      // Generate employee ID if not provided
-      let employeeId = req.body.employeeId;
-      if (!employeeId) {
-        employeeId = await this.generateEmployeeId();
-      }
-
-      const employee = await Employee.create({
-        ...req.body,
-        employeeId,
-        ownerId: userId,
-        organizationId: organizationId || null
-      });
-
-      logger.info(`Created employee ${employee.id}: ${employee.getFullName()}`);
-
-      res.status(201).json(employee);
-    } catch (error) {
-      logger.error('Error creating employee:', error);
-      if (error.name === 'SequelizeValidationError') {
-        return res.status(400).json({
-          error: 'Validation error',
-          details: error.errors.map(e => ({ field: e.path, message: e.message }))
-        });
-      }
-      if (error.name === 'SequelizeUniqueConstraintError') {
-        return res.status(400).json({ error: 'Employee ID already exists' });
-      }
-      res.status(500).json({ error: 'Failed to create employee' });
-    }
-  }
-
-  /**
-   * Update employee
-   */
+  // Update employee
   async updateEmployee(req, res) {
     try {
       const { id } = req.params;
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
+      const { id: ownerId, organizationId } = req.user;
+      const updateData = req.body;
 
-      const employee = await Employee.findOne({
-        where: {
-          id,
-          [Op.or]: [
-            { ownerId: userId },
-            ...(organizationId ? [{ organizationId }] : [])
-          ]
-        }
-      });
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where });
 
       if (!employee) {
         return res.status(404).json({ error: 'Employee not found' });
       }
 
-      await employee.update(req.body);
+      // Validate role if being updated
+      if (updateData.roleId) {
+        const role = await Role.findByPk(updateData.roleId);
+        if (!role) {
+          return res.status(400).json({ error: 'Invalid role ID' });
+        }
+      }
 
-      logger.info(`Updated employee ${id}`);
+      // Validate department if being updated
+      if (updateData.departmentId) {
+        const department = await Department.findByPk(updateData.departmentId);
+        if (!department) {
+          return res.status(400).json({ error: 'Invalid department ID' });
+        }
+      }
 
-      res.json(employee);
+      await employee.update(updateData);
+
+      // Fetch updated employee with associations
+      const updatedEmployee = await Employee.findByPk(employee.id, {
+        include: [
+          { model: Role, as: 'role' },
+          { model: Department, as: 'department' }
+        ]
+      });
+
+      logger.info(`Employee updated: ${employee.employeeId} by user ${ownerId}`);
+      res.json(updatedEmployee);
     } catch (error) {
       logger.error('Error updating employee:', error);
-      res.status(500).json({ error: 'Failed to update employee' });
+      res.status(500).json({ error: 'Failed to update employee', details: error.message });
     }
   }
 
-  /**
-   * Delete employee (soft delete by setting status to inactive)
-   */
+  // Delete employee
   async deleteEmployee(req, res) {
     try {
       const { id } = req.params;
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
+      const { id: ownerId, organizationId } = req.user;
 
-      const employee = await Employee.findOne({
-        where: {
-          id,
-          [Op.or]: [
-            { ownerId: userId },
-            ...(organizationId ? [{ organizationId }] : [])
-          ]
-        }
-      });
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where });
 
       if (!employee) {
         return res.status(404).json({ error: 'Employee not found' });
       }
 
-      // Soft delete: set status to terminated
-      await employee.update({
-        status: 'terminated',
-        terminationDate: new Date(),
-        isActive: false
+      // Check if employee has active tasks
+      const activeTasks = await Task.count({
+        where: {
+          assignedEmployeeId: id,
+          status: { [Op.in]: ['pending', 'in_progress'] }
+        }
       });
 
-      logger.info(`Deleted (soft) employee ${id}`);
+      if (activeTasks > 0) {
+        return res.status(400).json({ 
+          error: 'Cannot delete employee with active tasks',
+          activeTasks
+        });
+      }
 
+      await employee.destroy();
+
+      logger.info(`Employee deleted: ${employee.employeeId} by user ${ownerId}`);
       res.json({ message: 'Employee deleted successfully' });
     } catch (error) {
       logger.error('Error deleting employee:', error);
@@ -235,146 +281,250 @@ class EmployeeController {
     }
   }
 
-  /**
-   * Get employee statistics
-   */
-  async getEmployeeStats(req, res) {
-    try {
-      const userId = req.user.id;
-      const organizationId = req.user.organizationId;
-
-      const where = {
-        [Op.or]: [
-          { ownerId: userId },
-          ...(organizationId ? [{ organizationId }] : [])
-        ]
-      };
-
-      const [total, active, inactive, onLeave] = await Promise.all([
-        Employee.count({ where }),
-        Employee.count({ where: { ...where, status: 'active' } }),
-        Employee.count({ where: { ...where, status: 'terminated' } }),
-        Employee.count({ where: { ...where, status: 'on_leave' } })
-      ]);
-
-      // Role distribution
-      const roleStats = await Employee.findAll({
-        where: { ...where, status: 'active' },
-        attributes: [
-          'role',
-          [Employee.sequelize.fn('COUNT', '*'), 'count']
-        ],
-        group: ['role']
-      });
-
-      res.json({
-        total,
-        active,
-        inactive,
-        onLeave,
-        roleDistribution: roleStats.reduce((acc, stat) => {
-          acc[stat.role] = parseInt(stat.get('count'));
-          return acc;
-        }, {})
-      });
-    } catch (error) {
-      logger.error('Error fetching employee stats:', error);
-      res.status(500).json({ error: 'Failed to fetch employee stats' });
-    }
-  }
-
-  /**
-   * Get employee labor summary
-   */
-  async getEmployeeLaborSummary(req, res) {
+  // Update employee status
+  async updateStatus(req, res) {
     try {
       const { id } = req.params;
-      const userId = req.user.id;
-      const { startDate, endDate } = req.query;
+      const { status } = req.body;
+      const { id: ownerId, organizationId } = req.user;
 
-      const employee = await Employee.findOne({
-        where: {
-          id,
-          [Op.or]: [
-            { ownerId: userId },
-            ...(req.user.organizationId ? [{ organizationId: req.user.organizationId }] : [])
-          ]
-        }
-      });
+      if (!['active', 'on-leave', 'suspended', 'terminated'].includes(status)) {
+        return res.status(400).json({ error: 'Invalid status' });
+      }
+
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where });
 
       if (!employee) {
         return res.status(404).json({ error: 'Employee not found' });
       }
 
-      const whereConditions = { employeeId: id };
-      if (startDate && endDate) {
-        whereConditions.date = {
-          [Op.between]: [new Date(startDate), new Date(endDate)]
-        };
+      await employee.update({ status });
+
+      logger.info(`Employee status updated: ${employee.employeeId} to ${status}`);
+      res.json(employee);
+    } catch (error) {
+      logger.error('Error updating employee status:', error);
+      res.status(500).json({ error: 'Failed to update employee status' });
+    }
+  }
+
+  // Link user account to employee
+  async linkUserAccount(req, res) {
+    try {
+      const { id } = req.params;
+      const { userId } = req.body;
+      const { id: ownerId, organizationId } = req.user;
+
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where });
+
+      if (!employee) {
+        return res.status(404).json({ error: 'Employee not found' });
       }
 
-      const laborEntries = await LaborEntry.findAll({
-        where: whereConditions,
-        attributes: [
-          [LaborEntry.sequelize.fn('SUM', LaborEntry.sequelize.col('hoursWorked')), 'totalHours'],
-          [LaborEntry.sequelize.fn('SUM', LaborEntry.sequelize.col('totalCost')), 'totalCost'],
-          [LaborEntry.sequelize.fn('COUNT', '*'), 'entries']
-        ],
-        raw: true
+      // Validate user exists
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(400).json({ error: 'Invalid user ID' });
+      }
+
+      // Check if user is already linked to another employee
+      const existing = await Employee.findOne({
+        where: { userId, id: { [Op.ne]: id } }
       });
 
-      const summary = laborEntries[0] || {
-        totalHours: 0,
-        totalCost: 0,
-        entries: 0
-      };
+      if (existing) {
+        return res.status(400).json({ error: 'User already linked to another employee' });
+      }
+
+      await employee.update({ userId, canLogin: true });
+
+      logger.info(`User account linked to employee: ${employee.employeeId}`);
+      res.json(employee);
+    } catch (error) {
+      logger.error('Error linking user account:', error);
+      res.status(500).json({ error: 'Failed to link user account' });
+    }
+  }
+
+  // Get employee statistics
+  async getEmployeeStats(req, res) {
+    try {
+      const { id } = req.params;
+      const { id: ownerId, organizationId } = req.user;
+
+      const where = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where });
+
+      if (!employee) {
+        return res.status(404).json({ error: 'Employee not found' });
+      }
+
+      // Get task statistics
+      const totalTasks = await Task.count({
+        where: { assignedEmployeeId: id }
+      });
+
+      const completedTasks = await Task.count({
+        where: { assignedEmployeeId: id, status: 'completed' }
+      });
+
+      const pendingTasks = await Task.count({
+        where: { assignedEmployeeId: id, status: 'pending' }
+      });
+
+      const inProgressTasks = await Task.count({
+        where: { assignedEmployeeId: id, status: 'in_progress' }
+      });
+
+      const overdueTasks = await Task.count({
+        where: { 
+          assignedEmployeeId: id, 
+          status: 'overdue'
+        }
+      });
+
+      // Get work log statistics (last 30 days)
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+      const totalHours = await WorkLog.sum('hoursWorked', {
+        where: {
+          employeeId: id,
+          clockIn: { [Op.gte]: thirtyDaysAgo }
+        }
+      });
+
+      const workDays = await WorkLog.count({
+        where: {
+          employeeId: id,
+          clockIn: { [Op.gte]: thirtyDaysAgo }
+        }
+      });
 
       res.json({
         employee: {
           id: employee.id,
-          name: employee.getFullName(),
           employeeId: employee.employeeId,
-          role: employee.role
+          name: `${employee.firstName} ${employee.lastName}`
         },
-        summary: {
-          totalHours: parseFloat(summary.totalHours) || 0,
-          totalCost: parseFloat(summary.totalCost) || 0,
-          totalEntries: parseInt(summary.entries) || 0
+        tasks: {
+          total: totalTasks,
+          completed: completedTasks,
+          pending: pendingTasks,
+          inProgress: inProgressTasks,
+          overdue: overdueTasks,
+          completionRate: totalTasks > 0 ? ((completedTasks / totalTasks) * 100).toFixed(2) : 0
         },
-        period: { startDate, endDate }
+        attendance: {
+          totalHours: totalHours || 0,
+          workDays: workDays,
+          averageHoursPerDay: workDays > 0 ? ((totalHours || 0) / workDays).toFixed(2) : 0,
+          period: 'Last 30 days'
+        }
       });
     } catch (error) {
-      logger.error('Error fetching employee labor summary:', error);
-      res.status(500).json({ error: 'Failed to fetch labor summary' });
+      logger.error('Error fetching employee stats:', error);
+      res.status(500).json({ error: 'Failed to fetch employee statistics' });
     }
   }
 
-  /**
-   * Generate unique employee ID
-   */
-  async generateEmployeeId() {
-    const prefix = 'EMP';
-    const year = new Date().getFullYear().toString().slice(-2);
-    
-    // Find the highest employee number for this year
-    const lastEmployee = await Employee.findOne({
-      where: {
-        employeeId: {
-          [Op.like]: `${prefix}${year}%`
-        }
-      },
-      order: [['employeeId', 'DESC']]
-    });
+  // Get employee tasks
+  async getEmployeeTasks(req, res) {
+    try {
+      const { id } = req.params;
+      const { status, priority, limit = 50 } = req.query;
+      const { id: ownerId, organizationId } = req.user;
 
-    let nextNumber = 1;
-    if (lastEmployee) {
-      const lastNumber = parseInt(lastEmployee.employeeId.slice(-4));
-      nextNumber = lastNumber + 1;
+      const employeeWhere = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where: employeeWhere });
+
+      if (!employee) {
+        return res.status(404).json({ error: 'Employee not found' });
+      }
+
+      const taskWhere = { assignedEmployeeId: id };
+
+      if (status) {
+        taskWhere.status = status;
+      }
+
+      if (priority) {
+        taskWhere.priority = priority;
+      }
+
+      const tasks = await Task.findAll({
+        where: taskWhere,
+        include: [
+          { model: Employee, as: 'assignedEmployee' },
+          { model: Role, as: 'assignedRole' }
+        ],
+        order: [
+          ['priority', 'DESC'],
+          ['dueDate', 'ASC']
+        ],
+        limit: parseInt(limit)
+      });
+
+      res.json({ employee, tasks });
+    } catch (error) {
+      logger.error('Error fetching employee tasks:', error);
+      res.status(500).json({ error: 'Failed to fetch employee tasks' });
     }
+  }
 
-    return `${prefix}${year}${nextNumber.toString().padStart(4, '0')}`;
+  // Get employee work logs
+  async getEmployeeWorkLogs(req, res) {
+    try {
+      const { id } = req.params;
+      const { startDate, endDate, limit = 50 } = req.query;
+      const { id: ownerId, organizationId } = req.user;
+
+      const employeeWhere = organizationId 
+        ? { id, organizationId }
+        : { id, ownerId };
+
+      const employee = await Employee.findOne({ where: employeeWhere });
+
+      if (!employee) {
+        return res.status(404).json({ error: 'Employee not found' });
+      }
+
+      const where = { employeeId: id };
+
+      if (startDate) {
+        where.clockIn = { [Op.gte]: new Date(startDate) };
+      }
+
+      if (endDate) {
+        where.clockOut = { [Op.lte]: new Date(endDate) };
+      }
+
+      const workLogs = await WorkLog.findAll({
+        where,
+        order: [['clockIn', 'DESC']],
+        limit: parseInt(limit)
+      });
+
+      res.json({ employee, workLogs });
+    } catch (error) {
+      logger.error('Error fetching employee work logs:', error);
+      res.status(500).json({ error: 'Failed to fetch employee work logs' });
+    }
   }
 }
 
 module.exports = new EmployeeController();
-
