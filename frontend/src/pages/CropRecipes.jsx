@@ -294,7 +294,15 @@ export default function CropRecipes() {
       fetchRecipes();
     } catch (error) {
       console.error('Error creating recipe:', error);
-      setError(error.response?.data?.message || 'Failed to create recipe');
+      console.error('Full error details:', error.response?.data);
+      
+      // Show detailed validation errors if available
+      if (error.response?.data?.errors) {
+        const errorMessages = error.response.data.errors.map(e => `${e.field}: ${e.message}`).join(', ');
+        setError(`Validation error: ${errorMessages}`);
+      } else {
+        setError(error.response?.data?.message || 'Failed to create recipe');
+      }
     }
   };
 
