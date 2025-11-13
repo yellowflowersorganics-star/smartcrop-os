@@ -7,6 +7,7 @@ import {
   Clock, TrendingUp, BarChart3, Plus, X, History, Package
 } from 'lucide-react';
 import api from '../services/api';
+import HarvestRecording from '../components/HarvestRecording';
 
 export default function ZoneDetail() {
   const { id } = useParams();
@@ -21,6 +22,10 @@ export default function ZoneDetail() {
   // Modals
   const [showStartBatchModal, setShowStartBatchModal] = useState(false);
   const [showCompleteBatchModal, setShowCompleteBatchModal] = useState(false);
+  const [showHarvestModal, setShowHarvestModal] = useState(false);
+  
+  // Harvest data
+  const [harvests, setHarvests] = useState([]);
   
   // Form data
   const [startBatchData, setStartBatchData] = useState({
@@ -48,7 +53,8 @@ export default function ZoneDetail() {
         fetchZoneDetail(),
         fetchActiveBatch(),
         fetchBatchHistory(),
-        fetchRecipes()
+        fetchRecipes(),
+        fetchHarvests()
       ]);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -90,6 +96,16 @@ export default function ZoneDetail() {
     } catch (error) {
       console.error('Error fetching recipes:', error);
       setRecipes([]);
+    }
+  };
+
+  const fetchHarvests = async () => {
+    try {
+      const response = await api.get(`/harvests?zoneId=${id}`);
+      setHarvests(response.data.data || []);
+    } catch (error) {
+      console.error('Error fetching harvests:', error);
+      setHarvests([]);
     }
   };
 
@@ -270,13 +286,22 @@ export default function ZoneDetail() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">Current Batch</h2>
           {activeBatch ? (
-            <button
-              onClick={() => setShowCompleteBatchModal(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              Complete Harvest
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowHarvestModal(true)}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+              >
+                <Package className="w-4 h-4" />
+                Record Harvest
+              </button>
+              <button
+                onClick={() => setShowCompleteBatchModal(true)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                Complete Batch
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => setShowStartBatchModal(true)}
@@ -401,6 +426,87 @@ export default function ZoneDetail() {
           <p className="text-2xl font-bold text-gray-900">{batchHistory.length}</p>
         </div>
       </div>
+
+      {/* Harvest History */}
+      {activeBatch && harvests.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 bg-green-100 rounded-lg">
+              <Package className="w-5 h-5 text-green-600" />
+            </div>
+            <h2 className="text-lg font-semibold text-gray-900">Harvest Records</h2>
+          </div>
+
+          <div className="space-y-3">
+            {harvests
+              .filter(h => h.batchId === activeBatch.batchNumber)
+              .sort((a, b) => b.flushNumber - a.flushNumber)
+              .map((harvest) => (
+              <div
+                key={harvest.id}
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+              >
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-1">
+                    <span className="font-medium text-gray-900">Flush {harvest.flushNumber}</span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      harvest.qualityGrade === 'premium' ? 'bg-purple-100 text-purple-800' :
+                      harvest.qualityGrade === 'grade_a' ? 'bg-green-100 text-green-800' :
+                      harvest.qualityGrade === 'grade_b' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-red-100 text-red-800'
+                    }`}>
+                      {harvest.qualityGrade?.replace('_', ' ').toUpperCase()}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    {formatDate(harvest.harvestDate)}
+                    {harvest.bagsHarvested > 0 && ` • ${harvest.bagsHarvested} bags`}
+                  </p>
+                  {harvest.notes && (
+                    <p className="text-xs text-gray-500 mt-1">{harvest.notes}</p>
+                  )}
+                </div>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-green-600">{harvest.totalWeightKg} kg</p>
+                  {harvest.bagsDiscarded > 0 && (
+                    <p className="text-xs text-red-600">{harvest.bagsDiscarded} bags discarded</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <span className="text-sm text-gray-600">Total Harvested:</span>
+                <p className="text-2xl font-bold text-green-600">
+                  {harvests
+                    .filter(h => h.batchId === activeBatch.batchNumber)
+                    .reduce((sum, h) => sum + (h.totalWeightKg || 0), 0)
+                    .toFixed(2)} kg
+                </p>
+              </div>
+              {activeBatch.plantCount > 0 && (
+                <div>
+                  <span className="text-sm text-gray-600">Bio-Efficiency:</span>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {(
+                      (harvests
+                        .filter(h => h.batchId === activeBatch.batchNumber)
+                        .reduce((sum, h) => sum + (h.totalWeightKg || 0), 0) / 
+                      activeBatch.plantCount) * 100
+                    ).toFixed(1)}%
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Based on {activeBatch.plantCount} bags
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Batch History */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -643,6 +749,17 @@ export default function ZoneDetail() {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Harvest Recording Modal */}
+      {showHarvestModal && activeBatch && (
+        <HarvestRecording
+          batch={activeBatch}
+          onClose={() => setShowHarvestModal(false)}
+          onSuccess={() => {
+            fetchAllData();
+          }}
+        />
       )}
     </div>
   );
