@@ -22,6 +22,7 @@ import CropRecipes from './pages/CropRecipes';
 import RecipeDetail from './pages/RecipeDetail';
 import Inventory from './pages/Inventory';
 import Tasks from './pages/Tasks';
+import Employees from './pages/Employees';
 import Labor from './pages/Labor';
 import Costs from './pages/Costs';
 import Profitability from './pages/Profitability';
@@ -72,6 +73,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/employees" element={<Employees />} />
         <Route path="/labor" element={<Labor />} />
         <Route path="/costs" element={<Costs />} />
         <Route path="/profitability" element={<Profitability />} />
