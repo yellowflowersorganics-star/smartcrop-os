@@ -214,7 +214,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-200">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
               <Microscope className="w-7 h-7 text-blue-600" />
             </div>
@@ -222,7 +222,6 @@ export default function Landing() {
             <p className="text-gray-600 text-sm">
               Inspection tracking, defect management, compliance reporting
             </p>
-            <span className="text-xs text-blue-600 font-semibold">Coming Soon</span>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 border-purple-200">

@@ -192,3 +192,35 @@ export const profitabilityService = {
   compareBatches: (batchIds) => api.get('/profitability/compare', { params: { batchIds: batchIds.join(',') } }),
 };
 
+export const qualityControlService = {
+  // Quality Checks
+  getAllChecks: (params) => api.get('/quality/checks', { params }),
+  getCheckById: (id) => api.get(`/quality/checks/${id}`),
+  createCheck: (data) => api.post('/quality/checks', data),
+  updateCheck: (id, data) => api.put(`/quality/checks/${id}`, data),
+  deleteCheck: (id) => api.delete(`/quality/checks/${id}`),
+  reviewCheck: (id, data) => api.post(`/quality/checks/${id}/review`, data),
+  
+  // Defects
+  getDefects: (params) => api.get('/quality/defects', { params }),
+  addDefect: (qualityCheckId, data) => api.post(`/quality/checks/${qualityCheckId}/defects`, data),
+  updateDefect: (id, data) => api.put(`/quality/defects/${id}`, data),
+  deleteDefect: (id) => api.delete(`/quality/defects/${id}`),
+  
+  // Analytics
+  getStats: (params) => api.get('/quality/stats', { params }),
+  getDefectAnalysis: (params) => api.get('/quality/defects/analysis', { params }),
+  getCompliance: (params) => api.get('/quality/compliance', { params }),
+};
+
+export const qualityStandardService = {
+  getAll: (params) => api.get('/quality/standards', { params }),
+  getActive: (params) => api.get('/quality/standards/active', { params }),
+  getById: (id) => api.get(`/quality/standards/${id}`),
+  create: (data) => api.post('/quality/standards', data),
+  update: (id, data) => api.put(`/quality/standards/${id}`, data),
+  delete: (id) => api.delete(`/quality/standards/${id}`),
+  approve: (id) => api.post(`/quality/standards/${id}/approve`),
+  duplicate: (id) => api.post(`/quality/standards/${id}/duplicate`),
+};
+

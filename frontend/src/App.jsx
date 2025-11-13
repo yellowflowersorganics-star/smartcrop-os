@@ -23,6 +23,9 @@ import Labor from './pages/Labor';
 import Costs from './pages/Costs';
 import Profitability from './pages/Profitability';
 import Notifications from './pages/Notifications';
+import QualityDashboard from './pages/QualityDashboard';
+import QualityInspection from './pages/QualityInspection';
+import QualityStandards from './pages/QualityStandards';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
@@ -63,6 +66,9 @@ function App() {
         <Route path="/costs" element={<Costs />} />
         <Route path="/profitability" element={<Profitability />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/quality" element={<QualityDashboard />} />
+        <Route path="/quality/inspection" element={<QualityInspection />} />
+        <Route path="/quality/standards" element={<QualityStandards />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/settings" element={<Settings />} />
