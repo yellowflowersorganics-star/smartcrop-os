@@ -14,13 +14,18 @@ module.exports = (sequelize) => {
     },
     organizationId: {
       type: DataTypes.UUID,
-      allowNull: false,
-      comment: 'Organization for multi-tenant isolation'
+      allowNull: true,
+      comment: 'Organization for multi-tenant isolation (optional for single-tenant)'
     },
     unitId: {
       type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Unit/building this zone belongs to (optional for single-tenant)'
+    },
+    ownerId: {
+      type: DataTypes.UUID,
       allowNull: false,
-      comment: 'Unit/building this zone belongs to'
+      comment: 'User who owns this zone'
     },
     farmId: {
       type: DataTypes.UUID,

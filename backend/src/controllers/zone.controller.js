@@ -14,6 +14,8 @@ class ZoneController {
       // Filter by organization or user
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
       
       // Optional filter by farmId
@@ -59,6 +61,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({
@@ -104,8 +108,9 @@ class ZoneController {
     try {
       const zoneData = {
         ...req.body,
-        organizationId: req.user?.organizationId || req.userId,
-        unitId: req.body.unitId || req.userId // Fallback for single-tenant
+        ownerId: req.userId,
+        organizationId: req.user?.organizationId || null,
+        unitId: req.body.unitId || null
       };
 
       const zone = await Zone.create(zoneData);
@@ -119,7 +124,7 @@ class ZoneController {
       logger.error('Error creating zone:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to create zone'
+        message: error.message || 'Failed to create zone'
       });
     }
   }
@@ -130,6 +135,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });
@@ -163,6 +170,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });
@@ -197,6 +206,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });
@@ -244,6 +255,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });
@@ -290,6 +303,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });
@@ -326,6 +341,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({
@@ -382,6 +399,8 @@ class ZoneController {
       const where = { id: req.params.id };
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       const zone = await Zone.findOne({ where });

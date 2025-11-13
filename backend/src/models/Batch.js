@@ -18,10 +18,15 @@ module.exports = (sequelize) => {
       allowNull: false,
       comment: 'Human-readable batch identifier (e.g., ZONE-A1-2024-001)'
     },
-    organizationId: {
+    ownerId: {
       type: DataTypes.UUID,
       allowNull: false,
-      comment: 'Organization for multi-tenant isolation'
+      comment: 'User who owns this batch'
+    },
+    organizationId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Organization for multi-tenant isolation (optional for single-tenant)'
     },
     zoneId: {
       type: DataTypes.UUID,

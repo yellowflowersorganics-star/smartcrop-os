@@ -61,7 +61,8 @@ class BatchController {
       // Create batch
       const batch = await Batch.create({
         batchNumber,
-        organizationId: req.user?.organizationId || req.userId,
+        ownerId: req.userId,
+        organizationId: req.user?.organizationId || null,
         zoneId,
         recipeId,
         cropName: recipe.cropName,
@@ -136,7 +137,14 @@ class BatchController {
       }
 
       // Verify access
-      if (req.user?.organizationId && batch.organizationId !== req.user.organizationId) {
+      if (req.user?.organizationId) {
+        if (batch.organizationId !== req.user.organizationId) {
+          return res.status(403).json({
+            success: false,
+            message: 'Access denied'
+          });
+        }
+      } else if (batch.ownerId !== req.userId) {
         return res.status(403).json({
           success: false,
           message: 'Access denied'
@@ -184,6 +192,8 @@ class BatchController {
       
       if (req.user?.organizationId) {
         where.organizationId = req.user.organizationId;
+      } else {
+        where.ownerId = req.userId;
       }
 
       if (req.query.zoneId) {
@@ -250,7 +260,14 @@ class BatchController {
       }
 
       // Verify access
-      if (req.user?.organizationId && batch.organizationId !== req.user.organizationId) {
+      if (req.user?.organizationId) {
+        if (batch.organizationId !== req.user.organizationId) {
+          return res.status(403).json({
+            success: false,
+            message: 'Access denied'
+          });
+        }
+      } else if (batch.ownerId !== req.userId) {
         return res.status(403).json({
           success: false,
           message: 'Access denied'
@@ -284,7 +301,14 @@ class BatchController {
       }
 
       // Verify access
-      if (req.user?.organizationId && batch.organizationId !== req.user.organizationId) {
+      if (req.user?.organizationId) {
+        if (batch.organizationId !== req.user.organizationId) {
+          return res.status(403).json({
+            success: false,
+            message: 'Access denied'
+          });
+        }
+      } else if (batch.ownerId !== req.userId) {
         return res.status(403).json({
           success: false,
           message: 'Access denied'
