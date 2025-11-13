@@ -247,7 +247,7 @@ export default function Inventory() {
                 setSelectedItem(item);
                 setShowEditModal(true);
               }}
-              onDelete={() => handleDelete(item.id)}
+              onDelete={() => setDeleteDialog({ isOpen: true, itemId: item.id })}
               onAdjustStock={() => {
                 setSelectedItem(item);
                 setShowStockModal(true);
@@ -299,6 +299,18 @@ export default function Inventory() {
           }}
         />
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={() => setDeleteDialog({ isOpen: false, itemId: null })}
+        onConfirm={handleDelete}
+        title="Delete Inventory Item"
+        message="Are you sure you want to delete this inventory item? All transaction history will be retained, but the item cannot be used for future transactions."
+        confirmText="Delete Item"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 }
