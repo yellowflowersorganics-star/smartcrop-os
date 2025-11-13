@@ -254,9 +254,20 @@ export default function ZoneDetail() {
           </Link>
           <div>
             <h1 className="text-3xl font-bold text-gray-900">{zone.name}</h1>
-            <p className="text-gray-600 mt-1">
-              {zone.zoneNumber ? `Zone #${zone.zoneNumber}` : 'Zone Details'}
-            </p>
+            <div className="flex items-center gap-2 mt-1">
+              {zone.zoneNumber && (
+                <p className="text-gray-600">Zone #{zone.zoneNumber}</p>
+              )}
+              {zone.farm && (
+                <>
+                  {zone.zoneNumber && <span className="text-gray-400">•</span>}
+                  <div className="flex items-center gap-1.5 text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded-full">
+                    <MapPin className="w-4 h-4" />
+                    <span className="font-medium">{zone.farm.name}</span>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex gap-2">

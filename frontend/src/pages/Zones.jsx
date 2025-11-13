@@ -249,9 +249,20 @@ export default function Zones() {
                       >
                         {zone.name}
                       </Link>
-                      {zone.zoneNumber && (
-                        <p className="text-sm text-gray-500 mt-1">#{zone.zoneNumber}</p>
-                      )}
+                      <div className="flex items-center gap-2 mt-1">
+                        {zone.zoneNumber && (
+                          <span className="text-sm text-gray-500">#{zone.zoneNumber}</span>
+                        )}
+                        {zone.farm && (
+                          <>
+                            {zone.zoneNumber && <span className="text-gray-300">•</span>}
+                            <div className="flex items-center gap-1 text-sm text-gray-600 bg-gray-50 px-2 py-0.5 rounded">
+                              <MapPin className="w-3.5 h-3.5" />
+                              <span className="font-medium">{zone.farm.name}</span>
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -281,12 +292,6 @@ export default function Zones() {
 
                   {/* Zone Info */}
                   <div className="space-y-2">
-                    {zone.farm && (
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <MapPin className="w-4 h-4" />
-                        <span>{zone.farm.name}</span>
-                      </div>
-                    )}
 
                     {zone.area && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
