@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { taskService } from '../services/api';
+import { taskService, employeeService, roleService } from '../services/api';
 import { 
   CheckSquare, Plus, Filter, Calendar, Clock, AlertCircle,
-  CheckCircle2, Play, X, Edit2, Trash2, MoreVertical, Flag
+  CheckCircle2, Play, X, Edit2, Trash2, MoreVertical, Flag, Users
 } from 'lucide-react';
 import { useToast } from '../components/ToastContainer';
 import ConfirmDialog from '../components/ConfirmDialog';
@@ -40,6 +40,8 @@ export default function Tasks() {
   const toast = useToast();
   const [tasks, setTasks] = useState([]);
   const [stats, setStats] = useState(null);
+  const [employees, setEmployees] = useState([]);
+  const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
@@ -63,13 +65,17 @@ export default function Tasks() {
         priority: filterPriority || undefined
       };
 
-      const [tasksRes, statsRes] = await Promise.all([
+      const [tasksRes, statsRes, employeesRes, rolesRes] = await Promise.all([
         taskService.getAll(params),
-        taskService.getStats()
+        taskService.getStats(),
+        employeeService.getAll({ status: 'active' }),
+        roleService.getAll({ includeSystem: true })
       ]);
 
       setTasks(tasksRes.data.tasks || []);
       setStats(statsRes.data);
+      setEmployees(employeesRes.data.employees || []);
+      setRoles(rolesRes.data || []);
     } catch (error) {
       console.error('Error fetching tasks:', error);
     } finally {
