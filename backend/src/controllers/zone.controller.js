@@ -35,7 +35,7 @@ class ZoneController {
           {
             model: CropRecipe,
             as: 'activeRecipe',
-            attributes: ['id', 'name', 'cropType'],
+            attributes: ['id', 'cropName', 'cropType', 'totalDuration'],
             required: false
           }
         ],
