@@ -36,6 +36,8 @@ import SOPExecution from './pages/SOPExecution';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import EquipmentControl from './pages/EquipmentControl';
+import StageApproval from './pages/StageApproval';
 import NotFound from './pages/NotFound';
 
 function ProtectedRoute({ children }) {
@@ -86,6 +88,8 @@ function App() {
         <Route path="/sop/editor/:id" element={<SOPEditor />} />
         <Route path="/sop/execute/:id" element={<SOPExecution />} />
         <Route path="/devices" element={<Devices />} />
+        <Route path="/equipment" element={<EquipmentControl />} />
+        <Route path="/recipe-executions/:id/approve" element={<StageApproval />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
