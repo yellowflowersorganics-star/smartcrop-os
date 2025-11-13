@@ -44,6 +44,9 @@ const Revenue = require('./Revenue')(sequelize);
 const QualityCheck = require('./QualityCheck')(sequelize);
 const Defect = require('./Defect')(sequelize);
 const QualityStandard = require('./QualityStandard')(sequelize);
+const SOP = require('./SOP')(sequelize);
+const SOPStep = require('./SOPStep')(sequelize);
+const SOPExecution = require('./SOPExecution')(sequelize);
 
 // Store models in db object
 const db = {
@@ -72,7 +75,10 @@ const db = {
   Revenue,
   QualityCheck,
   Defect,
-  QualityStandard
+  QualityStandard,
+  SOP,
+  SOPStep,
+  SOPExecution
 };
 
 // Setup associations
