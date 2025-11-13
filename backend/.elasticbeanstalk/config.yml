@@ -1,0 +1,16 @@
+branch-defaults:
+  main:
+    environment: smartcrop-production
+  develop:
+    environment: smartcrop-staging
+
+global:
+  application_name: smartcrop-os-backend
+  default_platform: Node.js 18 running on 64bit Amazon Linux 2023
+  default_region: us-east-1
+  sc: git
+  workspace_type: Application
+
+deploy:
+  artifact: archive.zip
+
