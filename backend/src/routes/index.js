@@ -19,6 +19,7 @@ const telemetryRoutes = require('./telemetry.routes');
 const controlRoutes = require('./control.routes');
 const analyticsRoutes = require('./analytics.routes');
 const subscriptionRoutes = require('./subscription.routes');
+const inventoryRoutes = require('./inventory.routes');
 
 // API version info
 router.get('/', (req, res) => {
@@ -43,6 +44,7 @@ router.use('/telemetry', telemetryRoutes);
 router.use('/control', controlRoutes);
 router.use('/analytics', analyticsRoutes);
 router.use('/subscriptions', subscriptionRoutes);
+router.use('/inventory', inventoryRoutes);
 
 module.exports = router;
 

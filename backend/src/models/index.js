@@ -32,6 +32,8 @@ const Harvest = require('./Harvest')(sequelize);
 const Telemetry = require('./Telemetry')(sequelize);
 const Subscription = require('./Subscription')(sequelize);
 const Invoice = require('./Invoice')(sequelize);
+const InventoryItem = require('./InventoryItem')(sequelize);
+const InventoryTransaction = require('./InventoryTransaction')(sequelize);
 
 // Store models in db object
 const db = {
@@ -48,7 +50,9 @@ const db = {
   Harvest,
   Telemetry,
   Subscription,
-  Invoice
+  Invoice,
+  InventoryItem,
+  InventoryTransaction
 };
 
 // Setup associations
