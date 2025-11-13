@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { 
   Sprout, Cpu, BarChart3, Cloud, Zap, Shield, 
   CheckCircle, TrendingUp, Droplets, Thermometer,
-  Users, Globe, Package, ArrowRight
+  Users, Globe, Package, ArrowRight, Bell, CheckSquare,
+  Clock, DollarSign, ClipboardCheck, FileText, Microscope
 } from 'lucide-react';
 
 export default function Landing() {
@@ -42,8 +43,8 @@ export default function Landing() {
             <br />
             <span className="text-green-600">Simplified</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Professional IoT platform for precision agriculture. Monitor, control, and optimize your crops with real-time data and automation.
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Complete farm management platform for mushroom cultivation. From environmental monitoring to harvest tracking, inventory management to profitability analytics - everything you need in one powerful system.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -71,73 +72,177 @@ export default function Landing() {
 
       {/* Features Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-          Everything You Need for Smart Farming
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          Complete Farm Management Solution
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Feature 1 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-green-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-              <Cpu className="w-8 h-8 text-green-600" />
+        <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+          Every tool you need to run a professional mushroom farm - from IoT monitoring to financial analytics
+        </p>
+        
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Core Features */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Sprout className="w-7 h-7 text-green-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">IoT Integration</h3>
-            <p className="text-gray-600">
-              Connect ESP32 sensors and controllers for real-time monitoring of temperature, humidity, pH, and more.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Farm & Zone Management</h3>
+            <p className="text-gray-600 text-sm">
+              Organize multiple farms, zones, and growing areas with detailed tracking
             </p>
           </div>
 
-          {/* Feature 2 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-blue-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-              <BarChart3 className="w-8 h-8 text-blue-600" />
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <FileText className="w-7 h-7 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Real-Time Analytics</h3>
-            <p className="text-gray-600">
-              Visualize your farm data with beautiful charts and dashboards. Make data-driven decisions.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Growing Recipes</h3>
+            <p className="text-gray-600 text-sm">
+              Stage-based cultivation protocols with environmental parameters
             </p>
           </div>
 
-          {/* Feature 3 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-purple-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-              <Zap className="w-8 h-8 text-purple-600" />
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Package className="w-7 h-7 text-purple-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Automation</h3>
-            <p className="text-gray-600">
-              Create crop recipes and automate environmental controls based on growth stages and conditions.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Batch Tracking</h3>
+            <p className="text-gray-600 text-sm">
+              Track individual growing cycles from inoculation to harvest
             </p>
           </div>
 
-          {/* Feature 4 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-orange-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-              <Cloud className="w-8 h-8 text-orange-600" />
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-orange-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <ClipboardCheck className="w-7 h-7 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Cloud & Edge</h3>
-            <p className="text-gray-600">
-              Hybrid architecture with cloud backend and edge computing for reliable offline operation.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Harvest Recording</h3>
+            <p className="text-gray-600 text-sm">
+              Per-flush yield tracking with quality grading and bio-efficiency
             </p>
           </div>
 
-          {/* Feature 5 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-green-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-              <Sprout className="w-8 h-8 text-green-600" />
+          {/* IoT & Monitoring */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-cyan-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Cpu className="w-7 h-7 text-cyan-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Crop Management</h3>
-            <p className="text-gray-600">
-              Manage multiple farms, zones, and crop varieties with customizable growing recipes.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">IoT Integration</h3>
+            <p className="text-gray-600 text-sm">
+              ESP32 sensors via MQTT - temperature, humidity, CO2, and light
             </p>
           </div>
 
-          {/* Feature 6 */}
-          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="bg-red-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-indigo-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Thermometer className="w-7 h-7 text-indigo-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Environmental Monitoring</h3>
+            <p className="text-gray-600 text-sm">
+              Real-time data with recipe-based threshold alerts and charts
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-rose-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Bell className="w-7 h-7 text-rose-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Alerts & Notifications</h3>
+            <p className="text-gray-600 text-sm">
+              Multi-channel alerts for environmental, inventory, and task events
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-teal-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <BarChart3 className="w-7 h-7 text-teal-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Analytics & Reporting</h3>
+            <p className="text-gray-600 text-sm">
+              Yield trends, quality distribution, and batch performance insights
+            </p>
+          </div>
+
+          {/* Operations */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-amber-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Package className="w-7 h-7 text-amber-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Inventory Management</h3>
+            <p className="text-gray-600 text-sm">
+              Track substrate, spawn, supplies with low stock alerts
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-violet-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <CheckSquare className="w-7 h-7 text-violet-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Task Management</h3>
+            <p className="text-gray-600 text-sm">
+              Schedule recurring tasks with reminders and checklists
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-sky-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Clock className="w-7 h-7 text-sky-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Labor Tracking</h3>
+            <p className="text-gray-600 text-sm">
+              Clock in/out, work logs, and labor cost calculations
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <DollarSign className="w-7 h-7 text-emerald-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Cost & Revenue Tracking</h3>
+            <p className="text-gray-600 text-sm">
+              Complete financial tracking with expense and sales management
+            </p>
+          </div>
+
+          {/* Advanced Features */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <TrendingUp className="w-7 h-7 text-green-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Profitability Analytics</h3>
+            <p className="text-gray-600 text-sm">
+              ROI, profit margins, cost breakdowns, and batch comparisons
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-200">
+            <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <Microscope className="w-7 h-7 text-blue-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Quality Control</h3>
+            <p className="text-gray-600 text-sm">
+              Inspection tracking, defect management, compliance reporting
+            </p>
+            <span className="text-xs text-blue-600 font-semibold">Coming Soon</span>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-2 border-purple-200">
+            <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+              <FileText className="w-7 h-7 text-purple-600" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">SOP Management</h3>
+            <p className="text-gray-600 text-sm">
+              Standard operating procedures with step-by-step execution tracking
+            </p>
+            <span className="text-xs text-purple-600 font-semibold">Coming Soon</span>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center mb-3">
               <Shield className="w-8 h-8 text-red-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Enterprise Security</h3>
-            <p className="text-gray-600">
-              Bank-level encryption and security. Your farm data is protected with industry-leading standards.
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Enterprise Security</h3>
+            <p className="text-gray-600 text-sm">
+              Google OAuth, JWT tokens, role-based access control
             </p>
           </div>
         </div>
