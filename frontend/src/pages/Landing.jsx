@@ -35,12 +35,18 @@ export default function Landing() {
               >
                 Features
               </button>
-              <button
-                onClick={() => scrollToSection('about')}
+              <Link
+                to="/about"
                 className="text-gray-700 hover:text-green-600 font-medium transition-colors"
               >
                 About
-              </button>
+              </Link>
+              <Link
+                to="/faq"
+                className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              >
+                FAQ
+              </Link>
               <button
                 onClick={() => scrollToSection('pricing')}
                 className="text-gray-700 hover:text-green-600 font-medium transition-colors"

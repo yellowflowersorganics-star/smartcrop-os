@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './stores/authStore';
+import ScrollToTop from './components/ScrollToTop';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -43,11 +44,13 @@ function ProtectedRoute({ children }) {
 
 function App() {
   return (
-    <Routes>
-      {/* Public Landing Page */}
-      <Route path="/" element={<Landing />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/faq" element={<FAQ />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Public Landing Page */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<FAQ />} />
 
       {/* Auth Routes */}
       <Route element={<AuthLayout />}>
@@ -88,6 +91,7 @@ function App() {
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }
 
