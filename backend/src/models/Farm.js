@@ -31,7 +31,13 @@ module.exports = (sequelize) => {
     totalArea: {
       type: DataTypes.FLOAT,
       allowNull: true,
-      comment: 'Total farm area in square meters'
+      comment: 'Total farm area'
+    },
+    units: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'sqm',
+      comment: 'Area measurement units (sqft, sqm, acre, hectare)'
     },
     timezone: {
       type: DataTypes.STRING,
