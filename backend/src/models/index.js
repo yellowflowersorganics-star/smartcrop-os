@@ -27,6 +27,7 @@ const Unit = require('./Unit')(sequelize);
 const Zone = require('./Zone')(sequelize);
 const Device = require('./Device')(sequelize);
 const CropRecipe = require('./CropRecipe')(sequelize);
+const Batch = require('./Batch')(sequelize);
 const Harvest = require('./Harvest')(sequelize);
 const Subscription = require('./Subscription')(sequelize);
 const Invoice = require('./Invoice')(sequelize);
@@ -42,6 +43,7 @@ const db = {
   Zone,
   Device,
   CropRecipe,
+  Batch,
   Harvest,
   Subscription,
   Invoice

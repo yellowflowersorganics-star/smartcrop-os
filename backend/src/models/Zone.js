@@ -119,6 +119,10 @@ module.exports = (sequelize) => {
       foreignKey: 'zoneId',
       as: 'devices'
     });
+    Zone.hasMany(models.Batch, {
+      foreignKey: 'zoneId',
+      as: 'batches'
+    });
   };
 
   return Zone;
