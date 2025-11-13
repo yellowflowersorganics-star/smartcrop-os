@@ -245,3 +245,47 @@ export const sopService = {
   completeExecution: (id, data) => api.post(`/sop/executions/${id}/complete`, data),
 };
 
+export const employeeService = {
+  // Employee CRUD
+  getAll: (params) => api.get('/employees', { params }),
+  getById: (id) => api.get(`/employees/${id}`),
+  create: (data) => api.post('/employees', data),
+  update: (id, data) => api.put(`/employees/${id}`, data),
+  delete: (id) => api.delete(`/employees/${id}`),
+  generateId: () => api.get('/employees/generate-id'),
+  
+  // Employee Status & Management
+  updateStatus: (id, status) => api.patch(`/employees/${id}/status`, { status }),
+  linkUser: (id, userId) => api.post(`/employees/${id}/link-user`, { userId }),
+  
+  // Employee Statistics
+  getStats: (id) => api.get(`/employees/${id}/stats`),
+  getTasks: (id, params) => api.get(`/employees/${id}/tasks`, { params }),
+  getWorkLogs: (id, params) => api.get(`/employees/${id}/work-logs`, { params }),
+};
+
+export const roleService = {
+  // Role Management
+  getAll: (params) => api.get('/roles', { params }),
+  getSystem: () => api.get('/roles/system'),
+  getById: (id) => api.get(`/roles/${id}`),
+  create: (data) => api.post('/roles', data),
+  update: (id, data) => api.put(`/roles/${id}`, data),
+  delete: (id) => api.delete(`/roles/${id}`),
+  
+  // Seed system roles
+  seedSystem: () => api.post('/roles/seed-system'),
+};
+
+export const departmentService = {
+  // Department Management
+  getAll: (params) => api.get('/departments', { params }),
+  getById: (id) => api.get(`/departments/${id}`),
+  create: (data) => api.post('/departments', data),
+  update: (id, data) => api.put(`/departments/${id}`, data),
+  delete: (id) => api.delete(`/departments/${id}`),
+  
+  // Department Employees
+  getEmployees: (id, params) => api.get(`/departments/${id}/employees`, { params }),
+};
+
