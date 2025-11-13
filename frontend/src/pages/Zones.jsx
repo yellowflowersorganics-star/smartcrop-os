@@ -19,7 +19,7 @@ export default function Zones() {
     farmId: '',
     zoneNumber: '',
     area: '',
-    plantCount: 0,
+    plantCount: '',
     status: 'idle',
     metadata: {}
   });
@@ -54,10 +54,18 @@ export default function Zones() {
     setError('');
 
     try {
+      // Prepare data with proper type conversions
+      const submitData = {
+        ...formData,
+        area: formData.area ? parseFloat(formData.area) : null,
+        plantCount: formData.plantCount ? parseInt(formData.plantCount) : 0,
+        farmId: formData.farmId || null
+      };
+
       if (editingZone) {
-        await api.put(`/zones/${editingZone.id}`, formData);
+        await api.put(`/zones/${editingZone.id}`, submitData);
       } else {
-        await api.post('/zones', formData);
+        await api.post('/zones', submitData);
       }
       
       setShowModal(false);
@@ -76,7 +84,7 @@ export default function Zones() {
       farmId: zone.farmId || '',
       zoneNumber: zone.zoneNumber || '',
       area: zone.area || '',
-      plantCount: zone.plantCount || 0,
+      plantCount: zone.plantCount || '',
       status: zone.status || 'idle',
       metadata: zone.metadata || {}
     });
@@ -100,7 +108,7 @@ export default function Zones() {
       farmId: '',
       zoneNumber: '',
       area: '',
-      plantCount: 0,
+      plantCount: '',
       status: 'idle',
       metadata: {}
     });
@@ -428,10 +436,11 @@ export default function Zones() {
                   </label>
                   <input
                     type="number"
+                    min="0"
                     value={formData.plantCount}
-                    onChange={(e) => setFormData({ ...formData, plantCount: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => setFormData({ ...formData, plantCount: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="0"
+                    placeholder="Enter plant count"
                   />
                 </div>
 
