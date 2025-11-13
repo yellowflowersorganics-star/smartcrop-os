@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Sprout, Cpu, BarChart3, Cloud, Zap, Shield } from 'lucide-react';
+import { 
+  Sprout, Cpu, BarChart3, Cloud, Zap, Shield, 
+  CheckCircle, TrendingUp, Droplets, Thermometer,
+  Users, Globe, Package, ArrowRight
+} from 'lucide-react';
 
 export default function Landing() {
   return (
@@ -137,6 +141,358 @@ export default function Landing() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* About Section - What We Do */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Revolutionizing Agriculture with IoT Technology
+              </h2>
+              <p className="text-lg text-gray-600 mb-4">
+                SmartCrop OS is an open-source, end-to-end IoT platform designed specifically for modern agriculture. 
+                We empower farmers, researchers, and agricultural businesses to optimize crop production through 
+                data-driven decisions and intelligent automation.
+              </p>
+              <p className="text-lg text-gray-600 mb-6">
+                Our mission is to make precision agriculture accessible to everyone, from small vertical farms 
+                to large commercial operations, by providing enterprise-grade tools at an affordable price.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-start">
+                  <CheckCircle className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Real-Time Monitoring</p>
+                    <p className="text-gray-600">Track temperature, humidity, pH, EC, and more across all your zones</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Intelligent Automation</p>
+                    <p className="text-gray-600">Automated environmental controls based on crop-specific recipes</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Scalable Infrastructure</p>
+                    <p className="text-gray-600">From single zones to multi-farm operations with thousands of sensors</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl p-8 text-center">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white rounded-lg p-6">
+                  <Thermometer className="w-12 h-12 text-red-600 mx-auto mb-2" />
+                  <p className="text-3xl font-bold text-gray-900">98.5%</p>
+                  <p className="text-sm text-gray-600">Uptime</p>
+                </div>
+                <div className="bg-white rounded-lg p-6">
+                  <TrendingUp className="w-12 h-12 text-green-600 mx-auto mb-2" />
+                  <p className="text-3xl font-bold text-gray-900">35%</p>
+                  <p className="text-sm text-gray-600">Avg. Yield Increase</p>
+                </div>
+                <div className="bg-white rounded-lg p-6">
+                  <Droplets className="w-12 h-12 text-blue-600 mx-auto mb-2" />
+                  <p className="text-3xl font-bold text-gray-900">40%</p>
+                  <p className="text-sm text-gray-600">Water Savings</p>
+                </div>
+                <div className="bg-white rounded-lg p-6">
+                  <Globe className="w-12 h-12 text-purple-600 mx-auto mb-2" />
+                  <p className="text-3xl font-bold text-gray-900">50+</p>
+                  <p className="text-sm text-gray-600">Countries</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          How SmartCrop OS Works
+        </h2>
+        <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+          A complete ecosystem connecting your hardware, data, and decisions in real-time
+        </p>
+        
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Step 1 */}
+          <div className="text-center">
+            <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-green-600">1</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Install Sensors</h3>
+            <p className="text-gray-600">
+              Deploy ESP32-based IoT sensors across your growing zones to monitor environmental conditions
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="text-center">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-blue-600">2</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Connect & Stream</h3>
+            <p className="text-gray-600">
+              Data streams via MQTT protocol to our cloud platform or your private edge gateway
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="text-center">
+            <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-purple-600">3</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Analyze & Act</h3>
+            <p className="text-gray-600">
+              AI-powered insights and automated controls adjust conditions based on your crop recipes
+            </p>
+          </div>
+
+          {/* Step 4 */}
+          <div className="text-center">
+            <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl font-bold text-orange-600">4</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Optimize & Grow</h3>
+            <p className="text-gray-600">
+              Continuously improve yields with data-driven decisions and harvest analytics
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="bg-gradient-to-br from-green-50 to-blue-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+            Why Choose SmartCrop OS?
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+            Transform your farming operation with proven benefits
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <TrendingUp className="w-10 h-10 text-green-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Increase Yields by 25-40%</h3>
+              <p className="text-gray-600">
+                Optimize growing conditions with precision control, leading to healthier crops and better harvests
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <Droplets className="w-10 h-10 text-blue-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Reduce Water Usage by 40%</h3>
+              <p className="text-gray-600">
+                Smart irrigation based on real-time soil moisture and weather data minimizes waste
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <Zap className="w-10 h-10 text-yellow-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Cut Energy Costs by 30%</h3>
+              <p className="text-gray-600">
+                Automated climate control reduces unnecessary heating, cooling, and lighting expenses
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <BarChart3 className="w-10 h-10 text-purple-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Data-Driven Decisions</h3>
+              <p className="text-gray-600">
+                Historical analytics and trends help you make informed choices about crop selection and timing
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <Shield className="w-10 h-10 text-red-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Early Problem Detection</h3>
+              <p className="text-gray-600">
+                Real-time alerts notify you of issues before they become costly problems
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <Users className="w-10 h-10 text-indigo-600 mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Remote Management</h3>
+              <p className="text-gray-600">
+                Monitor and control your farms from anywhere with our mobile-responsive dashboard
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Plans Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
+          Simple, Transparent Pricing
+        </h2>
+        <p className="text-xl text-gray-600 text-center mb-12">
+          Choose the plan that fits your farming operation
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Starter Plan */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-200 hover:border-green-500 transition-colors">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+              <p className="text-gray-600 mb-4">Perfect for small vertical farms</p>
+              <div className="text-4xl font-bold text-gray-900">Free</div>
+              <p className="text-gray-600 mt-2">Forever</p>
+            </div>
+            
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Up to 2 farms</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">10 growing zones</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">5 IoT devices</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Basic analytics</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Community support</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">7-day data retention</span>
+              </li>
+            </ul>
+
+            <Link
+              to="/register"
+              className="w-full block text-center bg-gray-100 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors font-semibold"
+            >
+              Get Started Free
+            </Link>
+          </div>
+
+          {/* Professional Plan - Featured */}
+          <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl shadow-2xl p-8 border-2 border-green-500 transform md:scale-105 relative">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">
+              MOST POPULAR
+            </div>
+            
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-white mb-2">Professional</h3>
+              <p className="text-green-100 mb-4">For growing operations</p>
+              <div className="text-4xl font-bold text-white">$49</div>
+              <p className="text-green-100 mt-2">per month</p>
+            </div>
+            
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">Up to 10 farms</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">Unlimited zones</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">50 IoT devices</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">Advanced analytics & AI insights</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">Priority email support</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">90-day data retention</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">Custom crop recipes</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-300 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-white">API access</span>
+              </li>
+            </ul>
+
+            <Link
+              to="/register"
+              className="w-full block text-center bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
+            >
+              Start Free Trial
+            </Link>
+          </div>
+
+          {/* Enterprise Plan */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-200 hover:border-green-500 transition-colors">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+              <p className="text-gray-600 mb-4">For large-scale operations</p>
+              <div className="text-4xl font-bold text-gray-900">Custom</div>
+              <p className="text-gray-600 mt-2">Contact us</p>
+            </div>
+            
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Unlimited farms & zones</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Unlimited devices</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">White-label solution</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">On-premise deployment</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">24/7 phone support</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Unlimited data retention</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Custom integrations</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">Dedicated account manager</span>
+              </li>
+            </ul>
+
+            <button className="w-full bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-semibold">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+
+        <p className="text-center text-gray-600 mt-8">
+          All plans include: SSL encryption, automatic backups, 99.9% uptime SLA, and open-source firmware
+        </p>
       </section>
 
       {/* CTA Section */}
