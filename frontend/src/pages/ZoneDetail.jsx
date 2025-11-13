@@ -9,10 +9,13 @@ import {
 import api from '../services/api';
 import HarvestRecording from '../components/HarvestRecording';
 import EnvironmentalMonitoring from '../components/EnvironmentalMonitoring';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 export default function ZoneDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const toast = useToast();
   const [zone, setZone] = useState(null);
   const [activeBatch, setActiveBatch] = useState(null);
   const [batchHistory, setBatchHistory] = useState([]);
@@ -24,6 +27,7 @@ export default function ZoneDetail() {
   const [showStartBatchModal, setShowStartBatchModal] = useState(false);
   const [showCompleteBatchModal, setShowCompleteBatchModal] = useState(false);
   const [showHarvestModal, setShowHarvestModal] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState(false);
   
   // Harvest data
   const [harvests, setHarvests] = useState([]);
@@ -139,7 +143,7 @@ export default function ZoneDetail() {
       const errorMsg = error.response?.data?.message || 'Failed to start batch';
       const errorDetails = error.response?.data?.error;
       setError(errorDetails ? `${errorMsg}\n${errorDetails}` : errorMsg);
-      alert(`Failed to start batch: ${errorMsg}`);
+      toast.error(`Failed to start batch: ${errorMsg}`);
     }
   };
 
@@ -163,16 +167,16 @@ export default function ZoneDetail() {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm('Are you sure you want to delete this zone?')) {
-      return;
-    }
-
     try {
       await api.delete(`/zones/${id}`);
+      toast.success('Zone deleted successfully!');
       navigate('/zones');
     } catch (error) {
       console.error('Error deleting zone:', error);
+      toast.error('Failed to delete zone');
       setError('Failed to delete zone');
+    } finally {
+      setDeleteDialog(false);
     }
   };
 
@@ -280,7 +284,7 @@ export default function ZoneDetail() {
             Edit
           </button>
           <button
-            onClick={handleDelete}
+            onClick={() => setDeleteDialog(true)}
             className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-2"
           >
             <Trash2 className="w-4 h-4" />
@@ -796,6 +800,18 @@ export default function ZoneDetail() {
           }}
         />
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog}
+        onClose={() => setDeleteDialog(false)}
+        onConfirm={handleDelete}
+        title="Delete Zone"
+        message="Are you sure you want to delete this zone? All batches, harvest records, and telemetry data will be deleted. This action cannot be undone."
+        confirmText="Delete Zone"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 }

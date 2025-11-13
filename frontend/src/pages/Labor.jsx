@@ -4,6 +4,8 @@ import {
   Clock, Play, Square, Coffee, Calendar, DollarSign,
   CheckCircle2, XCircle, Filter, Plus, Edit2, Trash2
 } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const CATEGORIES = [
   { value: 'monitoring', label: 'Monitoring' },
@@ -18,11 +20,13 @@ const CATEGORIES = [
 ];
 
 export default function Labor() {
+  const toast = useToast();
   const [activeShift, setActiveShift] = useState(null);
   const [workLogs, setWorkLogs] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [clockInLoading, setClockInLoading] = useState(false);
+  const [clockOutDialog, setClockOutDialog] = useState(false);
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [filterStatus, setFilterStatus] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -61,29 +65,30 @@ export default function Labor() {
         category: 'other',
         description: 'Work shift started'
       });
+      toast.success('Clocked in successfully!');
       await fetchData();
     } catch (error) {
       console.error('Error clocking in:', error);
-      alert(error.response?.data?.error || 'Failed to clock in');
+      toast.error(error.response?.data?.error || 'Failed to clock in');
     } finally {
       setClockInLoading(false);
     }
   };
 
   const handleClockOut = async () => {
-    if (!confirm('Clock out from current shift?')) return;
-
     try {
       setClockInLoading(true);
       await laborService.clockOut({
         breakMinutes: 0
       });
+      toast.success('Clocked out successfully!');
       await fetchData();
     } catch (error) {
       console.error('Error clocking out:', error);
-      alert(error.response?.data?.error || 'Failed to clock out');
+      toast.error(error.response?.data?.error || 'Failed to clock out');
     } finally {
       setClockInLoading(false);
+      setClockOutDialog(false);
     }
   };
 
@@ -171,7 +176,7 @@ export default function Labor() {
                 </p>
               </div>
               <button
-                onClick={handleClockOut}
+                onClick={() => setClockOutDialog(true)}
                 disabled={clockInLoading}
                 className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
               >
@@ -526,6 +531,19 @@ function ManualEntryModal({ onClose, onSuccess }) {
         </form>
       </div>
     </div>
+
+    {/* Clock Out Confirmation Dialog */}
+    <ConfirmDialog
+      isOpen={clockOutDialog}
+      onClose={() => setClockOutDialog(false)}
+      onConfirm={handleClockOut}
+      loading={clockInLoading}
+      title="Clock Out"
+      message="Are you sure you want to clock out from your current shift? Your total hours will be calculated automatically."
+      confirmText="Clock Out"
+      cancelText="Cancel"
+      type="warning"
+    />
   );
 }
 

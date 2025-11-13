@@ -4,6 +4,8 @@ import {
   Bell, AlertCircle, AlertTriangle, Info, Check, X, 
   CheckCircle2, Filter, Calendar, ChevronDown
 } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const SEVERITY_COLORS = {
   low: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
@@ -33,11 +35,13 @@ const TYPE_LABELS = {
 };
 
 export default function Notifications() {
+  const toast = useToast();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState('');
   const [filterSeverity, setFilterSeverity] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
+  const [dismissAllDialog, setDismissAllDialog] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -97,11 +101,14 @@ export default function Notifications() {
 
   const handleDismissAll = async () => {
     try {
-      if (!confirm('Dismiss all read notifications?')) return;
       await notificationService.dismissAll();
+      toast.success('All read notifications dismissed!');
       fetchNotifications();
     } catch (error) {
       console.error('Error dismissing all:', error);
+      toast.error('Failed to dismiss notifications');
+    } finally {
+      setDismissAllDialog(false);
     }
   };
 
@@ -139,7 +146,7 @@ export default function Notifications() {
             </button>
           )}
           <button
-            onClick={handleDismissAll}
+            onClick={() => setDismissAllDialog(true)}
             className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             Dismiss All Read
@@ -328,6 +335,18 @@ export default function Notifications() {
           </button>
         </div>
       )}
+
+      {/* Dismiss All Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={dismissAllDialog}
+        onClose={() => setDismissAllDialog(false)}
+        onConfirm={handleDismissAll}
+        title="Dismiss All Read Notifications"
+        message="Are you sure you want to dismiss all read notifications? This action cannot be undone."
+        confirmText="Dismiss All"
+        cancelText="Cancel"
+        type="warning"
+      />
     </div>
   );
 }

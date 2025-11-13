@@ -4,6 +4,8 @@ import {
   DollarSign, Plus, Filter, Calendar, TrendingUp,
   Edit2, Trash2, Receipt, Tag, Package
 } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const COST_CATEGORIES = [
   { value: 'substrate', label: '🌱 Substrate', color: 'bg-green-100 text-green-700' },
@@ -24,11 +26,13 @@ const COST_CATEGORIES = [
 ];
 
 export default function Costs() {
+  const toast = useToast();
   const [costs, setCosts] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState({ isOpen: false, costId: null });
   const [selectedCost, setSelectedCost] = useState(null);
   const [filterCategory, setFilterCategory] = useState('');
   const [filterPaymentStatus, setFilterPaymentStatus] = useState('');
@@ -67,15 +71,16 @@ export default function Costs() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this cost entry?')) return;
-
+  const handleDelete = async () => {
     try {
-      await costService.delete(id);
+      await costService.delete(deleteDialog.costId);
+      toast.success('Cost entry deleted successfully!');
       fetchData();
     } catch (error) {
       console.error('Error deleting cost:', error);
-      alert('Failed to delete cost entry');
+      toast.error('Failed to delete cost entry');
+    } finally {
+      setDeleteDialog({ isOpen: false, costId: null });
     }
   };
 
@@ -231,7 +236,7 @@ export default function Costs() {
                   setSelectedCost(cost);
                   setShowEditModal(true);
                 }}
-                onDelete={handleDelete}
+                onDelete={(id) => setDeleteDialog({ isOpen: true, costId: id })}
                 getCategoryInfo={getCategoryInfo}
                 formatCurrency={formatCurrency}
               />
@@ -265,6 +270,18 @@ export default function Costs() {
           }}
         />
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={() => setDeleteDialog({ isOpen: false, costId: null })}
+        onConfirm={handleDelete}
+        title="Delete Cost Entry"
+        message="Are you sure you want to delete this cost entry? This action cannot be undone."
+        confirmText="Delete Entry"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 }

@@ -4,6 +4,8 @@ import {
   CheckSquare, Plus, Filter, Calendar, Clock, AlertCircle,
   CheckCircle2, Play, X, Edit2, Trash2, MoreVertical, Flag
 } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const CATEGORIES = [
   { value: 'monitoring', label: 'Monitoring', icon: '👁️' },
@@ -35,11 +37,13 @@ const STATUS_COLORS = {
 };
 
 export default function Tasks() {
+  const toast = useToast();
   const [tasks, setTasks] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
+  const [deleteDialog, setDeleteDialog] = useState({ isOpen: false, taskId: null });
   const [filterPriority, setFilterPriority] = useState('');
   const [viewMode, setViewMode] = useState('list'); // list or calendar
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -93,14 +97,16 @@ export default function Tasks() {
     }
   };
 
-  const handleDeleteTask = async (taskId) => {
-    if (!confirm('Are you sure you want to delete this task?')) return;
-
+  const handleDeleteTask = async () => {
     try {
-      await taskService.delete(taskId);
+      await taskService.delete(deleteDialog.taskId);
+      toast.success('Task deleted successfully!');
       fetchData();
     } catch (error) {
       console.error('Error deleting task:', error);
+      toast.error('Failed to delete task');
+    } finally {
+      setDeleteDialog({ isOpen: false, taskId: null });
     }
   };
 
@@ -275,7 +281,7 @@ export default function Tasks() {
                 setSelectedTask(task);
                 setShowEditModal(true);
               }}
-              onDelete={handleDeleteTask}
+              onDelete={(id) => setDeleteDialog({ isOpen: true, taskId: id })}
               formatDueDate={formatDueDate}
               getCategoryIcon={getCategoryIcon}
             />
@@ -312,6 +318,18 @@ export default function Tasks() {
           }}
         />
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={() => setDeleteDialog({ isOpen: false, taskId: null })}
+        onConfirm={handleDeleteTask}
+        title="Delete Task"
+        message="Are you sure you want to delete this task? This action cannot be undone."
+        confirmText="Delete Task"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 }
