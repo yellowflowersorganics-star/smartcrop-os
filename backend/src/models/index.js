@@ -47,6 +47,9 @@ const QualityStandard = require('./QualityStandard')(sequelize);
 const SOP = require('./SOP')(sequelize);
 const SOPStep = require('./SOPStep')(sequelize);
 const SOPExecution = require('./SOPExecution')(sequelize);
+const Department = require('./Department')(sequelize);
+const Role = require('./Role')(sequelize);
+const Employee = require('./Employee')(sequelize);
 
 // Store models in db object
 const db = {
@@ -78,7 +81,10 @@ const db = {
   QualityStandard,
   SOP,
   SOPStep,
-  SOPExecution
+  SOPExecution,
+  Department,
+  Role,
+  Employee
 };
 
 // Setup associations

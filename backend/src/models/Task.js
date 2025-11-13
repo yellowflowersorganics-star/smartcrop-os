@@ -29,6 +29,28 @@ module.exports = (sequelize) => {
       onDelete: 'SET NULL',
       comment: 'User assigned to complete the task'
     },
+    assignedEmployeeId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: 'employees',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+      comment: 'Employee assigned to complete the task'
+    },
+    assignedRoleId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: 'roles',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+      comment: 'Role assigned to complete the task (any employee with this role)'
+    },
     organizationId: {
       type: DataTypes.UUID,
       allowNull: true,
@@ -303,6 +325,16 @@ module.exports = (sequelize) => {
     Task.hasMany(models.Task, {
       foreignKey: 'parentTaskId',
       as: 'childTasks'
+    });
+
+    Task.belongsTo(models.Employee, {
+      foreignKey: 'assignedEmployeeId',
+      as: 'assignedEmployee'
+    });
+
+    Task.belongsTo(models.Role, {
+      foreignKey: 'assignedRoleId',
+      as: 'assignedRole'
     });
   };
 

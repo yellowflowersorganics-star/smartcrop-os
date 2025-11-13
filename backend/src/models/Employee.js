@@ -7,242 +7,229 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    ownerId: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-      comment: 'User who created this employee record'
-    },
-    organizationId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: 'organizations',
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-      comment: 'Organization this employee belongs to'
-    },
-    userId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: 'users',
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
-      comment: 'Linked user account (if employee has system access)'
-    },
+    // Basic Information
     employeeId: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: 'Human-readable employee ID'
+      unique: true,
+      comment: 'Unique employee ID (e.g., EMP-001)'
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      comment: 'Employee first name'
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      comment: 'Employee last name'
     },
     email: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        isEmail: true
-      }
+      validate: { isEmail: true },
+      comment: 'Employee email address'
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: true
-    },
-    role: {
-      type: DataTypes.ENUM(
-        'farm_manager',
-        'supervisor',
-        'technician',
-        'harvester',
-        'quality_control',
-        'maintenance',
-        'cleaner',
-        'packer',
-        'driver',
-        'other'
-      ),
       allowNull: false,
-      defaultValue: 'technician',
-      comment: 'Employee job role'
+      comment: 'Primary phone number'
     },
-    department: {
+    whatsappNumber: {
       type: DataTypes.STRING,
       allowNull: true,
-      comment: 'Department or team'
+      comment: 'WhatsApp number for notifications (with country code)'
     },
-    status: {
-      type: DataTypes.ENUM('active', 'inactive', 'on_leave', 'terminated'),
-      defaultValue: 'active'
+    photoUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Profile photo URL'
     },
-    hireDate: {
+    dateOfBirth: {
       type: DataTypes.DATEONLY,
       allowNull: true,
-      comment: 'Date of hire'
+      comment: 'Date of birth'
     },
-    terminationDate: {
-      type: DataTypes.DATEONLY,
+    gender: {
+      type: DataTypes.ENUM('male', 'female', 'other'),
       allowNull: true,
-      comment: 'Date of termination'
+      comment: 'Gender'
     },
-    // Compensation
-    payType: {
-      type: DataTypes.ENUM('hourly', 'daily', 'monthly', 'salary'),
-      defaultValue: 'hourly',
-      comment: 'How employee is paid'
+    
+    // Address
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      comment: 'Full address'
     },
-    payRate: {
-      type: DataTypes.DECIMAL(10, 2),
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    pincode: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    
+    // Employment Details
+    roleId: {
+      type: DataTypes.UUID,
       allowNull: false,
-      defaultValue: 0,
-      comment: 'Pay rate (per hour, day, or month based on payType)'
+      comment: 'Role assigned to employee'
+    },
+    departmentId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Department the employee belongs to'
+    },
+    joinDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      comment: 'Date of joining'
+    },
+    endDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+      comment: 'Date of leaving (if terminated)'
+    },
+    employmentType: {
+      type: DataTypes.ENUM('full-time', 'part-time', 'contract', 'temporary'),
+      defaultValue: 'full-time',
+      comment: 'Type of employment'
+    },
+    shiftType: {
+      type: DataTypes.ENUM('day', 'night', 'rotating'),
+      defaultValue: 'day',
+      comment: 'Shift type'
+    },
+    
+    // Compensation
+    salary: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: true,
+      comment: 'Monthly salary (if applicable)'
+    },
+    hourlyRate: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: true,
+      comment: 'Hourly rate (if applicable)'
     },
     currency: {
       type: DataTypes.STRING,
       defaultValue: 'INR',
-      comment: 'Currency for pay rate'
+      comment: 'Currency code'
     },
-    overtimeRate: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: true,
-      comment: 'Overtime hourly rate'
-    },
-    // Working hours
-    standardHoursPerDay: {
-      type: DataTypes.DECIMAL(4, 2),
-      defaultValue: 8.0,
-      comment: 'Standard working hours per day'
-    },
-    standardDaysPerWeek: {
-      type: DataTypes.INTEGER,
-      defaultValue: 6,
-      comment: 'Standard working days per week'
-    },
-    // Skills and certifications
-    skills: {
-      type: DataTypes.JSON,
-      defaultValue: [],
-      comment: 'Array of skills/competencies'
-    },
-    certifications: {
-      type: DataTypes.JSON,
-      defaultValue: [],
-      comment: 'Array of certifications with expiry dates'
-    },
-    // Contact and personal
-    address: {
-      type: DataTypes.JSON,
-      defaultValue: {},
-      comment: 'Employee address'
-    },
-    emergencyContact: {
-      type: DataTypes.JSON,
-      defaultValue: {},
-      comment: 'Emergency contact information'
-    },
-    // Documentation
+    
+    // Documents
     documents: {
       type: DataTypes.JSON,
       defaultValue: [],
-      comment: 'Array of document URLs (ID, contracts, etc.)'
+      comment: 'Array of document objects (ID proof, contracts, etc.)'
     },
+    
+    // Status & Settings
+    status: {
+      type: DataTypes.ENUM('active', 'on-leave', 'suspended', 'terminated'),
+      defaultValue: 'active',
+      comment: 'Employment status'
+    },
+    canLogin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      comment: 'Whether employee can login to system'
+    },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Linked user account (if canLogin is true)'
+    },
+    
+    // Notifications
+    notificationPreferences: {
+      type: DataTypes.JSON,
+      defaultValue: {
+        whatsapp: true,
+        sms: false,
+        email: true,
+        push: true
+      },
+      comment: 'Notification channel preferences'
+    },
+    
+    // Ownership
+    ownerId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      comment: 'Farm owner who created this employee record'
+    },
+    organizationId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Organization for multi-tenant isolation'
+    },
+    
+    // Additional Info
     notes: {
       type: DataTypes.TEXT,
       allowNull: true,
       comment: 'Additional notes about employee'
     },
-    // Performance
-    performanceRating: {
-      type: DataTypes.DECIMAL(3, 2),
-      allowNull: true,
-      comment: 'Performance rating (0-5)'
-    },
-    lastReviewDate: {
-      type: DataTypes.DATEONLY,
-      allowNull: true,
-      comment: 'Date of last performance review'
-    },
-    // System
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
     metadata: {
       type: DataTypes.JSON,
       defaultValue: {},
-      comment: 'Additional metadata'
+      comment: 'Additional metadata (emergency contacts, skills, etc.)'
     }
   }, {
     tableName: 'employees',
     timestamps: true,
     indexes: [
+      { fields: ['employeeId'], unique: true },
       { fields: ['ownerId'] },
       { fields: ['organizationId'] },
-      { fields: ['userId'] },
-      { fields: ['employeeId'] },
+      { fields: ['roleId'] },
+      { fields: ['departmentId'] },
       { fields: ['status'] },
-      { fields: ['role'] },
-      { fields: ['isActive'] },
-      { fields: ['ownerId', 'status'] }
+      { fields: ['email'] },
+      { fields: ['phone'] }
     ]
   });
 
   Employee.associate = (models) => {
-    Employee.belongsTo(models.User, {
-      foreignKey: 'ownerId',
-      as: 'owner'
+    // Employee belongs to a role
+    Employee.belongsTo(models.Role, {
+      foreignKey: 'roleId',
+      as: 'role'
     });
 
+    // Employee belongs to a department
+    Employee.belongsTo(models.Department, {
+      foreignKey: 'departmentId',
+      as: 'department'
+    });
+
+    // Employee can have many tasks
+    Employee.hasMany(models.Task, {
+      foreignKey: 'assignedEmployeeId',
+      as: 'tasks'
+    });
+
+    // Employee can have many work logs
+    Employee.hasMany(models.WorkLog, {
+      foreignKey: 'employeeId',
+      as: 'workLogs'
+    });
+
+    // Employee may be linked to a user account
     Employee.belongsTo(models.User, {
       foreignKey: 'userId',
       as: 'user'
     });
-
-    Employee.belongsTo(models.Organization, {
-      foreignKey: 'organizationId',
-      as: 'organization'
-    });
-
-    Employee.hasMany(models.LaborEntry, {
-      foreignKey: 'employeeId',
-      as: 'laborEntries'
-    });
-  };
-
-  // Virtual for full name
-  Employee.prototype.getFullName = function() {
-    return `${this.firstName} ${this.lastName}`;
-  };
-
-  // Calculate total labor cost
-  Employee.prototype.calculateLaborCost = function(hours) {
-    if (this.payType === 'hourly') {
-      return parseFloat(this.payRate) * hours;
-    } else if (this.payType === 'daily') {
-      const days = hours / this.standardHoursPerDay;
-      return parseFloat(this.payRate) * days;
-    } else if (this.payType === 'monthly') {
-      const hoursPerMonth = this.standardHoursPerDay * this.standardDaysPerWeek * 4.33;
-      return (parseFloat(this.payRate) / hoursPerMonth) * hours;
-    }
-    return 0;
   };
 
   return Employee;
 };
-
