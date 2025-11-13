@@ -485,7 +485,7 @@ const QualityStandards = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn-primary">
+                <button type="submit" className="btn-primary px-6 py-2">
                   {editingStandard ? 'Update Standard' : 'Create Standard'}
                 </button>
               </div>

@@ -545,7 +545,7 @@ const QualityInspection = () => {
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary flex items-center gap-2"
+            className="btn-primary flex items-center gap-2 px-6 py-2"
           >
             {loading ? (
               <>
