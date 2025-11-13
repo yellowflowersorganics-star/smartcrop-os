@@ -6,10 +6,10 @@
 const express = require('express');
 const router = express.Router();
 const batchController = require('../controllers/batch.controller');
-const auth = require('../middleware/auth');
+const { authenticate } = require('../middleware/auth');
 
 // All batch routes require authentication
-router.use(auth);
+router.use(authenticate);
 
 // Batch management
 router.post('/start', batchController.startBatch);
