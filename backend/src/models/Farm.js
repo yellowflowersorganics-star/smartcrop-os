@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     location: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Geographic location and address'
     },
@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
       defaultValue: 'active'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {

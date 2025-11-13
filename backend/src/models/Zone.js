@@ -70,17 +70,17 @@ module.exports = (sequelize) => {
       defaultValue: 0
     },
     currentSetpoints: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Current environmental setpoints'
     },
     lastEnvironmentData: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Latest sensor readings'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {

@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
       comment: 'User who created this recipe'
     },
     stages: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: false,
       comment: 'Array of growth stages with environmental parameters',
       validate: {
@@ -63,17 +63,17 @@ module.exports = (sequelize) => {
       comment: 'Total duration in days (calculated from stages)'
     },
     requiredSensors: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       defaultValue: [],
-      comment: 'List of required sensor types'
+      comment: 'List of required sensor types (JSON array for SQLite compatibility)'
     },
     requiredActuators: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       defaultValue: [],
-      comment: 'List of required actuator types'
+      comment: 'List of required actuator types (JSON array for SQLite compatibility)'
     },
     estimatedYield: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Expected yield metrics'
     },
@@ -82,16 +82,17 @@ module.exports = (sequelize) => {
       defaultValue: 'intermediate'
     },
     tags: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue: []
+      type: DataTypes.JSON,
+      defaultValue: [],
+      comment: 'Tags for categorization (JSON array for SQLite compatibility)'
     },
     marketplace: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Marketplace listing information (price, rating, etc.)'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Additional metadata'
     }

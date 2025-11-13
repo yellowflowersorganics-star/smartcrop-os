@@ -77,7 +77,7 @@ module.exports = (sequelize) => {
     },
     // Line items
     items: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: [],
       comment: 'Array of invoice line items'
     },
@@ -86,7 +86,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {

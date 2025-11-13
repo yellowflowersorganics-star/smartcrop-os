@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
       comment: 'Maximum users allowed'
     },
     features: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {
         cloudSync: false,
         analytics: false,
@@ -67,7 +67,7 @@ module.exports = (sequelize) => {
       }
     },
     billingAddress: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true
     },
     gstNumber: {
@@ -105,12 +105,12 @@ module.exports = (sequelize) => {
       defaultValue: 'en'
     },
     settings: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Organization-specific settings'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {

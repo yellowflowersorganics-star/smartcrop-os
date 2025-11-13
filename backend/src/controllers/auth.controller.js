@@ -7,6 +7,19 @@ const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger');
 
 class AuthController {
+  constructor() {
+    // Bind all methods to preserve 'this' context
+    this.register = this.register.bind(this);
+    this.login = this.login.bind(this);
+    this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.refreshToken = this.refreshToken.bind(this);
+    this.logout = this.logout.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.forgotPassword = this.forgotPassword.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
+  }
+
   // Generate JWT token
   generateToken(userId) {
     return jwt.sign(

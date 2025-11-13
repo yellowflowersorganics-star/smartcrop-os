@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       comment: 'Unique code for this unit (e.g., "BLD-A")'
     },
     location: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Physical location details',
       defaultValue: {}
@@ -84,13 +84,13 @@ module.exports = (sequelize) => {
     },
     // Credentials for ESP32s to connect to local Pi
     localMqttCredentials: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Encrypted credentials for ESP32 → Pi connection'
     },
     // Network configuration
     networkConfig: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'WiFi SSID, network settings, etc.'
     },
@@ -119,7 +119,7 @@ module.exports = (sequelize) => {
       comment: 'Number of currently active zones'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Additional metadata'
     }

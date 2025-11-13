@@ -69,7 +69,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     preferences: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {

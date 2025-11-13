@@ -197,10 +197,33 @@ const requireOrgAdmin = (req, res, next) => {
   next();
 };
 
+/**
+ * Simple tenant check - sets req.tenant from authenticated user
+ * Lightweight version for basic routes
+ */
+const checkTenant = (req, res, next) => {
+  if (!req.user || !req.user.organizationId) {
+    return res.status(401).json({
+      success: false,
+      message: 'Authentication required with organization context'
+    });
+  }
+
+  // Set tenant context for easy access
+  req.tenant = {
+    organizationId: req.user.organizationId,
+    userId: req.user.id,
+    role: req.user.role
+  };
+
+  next();
+};
+
 module.exports = {
   setTenantContext,
   verifyResourceOwnership,
   checkSubscriptionLimits,
-  requireOrgAdmin
+  requireOrgAdmin,
+  checkTenant
 };
 

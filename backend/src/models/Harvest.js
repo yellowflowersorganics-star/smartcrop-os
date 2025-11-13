@@ -77,16 +77,16 @@ module.exports = (sequelize) => {
       comment: 'Overall quality grade for this harvest'
     },
     qualityDistribution: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       defaultValue: {},
       comment: 'Weight distribution by quality grade: {premium: 10.5, grade_a: 1.5, ...}'
     },
     defectNotes: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       allowNull: true,
       defaultValue: [],
-      comment: 'List of quality issues observed'
+      comment: 'List of quality issues observed (JSON array for SQLite compatibility)'
     },
     // People
     harvesterName: {
@@ -133,10 +133,10 @@ module.exports = (sequelize) => {
     },
     // Photos
     photoUrls: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.JSON,
       allowNull: true,
       defaultValue: [],
-      comment: 'URLs of uploaded harvest photos'
+      comment: 'URLs of uploaded harvest photos (JSON array for SQLite compatibility)'
     },
     // Timestamps
     harvestDate: {
@@ -169,7 +169,7 @@ module.exports = (sequelize) => {
     },
     // Environmental conditions during harvest
     envSnapshot: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       defaultValue: {},
       comment: 'Environmental conditions at harvest time'
@@ -182,7 +182,7 @@ module.exports = (sequelize) => {
     },
     // Metadata
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Additional metadata'
     }

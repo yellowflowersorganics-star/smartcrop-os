@@ -12,17 +12,25 @@ const connectRedis = async () => {
     redisClient = redis.createClient({
       socket: {
         host: process.env.REDIS_HOST || 'localhost',
-        port: process.env.REDIS_PORT || 6379
+        port: process.env.REDIS_PORT || 6379,
+        reconnectStrategy: false // Disable auto-reconnect for optional Redis
       },
       password: process.env.REDIS_PASSWORD || undefined,
       legacyMode: false
     });
 
+    // Only log errors if connection was initially successful
+    let connected = false;
+
     redisClient.on('error', (err) => {
-      logger.error('Redis error:', err);
+      // Only log ongoing errors if we were previously connected
+      if (connected) {
+        logger.error('Redis error:', err);
+      }
     });
 
     redisClient.on('connect', () => {
+      connected = true;
       logger.info('Redis connected');
     });
 
@@ -30,15 +38,22 @@ const connectRedis = async () => {
     
     return redisClient;
   } catch (error) {
-    logger.error('Failed to connect to Redis:', error);
+    // Clean up client on failed connection
+    if (redisClient) {
+      try {
+        await redisClient.quit();
+      } catch (e) {
+        // Ignore cleanup errors
+      }
+      redisClient = null;
+    }
+    // Re-throw to let caller handle
     throw error;
   }
 };
 
 const getRedisClient = () => {
-  if (!redisClient) {
-    throw new Error('Redis client not initialized. Call connectRedis() first.');
-  }
+  // Return null if Redis is not available (optional service)
   return redisClient;
 };
 

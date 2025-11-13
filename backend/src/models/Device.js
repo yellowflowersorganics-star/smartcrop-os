@@ -64,17 +64,17 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     configuration: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {},
       comment: 'Device-specific configuration'
     },
     credentials: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: 'Encrypted device credentials'
     },
     metadata: {
-      type: DataTypes.JSONB,
+      type: DataTypes.JSON,
       defaultValue: {}
     }
   }, {
