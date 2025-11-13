@@ -9,6 +9,7 @@ import AuthLayout from './layouts/AuthLayout';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import GoogleAuthSuccess from './pages/GoogleAuthSuccess';
 import Dashboard from './pages/Dashboard';
 import Farms from './pages/Farms';
 import Zones from './pages/Zones';
@@ -36,6 +37,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
+
+      {/* Google Auth Success (no layout) */}
+      <Route path="/auth/google/success" element={<GoogleAuthSuccess />} />
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>

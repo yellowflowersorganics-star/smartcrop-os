@@ -71,6 +71,11 @@ module.exports = (sequelize) => {
     preferences: {
       type: DataTypes.JSON,
       defaultValue: {}
+    },
+    googleId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
     }
   }, {
     tableName: 'users',

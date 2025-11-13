@@ -13,6 +13,10 @@ router.post('/register', authController.register);
 // Login
 router.post('/login', authController.login);
 
+// Google OAuth
+router.get('/google', authController.googleAuth);
+router.get('/google/callback', authController.googleCallback);
+
 // Refresh token
 router.post('/refresh', authController.refreshToken);
 

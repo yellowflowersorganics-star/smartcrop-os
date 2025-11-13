@@ -43,7 +43,7 @@ export default function Landing() {
             <span className="text-green-600">Simplified</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Open-source IoT platform for precision agriculture. Monitor, control, and optimize your crops with real-time data and automation.
+            Professional IoT platform for precision agriculture. Monitor, control, and optimize your crops with real-time data and automation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -135,9 +135,9 @@ export default function Landing() {
             <div className="bg-red-100 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
               <Shield className="w-8 h-8 text-red-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Open Source</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Enterprise Security</h3>
             <p className="text-gray-600">
-              Fully open-source platform. Customize, extend, and deploy on your own infrastructure.
+              Bank-level encryption and security. Your farm data is protected with industry-leading standards.
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function Landing() {
                 Revolutionizing Agriculture with IoT Technology
               </h2>
               <p className="text-lg text-gray-600 mb-4">
-                SmartCrop OS is an open-source, end-to-end IoT platform designed specifically for modern agriculture. 
+                SmartCrop OS is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. 
                 We empower farmers, researchers, and agricultural businesses to optimize crop production through 
                 data-driven decisions and intelligent automation.
               </p>
@@ -491,7 +491,7 @@ export default function Landing() {
         </div>
 
         <p className="text-center text-gray-600 mt-8">
-          All plans include: SSL encryption, automatic backups, 99.9% uptime SLA, and open-source firmware
+          All plans include: SSL encryption, automatic backups, 99.9% uptime SLA, and mobile app access
         </p>
       </section>
 
@@ -521,7 +521,7 @@ export default function Landing() {
               <span className="text-lg font-bold">SmartCrop OS</span>
             </div>
             <div className="text-gray-400 text-sm">
-              © 2024 SmartCrop OS. Open-source agriculture platform.
+              © 2024 SmartCrop OS. Professional agriculture platform.
             </div>
           </div>
         </div>

@@ -68,6 +68,15 @@ export const useAuthStore = create(
           user: { ...state.user, ...userData },
         }));
       },
+
+      setAuthData: (user, token) => {
+        set({
+          user,
+          token,
+          isAuthenticated: true,
+        });
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      },
     }),
     {
       name: 'auth-storage',

@@ -5,6 +5,7 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger');
+const { OAuth2Client } = require('google-auth-library');
 
 class AuthController {
   constructor() {
@@ -18,6 +19,15 @@ class AuthController {
     this.changePassword = this.changePassword.bind(this);
     this.forgotPassword = this.forgotPassword.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
+    this.googleAuth = this.googleAuth.bind(this);
+    this.googleCallback = this.googleCallback.bind(this);
+    
+    // Initialize Google OAuth client
+    this.googleClient = new OAuth2Client(
+      process.env.GOOGLE_CLIENT_ID,
+      process.env.GOOGLE_CLIENT_SECRET,
+      process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3000/api/auth/google/callback'
+    );
   }
 
   // Generate JWT token
@@ -249,6 +259,83 @@ class AuthController {
       success: true,
       message: 'Password reset successfully'
     });
+  }
+
+  // Google OAuth - Initiate
+  async googleAuth(req, res) {
+    try {
+      const authorizeUrl = this.googleClient.generateAuthUrl({
+        access_type: 'offline',
+        scope: [
+          'https://www.googleapis.com/auth/userinfo.profile',
+          'https://www.googleapis.com/auth/userinfo.email'
+        ],
+        prompt: 'consent'
+      });
+      
+      res.redirect(authorizeUrl);
+    } catch (error) {
+      logger.error('Google auth initiation error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to initiate Google authentication'
+      });
+    }
+  }
+
+  // Google OAuth - Callback
+  async googleCallback(req, res) {
+    try {
+      const { code } = req.query;
+
+      if (!code) {
+        return res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:8080'}/login?error=no_code`);
+      }
+
+      // Exchange code for tokens
+      const { tokens } = await this.googleClient.getToken(code);
+      this.googleClient.setCredentials(tokens);
+
+      // Get user info from Google
+      const ticket = await this.googleClient.verifyIdToken({
+        idToken: tokens.id_token,
+        audience: process.env.GOOGLE_CLIENT_ID
+      });
+
+      const payload = ticket.getPayload();
+      const googleId = payload.sub;
+      const email = payload.email;
+      const firstName = payload.given_name || '';
+      const lastName = payload.family_name || '';
+
+      // Check if user exists
+      let user = await User.findOne({ where: { email } });
+
+      if (!user) {
+        // Create new user
+        user = await User.create({
+          email,
+          firstName,
+          lastName,
+          googleId,
+          isActive: true,
+          // No password for Google OAuth users
+          password: Math.random().toString(36).slice(-16) // Random password they won't use
+        });
+      } else if (!user.googleId) {
+        // Link Google account to existing user
+        await user.update({ googleId });
+      }
+
+      // Generate JWT token
+      const token = this.generateToken(user.id);
+
+      // Redirect to frontend with token
+      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:8080'}/auth/google/success?token=${token}`);
+    } catch (error) {
+      logger.error('Google callback error:', error);
+      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:8080'}/login?error=google_auth_failed`);
+    }
   }
 }
 
