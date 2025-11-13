@@ -50,8 +50,28 @@ const QualityDashboard = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      <div className="space-y-6 px-6">
+        <div className="flex items-center justify-between">
+          <div className="animate-pulse space-y-2">
+            <div className="h-8 bg-gray-200 rounded w-64"></div>
+            <div className="h-4 bg-gray-200 rounded w-96"></div>
+          </div>
+          <div className="animate-pulse h-10 bg-gray-200 rounded w-40"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="animate-pulse h-64 bg-gray-200 rounded"></div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="animate-pulse h-64 bg-gray-200 rounded"></div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import {
   Calendar, Package, ArrowRight, AlertTriangle, X
 } from 'lucide-react';
 import api, { inventoryService } from '../services/api';
+import { StatsCardSkeleton, CardSkeleton, ListItemSkeleton } from '../components/skeletons';
 
 export default function Dashboard() {
   const [overview, setOverview] = useState(null);
@@ -48,8 +49,38 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-600">Loading dashboard...</div>
+      <div className="space-y-6">
+        {/* Header Skeleton */}
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-8 rounded-lg shadow-lg">
+          <div className="animate-pulse space-y-3">
+            <div className="h-8 bg-green-500/30 rounded w-64"></div>
+            <div className="h-4 bg-green-500/30 rounded w-96"></div>
+          </div>
+        </div>
+
+        {/* Stats Cards Skeleton */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+        </div>
+
+        {/* Recent Activity Skeleton */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
+            <div className="animate-pulse h-6 bg-gray-200 rounded w-48 mb-4"></div>
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
+            <div className="animate-pulse h-6 bg-gray-200 rounded w-48 mb-4"></div>
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+          </div>
+        </div>
       </div>
     );
   }

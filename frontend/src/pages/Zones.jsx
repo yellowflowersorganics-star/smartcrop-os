@@ -6,6 +6,7 @@ import {
   PauseCircle, PlayCircle, XCircle
 } from 'lucide-react';
 import api from '../services/api';
+import { CardsGridSkeleton } from '../components/skeletons';
 
 export default function Zones() {
   const [zones, setZones] = useState([]);
@@ -153,8 +154,15 @@ export default function Zones() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-600">Loading zones...</div>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div className="animate-pulse space-y-2">
+            <div className="h-8 bg-gray-200 rounded w-48"></div>
+            <div className="h-4 bg-gray-200 rounded w-96"></div>
+          </div>
+          <div className="animate-pulse h-10 bg-gray-200 rounded w-40"></div>
+        </div>
+        <CardsGridSkeleton count={6} columns={3} />
       </div>
     );
   }
