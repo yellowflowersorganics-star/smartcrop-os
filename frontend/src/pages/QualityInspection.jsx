@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { qualityControlService, qualityStandardService, farmService, zoneService, api } from '../services/api';
+import api, { qualityControlService, qualityStandardService, farmService, zoneService } from '../services/api';
 import { ArrowLeft, Plus, X, AlertTriangle, CheckCircle, Save } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
