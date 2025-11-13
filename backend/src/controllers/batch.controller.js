@@ -7,6 +7,18 @@ const { Batch, Zone, CropRecipe } = require('../models');
 const logger = require('../utils/logger');
 
 class BatchController {
+  constructor() {
+    // Bind all methods to preserve 'this' context
+    this.startBatch = this.startBatch.bind(this);
+    this.completeBatch = this.completeBatch.bind(this);
+    this.getAllBatches = this.getAllBatches.bind(this);
+    this.getBatchById = this.getBatchById.bind(this);
+    this.updateBatch = this.updateBatch.bind(this);
+    this.getZoneBatchHistory = this.getZoneBatchHistory.bind(this);
+    this.getActiveBatch = this.getActiveBatch.bind(this);
+    this.generateBatchNumber = this.generateBatchNumber.bind(this);
+  }
+
   // Start a new batch in a zone
   async startBatch(req, res) {
     try {
