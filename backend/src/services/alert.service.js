@@ -3,9 +3,10 @@
  * Background service for generating alerts based on system events
  */
 
-const { Alert, NotificationPreference, Zone, Telemetry, InventoryItem, Batch, CropRecipe } = require('../models');
+const { Alert, NotificationPreference, Zone, Telemetry, InventoryItem, Batch, CropRecipe, Employee, User } = require('../models');
 const { Op } = require('sequelize');
 const logger = require('../utils/logger');
+const twilioService = require('./twilio.service');
 
 class AlertService {
   /**
@@ -520,6 +521,261 @@ class AlertService {
       return result;
     } catch (error) {
       logger.error('Error cleaning up old alerts:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Create alert and send multi-channel notifications
+   * @param {object} alertData - Alert data
+   * @returns {Promise<object>} Created alert
+   */
+  async createAlert(alertData) {
+    try {
+      // Create the alert
+      const alert = await Alert.create(alertData);
+
+      // Send multi-channel notifications
+      await this.sendNotifications(alert);
+
+      return alert;
+    } catch (error) {
+      logger.error('Error creating alert:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Send multi-channel notifications for an alert
+   * @param {object} alert - Alert object
+   */
+  async sendNotifications(alert) {
+    try {
+      // Get user preferences
+      const preferences = await NotificationPreference.findOne({
+        where: { userId: alert.userId }
+      });
+
+      if (!preferences) {
+        logger.warn(`No notification preferences found for user ${alert.userId}`);
+        return;
+      }
+
+      // Check quiet hours
+      if (preferences.quietHoursEnabled) {
+        const now = new Date();
+        const hour = now.getHours();
+        const [startHour] = preferences.quietHoursStart.split(':');
+        const [endHour] = preferences.quietHoursEnd.split(':');
+        
+        if (hour >= parseInt(startHour) || hour < parseInt(endHour)) {
+          logger.info(`Quiet hours active for user ${alert.userId} - skipping notifications`);
+          return;
+        }
+      }
+
+      // Check if this alert type is enabled
+      const alertTypeConfig = preferences.alertTypes[alert.type];
+      if (!alertTypeConfig || !alertTypeConfig.enabled) {
+        logger.info(`Alert type ${alert.type} disabled for user ${alert.userId}`);
+        return;
+      }
+
+      // Check severity threshold
+      const severityLevels = { low: 1, medium: 2, high: 3, critical: 4 };
+      if (severityLevels[alert.severity] < severityLevels[preferences.severityThreshold]) {
+        logger.info(`Alert severity ${alert.severity} below threshold for user ${alert.userId}`);
+        return;
+      }
+
+      // Get user/employee information
+      const user = await User.findByPk(alert.userId);
+      if (!user) {
+        logger.warn(`User ${alert.userId} not found`);
+        return;
+      }
+
+      // Try to find associated employee for phone numbers
+      const employee = await Employee.findOne({
+        where: { userId: alert.userId }
+      });
+
+      // Send via each enabled channel
+      const results = {};
+
+      // WhatsApp notification
+      if (preferences.whatsappEnabled && employee?.whatsappNumber && twilioService.isEnabled()) {
+        const message = this.formatAlertMessage(alert, user);
+        results.whatsapp = await twilioService.sendWhatsApp(employee.whatsappNumber, message);
+      }
+
+      // SMS notification
+      if (preferences.smsEnabled && (employee?.phone || user.phone) && twilioService.isEnabled()) {
+        const message = this.formatAlertMessage(alert, user, 'sms');
+        const phone = employee?.phone || user.phone;
+        results.sms = await twilioService.sendSMS(phone, message);
+      }
+
+      // Email notification (placeholder - would integrate with email service)
+      if (preferences.emailEnabled && user.email) {
+        logger.info(`Email notification would be sent to ${user.email}`);
+        // TODO: Integrate with email service (SendGrid, AWS SES, etc.)
+      }
+
+      // In-app notification is the alert itself
+      results.inApp = true;
+
+      logger.info(`Sent notifications for alert ${alert.id}:`, results);
+      return results;
+    } catch (error) {
+      logger.error('Error sending notifications:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Format alert message for WhatsApp/SMS
+   * @param {object} alert - Alert object
+   * @param {object} user - User object
+   * @param {string} type - Message type ('whatsapp' or 'sms')
+   * @returns {string} Formatted message
+   */
+  formatAlertMessage(alert, user, type = 'whatsapp') {
+    const emoji = {
+      critical: '🚨',
+      high: '⚠️',
+      medium: '⚡',
+      low: 'ℹ️'
+    }[alert.severity] || 'ℹ️';
+
+    let message = '';
+    
+    if (type === 'whatsapp') {
+      message += `${emoji} *${alert.severity.toUpperCase()} ALERT*\n\n`;
+      message += `Hello ${user.firstName},\n\n`;
+      message += `*${alert.title}*\n`;
+      message += `${alert.message}\n`;
+      
+      if (alert.actionLabel) {
+        message += `\n📍 ${alert.actionLabel}`;
+      }
+    } else {
+      // SMS - shorter format
+      message += `${emoji} ${alert.severity.toUpperCase()}: ${alert.title}\n`;
+      message += `${alert.message}`;
+    }
+
+    message += `\n\n- SmartCrop OS`;
+    return message;
+  }
+
+  /**
+   * Send task notification to employee
+   * @param {object} task - Task object
+   * @param {object} employee - Employee object
+   */
+  async sendTaskNotification(task, employee) {
+    try {
+      if (!twilioService.isEnabled()) {
+        logger.warn('Twilio not enabled - task notification not sent');
+        return;
+      }
+
+      const message = twilioService.formatTaskNotification(task, employee);
+
+      // Try WhatsApp first, fallback to SMS
+      const result = await twilioService.sendWithFallback(
+        employee.whatsappNumber,
+        employee.phone,
+        message
+      );
+
+      logger.info(`Task notification sent to employee ${employee.id}:`, result);
+      return result;
+    } catch (error) {
+      logger.error('Error sending task notification:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Send daily summary to all active employees
+   */
+  async sendDailySummaries() {
+    try {
+      const { Task } = require('../models');
+
+      // Get all active employees
+      const employees = await Employee.findAll({
+        where: { status: 'active' },
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'email']
+          }
+        ]
+      });
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      const results = [];
+
+      for (const employee of employees) {
+        // Get today's tasks
+        const tasks = await Task.findAll({
+          where: {
+            [Op.or]: [
+              { assignedEmployeeId: employee.id },
+              { '$assignedRole.employees.id$': employee.id }
+            ],
+            status: { [Op.in]: ['pending', 'in_progress'] },
+            dueDate: {
+              [Op.between]: [today, tomorrow]
+            }
+          },
+          include: [
+            {
+              model: Role,
+              as: 'assignedRole',
+              include: [{
+                model: Employee,
+                as: 'employees',
+                where: { id: employee.id },
+                attributes: [],
+                through: { attributes: [] }
+              }],
+              required: false
+            }
+          ],
+          order: [['priority', 'DESC'], ['dueTime', 'ASC']]
+        });
+
+        if (employee.whatsappNumber || employee.phone) {
+          const message = twilioService.formatDailySummary(employee, tasks);
+          
+          const result = await twilioService.sendWithFallback(
+            employee.whatsappNumber,
+            employee.phone,
+            message
+          );
+
+          results.push({
+            employeeId: employee.id,
+            name: `${employee.firstName} ${employee.lastName}`,
+            tasksCount: tasks.length,
+            result
+          });
+        }
+      }
+
+      logger.info(`Sent daily summaries to ${results.length} employees`);
+      return results;
+    } catch (error) {
+      logger.error('Error sending daily summaries:', error);
       throw error;
     }
   }

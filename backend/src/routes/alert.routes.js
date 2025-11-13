@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 const { authenticate } = require('../middleware/auth');
 const alertController = require('../controllers/alert.controller');
+const notificationController = require('../controllers/notification.controller');
 
 // Apply authentication to all routes
 router.use(authenticate);
@@ -29,6 +30,14 @@ router.post('/alerts/dismiss-all', alertController.dismissAll);
 // Notification Preferences
 router.get('/preferences', alertController.getPreferences);
 router.put('/preferences', alertController.updatePreferences);
+
+// Notification Management (WhatsApp/SMS)
+router.get('/system/status', notificationController.getNotificationStatus);
+router.post('/send/whatsapp', notificationController.sendTestWhatsApp);
+router.post('/send/sms', notificationController.sendTestSMS);
+router.post('/send/task/:taskId', notificationController.sendTaskNotification);
+router.post('/send/daily-summary', notificationController.triggerDailySummary);
+router.post('/trigger/:jobName', notificationController.triggerScheduledJob);
 
 module.exports = router;
 

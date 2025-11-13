@@ -15,6 +15,7 @@ const { connectDatabase } = require('./config/database');
 const { connectMQTT } = require('./services/mqtt');
 const { connectRedis } = require('./config/redis');
 const errorHandler = require('./middleware/errorHandler');
+const schedulerService = require('./services/scheduler.service');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -84,6 +85,14 @@ const startServer = async () => {
       logger.warn('⚠️  MQTT broker not available (optional for development)');
     }
 
+    // Initialize scheduled tasks
+    try {
+      schedulerService.init();
+      logger.info('✅ Scheduled tasks initialized successfully');
+    } catch (error) {
+      logger.warn('⚠️  Scheduler initialization failed (notifications may not work)', error);
+    }
+
     // Start Express server
     app.listen(PORT, () => {
       logger.info(`\n🌱 SmartCrop OS Backend running on port ${PORT}`);
@@ -100,11 +109,13 @@ const startServer = async () => {
 // Graceful shutdown
 process.on('SIGTERM', () => {
   logger.info('SIGTERM signal received: closing HTTP server');
+  schedulerService.stopAll();
   process.exit(0);
 });
 
 process.on('SIGINT', () => {
   logger.info('SIGINT signal received: closing HTTP server');
+  schedulerService.stopAll();
   process.exit(0);
 });
 
