@@ -94,3 +94,16 @@ export const deviceService = {
   delete: (id) => api.delete(`/devices/${id}`),
 };
 
+export const inventoryService = {
+  getAll: (params) => api.get('/inventory/items', { params }),
+  getById: (id) => api.get(`/inventory/items/${id}`),
+  create: (data) => api.post('/inventory/items', data),
+  update: (id, data) => api.put(`/inventory/items/${id}`, data),
+  delete: (id) => api.delete(`/inventory/items/${id}`),
+  adjustStock: (id, data) => api.post(`/inventory/items/${id}/adjust`, data),
+  getTransactions: (params) => api.get('/inventory/transactions', { params }),
+  getLowStock: () => api.get('/inventory/items/low-stock'),
+  getStats: () => api.get('/inventory/stats'),
+  recordUsage: (data) => api.post('/inventory/usage', data),
+};
+

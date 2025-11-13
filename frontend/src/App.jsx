@@ -17,6 +17,7 @@ import Zones from './pages/Zones';
 import ZoneDetail from './pages/ZoneDetail';
 import CropRecipes from './pages/CropRecipes';
 import RecipeDetail from './pages/RecipeDetail';
+import Inventory from './pages/Inventory';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
@@ -51,6 +52,7 @@ function App() {
         <Route path="/zones/:id" element={<ZoneDetail />} />
         <Route path="/recipes" element={<CropRecipes />} />
         <Route path="/recipes/:id" element={<RecipeDetail />} />
+        <Route path="/inventory" element={<Inventory />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/settings" element={<Settings />} />

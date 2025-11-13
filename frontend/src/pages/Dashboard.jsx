@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Activity, TrendingUp, Leaf, Sprout, Target, CheckCircle2,
-  Calendar, Package, ArrowRight
+  Calendar, Package, ArrowRight, AlertTriangle, X
 } from 'lucide-react';
-import api from '../services/api';
+import api, { inventoryService } from '../services/api';
 
 export default function Dashboard() {
   const [overview, setOverview] = useState(null);
   const [recentActivity, setRecentActivity] = useState({ recentHarvests: [], recentBatches: [] });
+  const [lowStockItems, setLowStockItems] = useState([]);
+  const [showLowStockAlert, setShowLowStockAlert] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,12 +20,14 @@ export default function Dashboard() {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const [overviewRes, activityRes] = await Promise.all([
+      const [overviewRes, activityRes, lowStockRes] = await Promise.all([
         api.get('/analytics/overview'),
-        api.get('/analytics/recent-activity')
+        api.get('/analytics/recent-activity'),
+        inventoryService.getLowStock().catch(() => ({ data: [] }))
       ]);
       setOverview(overviewRes.data.data);
       setRecentActivity(activityRes.data.data);
+      setLowStockItems(lowStockRes.data || []);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
@@ -91,6 +95,50 @@ export default function Dashboard() {
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-600 mt-2">Welcome to SmartCrop OS - Monitor your mushroom cultivation</p>
       </div>
+
+      {/* Low Stock Alert */}
+      {lowStockItems.length > 0 && showLowStockAlert && (
+        <div className="mb-6 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
+          <div className="flex items-start">
+            <AlertTriangle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+            <div className="ml-3 flex-1">
+              <h3 className="text-sm font-medium text-orange-800">
+                Low Stock Alert - {lowStockItems.length} item{lowStockItems.length !== 1 ? 's' : ''} running low
+              </h3>
+              <div className="mt-2 text-sm text-orange-700">
+                <ul className="list-disc list-inside space-y-1">
+                  {lowStockItems.slice(0, 3).map(item => (
+                    <li key={item.id}>
+                      <span className="font-medium">{item.name}</span> - 
+                      {' '}{item.currentStock} {item.unit} remaining 
+                      (min: {item.minStockLevel} {item.unit})
+                    </li>
+                  ))}
+                  {lowStockItems.length > 3 && (
+                    <li className="font-medium">
+                      ...and {lowStockItems.length - 3} more
+                    </li>
+                  )}
+                </ul>
+              </div>
+              <div className="mt-3">
+                <Link 
+                  to="/inventory?lowStock=true"
+                  className="text-sm font-medium text-orange-800 hover:text-orange-900 underline"
+                >
+                  View all low stock items →
+                </Link>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowLowStockAlert(false)}
+              className="ml-3 flex-shrink-0 text-orange-500 hover:text-orange-700"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
