@@ -121,3 +121,24 @@ export const notificationService = {
   updatePreferences: (data) => api.put('/notifications/preferences', data),
 };
 
+export const taskService = {
+  getAll: (params) => api.get('/tasks/tasks', { params }),
+  getById: (id) => api.get(`/tasks/tasks/${id}`),
+  create: (data) => api.post('/tasks/tasks', data),
+  update: (id, data) => api.put(`/tasks/tasks/${id}`, data),
+  delete: (id) => api.delete(`/tasks/tasks/${id}`),
+  complete: (id, data) => api.post(`/tasks/tasks/${id}/complete`, data),
+  updateStatus: (id, status) => api.post(`/tasks/tasks/${id}/status`, { status }),
+  updateChecklist: (id, checklist) => api.put(`/tasks/tasks/${id}/checklist`, { checklist }),
+  getUpcoming: (days) => api.get('/tasks/tasks/upcoming', { params: { days } }),
+  getOverdue: () => api.get('/tasks/tasks/overdue'),
+  getStats: () => api.get('/tasks/tasks/stats'),
+  // Templates
+  getTemplates: (params) => api.get('/tasks/templates', { params }),
+  getTemplate: (id) => api.get(`/tasks/templates/${id}`),
+  createTemplate: (data) => api.post('/tasks/templates', data),
+  updateTemplate: (id, data) => api.put(`/tasks/templates/${id}`, data),
+  deleteTemplate: (id) => api.delete(`/tasks/templates/${id}`),
+  createFromTemplate: (id, data) => api.post(`/tasks/templates/${id}/create-task`, data),
+};
+

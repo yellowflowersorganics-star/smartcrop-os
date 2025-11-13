@@ -18,6 +18,7 @@ import ZoneDetail from './pages/ZoneDetail';
 import CropRecipes from './pages/CropRecipes';
 import RecipeDetail from './pages/RecipeDetail';
 import Inventory from './pages/Inventory';
+import Tasks from './pages/Tasks';
 import Notifications from './pages/Notifications';
 import Devices from './pages/Devices';
 import Analytics from './pages/Analytics';
@@ -54,6 +55,7 @@ function App() {
         <Route path="/recipes" element={<CropRecipes />} />
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/inventory" element={<Inventory />} />
+        <Route path="/tasks" element={<Tasks />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/analytics" element={<Analytics />} />

@@ -389,6 +389,120 @@ class AlertService {
   }
 
   /**
+   * Check for task reminders and overdue tasks
+   */
+  async checkTaskReminders() {
+    try {
+      const { Task } = require('../models');
+
+      const now = new Date();
+      const oneHourFromNow = new Date(now.getTime() + 60 * 60 * 1000);
+
+      // Find tasks due within the next hour that need reminders
+      const upcomingTasks = await Task.findAll({
+        where: {
+          status: { [Op.in]: ['pending', 'in_progress'] },
+          dueDate: {
+            [Op.between]: [now, oneHourFromNow]
+          },
+          reminderEnabled: true,
+          reminderSent: false
+        }
+      });
+
+      for (const task of upcomingTasks) {
+        const reminderTime = new Date(task.dueDate);
+        reminderTime.setMinutes(reminderTime.getMinutes() - task.reminderBefore);
+
+        if (now >= reminderTime) {
+          await this.createAlert({
+            userId: task.assignedTo || task.ownerId,
+            organizationId: task.organizationId,
+            type: 'task',
+            severity: task.priority === 'urgent' ? 'high' : 'medium',
+            title: 'Task Reminder',
+            message: `Task "${task.title}" is due ${this.formatDueTime(task.dueDate, task.dueTime)}`,
+            zoneId: task.zoneId,
+            batchId: task.batchId,
+            actionUrl: `/tasks`,
+            actionLabel: 'View Task',
+            metadata: {
+              taskId: task.id,
+              category: task.category
+            }
+          });
+
+          // Mark reminder as sent
+          await task.update({ reminderSent: true });
+          logger.info(`Sent reminder for task ${task.id}`);
+        }
+      }
+
+      // Find overdue tasks
+      const overdueTasks = await Task.findAll({
+        where: {
+          status: { [Op.in]: ['pending', 'in_progress'] },
+          dueDate: { [Op.lt]: now }
+        }
+      });
+
+      for (const task of overdueTasks) {
+        // Update status to overdue
+        if (task.status !== 'overdue') {
+          await task.update({ status: 'overdue' });
+
+          // Create alert
+          await this.createAlert({
+            userId: task.assignedTo || task.ownerId,
+            organizationId: task.organizationId,
+            type: 'warning',
+            severity: 'high',
+            title: 'Task Overdue',
+            message: `Task "${task.title}" is now overdue`,
+            zoneId: task.zoneId,
+            batchId: task.batchId,
+            actionUrl: `/tasks`,
+            actionLabel: 'View Task',
+            metadata: {
+              taskId: task.id,
+              category: task.category,
+              dueDate: task.dueDate
+            }
+          });
+
+          logger.info(`Marked task ${task.id} as overdue and created alert`);
+        }
+      }
+
+      logger.info(`Checked task reminders: ${upcomingTasks.length} upcoming, ${overdueTasks.length} overdue`);
+    } catch (error) {
+      logger.error('Error checking task reminders:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Format due time for display
+   */
+  formatDueTime(date, time) {
+    const d = new Date(date);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    let dateStr = '';
+    if (d.toDateString() === today.toDateString()) {
+      dateStr = 'today';
+    } else if (d.toDateString() === tomorrow.toDateString()) {
+      dateStr = 'tomorrow';
+    } else {
+      dateStr = `on ${d.toLocaleDateString()}`;
+    }
+
+    return time ? `${dateStr} at ${time}` : dateStr;
+  }
+
+  /**
    * Clean up old dismissed alerts
    */
   async cleanupOldAlerts(daysOld = 30) {

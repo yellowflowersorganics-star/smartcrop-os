@@ -36,6 +36,8 @@ const InventoryItem = require('./InventoryItem')(sequelize);
 const InventoryTransaction = require('./InventoryTransaction')(sequelize);
 const Alert = require('./Alert')(sequelize);
 const NotificationPreference = require('./NotificationPreference')(sequelize);
+const Task = require('./Task')(sequelize);
+const TaskTemplate = require('./TaskTemplate')(sequelize);
 
 // Store models in db object
 const db = {
@@ -56,7 +58,9 @@ const db = {
   InventoryItem,
   InventoryTransaction,
   Alert,
-  NotificationPreference
+  NotificationPreference,
+  Task,
+  TaskTemplate
 };
 
 // Setup associations

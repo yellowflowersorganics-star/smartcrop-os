@@ -21,6 +21,7 @@ const analyticsRoutes = require('./analytics.routes');
 const subscriptionRoutes = require('./subscription.routes');
 const inventoryRoutes = require('./inventory.routes');
 const alertRoutes = require('./alert.routes');
+const taskRoutes = require('./task.routes');
 
 // API version info
 router.get('/', (req, res) => {
@@ -47,6 +48,7 @@ router.use('/analytics', analyticsRoutes);
 router.use('/subscriptions', subscriptionRoutes);
 router.use('/inventory', inventoryRoutes);
 router.use('/notifications', alertRoutes);
+router.use('/tasks', taskRoutes);
 
 module.exports = router;
 
