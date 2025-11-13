@@ -12,10 +12,15 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    organizationId: {
+    ownerId: {
       type: DataTypes.UUID,
       allowNull: false,
-      comment: 'Organization for multi-tenant isolation'
+      comment: 'User who owns this harvest record'
+    },
+    organizationId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      comment: 'Organization for multi-tenant isolation (optional for single-tenant)'
     },
     unitId: {
       type: DataTypes.UUID,
