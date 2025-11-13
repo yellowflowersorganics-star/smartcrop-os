@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { sopService } from '../services/api';
 import { ArrowLeft, CheckCircle, Circle, AlertTriangle, Save } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
 
 const SOPExecution = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const toast = useToast();
   const [sop, setSOP] = useState(null);
   const [execution, setExecution] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ const SOPExecution = () => {
       setExecution(execRes.data);
     } catch (error) {
       console.error('Error fetching SOP:', error);
-      alert('Failed to load SOP');
+      toast.error('Failed to load SOP');
       navigate('/sop');
     } finally {
       setLoading(false);
@@ -47,7 +49,7 @@ const SOPExecution = () => {
       }
     } catch (error) {
       console.error('Error completing step:', error);
-      alert('Failed to complete step');
+      toast.error('Failed to complete step');
     }
   };
 
@@ -58,11 +60,11 @@ const SOPExecution = () => {
         successCriteriaMet: true
       });
       
-      alert('SOP execution completed successfully!');
+      toast.success('SOP execution completed successfully!');
       navigate('/sop');
     } catch (error) {
       console.error('Error completing execution:', error);
-      alert('Failed to complete execution');
+      toast.error('Failed to complete execution');
     }
   };
 

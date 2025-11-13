@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { sopService } from '../services/api';
 import { ArrowLeft, Plus, X, Save } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
 
 const SOPEditor = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -80,14 +82,16 @@ const SOPEditor = () => {
 
       if (id) {
         await sopService.update(id, data);
+        toast.success('SOP updated successfully!');
       } else {
         await sopService.create(data);
+        toast.success('SOP created successfully!');
       }
       
       navigate('/sop');
     } catch (error) {
       console.error('Error saving SOP:', error);
-      alert('Failed to save SOP');
+      toast.error('Failed to save SOP');
     } finally {
       setLoading(false);
     }

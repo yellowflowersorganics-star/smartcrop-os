@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react';
 import { qualityStandardService } from '../services/api';
 import { Plus, Edit2, Trash2, Copy, Check, FileText, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const QualityStandards = () => {
+  const toast = useToast();
   const [standards, setStandards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingStandard, setEditingStandard] = useState(null);
+  const [deleteDialog, setDeleteDialog] = useState({ isOpen: false, standardId: null });
   const [filters, setFilters] = useState({
     standardType: '',
     category: '',
@@ -59,8 +63,10 @@ const QualityStandards = () => {
     try {
       if (editingStandard) {
         await qualityStandardService.update(editingStandard.id, formData);
+        toast.success('Quality standard updated successfully!');
       } else {
         await qualityStandardService.create(formData);
+        toast.success('Quality standard created successfully!');
       }
       setShowModal(false);
       setEditingStandard(null);
@@ -68,7 +74,7 @@ const QualityStandards = () => {
       fetchStandards();
     } catch (error) {
       console.error('Error saving standard:', error);
-      alert('Failed to save standard: ' + (error.response?.data?.error || error.message));
+      toast.error('Failed to save standard: ' + (error.response?.data?.error || error.message));
     }
   };
 
@@ -88,35 +94,38 @@ const QualityStandards = () => {
     setShowModal(true);
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this standard?')) return;
-
+  const handleDelete = async () => {
     try {
-      await qualityStandardService.delete(id);
+      await qualityStandardService.delete(deleteDialog.standardId);
+      toast.success('Quality standard deleted successfully!');
       fetchStandards();
     } catch (error) {
       console.error('Error deleting standard:', error);
-      alert('Failed to delete standard: ' + (error.response?.data?.error || error.message));
+      toast.error('Failed to delete standard: ' + (error.response?.data?.error || error.message));
+    } finally {
+      setDeleteDialog({ isOpen: false, standardId: null });
     }
   };
 
   const handleDuplicate = async (id) => {
     try {
       await qualityStandardService.duplicate(id);
+      toast.success('Quality standard duplicated successfully!');
       fetchStandards();
     } catch (error) {
       console.error('Error duplicating standard:', error);
-      alert('Failed to duplicate standard');
+      toast.error('Failed to duplicate standard');
     }
   };
 
   const handleApprove = async (id) => {
     try {
       await qualityStandardService.approve(id);
+      toast.success('Quality standard approved successfully!');
       fetchStandards();
     } catch (error) {
       console.error('Error approving standard:', error);
-      alert('Failed to approve standard');
+      toast.error('Failed to approve standard');
     }
   };
 
@@ -307,7 +316,7 @@ const QualityStandards = () => {
                     <Edit2 className="w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => handleDelete(standard.id)}
+                    onClick={() => setDeleteDialog({ isOpen: true, standardId: standard.id })}
                     className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                     title="Delete"
                   >
@@ -493,6 +502,18 @@ const QualityStandards = () => {
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={() => setDeleteDialog({ isOpen: false, standardId: null })}
+        onConfirm={handleDelete}
+        title="Delete Quality Standard"
+        message="Are you sure you want to delete this quality standard? This action cannot be undone."
+        confirmText="Delete Standard"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 };

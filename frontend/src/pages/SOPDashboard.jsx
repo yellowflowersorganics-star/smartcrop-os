@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { sopService } from '../services/api';
 import { Plus, FileText, Play, CheckCircle, Clock, Copy, Edit2, Trash2, Eye } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const SOPDashboard = () => {
+  const toast = useToast();
   const [sops, setSOPs] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [deleteDialog, setDeleteDialog] = useState({ isOpen: false, sopId: null });
   const [filters, setFilters] = useState({
     category: '',
     status: '',
@@ -33,25 +37,27 @@ const SOPDashboard = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this SOP?')) return;
-    
+  const handleDelete = async () => {
     try {
-      await sopService.delete(id);
+      await sopService.delete(deleteDialog.sopId);
+      toast.success('SOP deleted successfully!');
       fetchData();
     } catch (error) {
       console.error('Error deleting SOP:', error);
-      alert('Failed to delete SOP');
+      toast.error('Failed to delete SOP');
+    } finally {
+      setDeleteDialog({ isOpen: false, sopId: null });
     }
   };
 
   const handleDuplicate = async (id) => {
     try {
       await sopService.duplicate(id);
+      toast.success('SOP duplicated successfully!');
       fetchData();
     } catch (error) {
       console.error('Error duplicating SOP:', error);
-      alert('Failed to duplicate SOP');
+      toast.error('Failed to duplicate SOP');
     }
   };
 
@@ -248,7 +254,7 @@ const SOPDashboard = () => {
                     <Copy className="w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => handleDelete(sop.id)}
+                    onClick={() => setDeleteDialog({ isOpen: true, sopId: sop.id })}
                     className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                     title="Delete"
                   >
@@ -289,6 +295,18 @@ const SOPDashboard = () => {
           </div>
         </Link>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={() => setDeleteDialog({ isOpen: false, sopId: null })}
+        onConfirm={handleDelete}
+        title="Delete SOP"
+        message="Are you sure you want to delete this Standard Operating Procedure? This action cannot be undone."
+        confirmText="Delete SOP"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 };

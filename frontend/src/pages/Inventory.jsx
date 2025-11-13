@@ -4,6 +4,8 @@ import {
   Package, Plus, Search, Filter, AlertTriangle, Edit2, Trash2, 
   TrendingUp, TrendingDown, DollarSign, Box
 } from 'lucide-react';
+import { useToast } from '../components/ToastContainer';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const CATEGORIES = [
   { value: 'substrate', label: 'Substrate', icon: '🌾' },
@@ -16,8 +18,10 @@ const CATEGORIES = [
 ];
 
 export default function Inventory() {
+  const toast = useToast();
   const [items, setItems] = useState([]);
   const [stats, setStats] = useState(null);
+  const [deleteDialog, setDeleteDialog] = useState({ isOpen: false, itemId: null });
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -68,15 +72,16 @@ export default function Inventory() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this item?')) return;
-
+  const handleDelete = async () => {
     try {
-      await inventoryService.delete(id);
+      await inventoryService.delete(deleteDialog.itemId);
+      toast.success('Item deleted successfully!');
       fetchData();
     } catch (error) {
       console.error('Error deleting item:', error);
-      alert('Failed to delete item');
+      toast.error('Failed to delete item');
+    } finally {
+      setDeleteDialog({ isOpen: false, itemId: null });
     }
   };
 

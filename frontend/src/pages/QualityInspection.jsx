@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import api, { qualityControlService, qualityStandardService, farmService, zoneService } from '../services/api';
 import { ArrowLeft, Plus, X, AlertTriangle, CheckCircle, Save } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '../components/ToastContainer';
 
 const QualityInspection = () => {
   const navigate = useNavigate();
+  const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [farms, setFarms] = useState([]);
   const [zones, setZones] = useState([]);
@@ -115,7 +117,7 @@ const QualityInspection = () => {
     e.preventDefault();
     
     if (!formData.sampleSize || !formData.standardId) {
-      alert('Please fill in all required fields');
+      toast.warning('Please fill in all required fields');
       return;
     }
 
@@ -142,11 +144,11 @@ const QualityInspection = () => {
         }
       }
 
-      alert('Quality inspection recorded successfully!');
+      toast.success('Quality inspection recorded successfully!');
       navigate('/quality');
     } catch (error) {
       console.error('Error creating inspection:', error);
-      alert('Failed to record inspection: ' + (error.response?.data?.error || error.message));
+      toast.error('Failed to record inspection: ' + (error.response?.data?.error || error.message));
     } finally {
       setLoading(false);
     }
