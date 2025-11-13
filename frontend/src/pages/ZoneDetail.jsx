@@ -36,10 +36,9 @@ export default function ZoneDetail() {
   });
   
   const [completeBatchData, setCompleteBatchData] = useState({
-    totalYieldKg: '',
-    harvestCount: '',
     notes: '',
-    status: 'completed'
+    status: 'completed',
+    failureReason: ''
   });
 
   useEffect(() => {
@@ -146,18 +145,13 @@ export default function ZoneDetail() {
   const handleCompleteBatch = async (e) => {
     e.preventDefault();
     try {
-      await api.post(`/batches/${activeBatch.id}/complete`, {
-        ...completeBatchData,
-        totalYieldKg: parseFloat(completeBatchData.totalYieldKg) || 0,
-        harvestCount: parseInt(completeBatchData.harvestCount) || 0
-      });
+      await api.post(`/batches/${activeBatch.id}/complete`, completeBatchData);
       
       setShowCompleteBatchModal(false);
       setCompleteBatchData({
-        totalYieldKg: '',
-        harvestCount: '',
         notes: '',
-        status: 'completed'
+        status: 'completed',
+        failureReason: ''
       });
       
       await fetchAllData();
@@ -684,34 +678,62 @@ export default function ZoneDetail() {
                 </p>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Total Yield (kg)
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  value={completeBatchData.totalYieldKg}
-                  onChange={(e) => setCompleteBatchData({ ...completeBatchData, totalYieldKg: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Enter total yield"
-                />
+              {/* Batch Summary - Read Only */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+                <h4 className="font-semibold text-blue-900 mb-2">Batch Summary</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Total Yield</p>
+                    <p className="text-xl font-bold text-gray-900">{activeBatch?.totalYieldKg || 0} kg</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Harvest Count</p>
+                    <p className="text-xl font-bold text-gray-900">{activeBatch?.harvestCount || 0} flushes</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Plant Count</p>
+                    <p className="text-xl font-bold text-gray-900">{activeBatch?.plantCount || 0} bags</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Duration</p>
+                    <p className="text-xl font-bold text-gray-900">
+                      {activeBatch?.startDate ? Math.floor((new Date() - new Date(activeBatch.startDate)) / (1000 * 60 * 60 * 24)) : 0} days
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Harvest Count
+                  Status *
                 </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={completeBatchData.harvestCount}
-                  onChange={(e) => setCompleteBatchData({ ...completeBatchData, harvestCount: e.target.value })}
+                <select
+                  value={completeBatchData.status}
+                  onChange={(e) => setCompleteBatchData({ ...completeBatchData, status: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Number of harvests"
-                />
+                  required
+                >
+                  <option value="completed">Completed Successfully</option>
+                  <option value="failed">Failed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
               </div>
+
+              {completeBatchData.status === 'failed' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Failure Reason *
+                  </label>
+                  <textarea
+                    value={completeBatchData.failureReason}
+                    onChange={(e) => setCompleteBatchData({ ...completeBatchData, failureReason: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    rows="2"
+                    placeholder="Describe what went wrong..."
+                    required={completeBatchData.status === 'failed'}
+                  />
+                </div>
+              )}
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -722,23 +744,8 @@ export default function ZoneDetail() {
                   onChange={(e) => setCompleteBatchData({ ...completeBatchData, notes: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   rows="3"
-                  placeholder="Final observations, issues, etc."
+                  placeholder="Final observations, learnings, improvements..."
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Status
-                </label>
-                <select
-                  value={completeBatchData.status}
-                  onChange={(e) => setCompleteBatchData({ ...completeBatchData, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                >
-                  <option value="completed">Completed</option>
-                  <option value="failed">Failed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
               </div>
 
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">

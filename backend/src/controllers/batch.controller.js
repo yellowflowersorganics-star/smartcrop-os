@@ -133,7 +133,7 @@ class BatchController {
   async completeBatch(req, res) {
     try {
       const { id } = req.params;
-      const { totalYieldKg, harvestCount, notes, status } = req.body;
+      const { notes, status, failureReason } = req.body;
 
       const batch = await Batch.findByPk(id, {
         include: [{
@@ -164,14 +164,16 @@ class BatchController {
         });
       }
 
-      // Update batch
-      await batch.update({
+      // Update batch - totalYieldKg and harvestCount are already tracked from harvest records
+      const updateData = {
         status: status || 'completed',
-        actualEndDate: new Date(),
-        totalYieldKg: totalYieldKg || batch.totalYieldKg,
-        harvestCount: harvestCount || batch.harvestCount,
-        notes: notes || batch.notes
-      });
+        actualEndDate: new Date()
+      };
+      
+      if (notes) updateData.notes = notes;
+      if (failureReason) updateData.failureReason = failureReason;
+      
+      await batch.update(updateData);
 
       // Update zone status to idle
       if (batch.zone) {
