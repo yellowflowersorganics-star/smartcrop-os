@@ -38,6 +38,10 @@ import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import EquipmentControl from './pages/EquipmentControl';
 import StageApproval from './pages/StageApproval';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Cookies from './pages/Cookies';
+import GDPR from './pages/GDPR';
 import NotFound from './pages/NotFound';
 
 function ProtectedRoute({ children }) {
@@ -50,10 +54,14 @@ function App() {
     <>
       <ScrollToTop />
       <Routes>
-        {/* Public Landing Page */}
-        <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/faq" element={<FAQ />} />
+      {/* Public Landing Page */}
+      <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/cookies" element={<Cookies />} />
+      <Route path="/gdpr" element={<GDPR />} />
 
       {/* Auth Routes */}
       <Route element={<AuthLayout />}>
