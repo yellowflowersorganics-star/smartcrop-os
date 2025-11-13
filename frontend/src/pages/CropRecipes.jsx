@@ -287,7 +287,10 @@ export default function CropRecipes() {
 
   const createFromTemplate = async (template) => {
     try {
-      await api.post('/crop-recipes', template || selectedTemplate);
+      // Remove fields that backend will calculate or add
+      const { totalDuration, ...templateData } = template || selectedTemplate;
+      
+      await api.post('/crop-recipes', templateData);
       setShowTemplateModal(false);
       setShowTemplateList(false);
       setSelectedTemplate(null);
