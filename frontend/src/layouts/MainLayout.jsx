@@ -43,9 +43,9 @@ export default function MainLayout() {
       {/* Sidebar */}
       <div className="w-64 bg-primary-800 text-white flex flex-col">
         <div className="p-6 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">🌱 SmartCrop OS</h1>
-            <p className="text-sm text-primary-200 mt-1">Multi-Crop Platform</p>
+          <div className="flex-shrink-0">
+            <h1 className="text-2xl font-bold whitespace-nowrap">🌱 SmartCrop OS</h1>
+            <p className="text-sm text-primary-200 mt-1 whitespace-nowrap">Multi-Crop Platform</p>
           </div>
           <NotificationBell />
         </div>
