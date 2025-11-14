@@ -1,7 +1,7 @@
 {
-  "name": "smartcrop-backend",
+  "name": "cropwise-backend",
   "version": "1.0.0",
-  "description": "SmartCrop - Backend API and Services",
+  "description": "CropWise - Smart Farming Platform API",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

@@ -1,7 +1,7 @@
 {
-  "name": "smartcrop-frontend",
+  "name": "cropwise-frontend",
   "version": "1.0.0",
-  "description": "SmartCrop - Web Dashboard",
+  "description": "CropWise - Smart Farming Platform",
   "private": true,
   "scripts": {
     "dev": "vite",

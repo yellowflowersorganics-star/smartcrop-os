@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Main Router
+ * CropWise - Main Router
  * Aggregates all API routes
  */
 
@@ -38,10 +38,11 @@ const recipeExecutionRoutes = require('./recipeExecution.routes');
 // API version info
 router.get('/', (req, res) => {
   res.json({
-    name: 'SmartCrop API',
+    name: 'CropWise API',
     version: '1.0.0',
     status: 'operational',
-    documentation: '/api/docs'
+    documentation: '/api/docs',
+    website: 'https://cropwise.io'
   });
 });
 

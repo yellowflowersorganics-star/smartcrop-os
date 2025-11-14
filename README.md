@@ -1,6 +1,6 @@
-# 🌱 SmartCrop
+# 🌾 CropWise
 
-**The Complete IoT-Powered Farm Management Platform**
+**Smart Farming Platform for Modern Agriculture**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/smartcrop)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -8,7 +8,7 @@
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15%2B-blue.svg)](https://www.postgresql.org/)
 [![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
 
-> **Transform your agricultural operation with AI-ready, scalable, enterprise-grade farm management software.**
+> **Make wise farming decisions with IoT-powered crop management, real-time monitoring, and intelligent analytics.**
 
 [🚀 Quick Start](#-quick-start) • [📚 Documentation](#-documentation) • [🎯 Features](#-features) • [🖼️ Demo](#-screenshots) • [💬 Support](#-support)
 
@@ -16,7 +16,7 @@
 
 ## 🌟 Overview
 
-SmartCrop is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. Whether you're growing mushrooms, vegetables, herbs, or other crops, SmartCrop provides everything you need to optimize production, track profitability, and scale your operation.
+CropWise is a comprehensive, cloud-native platform for vertical farms and modern agriculture operations. From IoT sensor monitoring to harvest tracking and profitability analysis, CropWise provides everything you need to grow smarter and scale faster.
 
 ### **Key Highlights**
 
