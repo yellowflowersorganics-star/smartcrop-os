@@ -197,11 +197,15 @@ jobs:
           aws s3 sync ./dist s3://smartcrop-prod-frontend --delete
 
       - name: Invalidate CloudFront
-        if: ${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID != '' }}
+        continue-on-error: true
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID }} \
-            --paths "/*"
+          if [ -n "${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID }}" ]; then
+            aws cloudfront create-invalidation \
+              --distribution-id ${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID }} \
+              --paths "/*"
+          else
+            echo "CloudFront distribution ID not set, skipping cache invalidation"
+          fi
 
       - name: Run Health Checks
         run: |
