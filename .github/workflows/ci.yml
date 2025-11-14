@@ -307,6 +307,7 @@ jobs:
           aws s3 sync frontend/dist/ s3://smartcrop-dev-frontend --delete
 
       - name: Invalidate CloudFront Cache
+        if: ${{ secrets.CLOUDFRONT_DEV_DISTRIBUTION_ID != '' }}
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DEV_DISTRIBUTION_ID }} \
@@ -422,6 +423,7 @@ jobs:
           aws s3 sync frontend/dist/ s3://smartcrop-prod-frontend --delete
 
       - name: Invalidate CloudFront Cache
+        if: ${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID != '' }}
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_PROD_DISTRIBUTION_ID }} \
