@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Batch Controller
+ * SmartCrop - Batch Controller
  * Manages growth cycle batches in zones
  */
 

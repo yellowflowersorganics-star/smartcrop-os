@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Telemetry Controller
+ * SmartCrop - Telemetry Controller
  * Manages environmental sensor data and readings
  */
 

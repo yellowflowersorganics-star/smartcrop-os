@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Farm Model
+ * SmartCrop - Farm Model
  */
 
 const { DataTypes } = require('sequelize');
