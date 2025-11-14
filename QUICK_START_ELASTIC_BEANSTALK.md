@@ -36,7 +36,7 @@ eb --version
 ### **STEP 2: Initialize Elastic Beanstalk**
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os\backend
+cd C:\Users\praghav\smartcrop\backend
 
 # Initialize EB in your project
 eb init
@@ -90,7 +90,7 @@ curl http://smartcrop-dev.us-east-1.elasticbeanstalk.com/health
 ### **STEP 5: Deploy Frontend to S3**
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os\frontend
+cd C:\Users\praghav\smartcrop\frontend
 
 # Build frontend with backend URL
 $env:VITE_API_URL="http://smartcrop-dev.us-east-1.elasticbeanstalk.com"
@@ -150,7 +150,7 @@ Name: FRONTEND_URL (if needed)
 Value: http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com
 ```
 
-👉 https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions/new
+👉 https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions/new
 
 ---
 
@@ -195,7 +195,7 @@ eb logs
 Super simple:
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os\backend
+cd C:\Users\praghav\smartcrop\backend
 
 # Deploy backend
 git commit -am "Update backend"

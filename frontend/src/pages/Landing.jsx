@@ -1001,7 +1001,7 @@ export default function Landing() {
                 <Link to="/coming-soon" className="text-gray-400 hover:text-green-500 transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </Link>
-                <a href="https://github.com/yellowflowersorganics-star/smartcrop-os" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-500 transition-colors">
+                <a href="https://github.com/yellowflowersorganics-star/smartcrop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-500 transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
               </div>
@@ -1037,7 +1037,7 @@ export default function Landing() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Changelog
                   </a>
                 </li>
@@ -1049,12 +1049,12 @@ export default function Landing() {
               <h3 className="text-lg font-semibold mb-4">Resources</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop-os/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/USER_GUIDE.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/USER_GUIDE.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     User Guide
                   </a>
                 </li>

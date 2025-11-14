@@ -61,14 +61,14 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Fork the repository on GitHub
-# Click the "Fork" button at https://github.com/yellowflowersorganics-star/smartcrop-os
+# Click the "Fork" button at https://github.com/yellowflowersorganics-star/smartcrop
 
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/YOUR_USERNAME/smartcrop.git
+cd smartcrop
 
 # 3. Add upstream remote
-git remote add upstream https://github.com/yellowflowersorganics-star/smartcrop-os.git
+git remote add upstream https://github.com/yellowflowersorganics-star/smartcrop.git
 
 # 4. Install dependencies
 cd backend && npm install
@@ -491,7 +491,7 @@ Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md):
 ### Getting Help
 
 - Check [documentation](docs/)
-- Search [existing issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
+- Search [existing issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
 - Ask in GitHub Discussions
 - Join our Slack channel
 

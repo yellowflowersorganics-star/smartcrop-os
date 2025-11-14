@@ -123,11 +123,11 @@ npm run migrate
 
 ## Links
 
-- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop-os)
+- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop)
 - [Documentation](https://docs.smartcrop.io)
 - [API Reference](https://api.smartcrop.io/docs)
-- [Issue Tracker](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
-- [Changelog](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/CHANGELOG.md)
+- [Issue Tracker](https://github.com/yellowflowersorganics-star/smartcrop/issues)
+- [Changelog](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md)
 
 ---
 

@@ -217,7 +217,7 @@ const example = "like this";
 **File Paths**:
 - Absolute: `/var/www/smartcrop/backend/`
 - Relative: `backend/src/index.js`
-- Windows: `C:\Users\praghav\smartcrop-os\`
+- Windows: `C:\Users\praghav\smartcrop\`
 
 **Placeholders**:
 - `your_value_here` - Replace with your actual value
@@ -273,7 +273,7 @@ Can't find what you're looking for?
 Documentation is continuously improved.
 
 **Stay informed**:
-- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/smartcrop-os)
+- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/smartcrop)
 - 👁️ Watch for releases
 - 📧 Subscribe to newsletter
 - 💬 Join [Discord](https://discord.gg/smartcrop)
@@ -331,7 +331,7 @@ Before deploying SmartCrop, ensure you've read:
 **External Resources**:
 - [Official Website](https://smartcrop.io)
 - [Community Forum](https://community.smartcrop.io)
-- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop-os)
+- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop)
 - [API Documentation](http://localhost:8080/api-docs)
 - [Blog](https://blog.smartcrop.io)
 - [YouTube Channel](https://youtube.com/@smartcropos)
@@ -350,7 +350,7 @@ Before deploying SmartCrop, ensure you've read:
 *Documentation Version: 1.0.0*  
 *Last Updated: November 2025*
 
-[⬆️ Back to Top](#-smartcrop-os-documentation)
+[⬆️ Back to Top](#-smartcrop-documentation)
 
 </div>
 

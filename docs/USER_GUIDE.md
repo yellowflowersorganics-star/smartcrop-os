@@ -899,7 +899,7 @@ A: Contact support@smartcrop.io. Export your data first.
 - **💬 Live Chat**: Available on website (Mon-Fri, 9 AM - 5 PM EST)
 - **📧 Email**: support@smartcrop.io
 - **📱 Phone**: +1-555-SMARTCROP (Business hours)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
 
 ### Community
 

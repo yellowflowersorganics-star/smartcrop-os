@@ -9,7 +9,7 @@ Complete guide to test your production deployment.
 Before deploying, verify all secrets are configured:
 
 ### **GitHub Secrets Status**
-Visit: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+Visit: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
 
 - [x] `VITE_API_URL` ✅
 - [x] `AWS_ACCESS_KEY_ID` ✅
@@ -32,7 +32,7 @@ Visit: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secre
 ### **1.1 Push to Develop Branch**
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os
+cd C:\Users\praghav\smartcrop
 
 # Ensure you're on develop branch
 git checkout develop
@@ -51,7 +51,7 @@ git push origin develop
 
 ### **1.2 Monitor Deployment**
 
-1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop/actions
 2. **Watch** the workflow run in real-time
 3. **Expected duration**: 5-10 minutes
 
@@ -147,7 +147,7 @@ curl https://dev-api.smartcrop.io/health
 ### **3.1 Merge to Main Branch**
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os
+cd C:\Users\praghav\smartcrop
 
 # Switch to main branch
 git checkout main
@@ -167,7 +167,7 @@ git push origin main
 
 ### **3.2 Monitor Production Deployment**
 
-1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop/actions
 2. **Watch** the production deployment workflow
 3. **Note**: Production may require manual approval (security feature)
 4. **Duration**: 5-15 minutes
@@ -458,7 +458,7 @@ After successful deployment:
 
 ## 📚 Additional Resources
 
-- **GitHub Actions**: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+- **GitHub Actions**: https://github.com/yellowflowersorganics-star/smartcrop/actions
 - **AWS Console**: https://console.aws.amazon.com
 - **CloudWatch Logs**: https://console.aws.amazon.com/cloudwatch/
 - **RDS Console**: https://console.aws.amazon.com/rds/

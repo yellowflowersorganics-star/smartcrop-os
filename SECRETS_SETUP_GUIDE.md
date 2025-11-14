@@ -483,7 +483,7 @@ Value: redis://your-redis-endpoint:6379
 
 1. **Go to your repository**:
    ```
-   https://github.com/yellowflowersorganics-star/smartcrop-os
+   https://github.com/yellowflowersorganics-star/smartcrop
    ```
 
 2. **Navigate to Settings**:
@@ -504,7 +504,7 @@ Value: redis://your-redis-endpoint:6379
    - You can update or delete it
 
 ### Direct Link
-👉 https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+👉 https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
 
 ---
 

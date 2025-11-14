@@ -181,7 +181,7 @@ aws elasticache describe-cache-clusters \
 cd backend
 
 # Initialize EB application
-eb init smartcrop-os-backend \
+eb init smartcrop-backend \
   --platform "Node.js 18 running on 64bit Amazon Linux 2023" \
   --region us-east-1
 
@@ -398,8 +398,8 @@ sudo npm install -g pm2
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/your-username/smartcrop.git
+cd smartcrop
 
 # Install backend dependencies
 cd backend
@@ -441,7 +441,7 @@ server {
 
     # Frontend
     location / {
-        root /home/ec2-user/smartcrop-os/frontend/dist;
+        root /home/ec2-user/smartcrop/frontend/dist;
         try_files $uri $uri/ /index.html;
     }
 
@@ -468,7 +468,7 @@ sudo systemctl restart nginx
 ### Step 5: Build and Deploy Frontend
 
 ```bash
-cd /home/ec2-user/smartcrop-os/frontend
+cd /home/ec2-user/smartcrop/frontend
 npm install
 npm run build
 ```

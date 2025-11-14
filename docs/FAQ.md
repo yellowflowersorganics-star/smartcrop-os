@@ -385,7 +385,7 @@ pm2 restart
 **Free support:**
 - 📚 [Documentation](https://docs.smartcrop.io)
 - 💬 [Community Forum](https://community.smartcrop.io)
-- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
+- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
 - 💬 [Discord](https://discord.gg/smartcrop)
 
 **Paid support:**

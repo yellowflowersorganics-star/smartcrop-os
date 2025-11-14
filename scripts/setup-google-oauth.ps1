@@ -5,7 +5,7 @@ Write-Host "`n🔐 SmartCrop - Google OAuth Setup" -ForegroundColor Green
 Write-Host "====================================`n" -ForegroundColor Green
 
 # Get current directory
-$envPath = "C:\Users\praghav\smartcrop-os\backend\.env"
+$envPath = "C:\Users\praghav\smartcrop\backend\.env"
 
 # Check if .env exists
 if (!(Test-Path $envPath)) {

@@ -1089,7 +1089,7 @@ curl -X POST ${baseUrl}/api/batches \\
               Contact Support
             </Link>
             <a
-              href="https://github.com/yourusername/smartcrop-os"
+              href="https://github.com/yourusername/smartcrop"
               className="bg-green-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-900 transition-colors"
               target="_blank"
               rel="noopener noreferrer"

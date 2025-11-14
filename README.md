@@ -2,7 +2,7 @@
 
 **The Complete IoT-Powered Farm Management Platform**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/smartcrop-os)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/smartcrop)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15%2B-blue.svg)](https://www.postgresql.org/)
@@ -38,8 +38,8 @@ SmartCrop is a comprehensive, end-to-end IoT platform designed specifically for 
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 
 # Start all services
 docker-compose up -d
@@ -364,7 +364,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ### **Development Workflow**
 ```bash
 # Fork and clone
-git clone https://github.com/YOUR_USERNAME/smartcrop-os.git
+git clone https://github.com/YOUR_USERNAME/smartcrop.git
 
 # Create feature branch
 git checkout -b feature/my-feature
@@ -434,7 +434,7 @@ Built with ❤️ by the SmartCrop team and contributors.
 ### **Free Support**
 - 📚 [Documentation](docs/)
 - 💬 [Community Forum](https://community.smartcrop.io)
-- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
+- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
 
 ### **Paid Support**
 - 📧 Email: support@smartcrop.io
@@ -459,7 +459,7 @@ Built with ❤️ by the SmartCrop team and contributors.
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yellowflowersorganics-star/smartcrop-os&type=Date)](https://star-history.com/#yellowflowersorganics-star/smartcrop-os&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=yellowflowersorganics-star/smartcrop&type=Date)](https://star-history.com/#yellowflowersorganics-star/smartcrop&Date)
 
 ---
 
@@ -498,9 +498,9 @@ Found a security vulnerability? Please email **security@smartcrop.io** instead o
 
 **⭐ Star us on GitHub — it helps!**
 
-[![GitHub stars](https://img.shields.io/github/stars/yellowflowersorganics-star/smartcrop-os?style=social)](https://github.com/yellowflowersorganics-star/smartcrop-os/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yellowflowersorganics-star/smartcrop-os?style=social)](https://github.com/yellowflowersorganics-star/smartcrop-os/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/yellowflowersorganics-star/smartcrop-os?style=social)](https://github.com/yellowflowersorganics-star/smartcrop-os/watchers)
+[![GitHub stars](https://img.shields.io/github/stars/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/watchers)
 
 </div>
 

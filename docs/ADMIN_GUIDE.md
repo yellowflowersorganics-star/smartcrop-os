@@ -80,8 +80,8 @@ This guide is for system administrators responsible for deploying, configuring, 
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 
 # Copy environment files
 cp backend/.env.example backend/.env

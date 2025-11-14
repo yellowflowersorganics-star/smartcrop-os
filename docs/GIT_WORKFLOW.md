@@ -589,7 +589,7 @@ git push origin main
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
 
 # Set up Git Flow (one-time)
 git flow init

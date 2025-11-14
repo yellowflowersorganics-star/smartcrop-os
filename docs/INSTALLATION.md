@@ -22,8 +22,8 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 
 # 2. Start all services
 docker-compose up -d
@@ -43,8 +43,8 @@ docker-compose up -d
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 ```
 
 ### Step 2: Backend Setup
@@ -346,8 +346,8 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 
 # Create environment files
 cp backend/.env.example backend/.env
@@ -515,7 +515,7 @@ DROP USER smartcrop_admin;
 \q
 
 # Remove application files
-rm -rf /path/to/smartcrop-os
+rm -rf /path/to/smartcrop
 
 # Remove Node modules (frees space)
 rm -rf ~/.npm
@@ -586,7 +586,7 @@ After installation:
 - **Documentation**: [docs.smartcrop.io](https://docs.smartcrop.io)
 - **Support**: support@smartcrop.io
 - **Community**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Issues**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
+- **Issues**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
 
 ---
 

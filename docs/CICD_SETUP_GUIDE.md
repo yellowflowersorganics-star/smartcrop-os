@@ -2,7 +2,7 @@
 
 Complete guide to set up and manage your CI/CD pipeline with GitHub Actions.
 
-**Repository**: https://github.com/yellowflowersorganics-star/smartcrop-os
+**Repository**: https://github.com/yellowflowersorganics-star/smartcrop
 
 ---
 
@@ -62,7 +62,7 @@ Before setting up CI/CD, ensure you have:
 
 ## 🔐 GitHub Secrets Setup
 
-Visit: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+Visit: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
 
 ### **Required Secrets (Add These Now)**
 
@@ -238,7 +238,7 @@ git push origin feature/test-cicd
 
 ### **Step 2: Create Pull Request**
 
-1. Go to: https://github.com/yellowflowersorganics-star/smartcrop-os/pulls
+1. Go to: https://github.com/yellowflowersorganics-star/smartcrop/pulls
 2. Click "New pull request"
 3. **Base**: `develop` ← **Compare**: `feature/test-cicd`
 4. Click "Create pull request"
@@ -246,7 +246,7 @@ git push origin feature/test-cicd
 
 ### **Step 3: Watch the Pipeline**
 
-1. Go to **Actions** tab: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+1. Go to **Actions** tab: https://github.com/yellowflowersorganics-star/smartcrop/actions
 2. Click on your workflow run
 3. Watch each job execute:
    - ✅ Lint Code
@@ -338,7 +338,7 @@ git push origin release/v1.0.1
 
 ### **Viewing Workflow Runs**
 
-**All Runs**: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+**All Runs**: https://github.com/yellowflowersorganics-star/smartcrop/actions
 
 **Filter by**:
 - Event (push, pull_request)
@@ -621,7 +621,7 @@ This requires manual approval before production deploy.
 
 ### **View Insights**
 
-Visit: https://github.com/yellowflowersorganics-star/smartcrop-os/insights/actions
+Visit: https://github.com/yellowflowersorganics-star/smartcrop/insights/actions
 
 Shows:
 - Workflow run times
@@ -702,7 +702,7 @@ on:
 
 ### **View All Workflows**
 ```
-https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+https://github.com/yellowflowersorganics-star/smartcrop/actions
 ```
 
 ### **Re-run Failed Job**

@@ -2,7 +2,7 @@
 
 Complete guide to set up your SmartCrop repository on GitHub.
 
-**Repository**: `https://github.com/yellowflowersorganics-star/smartcrop-os`
+**Repository**: `https://github.com/yellowflowersorganics-star/smartcrop`
 
 ---
 
@@ -10,11 +10,11 @@ Complete guide to set up your SmartCrop repository on GitHub.
 
 ### 1. **Repository Settings**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/settings`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/settings`
 
 #### **General Settings**
 
-- [ ] **Repository name**: `smartcrop-os`
+- [ ] **Repository name**: `smartcrop`
 - [ ] **Description**: Add project description
   ```
   🌱 Enterprise IoT-Powered Farm Management Platform - AI-ready, scalable smart agriculture software
@@ -56,7 +56,7 @@ git push origin develop
 
 ### 3. **Branch Protection Rules**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/settings/branches`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/settings/branches`
 
 #### **Protect `main` Branch**
 
@@ -121,7 +121,7 @@ Click "Add rule" again:
 
 ### 4. **GitHub Actions Secrets**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions`
 
 Click "New repository secret" for each:
 
@@ -168,7 +168,7 @@ Click "New repository secret" for each:
 
 ### 5. **Enable GitHub Actions**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/actions`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/actions`
 
 GitHub Actions should be automatically enabled. Your workflows are already in:
 - `.github/workflows/ci.yml` - CI/CD pipeline
@@ -183,7 +183,7 @@ GitHub Actions should be automatically enabled. Your workflows are already in:
 
 ### 6. **Repository Labels**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/labels`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/labels`
 
 Add these labels for better issue/PR management:
 
@@ -226,7 +226,7 @@ Your issue templates are in:
 - `.github/ISSUE_TEMPLATE/feature_request.md`
 
 Verify they appear when creating a new issue:
-`https://github.com/yellowflowersorganics-star/smartcrop-os/issues/new/choose`
+`https://github.com/yellowflowersorganics-star/smartcrop/issues/new/choose`
 
 ---
 
@@ -243,7 +243,7 @@ Verify it appears when creating a new PR.
 
 ### 9. **Repository About Section**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop`
 
 Click the ⚙️ gear icon next to "About" and add:
 
@@ -270,7 +270,7 @@ greenhouse, agtech, smart-agriculture, farm-management, crop-monitoring
 
 ### 10. **Create Initial Release**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/releases/new`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/releases/new`
 
 **Tag version**: `v1.0.0`
 
@@ -318,25 +318,25 @@ SmartCrop is now production-ready! This is the first stable release of our enter
 
 ### 🚀 Getting Started
 
-See our [Installation Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/INSTALLATION.md)
+See our [Installation Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/INSTALLATION.md)
 
 ### 📚 Documentation
 
-- [User Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/USER_GUIDE.md)
-- [Admin Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/ADMIN_GUIDE.md)
-- [API Documentation](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/)
+- [User Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/USER_GUIDE.md)
+- [Admin Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/ADMIN_GUIDE.md)
+- [API Documentation](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/)
 
 ### 🐛 Found a bug?
 
-Please [report it](https://github.com/yellowflowersorganics-star/smartcrop-os/issues/new?template=bug_report.md)
+Please [report it](https://github.com/yellowflowersorganics-star/smartcrop/issues/new?template=bug_report.md)
 
 ### 💬 Questions?
 
-Check our [FAQ](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/FAQ.md) or [start a discussion](https://github.com/yellowflowersorganics-star/smartcrop-os/discussions)
+Check our [FAQ](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/FAQ.md) or [start a discussion](https://github.com/yellowflowersorganics-star/smartcrop/discussions)
 
 ---
 
-**Full Changelog**: [View All Changes](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/CHANGELOG.md)
+**Full Changelog**: [View All Changes](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md)
 ```
 
 **Check**: ✅ Set as the latest release
@@ -347,7 +347,7 @@ Check our [FAQ](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/
 
 ### 11. **Enable Discussions**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/settings`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/settings`
 
 Scroll to "Features" → Check ✅ **Discussions**
 
@@ -375,7 +375,7 @@ Make sure they're visible:
 
 ### 13. **Create Wiki (Optional)**
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/wiki`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/wiki`
 
 Click "Create the first page"
 
@@ -394,7 +394,7 @@ Click "Create the first page"
 
 Create `.github/SECURITY.md`:
 
-Visit: `https://github.com/yellowflowersorganics-star/smartcrop-os/security/policy`
+Visit: `https://github.com/yellowflowersorganics-star/smartcrop/security/policy`
 
 Or create the file manually with:
 
@@ -428,7 +428,7 @@ We commit to:
 
 ## Security Best Practices
 
-See our [Security Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/SECURITY_GUIDE.md)
+See our [Security Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/SECURITY_GUIDE.md)
 ```
 
 ---

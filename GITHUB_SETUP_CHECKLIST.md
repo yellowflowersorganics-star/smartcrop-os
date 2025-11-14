@@ -2,7 +2,7 @@
 
 Follow these steps to complete your GitHub repository setup.
 
-**Repository**: https://github.com/yellowflowersorganics-star/smartcrop-os
+**Repository**: https://github.com/yellowflowersorganics-star/smartcrop
 
 ---
 
@@ -20,7 +20,7 @@ The `develop` branch has been created and pushed to GitHub.
 
 **Steps**:
 
-1. Go to: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/branches
+1. Go to: https://github.com/yellowflowersorganics-star/smartcrop/settings/branches
 
 2. Under "Default branch", click the ↔️ switch icon next to `main`
 
@@ -38,7 +38,7 @@ The `develop` branch has been created and pushed to GitHub.
 
 ### Protect `main` Branch
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/branch_protection_rules/new
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop/settings/branch_protection_rules/new
 
 **Settings**:
 
@@ -93,7 +93,7 @@ The `develop` branch has been created and pushed to GitHub.
 
 ## 📝 Step 4: Add Repository Description & Topics
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop
 
 1. Click the ⚙️ **Settings** icon next to "About" (top right of main page)
 
@@ -138,7 +138,7 @@ The `develop` branch has been created and pushed to GitHub.
 
 ## 💬 Step 5: Enable GitHub Discussions
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os/settings
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop/settings
 
 1. Scroll down to **Features** section
 
@@ -159,7 +159,7 @@ The `develop` branch has been created and pushed to GitHub.
 
 ## 🏷️ Step 6: Add Issue Labels
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os/labels
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop/labels
 
 Click **New label** for each:
 
@@ -191,7 +191,7 @@ Click **New label** for each:
 
 ## 🔐 Step 7: Add GitHub Actions Secrets
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
 
 Click **New repository secret** for each:
 
@@ -239,7 +239,7 @@ Click **New repository secret** for each:
 
 ## 🚀 Step 8: Create First Release (v1.0.0)
 
-**URL**: https://github.com/yellowflowersorganics-star/smartcrop-os/releases/new
+**URL**: https://github.com/yellowflowersorganics-star/smartcrop/releases/new
 
 1. **Choose a tag**: `v1.0.0` (type and press "Create new tag")
 
@@ -299,8 +299,8 @@ SmartCrop is now production-ready! This is the first stable release of our enter
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+cd smartcrop
 
 # Using Docker
 docker-compose up -d
@@ -312,24 +312,24 @@ cd ../frontend && npm install && npm run dev
 
 ### 📚 Documentation
 
-- **[Installation Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/INSTALLATION.md)** - Get started in 5 minutes
-- **[User Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/USER_GUIDE.md)** - 70-page complete manual
-- **[Admin Guide](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/ADMIN_GUIDE.md)** - System administration
-- **[IoT Setup](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/IOT_INTEGRATION_GUIDE.md)** - Hardware integration
-- **[API Docs](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/)** - Complete API reference
+- **[Installation Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/INSTALLATION.md)** - Get started in 5 minutes
+- **[User Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/USER_GUIDE.md)** - 70-page complete manual
+- **[Admin Guide](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/ADMIN_GUIDE.md)** - System administration
+- **[IoT Setup](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/IOT_INTEGRATION_GUIDE.md)** - Hardware integration
+- **[API Docs](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/)** - Complete API reference
 
 ### 🐛 Found a Bug?
 
-Please [report it](https://github.com/yellowflowersorganics-star/smartcrop-os/issues/new?template=bug_report.md)
+Please [report it](https://github.com/yellowflowersorganics-star/smartcrop/issues/new?template=bug_report.md)
 
 ### 💡 Feature Request?
 
-[Share your idea](https://github.com/yellowflowersorganics-star/smartcrop-os/issues/new?template=feature_request.md)
+[Share your idea](https://github.com/yellowflowersorganics-star/smartcrop/issues/new?template=feature_request.md)
 
 ### 💬 Questions?
 
-- Check our [FAQ](https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/docs/FAQ.md)
-- [Start a discussion](https://github.com/yellowflowersorganics-star/smartcrop-os/discussions)
+- Check our [FAQ](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/FAQ.md)
+- [Start a discussion](https://github.com/yellowflowersorganics-star/smartcrop/discussions)
 - Email: support@smartcrop.io
 
 ### 🙏 Contributors
@@ -338,7 +338,7 @@ Thank you to all contributors who made this release possible!
 
 ---
 
-**Full Changelog**: https://github.com/yellowflowersorganics-star/smartcrop-os/blob/main/CHANGELOG.md
+**Full Changelog**: https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md
 
 **License**: MIT - Free for commercial use
 ```
@@ -368,7 +368,7 @@ git push origin feature/test-github-actions
 ```
 
 Then:
-1. Go to: https://github.com/yellowflowersorganics-star/smartcrop-os/pulls
+1. Go to: https://github.com/yellowflowersorganics-star/smartcrop/pulls
 2. Click **New pull request**
 3. Base: `develop` ← Compare: `feature/test-github-actions`
 4. Click **Create pull request**
@@ -381,27 +381,27 @@ Then:
 
 ### Check These Pages:
 
-- [ ] **Main Page**: https://github.com/yellowflowersorganics-star/smartcrop-os
+- [ ] **Main Page**: https://github.com/yellowflowersorganics-star/smartcrop
   - Description and topics visible
   - README displays correctly
   - Badges show proper colors
 
-- [ ] **Actions**: https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+- [ ] **Actions**: https://github.com/yellowflowersorganics-star/smartcrop/actions
   - Workflows visible
   - Can view workflow files
 
-- [ ] **Issues**: https://github.com/yellowflowersorganics-star/smartcrop-os/issues
+- [ ] **Issues**: https://github.com/yellowflowersorganics-star/smartcrop/issues
   - Templates work when creating new issue
 
 - [ ] **Pull Requests**: Try creating one
   - Template appears
   - Branch protection works
 
-- [ ] **Discussions**: https://github.com/yellowflowersorganics-star/smartcrop-os/discussions
+- [ ] **Discussions**: https://github.com/yellowflowersorganics-star/smartcrop/discussions
   - Categories visible
   - Can create new discussion
 
-- [ ] **Releases**: https://github.com/yellowflowersorganics-star/smartcrop-os/releases
+- [ ] **Releases**: https://github.com/yellowflowersorganics-star/smartcrop/releases
   - v1.0.0 release visible
 
 ---
