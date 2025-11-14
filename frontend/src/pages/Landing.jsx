@@ -5,7 +5,7 @@ import {
   Users, Globe, Package, ArrowRight, Bell, CheckSquare,
   Clock, DollarSign, ClipboardCheck, FileText, Microscope,
   Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Github,
-  Send
+  Send, Home, Building, Factory, Award
 } from 'lucide-react';
 
 export default function Landing() {
@@ -342,8 +342,8 @@ export default function Landing() {
       <section id="iot-architecture" className="bg-gradient-to-br from-cyan-50 to-blue-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
-              🚀 Revolutionary Technology
+            <span className="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-semibold inline-flex items-center gap-2 mb-4">
+              <Zap className="w-4 h-4" /> Revolutionary Technology
             </span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Hierarchical Master-Slave IoT Architecture
@@ -414,28 +414,36 @@ export default function Landing() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-6 bg-gray-50 rounded-xl">
-                <div className="text-3xl mb-2">🏡</div>
+                <div className="flex justify-center mb-2">
+                  <Home className="w-12 h-12 text-gray-600" />
+                </div>
                 <div className="font-bold text-gray-900 mb-1">Small</div>
                 <div className="text-sm text-gray-600 mb-3">1 ESP32</div>
                 <div className="text-2xl font-bold text-green-600">$75</div>
                 <div className="text-xs text-gray-500 mt-2">&lt;500 sq ft</div>
               </div>
               <div className="text-center p-6 bg-gray-50 rounded-xl">
-                <div className="text-3xl mb-2">🏢</div>
+                <div className="flex justify-center mb-2">
+                  <Building className="w-12 h-12 text-gray-600" />
+                </div>
                 <div className="font-bold text-gray-900 mb-1">Medium</div>
                 <div className="text-sm text-gray-600 mb-3">2 ESP32s</div>
                 <div className="text-2xl font-bold text-green-600">$105</div>
                 <div className="text-xs text-gray-500 mt-2">500-1,000 sq ft</div>
               </div>
               <div className="text-center p-6 bg-gray-50 rounded-xl">
-                <div className="text-3xl mb-2">🏭</div>
+                <div className="flex justify-center mb-2">
+                  <Factory className="w-12 h-12 text-gray-600" />
+                </div>
                 <div className="font-bold text-gray-900 mb-1">Large</div>
                 <div className="text-sm text-gray-600 mb-3">4 ESP32s</div>
                 <div className="text-2xl font-bold text-green-600">$165</div>
                 <div className="text-xs text-gray-500 mt-2">1-2,000 sq ft</div>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl border-2 border-green-200">
-                <div className="text-3xl mb-2">🏆</div>
+                <div className="flex justify-center mb-2">
+                  <Award className="w-12 h-12 text-green-600" />
+                </div>
                 <div className="font-bold text-gray-900 mb-1">Professional</div>
                 <div className="text-sm text-gray-600 mb-3">6 ESP32s</div>
                 <div className="text-2xl font-bold text-green-600">$250</div>
