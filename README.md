@@ -1,4 +1,4 @@
-# 🌱 SmartCrop OS
+# 🌱 SmartCrop
 
 **The Complete IoT-Powered Farm Management Platform**
 
@@ -16,7 +16,7 @@
 
 ## 🌟 Overview
 
-SmartCrop OS is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. Whether you're growing mushrooms, vegetables, herbs, or other crops, SmartCrop OS provides everything you need to optimize production, track profitability, and scale your operation.
+SmartCrop is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. Whether you're growing mushrooms, vegetables, herbs, or other crops, SmartCrop provides everything you need to optimize production, track profitability, and scale your operation.
 
 ### **Key Highlights**
 
@@ -219,7 +219,7 @@ npm run dev
 ## 📚 Documentation
 
 ### **Getting Started**
-- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up SmartCrop OS
+- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up SmartCrop
 - [👤 User Guide](docs/USER_GUIDE.md) - Complete feature walkthrough
 - [🔧 Admin Guide](docs/ADMIN_GUIDE.md) - System administration
 - [🐛 Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
@@ -382,7 +382,7 @@ git push origin feature/my-feature
 - **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
 - **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop)
 - **Twitter**: [@SmartCropOS](https://twitter.com/SmartCropOS)
-- **YouTube**: [SmartCrop OS Channel](https://youtube.com/@smartcropos)
+- **YouTube**: [SmartCrop Channel](https://youtube.com/@smartcropos)
 
 ---
 
@@ -419,7 +419,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ by the SmartCrop OS team and contributors.
+Built with ❤️ by the SmartCrop team and contributors.
 
 **Special Thanks:**
 - All our [contributors](CONTRIBUTORS.md)

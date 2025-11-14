@@ -1,6 +1,6 @@
 # 🗄️ AWS RDS PostgreSQL Setup Guide
 
-Complete step-by-step guide to set up PostgreSQL on AWS RDS for SmartCrop OS.
+Complete step-by-step guide to set up PostgreSQL on AWS RDS for SmartCrop.
 
 ---
 
@@ -657,5 +657,5 @@ postgresql://smartcrop_admin:Pass%40123%21@smartcrop-db.abc123.us-east-1.rds.ama
 
 **Created**: November 14, 2025  
 **Last Updated**: November 14, 2025  
-**For**: SmartCrop OS Production Environment
+**For**: SmartCrop Production Environment
 

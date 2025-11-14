@@ -1,4 +1,4 @@
-# 🚀 CI/CD Setup Guide for SmartCrop OS
+# 🚀 CI/CD Setup Guide for SmartCrop
 
 Complete guide to set up and manage your CI/CD pipeline with GitHub Actions.
 
@@ -20,7 +20,7 @@ Complete guide to set up and manage your CI/CD pipeline with GitHub Actions.
 
 ## 🎯 Overview
 
-Your SmartCrop OS repository has **two automated workflows**:
+Your SmartCrop repository has **two automated workflows**:
 
 ### **1. CI/CD Pipeline** (`.github/workflows/ci.yml`)
 **Triggers**: Every push and pull request to `main` or `develop`
@@ -164,7 +164,7 @@ Click "New repository secret" for each:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│              SmartCrop OS CI/CD Pipeline                │
+│              SmartCrop CI/CD Pipeline                │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  1. CODE QUALITY                                        │
