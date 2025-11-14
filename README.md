@@ -503,3 +503,4 @@ Found a security vulnerability? Please email **security@smartcrop.io** instead o
 [![GitHub watchers](https://img.shields.io/github/watchers/yellowflowersorganics-star/smartcrop-os?style=social)](https://github.com/yellowflowersorganics-star/smartcrop-os/watchers)
 
 </div>
+
