@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { sopService } from '../services/api';
 import { Plus, FileText, Play, CheckCircle, Clock, Copy, Edit2, Trash2, Eye } from 'lucide-react';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const SOPDashboard = () => {
