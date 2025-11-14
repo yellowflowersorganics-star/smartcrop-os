@@ -1,4 +1,4 @@
-# SmartCrop OS - Backend
+# SmartCrop - Backend
 
 Multi-tenant SaaS platform for smart crop management.
 

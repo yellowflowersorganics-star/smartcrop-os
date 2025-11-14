@@ -1,18 +1,18 @@
-# ❓ SmartCrop OS - Frequently Asked Questions
+# ❓ SmartCrop - Frequently Asked Questions
 
-Common questions and answers about SmartCrop OS.
+Common questions and answers about SmartCrop.
 
 ---
 
 ## 📋 General Questions
 
-### What is SmartCrop OS?
+### What is SmartCrop?
 
-SmartCrop OS is an open-source, IoT-powered farm management platform designed for controlled-environment agriculture. It helps farmers manage their operations through real-time monitoring, batch tracking, harvest recording, analytics, and automated environmental control.
+SmartCrop is an open-source, IoT-powered farm management platform designed for controlled-environment agriculture. It helps farmers manage their operations through real-time monitoring, batch tracking, harvest recording, analytics, and automated environmental control.
 
-### Is SmartCrop OS really free?
+### Is SmartCrop really free?
 
-Yes! SmartCrop OS is 100% open-source under the MIT License. You can:
+Yes! SmartCrop is 100% open-source under the MIT License. You can:
 - ✅ Use it commercially
 - ✅ Modify the source code
 - ✅ Self-host on your own servers
@@ -20,9 +20,9 @@ Yes! SmartCrop OS is 100% open-source under the MIT License. You can:
 
 Optional cloud hosting services are available for a fee, but the software itself is free forever.
 
-### What types of crops can I grow with SmartCrop OS?
+### What types of crops can I grow with SmartCrop?
 
-SmartCrop OS is designed for controlled-environment agriculture and works well with:
+SmartCrop is designed for controlled-environment agriculture and works well with:
 - **Mushrooms** (oyster, shiitake, lion's mane, etc.) ✅ Fully supported
 - **Leafy greens** (lettuce, spinach, herbs) ✅ Fully supported
 - **Vegetables** (tomatoes, peppers, cucumbers) ✅ Fully supported
@@ -33,7 +33,7 @@ The system is crop-agnostic — you define the environmental parameters for your
 
 ### Do I need to be a programmer to use it?
 
-**No!** SmartCrop OS has a user-friendly web interface that requires no programming knowledge. However, if you want to:
+**No!** SmartCrop has a user-friendly web interface that requires no programming knowledge. However, if you want to:
 - Customize the system
 - Add new features
 - Integrate with other tools
@@ -42,7 +42,7 @@ Some programming knowledge (JavaScript/Node.js) will be helpful.
 
 ### Can I use it without IoT devices?
 
-**Yes!** You can use SmartCrop OS for:
+**Yes!** You can use SmartCrop for:
 - Farm and zone management
 - Batch tracking
 - Harvest recording
@@ -95,7 +95,7 @@ For commercial operations, we recommend a dedicated server or cloud hosting.
 
 ### Does it work on Windows?
 
-**Yes!** SmartCrop OS runs on:
+**Yes!** SmartCrop runs on:
 - ✅ Windows 10/11
 - ✅ Windows Server 2019+
 - ✅ Ubuntu/Debian Linux
@@ -124,7 +124,7 @@ See [IoT Integration Guide](IOT_INTEGRATION_GUIDE.md) for complete list.
 
 ### Can I integrate with existing systems?
 
-**Yes!** SmartCrop OS provides:
+**Yes!** SmartCrop provides:
 - **REST API**: Full API access
 - **Webhooks**: Real-time event notifications
 - **CSV Export**: Bulk data export
@@ -184,7 +184,7 @@ See [AWS Deployment Guide](DEPLOY_TO_AWS_NOW.md) for detailed cost breakdown.
 
 ### Is my data secure?
 
-**Yes!** SmartCrop OS uses:
+**Yes!** SmartCrop uses:
 - **Encryption**: All data encrypted at rest and in transit (HTTPS/TLS)
 - **Authentication**: JWT tokens + Google OAuth
 - **Authorization**: Role-based access control (RBAC)
@@ -218,7 +218,7 @@ See [Security Guide](SECURITY_GUIDE.md) for details.
 
 **Cloud-hosted**: 
 - Your team members (based on permissions)
-- SmartCrop OS team (only for support, with your permission)
+- SmartCrop team (only for support, with your permission)
 - **Never sold to third parties**
 
 ---
@@ -282,7 +282,7 @@ Arduino requires additional WiFi shield ($15-30).
 
 ### Can I manage multiple farms?
 
-**Yes!** SmartCrop OS supports:
+**Yes!** SmartCrop supports:
 - Unlimited farms
 - Unlimited zones per farm
 - Unlimited batches
@@ -406,7 +406,7 @@ pm2 restart
 **Yes!** Join us:
 - **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop) - 500+ members
 - **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Facebook**: SmartCrop OS Users Group
+- **Facebook**: SmartCrop Users Group
 - **Reddit**: r/SmartCropOS (coming soon)
 
 ### Can I contribute to the project?
@@ -427,7 +427,7 @@ See [Contributing Guide](../CONTRIBUTING.md).
 
 ### Can it scale to 100+ zones?
 
-**Yes!** SmartCrop OS scales to:
+**Yes!** SmartCrop scales to:
 - 1,000+ zones (with proper hardware)
 - 10,000+ batches
 - Millions of sensor readings

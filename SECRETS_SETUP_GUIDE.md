@@ -1,6 +1,6 @@
 # 🔐 GitHub Secrets Setup Guide
 
-Complete guide to gather and configure all secrets needed for SmartCrop OS GitHub Actions CI/CD pipeline.
+Complete guide to gather and configure all secrets needed for SmartCrop GitHub Actions CI/CD pipeline.
 
 ---
 
@@ -514,7 +514,7 @@ Copy this template and fill in your values:
 
 ```bash
 # ============================================
-# SmartCrop OS - GitHub Secrets
+# SmartCrop - GitHub Secrets
 # ============================================
 
 # Priority 1: Essential (Add Now)
@@ -733,5 +733,5 @@ Track your progress:
 
 **Version**: 2.0.0
 
-**Maintained by**: SmartCrop OS Team
+**Maintained by**: SmartCrop Team
 

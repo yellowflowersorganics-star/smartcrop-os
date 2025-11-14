@@ -6,7 +6,7 @@ Use this checklist to verify your Google OAuth setup is complete.
 
 ### Google Cloud Console
 
-- [ ] Created Google Cloud Project "SmartCrop OS"
+- [ ] Created Google Cloud Project "SmartCrop"
 - [ ] Configured OAuth Consent Screen (External)
 - [ ] Added scopes: email, profile, openid
 - [ ] Created OAuth 2.0 Client ID (Web application)
@@ -368,7 +368,7 @@ Your Google OAuth is working correctly if:
 
 - [Official Setup Guide](../backend/GOOGLE_OAUTH_SETUP.md)
 - [Google OAuth Documentation](https://developers.google.com/identity/protocols/oauth2)
-- [SmartCrop OS GitHub Issues](https://github.com/your-repo/issues)
+- [SmartCrop GitHub Issues](https://github.com/your-repo/issues)
 
 ---
 

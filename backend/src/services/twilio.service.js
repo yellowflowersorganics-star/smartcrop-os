@@ -170,7 +170,7 @@ class TwilioService {
     }
 
     message += `\nPlease complete this task on time.`;
-    message += `\n\n- SmartCrop OS`;
+    message += `\n\n- SmartCrop`;
 
     return message;
   }
@@ -207,7 +207,7 @@ class TwilioService {
     }
 
     message += `\nHave a productive day! 🚀`;
-    message += `\n\n- SmartCrop OS`;
+    message += `\n\n- SmartCrop`;
 
     return message;
   }
@@ -235,7 +235,7 @@ class TwilioService {
       message += `\nTake action: ${alert.actionUrl}`;
     }
 
-    message += `\n\n- SmartCrop OS`;
+    message += `\n\n- SmartCrop`;
 
     return message;
   }

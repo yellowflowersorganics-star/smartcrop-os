@@ -1,4 +1,4 @@
-# 🚀 SmartCrop OS - Quick Reference Guide
+# 🚀 SmartCrop - Quick Reference Guide
 
 ## Git Workflow Cheat Sheet
 

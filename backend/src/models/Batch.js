@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Batch Model
+ * SmartCrop - Batch Model
  * Tracks individual growing cycles in zones
  * Each batch represents one complete growth cycle from start to harvest
  */

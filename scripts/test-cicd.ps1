@@ -1,7 +1,7 @@
 # Test CI/CD Pipeline Script (PowerShell)
 # This script creates a test PR to verify your CI/CD pipeline is working
 
-Write-Host "🚀 SmartCrop OS - CI/CD Pipeline Test Script" -ForegroundColor Green
+Write-Host "🚀 SmartCrop - CI/CD Pipeline Test Script" -ForegroundColor Green
 Write-Host "=============================================" -ForegroundColor Green
 Write-Host ""
 

@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Main Router
+ * SmartCrop - Main Router
  * Aggregates all API routes
  */
 
@@ -38,7 +38,7 @@ const recipeExecutionRoutes = require('./recipeExecution.routes');
 // API version info
 router.get('/', (req, res) => {
   res.json({
-    name: 'SmartCrop OS API',
+    name: 'SmartCrop API',
     version: '1.0.0',
     status: 'operational',
     documentation: '/api/docs'

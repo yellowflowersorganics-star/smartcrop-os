@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Analytics Routes
+ * SmartCrop - Analytics Routes
  */
 
 const express = require('express');

@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 SmartCrop OS - CI/CD Pipeline Test Script"
+echo "🚀 SmartCrop - CI/CD Pipeline Test Script"
 echo "============================================="
 echo ""
 

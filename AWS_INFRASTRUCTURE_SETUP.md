@@ -1,6 +1,6 @@
 # 🏗️ AWS Infrastructure Setup Guide (No Domain Required)
 
-Complete guide to set up AWS infrastructure for SmartCrop OS deployment.
+Complete guide to set up AWS infrastructure for SmartCrop deployment.
 
 ---
 

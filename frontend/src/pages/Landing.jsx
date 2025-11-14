@@ -24,7 +24,7 @@ export default function Landing() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Sprout className="w-8 h-8 text-green-600" />
-              <span className="text-2xl font-bold text-gray-900">SmartCrop OS</span>
+              <span className="text-2xl font-bold text-gray-900">SmartCrop</span>
             </div>
             
             {/* Desktop Navigation */}
@@ -463,7 +463,7 @@ export default function Landing() {
                 Revolutionizing Agriculture with IoT Technology
               </h2>
               <p className="text-lg text-gray-600 mb-4">
-                SmartCrop OS is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. 
+                SmartCrop is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. 
                 We empower farmers, researchers, and agricultural businesses to optimize crop production through 
                 data-driven decisions and intelligent automation.
               </p>
@@ -527,7 +527,7 @@ export default function Landing() {
       {/* How It Works Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-          How SmartCrop OS Works
+          How SmartCrop Works
         </h2>
         <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
           A complete ecosystem connecting your hardware, data, and decisions in real-time
@@ -584,7 +584,7 @@ export default function Landing() {
       <section className="bg-gradient-to-br from-green-50 to-blue-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Why Choose SmartCrop OS?
+            Why Choose SmartCrop?
           </h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
             Transform your farming operation with proven benefits
@@ -966,7 +966,7 @@ export default function Landing() {
         <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-2xl p-12 text-center text-white">
           <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Farm?</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join farmers around the world using SmartCrop OS for precision agriculture
+            Join farmers around the world using SmartCrop for precision agriculture
           </p>
           <Link
             to="/register"
@@ -986,7 +986,7 @@ export default function Landing() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Sprout className="w-8 h-8 text-green-500" />
-                <span className="text-xl font-bold">SmartCrop OS</span>
+                <span className="text-xl font-bold">SmartCrop</span>
               </div>
               <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                 Revolutionary IoT platform for modern agriculture. Empowering farmers with data-driven precision farming solutions.
@@ -1123,7 +1123,7 @@ export default function Landing() {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-gray-400 text-sm mb-4 md:mb-0">
-                © 2025 SmartCrop OS. All rights reserved. Professional IoT agriculture platform.
+                © 2025 SmartCrop. All rights reserved. Professional IoT agriculture platform.
               </div>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">

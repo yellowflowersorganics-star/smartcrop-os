@@ -1,6 +1,6 @@
 # ⚡ Quick Start with AWS Elastic Beanstalk (No Domain Required)
 
-**Fastest way to deploy SmartCrop OS** - Setup in 15 minutes!
+**Fastest way to deploy SmartCrop** - Setup in 15 minutes!
 
 ---
 
@@ -42,7 +42,7 @@ cd C:\Users\praghav\smartcrop-os\backend
 eb init
 
 # Follow prompts:
-# - Select region: us-east-1
+# - Select region: ap-north-1
 # - Application name: smartcrop-backend
 # - Platform: Docker
 # - Do you want to set up SSH: No (or Yes if you want access)

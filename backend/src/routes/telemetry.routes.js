@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Telemetry Routes
+ * SmartCrop - Telemetry Routes
  */
 
 const express = require('express');
