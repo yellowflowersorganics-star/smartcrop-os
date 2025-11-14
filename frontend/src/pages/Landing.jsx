@@ -123,26 +123,34 @@ export default function Landing() {
         {/* Hero Image/Illustration */}
         <div className="mt-16 bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl shadow-2xl p-12">
           <div className="text-center mb-8">
-            <div className="text-8xl mb-4">🌱</div>
+            <div className="flex justify-center mb-4">
+              <Sprout className="w-20 h-20 text-green-600" />
+            </div>
             <p className="text-gray-700 text-xl font-semibold">IoT-Powered Precision Agriculture</p>
           </div>
           
           {/* Architecture Highlight */}
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             <div className="bg-white rounded-xl p-6 text-center">
-              <div className="text-4xl mb-3">📡</div>
+              <div className="flex justify-center mb-3">
+                <Cloud className="w-12 h-12 text-green-600" />
+              </div>
               <div className="text-2xl font-bold text-green-600 mb-2">1 ESP32</div>
               <div className="text-sm text-gray-600">Master Gateway</div>
               <div className="text-xs text-gray-500 mt-2">MQTT to Cloud</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center">
-              <div className="text-4xl mb-3">🔗</div>
+              <div className="flex justify-center mb-3">
+                <Cpu className="w-12 h-12 text-blue-600" />
+              </div>
               <div className="text-2xl font-bold text-blue-600 mb-2">5 ESP32s</div>
               <div className="text-sm text-gray-600">Slave Nodes</div>
-              <div className="text-xs text-gray-500 mt-2">ESP-NOW (<10ms)</div>
+              <div className="text-xs text-gray-500 mt-2">ESP-NOW (&lt;10ms)</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center">
-              <div className="text-4xl mb-3">⚡</div>
+              <div className="flex justify-center mb-3">
+                <Zap className="w-12 h-12 text-purple-600" />
+              </div>
               <div className="text-2xl font-bold text-purple-600 mb-2">$75-$250</div>
               <div className="text-sm text-gray-600">Per Zone</div>
               <div className="text-xs text-gray-500 mt-2">Scalable 1-6 nodes</div>
