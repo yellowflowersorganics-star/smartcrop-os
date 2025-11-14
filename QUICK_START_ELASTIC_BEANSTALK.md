@@ -42,7 +42,7 @@ cd C:\Users\praghav\smartcrop-os\backend
 eb init
 
 # Follow prompts:
-# - Select region: ap-north-1
+# - Select region: ap-south-1
 # - Application name: smartcrop-backend
 # - Platform: Docker
 # - Do you want to set up SSH: No (or Yes if you want access)

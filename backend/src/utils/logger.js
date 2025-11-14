@@ -11,10 +11,29 @@ const logFormat = winston.format.combine(
   winston.format.json()
 );
 
-const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
-  format: logFormat,
-  transports: [
+// Create base transports array
+const transports = [];
+
+// In production, use console only (CloudWatch captures it)
+// In development, use both console and files
+if (process.env.NODE_ENV === 'production') {
+  transports.push(
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+      )
+    })
+  );
+} else {
+  // Development: console + file logging
+  transports.push(
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+      )
+    }),
     new winston.transports.File({ 
       filename: 'logs/error.log', 
       level: 'error',
@@ -26,18 +45,14 @@ const logger = winston.createLogger({
       maxsize: 5242880,
       maxFiles: 5
     })
-  ]
-});
-
-// Console logging in development
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new winston.transports.Console({
-    format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.simple()
-    )
-  }));
+  );
 }
+
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: logFormat,
+  transports
+});
 
 // Create a stream object for Morgan
 logger.stream = {
