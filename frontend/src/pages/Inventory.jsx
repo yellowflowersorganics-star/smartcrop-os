@@ -4,7 +4,7 @@ import {
   Package, Plus, Search, Filter, AlertTriangle, Edit2, Trash2, 
   TrendingUp, TrendingDown, DollarSign, Box
 } from 'lucide-react';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const CATEGORIES = [

@@ -5,7 +5,7 @@ import {
   Edit, Trash2, Eye, UserCheck, UserX, Clock, X
 } from 'lucide-react';
 import { employeeService, roleService, departmentService } from '../services/api';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
 import { CardsGridSkeleton } from '../components/skeletons';

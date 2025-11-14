@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { qualityStandardService } from '../services/api';
 import { Plus, Edit2, Trash2, Copy, Check, FileText, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const QualityStandards = () => {

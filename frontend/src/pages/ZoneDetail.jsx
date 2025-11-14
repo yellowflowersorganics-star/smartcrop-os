@@ -9,7 +9,7 @@ import {
 import api from '../services/api';
 import HarvestRecording from '../components/HarvestRecording';
 import EnvironmentalMonitoring from '../components/EnvironmentalMonitoring';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 export default function ZoneDetail() {
