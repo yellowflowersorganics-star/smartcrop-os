@@ -107,6 +107,18 @@ export default function Login() {
           Register
         </Link>
       </p>
+
+      <div className="text-center mt-6 pt-6 border-t border-gray-200">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors text-sm font-medium"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1022,7 +1022,7 @@ export default function Landing() {
                   </button>
                 </li>
                 <li>
-                  <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <Link to="/login" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Dashboard
                   </Link>
                 </li>
