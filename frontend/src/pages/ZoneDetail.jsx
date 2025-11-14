@@ -22,6 +22,16 @@ export default function ZoneDetail() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const formatUnits = (units) => {
+    const unitMap = {
+      'sqft': 'sq ft',
+      'sqm': 'sq m',
+      'acre': 'acre',
+      'hectare': 'hectare'
+    };
+    return unitMap[units] || 'sq ft';
+  };
   
   // Modals
   const [showStartBatchModal, setShowStartBatchModal] = useState(false);
@@ -422,7 +432,7 @@ export default function ZoneDetail() {
               </div>
               <h3 className="font-semibold text-gray-900">Area</h3>
             </div>
-            <p className="text-2xl font-bold text-gray-900">{zone.area} m²</p>
+            <p className="text-2xl font-bold text-gray-900">{zone.area} {formatUnits(zone.units)}</p>
           </div>
         )}
 
