@@ -1027,9 +1027,9 @@ export default function Landing() {
                   </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <Link to="/api-docs" className="text-gray-400 hover:text-white transition-colors text-sm">
                     API Documentation
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">

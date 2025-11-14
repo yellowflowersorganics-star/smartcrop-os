@@ -42,6 +42,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
 import GDPR from './pages/GDPR';
+import ApiDocs from './pages/ApiDocs';
 import NotFound from './pages/NotFound';
 
 function ProtectedRoute({ children }) {
@@ -62,6 +63,7 @@ function App() {
       <Route path="/terms" element={<Terms />} />
       <Route path="/cookies" element={<Cookies />} />
       <Route path="/gdpr" element={<GDPR />} />
+      <Route path="/api-docs" element={<ApiDocs />} />
 
       {/* Auth Routes */}
       <Route element={<AuthLayout />}>
