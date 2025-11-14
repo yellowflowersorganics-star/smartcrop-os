@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { sopService } from '../services/api';
 import { ArrowLeft, Plus, X, Save } from 'lucide-react';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 
 const SOPEditor = () => {
   const navigate = useNavigate();

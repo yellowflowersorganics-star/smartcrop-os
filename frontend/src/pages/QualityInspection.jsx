@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api, { qualityControlService, qualityStandardService, farmService, zoneService } from '../services/api';
 import { ArrowLeft, Plus, X, AlertTriangle, CheckCircle, Save } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 
 const QualityInspection = () => {
   const navigate = useNavigate();

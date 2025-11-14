@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Analytics Controller
+ * SmartCrop - Analytics Controller
  * Provides aggregated data and insights for dashboard and reporting
  */
 

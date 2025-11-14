@@ -20,6 +20,7 @@ export default function Zones() {
     farmId: '',
     zoneNumber: '',
     area: '',
+    units: 'sqft',
     plantCount: '',
     status: 'idle',
     metadata: {}
@@ -85,6 +86,7 @@ export default function Zones() {
       farmId: zone.farmId || '',
       zoneNumber: zone.zoneNumber || '',
       area: zone.area || '',
+      units: zone.units || 'sqft',
       plantCount: zone.plantCount || '',
       status: zone.status || 'idle',
       metadata: zone.metadata || {}
@@ -109,6 +111,7 @@ export default function Zones() {
       farmId: '',
       zoneNumber: '',
       area: '',
+      units: 'sqft',
       plantCount: '',
       status: 'idle',
       metadata: {}
@@ -150,6 +153,16 @@ export default function Zones() {
     if (!startDate) return null;
     const days = Math.floor((new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24));
     return days;
+  };
+
+  const formatUnits = (units) => {
+    const unitMap = {
+      'sqft': 'sq ft',
+      'sqm': 'sq m',
+      'acre': 'acre',
+      'hectare': 'hectare'
+    };
+    return unitMap[units] || 'sq ft';
   };
 
   if (loading) {
@@ -302,7 +315,7 @@ export default function Zones() {
                     {zone.area && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Layers className="w-4 h-4" />
-                        <span>{zone.area} m²</span>
+                        <span>{zone.area} {formatUnits(zone.units)}</span>
                       </div>
                     )}
 
@@ -428,7 +441,7 @@ export default function Zones() {
                 {/* Area */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Area (m²)
+                    Area
                   </label>
                   <input
                     type="number"
@@ -438,6 +451,23 @@ export default function Zones() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     placeholder="100"
                   />
+                </div>
+
+                {/* Units */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Units
+                  </label>
+                  <select
+                    value={formData.units}
+                    onChange={(e) => setFormData({ ...formData, units: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  >
+                    <option value="sqft">sq ft</option>
+                    <option value="sqm">sq m</option>
+                    <option value="acre">acre</option>
+                    <option value="hectare">hectare</option>
+                  </select>
                 </div>
 
                 {/* Plant Count */}

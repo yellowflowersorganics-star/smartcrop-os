@@ -1,6 +1,6 @@
-# 🚀 SmartCrop OS - Complete AWS Deployment Guide
+# 🚀 SmartCrop - Complete AWS Deployment Guide
 
-This guide will walk you through deploying SmartCrop OS to AWS from scratch.
+This guide will walk you through deploying SmartCrop to AWS from scratch.
 
 ## 📋 Table of Contents
 
@@ -722,7 +722,7 @@ aws ecs update-service \
 - **AWS Documentation**: https://docs.aws.amazon.com/
 - **AWS Free Tier**: https://aws.amazon.com/free/
 - **Cost Calculator**: https://calculator.aws/
-- **SmartCrop OS Issues**: https://github.com/your-repo/issues
+- **SmartCrop Issues**: https://github.com/your-repo/issues
 
 ---
 
@@ -737,5 +737,5 @@ aws ecs update-service \
 ⬜ Backup strategy  
 ⬜ CI/CD pipeline  
 
-**Congratulations! Your SmartCrop OS is now running on AWS!** 🎉
+**Congratulations! Your SmartCrop is now running on AWS!** 🎉
 

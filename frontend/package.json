@@ -1,7 +1,7 @@
 {
   "name": "smartcrop-frontend",
   "version": "1.0.0",
-  "description": "SmartCrop OS - Web Dashboard",
+  "description": "SmartCrop - Web Dashboard",
   "private": true,
   "scripts": {
     "dev": "vite",

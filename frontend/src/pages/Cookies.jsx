@@ -26,8 +26,8 @@ export default function Cookies() {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              This Cookie Policy explains how SmartCrop OS uses cookies and similar tracking technologies when you visit our website and use our services. 
-              By using SmartCrop OS, you consent to the use of cookies as described in this policy.
+              This Cookie Policy explains how SmartCrop uses cookies and similar tracking technologies when you visit our website and use our services. 
+              By using SmartCrop, you consent to the use of cookies as described in this policy.
             </p>
           </section>
 
@@ -203,7 +203,7 @@ export default function Cookies() {
               </div>
             </div>
 
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">SmartCrop OS Cookie Settings</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">SmartCrop Cookie Settings</h3>
             <p className="text-gray-700 mb-4">
               You can manage non-essential cookies in your account settings:
             </p>
@@ -224,7 +224,7 @@ export default function Cookies() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Do Not Track (DNT)</h2>
             <p className="text-gray-700">
               Some browsers offer a "Do Not Track" (DNT) signal. Currently, there is no industry standard for how to respond to DNT signals. 
-              SmartCrop OS does not change its data collection practices in response to DNT signals at this time. 
+              SmartCrop does not change its data collection practices in response to DNT signals at this time. 
               You can still control cookies through browser settings or our cookie consent tool.
             </p>
           </section>
@@ -233,7 +233,7 @@ export default function Cookies() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Mobile Devices</h2>
             <p className="text-gray-700 mb-4">
-              If you access SmartCrop OS via mobile app or mobile browser, we may use:
+              If you access SmartCrop via mobile app or mobile browser, we may use:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li><strong>Device Identifiers:</strong> Unique device IDs for analytics and push notifications</li>

@@ -1,12 +1,12 @@
-# 🔐 SmartCrop OS - Security Guide
+# 🔐 SmartCrop - Security Guide
 
-Best practices and security measures for SmartCrop OS.
+Best practices and security measures for SmartCrop.
 
 ---
 
 ## 🎯 Security Overview
 
-SmartCrop OS implements multiple layers of security to protect your data and systems:
+SmartCrop implements multiple layers of security to protect your data and systems:
 
 - **Authentication**: JWT tokens + Google OAuth 2.0
 - **Authorization**: Role-based access control (RBAC)

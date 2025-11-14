@@ -4,7 +4,7 @@ import {
   Clock, Play, Square, Coffee, Calendar, DollarSign,
   CheckCircle2, XCircle, Filter, Plus, Edit2, Trash2
 } from 'lucide-react';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const CATEGORIES = [

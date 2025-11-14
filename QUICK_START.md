@@ -1,4 +1,4 @@
-# 🚀 SmartCrop OS - Quick Start Guide
+# 🚀 SmartCrop - Quick Start Guide
 
 **Status**: ✅ Setup Complete | Dependencies Installed | Ready to Run
 
@@ -206,7 +206,7 @@ curl http://localhost:3000/api
 
 # Should return:
 # {
-#   "name": "SmartCrop OS API",
+#   "name": "SmartCrop API",
 #   "version": "1.0.0",
 #   "status": "operational"
 # }
@@ -391,5 +391,5 @@ docker-compose up -d
 
 ---
 
-**🌱 You're ready to grow with SmartCrop OS!**
+**🌱 You're ready to grow with SmartCrop!**
 

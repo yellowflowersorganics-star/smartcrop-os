@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Telemetry Model
+ * SmartCrop - Telemetry Model
  * Stores environmental sensor data readings
  */
 

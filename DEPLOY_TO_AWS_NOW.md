@@ -1,4 +1,4 @@
-# 🚀 Deploy SmartCrop OS to AWS - Quick Start
+# 🚀 Deploy SmartCrop to AWS - Quick Start
 
 **Estimated Time:** 45-60 minutes  
 **Estimated Cost:** $50-150/month
@@ -527,7 +527,7 @@ aws cloudfront create-invalidation `
 ## 🆘 Need Help?
 
 - **AWS Support**: https://console.aws.amazon.com/support/
-- **SmartCrop OS Documentation**: `docs/AWS_DEPLOYMENT_GUIDE.md`
+- **SmartCrop Documentation**: `docs/AWS_DEPLOYMENT_GUIDE.md`
 - **AWS Free Tier**: https://aws.amazon.com/free/
 - **Elastic Beanstalk Docs**: https://docs.aws.amazon.com/elasticbeanstalk/
 
@@ -535,7 +535,7 @@ aws cloudfront create-invalidation `
 
 ## ✅ Deployment Complete!
 
-Your SmartCrop OS platform is now live on AWS! 🎉
+Your SmartCrop platform is now live on AWS! 🎉
 
 **Your URLs:**
 - **Backend API**: `http://YOUR_BACKEND_URL.elasticbeanstalk.com`

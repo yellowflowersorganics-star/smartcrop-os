@@ -4,7 +4,7 @@ import {
   DollarSign, Plus, Filter, Calendar, TrendingUp,
   Edit2, Trash2, Receipt, Tag, Package
 } from 'lucide-react';
-import { useToast } from '../components/ToastContainer';
+import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const COST_CATEGORIES = [

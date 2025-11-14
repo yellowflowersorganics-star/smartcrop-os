@@ -29,13 +29,13 @@ export default function GDPR() {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed mb-4">
-              SmartCrop OS is committed to protecting the privacy and personal data of all our users, especially those in the European Union (EU) and European Economic Area (EEA). 
+              SmartCrop is committed to protecting the privacy and personal data of all our users, especially those in the European Union (EU) and European Economic Area (EEA). 
               This page outlines how we comply with the <strong>General Data Protection Regulation (GDPR)</strong>.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
               <p className="text-blue-900 font-semibold">✅ GDPR Compliant</p>
               <p className="text-blue-800 text-sm mt-1">
-                SmartCrop OS adheres to all GDPR requirements for data processing, storage, and user rights.
+                SmartCrop adheres to all GDPR requirements for data processing, storage, and user rights.
               </p>
             </div>
           </section>
@@ -69,7 +69,7 @@ export default function GDPR() {
               <div className="bg-gray-50 rounded-lg p-4">
                 <h3 className="font-semibold text-gray-900 mb-2">1. Contract Performance (Article 6(1)(b))</h3>
                 <p className="text-sm text-gray-700">
-                  Processing necessary to provide SmartCrop OS services you've subscribed to (sensor data collection, analytics, notifications).
+                  Processing necessary to provide SmartCrop services you've subscribed to (sensor data collection, analytics, notifications).
                 </p>
               </div>
               <div className="bg-gray-50 rounded-lg p-4">
@@ -209,7 +209,7 @@ export default function GDPR() {
                 <h3 className="text-lg font-semibold text-gray-900">Right to Contest Automated Decisions (Article 22)</h3>
               </div>
               <p className="text-gray-700 text-sm">
-                SmartCrop OS does not make solely automated decisions with legal or significant effects. 
+                SmartCrop does not make solely automated decisions with legal or significant effects. 
                 All critical decisions (stage approvals, equipment control) require manual confirmation.
               </p>
             </div>
@@ -251,7 +251,7 @@ export default function GDPR() {
                 <div>
                   <p className="font-semibold text-gray-900">Send Written Request</p>
                   <p className="text-sm text-gray-600">
-                    SmartCrop OS, GDPR Compliance Officer, 123 Agriculture Way, Tech Valley, CA 94000, USA
+                    SmartCrop, GDPR Compliance Officer, 123 Agriculture Way, Tech Valley, CA 94000, USA
                   </p>
                 </div>
               </div>
@@ -265,7 +265,7 @@ export default function GDPR() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">International Data Transfers</h2>
             <p className="text-gray-700 mb-4">
-              SmartCrop OS stores data on servers located in the United States (AWS US-East region). 
+              SmartCrop stores data on servers located in the United States (AWS US-East region). 
               To ensure GDPR compliance for EU/EEA data transfers, we use:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
@@ -286,7 +286,7 @@ export default function GDPR() {
               <div className="space-y-2 text-gray-700">
                 <p><strong>Name:</strong> Jane Smith, CIPP/E</p>
                 <p><strong>Email:</strong> <a href="mailto:dpo@smartcrop.io" className="text-blue-600 hover:text-blue-700 underline">dpo@smartcrop.io</a></p>
-                <p><strong>Address:</strong> SmartCrop OS, DPO Office, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
+                <p><strong>Address:</strong> SmartCrop, DPO Office, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
               </div>
             </div>
           </section>

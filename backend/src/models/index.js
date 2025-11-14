@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Models Index
+ * SmartCrop - Models Index
  * Initializes all database models and associations
  */
 

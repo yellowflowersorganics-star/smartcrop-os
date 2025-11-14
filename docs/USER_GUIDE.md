@@ -1,9 +1,9 @@
-# 👤 SmartCrop OS - User Guide
+# 👤 SmartCrop - User Guide
 
 **Version:** 1.0.0  
 **Last Updated:** November 2025
 
-Welcome to SmartCrop OS! This guide will help you get started with managing your smart farm.
+Welcome to SmartCrop! This guide will help you get started with managing your smart farm.
 
 ---
 
@@ -660,7 +660,7 @@ Connect and manage your ESP32 sensors and controllers.
 1. **Purchase** ESP32 boards and sensors
 2. **Flash** firmware (provided)
 3. **Configure** WiFi credentials
-4. **Register** device in SmartCrop OS
+4. **Register** device in SmartCrop
 5. **Assign** to zone
 6. **Start** monitoring
 
@@ -795,7 +795,7 @@ Stay informed with multi-channel alerts.
 
 ## 📱 Mobile App
 
-SmartCrop OS works great on mobile browsers and has a dedicated app (coming soon).
+SmartCrop works great on mobile browsers and has a dedicated app (coming soon).
 
 ### Mobile Web App
 
@@ -840,7 +840,7 @@ SmartCrop OS works great on mobile browsers and has a dedicated app (coming soon
 
 ### General Questions
 
-**Q: Is SmartCrop OS free?**
+**Q: Is SmartCrop free?**
 A: We offer a free tier (up to 2 farms, 10 zones, 5 devices). Paid plans start at $49/month.
 
 **Q: Can I use it without IoT devices?**
@@ -904,7 +904,7 @@ A: Contact support@smartcrop.io. Export your data first.
 ### Community
 
 - **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Facebook Group**: SmartCrop OS Users
+- **Facebook Group**: SmartCrop Users
 - **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop)
 - **YouTube**: Tutorials and tips
 

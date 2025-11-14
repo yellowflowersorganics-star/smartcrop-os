@@ -1,7 +1,7 @@
-# SmartCrop OS - Google OAuth Configuration Script
+# SmartCrop - Google OAuth Configuration Script
 # This script helps you add Google OAuth credentials to your .env file
 
-Write-Host "`n🔐 SmartCrop OS - Google OAuth Setup" -ForegroundColor Green
+Write-Host "`n🔐 SmartCrop - Google OAuth Setup" -ForegroundColor Green
 Write-Host "====================================`n" -ForegroundColor Green
 
 # Get current directory
