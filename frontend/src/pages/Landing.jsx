@@ -220,7 +220,7 @@ export default function Landing() {
               <span className="text-xs bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full font-semibold">NEW</span>
             </div>
             <p className="text-gray-600 text-sm">
-              Master-Slave ESP32 architecture - 1 MQTT connection, 5 ESP-NOW slaves, <10ms latency
+              Master-Slave ESP32 architecture - 1 MQTT connection, 5 ESP-NOW slaves, &lt;10ms latency
             </p>
           </div>
 
