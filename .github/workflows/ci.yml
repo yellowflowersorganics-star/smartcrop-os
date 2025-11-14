@@ -168,7 +168,7 @@ jobs:
           docker save smartcrop-backend:${{ github.sha }} > backend-image.tar
 
       - name: Upload Docker Image Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: backend-image
           path: backend-image.tar
@@ -202,7 +202,7 @@ jobs:
         run: npm run build
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: frontend-dist
           path: frontend/dist
