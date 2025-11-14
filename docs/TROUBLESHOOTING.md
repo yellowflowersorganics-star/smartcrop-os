@@ -602,7 +602,7 @@ Gather this information:
 ### Contact Support
 
 - **Email**: support@smartcrop.io
-- **GitHub Issues**: https://github.com/your-org/smartcrop-os/issues
+- **GitHub Issues**: https://github.com/yellowflowersorganics-star/smartcrop-os/issues
 - **Community Forum**: https://community.smartcrop.io
 - **Emergency**: +1-555-SMARTCROP
 

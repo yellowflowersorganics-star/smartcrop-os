@@ -273,7 +273,7 @@ Can't find what you're looking for?
 Documentation is continuously improved.
 
 **Stay informed**:
-- ⭐ Star the [GitHub repository](https://github.com/your-org/smartcrop-os)
+- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/smartcrop-os)
 - 👁️ Watch for releases
 - 📧 Subscribe to newsletter
 - 💬 Join [Discord](https://discord.gg/smartcrop)
@@ -331,7 +331,7 @@ Before deploying SmartCrop OS, ensure you've read:
 **External Resources**:
 - [Official Website](https://smartcrop.io)
 - [Community Forum](https://community.smartcrop.io)
-- [GitHub Repository](https://github.com/your-org/smartcrop-os)
+- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop-os)
 - [API Documentation](http://localhost:8080/api-docs)
 - [Blog](https://blog.smartcrop.io)
 - [YouTube Channel](https://youtube.com/@smartcropos)

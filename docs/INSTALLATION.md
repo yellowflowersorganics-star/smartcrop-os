@@ -22,7 +22,7 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-org/smartcrop-os.git
+git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
 cd smartcrop-os
 
 # 2. Start all services
@@ -43,7 +43,7 @@ docker-compose up -d
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/your-org/smartcrop-os.git
+git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
 cd smartcrop-os
 ```
 
@@ -346,7 +346,7 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 
 ```bash
 # Clone repository
-git clone https://github.com/your-org/smartcrop-os.git
+git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
 cd smartcrop-os
 
 # Create environment files
@@ -586,7 +586,7 @@ After installation:
 - **Documentation**: [docs.smartcrop.io](https://docs.smartcrop.io)
 - **Support**: support@smartcrop.io
 - **Community**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Issues**: [GitHub Issues](https://github.com/your-org/smartcrop-os/issues)
+- **Issues**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
 
 ---
 

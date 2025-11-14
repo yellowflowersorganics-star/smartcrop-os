@@ -969,7 +969,7 @@ void onESPNowRecv(const uint8_t *mac, const uint8_t *data, int len) {
 ## 📞 Support
 
 For questions or issues:
-- GitHub Issues: [SmartCrop OS](https://github.com/your-org/smartcrop-os)
+- GitHub Issues: [SmartCrop OS](https://github.com/yellowflowersorganics-star/smartcrop-os)
 - Documentation: `/docs`
 - Email: support@smartcrop.io
 

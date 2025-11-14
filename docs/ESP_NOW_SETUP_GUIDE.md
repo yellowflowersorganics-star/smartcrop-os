@@ -349,7 +349,7 @@ Go to **Tools → Manage Libraries** and install:
 Clone or download the SmartCrop OS repository:
 
 ```bash
-git clone https://github.com/your-org/smartcrop-os.git
+git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
 cd smartcrop-os/esp32-firmware
 ```
 
@@ -1199,7 +1199,7 @@ If you've completed this guide, you now have a fully functional **Hierarchical M
 ---
 
 **Need Help?**
-- GitHub Issues: [SmartCrop OS](https://github.com/your-org/smartcrop-os/issues)
+- GitHub Issues: [SmartCrop OS](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
 - Email: support@smartcrop.io
 - Discord: [SmartCrop Community](https://discord.gg/smartcrop)
 
