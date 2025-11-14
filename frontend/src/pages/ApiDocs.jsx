@@ -342,7 +342,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 type: "greenhouse",
                 area: 1000,
                 unit: "sq_ft",
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -385,7 +385,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 id: 1,
                 name: "North Farm - Upgraded",
                 area: 600,
-                updated_at: "2024-11-14T11:00:00Z"
+                updated_at: "2025-11-14T11:00:00Z"
               }
             }}
           />
@@ -419,7 +419,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                   unit: "sq_ft",
                   current_batch: {
                     id: 15,
-                    batch_number: "B-2024-015",
+                    batch_number: "B-2025-015",
                     recipe_name: "Oyster Mushroom - Standard"
                   }
                 }
@@ -445,7 +445,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 name: "Zone C - Fruiting",
                 farm_id: 1,
                 status: "idle",
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -462,7 +462,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               data: {
                 id: 1,
                 status: "maintenance",
-                updated_at: "2024-11-14T11:00:00Z"
+                updated_at: "2025-11-14T11:00:00Z"
               }
             }}
           />
@@ -544,7 +544,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 id: 5,
                 name: "Shiitake - Premium",
                 total_duration: 25,
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -561,12 +561,12 @@ const data = await fetch('${baseUrl}/api/farms', {
               data: [
                 {
                   id: 15,
-                  batch_number: "B-2024-015",
+                  batch_number: "B-2025-015",
                   zone_id: 1,
                   recipe_id: 1,
                   status: "in_progress",
-                  start_date: "2024-11-01T08:00:00Z",
-                  expected_harvest_date: "2024-11-29T08:00:00Z",
+                  start_date: "2025-11-01T08:00:00Z",
+                  expected_harvest_date: "2025-11-29T08:00:00Z",
                   progress_percent: 45
                 }
               ]
@@ -589,10 +589,10 @@ const data = await fetch('${baseUrl}/api/farms', {
               success: true,
               data: {
                 id: 16,
-                batch_number: "B-2024-016",
+                batch_number: "B-2025-016",
                 status: "in_progress",
-                start_date: "2024-11-14T10:30:00Z",
-                expected_harvest_date: "2024-12-12T10:30:00Z"
+                start_date: "2025-11-14T10:30:00Z",
+                expected_harvest_date: "2025-12-12T10:30:00Z"
               }
             }}
           />
@@ -606,7 +606,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               data: {
                 id: 15,
                 status: "completed",
-                end_date: "2024-11-14T12:00:00Z",
+                end_date: "2025-11-14T12:00:00Z",
                 total_yield_kg: 125.5,
                 bio_efficiency: 251
               }
@@ -635,7 +635,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 flush_number: 1,
                 yield_kg: 45.5,
                 grade: "A",
-                harvested_at: "2024-11-14T10:30:00Z"
+                harvested_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -650,11 +650,11 @@ const data = await fetch('${baseUrl}/api/farms', {
                 {
                   id: 78,
                   batch_id: 15,
-                  batch_number: "B-2024-015",
+                  batch_number: "B-2025-015",
                   flush_number: 1,
                   yield_kg: 45.5,
                   grade: "A",
-                  harvested_at: "2024-11-14T10:30:00Z"
+                  harvested_at: "2025-11-14T10:30:00Z"
                 }
               ]
             }}
@@ -680,7 +680,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               data: {
                 id: 12345,
                 zone_id: 1,
-                timestamp: "2024-11-14T10:30:00Z"
+                timestamp: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -693,14 +693,14 @@ const data = await fetch('${baseUrl}/api/farms', {
               success: true,
               data: [
                 {
-                  timestamp: "2024-11-14T10:30:00Z",
+                  timestamp: "2025-11-14T10:30:00Z",
                   temperature: 22.5,
                   humidity: 87.3,
                   co2: 1200,
                   light_level: 500
                 },
                 {
-                  timestamp: "2024-11-14T10:25:00Z",
+                  timestamp: "2025-11-14T10:25:00Z",
                   temperature: 22.4,
                   humidity: 87.1,
                   co2: 1180,
@@ -742,7 +742,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               type: "remove",
               quantity: 50,
               unit_cost: 2.5,
-              notes: "Used for batch B-2024-016",
+              notes: "Used for batch B-2025-016",
               reference_type: "batch",
               reference_id: 16
             }}
@@ -754,7 +754,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 type: "remove",
                 quantity: 50,
                 new_stock_level: 450,
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -775,7 +775,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                   description: "Ensure humidity stays above 85%",
                   priority: "high",
                   status: "pending",
-                  due_date: "2024-11-14T18:00:00Z",
+                  due_date: "2025-11-14T18:00:00Z",
                   assigned_to: {
                     id: 5,
                     name: "John Doe"
@@ -797,7 +797,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               title: "Water substrate bags",
               description: "Mist bags in Zone B twice daily",
               priority: "medium",
-              due_date: "2024-11-15T08:00:00Z",
+              due_date: "2025-11-15T08:00:00Z",
               assigned_to: 5,
               zone_id: 2,
               recurrence: "daily"
@@ -808,7 +808,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 id: 46,
                 title: "Water substrate bags",
                 status: "pending",
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -826,7 +826,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               data: {
                 id: 45,
                 status: "completed",
-                completed_at: "2024-11-14T11:00:00Z"
+                completed_at: "2025-11-14T11:00:00Z"
               }
             }}
           />
@@ -849,7 +849,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                   phone: "+1-555-0123",
                   department: "Operations",
                   role: "Farm Technician",
-                  hire_date: "2024-01-15",
+                  hire_date: "2025-01-15",
                   status: "active"
                 }
               ]
@@ -867,7 +867,7 @@ const data = await fetch('${baseUrl}/api/farms', {
               phone: "+1-555-0124",
               department_id: 2,
               role_id: 3,
-              hire_date: "2024-11-14",
+              hire_date: "2025-11-14",
               hourly_rate: 18.50
             }}
             response={{
@@ -877,7 +877,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 first_name: "Jane",
                 last_name: "Smith",
                 status: "active",
-                created_at: "2024-11-14T10:30:00Z"
+                created_at: "2025-11-14T10:30:00Z"
               }
             }}
           />
@@ -911,9 +911,9 @@ const data = await fetch('${baseUrl}/api/farms', {
             response={{
               success: true,
               data: [
-                { month: "2024-08", total_yield_kg: 289.5, avg_quality: 85 },
-                { month: "2024-09", total_yield_kg: 312.8, avg_quality: 88 },
-                { month: "2024-10", total_yield_kg: 345.2, avg_quality: 87 }
+                { month: "2025-08", total_yield_kg: 289.5, avg_quality: 85 },
+                { month: "2025-09", total_yield_kg: 312.8, avg_quality: 88 },
+                { month: "2025-10", total_yield_kg: 345.2, avg_quality: 87 }
               ]
             }}
           />
@@ -932,7 +932,7 @@ const data = await fetch('${baseUrl}/api/farms', {
                 roi_percent: 58.9,
                 top_batches: [
                   {
-                    batch_number: "B-2024-015",
+                    batch_number: "B-2025-015",
                     revenue: 2456.00,
                     costs: 856.50,
                     profit: 1599.50

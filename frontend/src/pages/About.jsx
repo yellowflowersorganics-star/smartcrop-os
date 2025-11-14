@@ -65,7 +65,7 @@ export default function About() {
     { year: '2021', event: 'First 100 farms onboarded, raised seed funding', icon: TrendingUp },
     { year: '2022', event: 'Expanded to 15 countries, launched mobile app', icon: Globe },
     { year: '2023', event: 'Reached 1,000+ active farms, Series A funding', icon: Award },
-    { year: '2024', event: 'AI-powered insights launched, 50+ team members', icon: Cpu }
+    { year: '2025', event: 'AI-powered insights launched, 50+ team members', icon: Cpu }
   ];
 
   return (

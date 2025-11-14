@@ -172,7 +172,7 @@
 - **Total pages**: 350+ (estimated)
 - **Code examples**: 100+
 - **Diagrams**: 15+
-- **Last updated**: November 2024
+- **Last updated**: November 2025
 
 ---
 
@@ -348,7 +348,7 @@ Before deploying SmartCrop OS, ensure you've read:
 **📚 Happy Reading! 🌱**
 
 *Documentation Version: 1.0.0*  
-*Last Updated: November 2024*
+*Last Updated: November 2025*
 
 [⬆️ Back to Top](#-smartcrop-os-documentation)
 

@@ -1,7 +1,7 @@
 # 👤 SmartCrop OS - User Guide
 
 **Version:** 1.0.0  
-**Last Updated:** November 2024
+**Last Updated:** November 2025
 
 Welcome to SmartCrop OS! This guide will help you get started with managing your smart farm.
 

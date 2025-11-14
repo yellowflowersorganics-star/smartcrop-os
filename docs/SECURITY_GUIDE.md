@@ -560,5 +560,5 @@ Instead:
 
 **Stay Secure! 🔐**
 
-*Last updated: November 2024*
+*Last updated: November 2025*
 

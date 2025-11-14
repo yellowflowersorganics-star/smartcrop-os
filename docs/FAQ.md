@@ -565,6 +565,6 @@ Can't find your answer? We're here to help!
 
 ---
 
-**Updated**: November 2024  
+**Updated**: November 2025  
 **Version**: 1.0.0
 
