@@ -1,6 +1,6 @@
-# 🤝 Contributing to SmartCrop OS
+# 🤝 Contributing to SmartCrop
 
-Thank you for your interest in contributing to SmartCrop OS! This document provides guidelines and best practices for contributing to the project.
+Thank you for your interest in contributing to SmartCrop! This document provides guidelines and best practices for contributing to the project.
 
 ## 📋 Table of Contents
 
@@ -499,7 +499,7 @@ Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md):
 
 ## 🎓 Learning Resources
 
-### SmartCrop OS Documentation
+### SmartCrop Documentation
 
 - [Getting Started](docs/GETTING_STARTED.md)
 - [Git Workflow](docs/GIT_WORKFLOW.md)
@@ -538,7 +538,7 @@ All contributors are recognized in:
 
 ## ⚖️ License
 
-By contributing to SmartCrop OS, you agree that your contributions will be licensed under the [MIT License](LICENSE).
+By contributing to SmartCrop, you agree that your contributions will be licensed under the [MIT License](LICENSE).
 
 ---
 
@@ -552,7 +552,7 @@ By contributing to SmartCrop OS, you agree that your contributions will be licen
 
 ## 🎉 Thank You!
 
-Thank you for contributing to SmartCrop OS! Your contributions help make farming smarter and more sustainable. 🌱🚀
+Thank you for contributing to SmartCrop! Your contributions help make farming smarter and more sustainable. 🌱🚀
 
 **Happy Coding!** 💚
 

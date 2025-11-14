@@ -1,4 +1,4 @@
-# 🧪 SmartCrop OS - Complete Testing Guide
+# 🧪 SmartCrop - Complete Testing Guide
 ## From Scratch to First Harvest
 
 **Let's test everything step by step!**
@@ -88,7 +88,7 @@ npm run dev
 
 **Expected output**:
 ```
-🌱 SmartCrop OS Backend running on port 3000
+🌱 SmartCrop Backend running on port 3000
 📊 Environment: development
 🔗 API: http://localhost:3000/api
 📖 Health: http://localhost:3000/health
@@ -143,7 +143,7 @@ curl http://localhost:3000/api
 **Expected response**:
 ```json
 {
-  "name": "SmartCrop OS API",
+  "name": "SmartCrop API",
   "version": "1.0.0",
   "status": "operational",
   "documentation": "/api/docs"
@@ -532,7 +532,7 @@ npm run dev
 http://localhost:5173
 ```
 
-**You should see**: SmartCrop OS dashboard
+**You should see**: SmartCrop dashboard
 
 ---
 
@@ -678,9 +678,9 @@ Save this as `test-api.sh` (Linux/Mac) or `test-api.bat` (Windows):
 ```bash
 #!/bin/bash
 
-# Test SmartCrop OS API
+# Test SmartCrop API
 
-echo "🧪 Testing SmartCrop OS API..."
+echo "🧪 Testing SmartCrop API..."
 
 # Health check
 echo "\n1. Testing health endpoint..."

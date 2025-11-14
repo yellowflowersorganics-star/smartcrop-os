@@ -1,7 +1,7 @@
 {
   "name": "smartcrop-backend",
   "version": "1.0.0",
-  "description": "SmartCrop OS - Backend API and Services",
+  "description": "SmartCrop - Backend API and Services",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

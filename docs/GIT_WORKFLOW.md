@@ -1,4 +1,4 @@
-# 🔀 SmartCrop OS - Git Workflow & Branching Strategy
+# 🔀 SmartCrop - Git Workflow & Branching Strategy
 
 ## 📋 Table of Contents
 

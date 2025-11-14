@@ -1,4 +1,4 @@
-# 🚀 SmartCrop OS - Installation Guide
+# 🚀 SmartCrop - Installation Guide
 
 Complete installation instructions for all platforms.
 

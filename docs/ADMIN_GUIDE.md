@@ -1,9 +1,9 @@
-# 🔧 SmartCrop OS - Administrator Guide
+# 🔧 SmartCrop - Administrator Guide
 
 **Version:** 1.0.0  
 **Last Updated:** November 2025
 
-This guide is for system administrators responsible for deploying, configuring, and maintaining SmartCrop OS.
+This guide is for system administrators responsible for deploying, configuring, and maintaining SmartCrop.
 
 ---
 

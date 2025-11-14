@@ -1,4 +1,4 @@
-# 🔧 SmartCrop OS - Troubleshooting Guide
+# 🔧 SmartCrop - Troubleshooting Guide
 
 Quick solutions to common issues.
 

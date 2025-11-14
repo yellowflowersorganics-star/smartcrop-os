@@ -1,6 +1,6 @@
-# SmartCrop OS - Frontend Dashboard
+# SmartCrop - Frontend Dashboard
 
-Modern web dashboard for SmartCrop OS built with React, Vite, and Tailwind CSS.
+Modern web dashboard for SmartCrop built with React, Vite, and Tailwind CSS.
 
 ## 🚀 Features
 

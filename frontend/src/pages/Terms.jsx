@@ -26,11 +26,11 @@ export default function Terms() {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              Welcome to SmartCrop OS! These Terms of Service ("Terms") govern your access to and use of our IoT agriculture platform, 
+              Welcome to SmartCrop! These Terms of Service ("Terms") govern your access to and use of our IoT agriculture platform, 
               including our website, mobile applications, hardware integrations, and all related services (collectively, the "Service").
             </p>
             <p className="text-gray-700 leading-relaxed mt-4">
-              By accessing or using SmartCrop OS, you agree to be bound by these Terms. If you do not agree, do not use the Service.
+              By accessing or using SmartCrop, you agree to be bound by these Terms. If you do not agree, do not use the Service.
             </p>
           </section>
 
@@ -41,7 +41,7 @@ export default function Terms() {
               <h2 className="text-2xl font-bold text-gray-900">1. Account Registration</h2>
             </div>
             <p className="text-gray-700 mb-4">
-              To use SmartCrop OS, you must:
+              To use SmartCrop, you must:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>Be at least 18 years old or the age of majority in your jurisdiction</li>
@@ -63,7 +63,7 @@ export default function Terms() {
               <h2 className="text-2xl font-bold text-gray-900">2. Acceptable Use</h2>
             </div>
             <p className="text-gray-700 mb-4">
-              You agree to use SmartCrop OS only for lawful purposes. You may <strong>NOT</strong>:
+              You agree to use SmartCrop only for lawful purposes. You may <strong>NOT</strong>:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>Violate any applicable laws or regulations</li>
@@ -84,7 +84,7 @@ export default function Terms() {
             
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Hardware Compatibility</h3>
             <p className="text-gray-700 mb-4">
-              SmartCrop OS supports ESP32-based IoT devices. We provide firmware and documentation for self-installation. 
+              SmartCrop supports ESP32-based IoT devices. We provide firmware and documentation for self-installation. 
               You are responsible for:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700 mb-4">
@@ -112,7 +112,7 @@ export default function Terms() {
             
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing Tiers</h3>
             <p className="text-gray-700 mb-4">
-              SmartCrop OS offers multiple subscription plans (Free, Professional, Enterprise). 
+              SmartCrop offers multiple subscription plans (Free, Professional, Enterprise). 
               Pricing is available on our website and subject to change with 30 days' notice.
             </p>
 
@@ -147,7 +147,7 @@ export default function Terms() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Intellectual Property</h2>
             <p className="text-gray-700 mb-4">
-              SmartCrop OS and all related software, firmware, documentation, trademarks, and logos are owned by us or our licensors. 
+              SmartCrop and all related software, firmware, documentation, trademarks, and logos are owned by us or our licensors. 
               We grant you a limited, non-exclusive, non-transferable license to use the Service for your personal or commercial agriculture operations.
             </p>
             <p className="text-gray-700">
@@ -171,7 +171,7 @@ export default function Terms() {
               <li>Security against unauthorized access or data breaches</li>
             </ul>
             <p className="text-gray-700 mt-4">
-              <strong>IMPORTANT:</strong> SmartCrop OS provides monitoring and automation tools, but <strong>you remain solely responsible</strong> 
+              <strong>IMPORTANT:</strong> SmartCrop provides monitoring and automation tools, but <strong>you remain solely responsible</strong> 
               for the safety, quality, and compliance of your agricultural operations. We are not liable for crop losses, equipment failures, 
               or regulatory violations.
             </p>
@@ -203,7 +203,7 @@ export default function Terms() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Indemnification</h2>
             <p className="text-gray-700">
-              You agree to indemnify, defend, and hold harmless SmartCrop OS, its affiliates, officers, directors, and employees from any claims, 
+              You agree to indemnify, defend, and hold harmless SmartCrop, its affiliates, officers, directors, and employees from any claims, 
               liabilities, damages, losses, and expenses (including attorney's fees) arising from:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700 mt-4">
@@ -269,7 +269,7 @@ export default function Terms() {
             <div className="space-y-2 text-gray-700">
               <p><strong>Email:</strong> <a href="mailto:legal@smartcrop.io" className="text-green-600 hover:text-green-700 underline">legal@smartcrop.io</a></p>
               <p><strong>Support:</strong> <a href="mailto:support@smartcrop.io" className="text-green-600 hover:text-green-700 underline">support@smartcrop.io</a></p>
-              <p><strong>Mail:</strong> SmartCrop OS, Legal Department, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
+              <p><strong>Mail:</strong> SmartCrop, Legal Department, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
             </div>
           </section>
 

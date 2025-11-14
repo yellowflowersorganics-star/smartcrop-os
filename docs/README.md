@@ -1,13 +1,13 @@
-# 📚 SmartCrop OS Documentation
+# 📚 SmartCrop Documentation
 
-**Complete documentation for SmartCrop OS - Your Enterprise IoT Farm Management Platform**
+**Complete documentation for SmartCrop - Your Enterprise IoT Farm Management Platform**
 
 ---
 
 ## 🎯 Quick Navigation
 
 ### **New User?** Start here:
-1. [🚀 Installation Guide](INSTALLATION.md) - Get SmartCrop OS running
+1. [🚀 Installation Guide](INSTALLATION.md) - Get SmartCrop running
 2. [👤 User Guide](USER_GUIDE.md) - Learn how to use the platform
 3. [❓ FAQ](FAQ.md) - Common questions answered
 
@@ -305,7 +305,7 @@ Documentation is continuously improved.
 
 ## 📋 Documentation Checklist
 
-Before deploying SmartCrop OS, ensure you've read:
+Before deploying SmartCrop, ensure you've read:
 
 **Essential**:
 - [ ] Installation Guide
