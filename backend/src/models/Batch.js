@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Batch Model
+ * CropWise - Batch Model
  * Tracks individual growing cycles in zones
  * Each batch represents one complete growth cycle from start to harvest
  */

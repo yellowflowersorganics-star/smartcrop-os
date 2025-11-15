@@ -1,4 +1,4 @@
-# 🏗️ SmartCrop OS - Hierarchical IoT Architecture v2.0
+# 🏗️ CropWise - Hierarchical IoT Architecture v2.0
 
 ## 📋 Table of Contents
 1. [Architecture Overview](#architecture-overview)
@@ -16,13 +16,13 @@
 
 ## 🎯 Architecture Overview
 
-**SmartCrop OS v2.0** implements a **Hierarchical Master-Slave Architecture** using **ESP32 microcontrollers** for zone-level control and monitoring.
+**CropWise v2.0** implements a **Hierarchical Master-Slave Architecture** using **ESP32 microcontrollers** for zone-level control and monitoring.
 
 ### Key Innovation: **SINGLE MQTT CONNECTION PER ZONE**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                 SMARTCROP OS BACKEND                         │
+│                 CROPWISE OS BACKEND                         │
 │           (Recipe Execution + Equipment Control)             │
 │                      AWS Cloud / Local                       │
 └──────────────────────┬──────────────────────────────────────┘
@@ -294,11 +294,11 @@
 **Topics:**
 
 ```
-smartcrop/{farmId}/{zoneId}/master/command/#      (Backend → Master)
-smartcrop/{farmId}/{zoneId}/master/status/full    (Master → Backend)
-smartcrop/{farmId}/{zoneId}/master/status/online  (Master → Backend)
-smartcrop/{farmId}/{zoneId}/master/ack            (Master → Backend)
-smartcrop/{farmId}/{zoneId}/master/events/#       (Master → Backend)
+cropwise/{farmId}/{zoneId}/master/command/#      (Backend → Master)
+cropwise/{farmId}/{zoneId}/master/status/full    (Master → Backend)
+cropwise/{farmId}/{zoneId}/master/status/online  (Master → Backend)
+cropwise/{farmId}/{zoneId}/master/ack            (Master → Backend)
+cropwise/{farmId}/{zoneId}/master/events/#       (Master → Backend)
 ```
 
 **Message Frequency:**
@@ -346,7 +346,7 @@ Backend → Raspberry Pi → Master → Slaves
 
 #### Step 1: Backend publishes MQTT command
 
-**Topic:** `smartcrop/farm1/zone-a/master/command/recipe/start`
+**Topic:** `cropwise/farm1/zone-a/master/command/recipe/start`
 
 **Payload:**
 ```json
@@ -560,7 +560,7 @@ void onESPNowRecv(const uint8_t *mac, const uint8_t *data, int len) {
 
 #### Step 3: Master publishes to Backend (MQTT, every 30 seconds)
 
-**Topic:** `smartcrop/farm1/zone-a/master/status/full`
+**Topic:** `cropwise/farm1/zone-a/master/status/full`
 
 **Payload:**
 ```json
@@ -658,7 +658,7 @@ async function handleMasterStatus(topic, payload) {
 
 #### Step 1: Backend publishes MQTT command
 
-**Topic:** `smartcrop/farm1/zone-a/master/command/recipe/transition`
+**Topic:** `cropwise/farm1/zone-a/master/command/recipe/transition`
 
 **Payload:**
 ```json
@@ -855,7 +855,7 @@ void onESPNowRecv(const uint8_t *mac, const uint8_t *data, int len) {
 | Approach | Equipment Cost | Cabling Cost | Total |
 |----------|----------------|--------------|-------|
 | **Traditional (long cables)** | $50 | $150 (50ft sensor cables x 3) | **$200** |
-| **SmartCrop v2.0 (ESP-NOW)** | $165 (4 ESP32s) | $20 (short cables) | **$185** |
+| **CropWise v2.0 (ESP-NOW)** | $165 (4 ESP32s) | $20 (short cables) | **$185** |
 
 **Savings:** $15 + **MUCH** more flexibility! 🎯
 
@@ -969,11 +969,11 @@ void onESPNowRecv(const uint8_t *mac, const uint8_t *data, int len) {
 ## 📞 Support
 
 For questions or issues:
-- GitHub Issues: [SmartCrop OS](https://github.com/yellowflowersorganics-star/smartcrop-os)
+- GitHub Issues: [CropWise](https://github.com/yellowflowersorganics-star/cropwise)
 - Documentation: `/docs`
-- Email: support@smartcrop.io
+- Email: support@cropwise.io
 
 ---
 
-**SmartCrop OS v2.0** - *From 1 ESP32 to 6, without changing a line of backend code.* 🌱✨
+**CropWise v2.0** - *From 1 ESP32 to 6, without changing a line of backend code.* 🌱✨
 

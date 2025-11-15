@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Global Error Handler
+ * CropWise - Global Error Handler
  */
 
 const logger = require('../utils/logger');

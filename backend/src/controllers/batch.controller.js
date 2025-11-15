@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Batch Controller
+ * CropWise - Batch Controller
  * Manages growth cycle batches in zones
  */
 

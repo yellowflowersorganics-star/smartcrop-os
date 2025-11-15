@@ -2,7 +2,7 @@
 
 **Smart Farming Platform for Modern Agriculture**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/smartcrop)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/cropwise)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15%2B-blue.svg)](https://www.postgresql.org/)
@@ -38,8 +38,8 @@ CropWise is a comprehensive, cloud-native platform for vertical farms and modern
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
-cd smartcrop
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 
 # Start all services
 docker-compose up -d
@@ -219,7 +219,7 @@ npm run dev
 ## 📚 Documentation
 
 ### **Getting Started**
-- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up SmartCrop
+- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up CropWise
 - [👤 User Guide](docs/USER_GUIDE.md) - Complete feature walkthrough
 - [🔧 Admin Guide](docs/ADMIN_GUIDE.md) - System administration
 - [🐛 Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
@@ -364,7 +364,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ### **Development Workflow**
 ```bash
 # Fork and clone
-git clone https://github.com/YOUR_USERNAME/smartcrop.git
+git clone https://github.com/YOUR_USERNAME/cropwise.git
 
 # Create feature branch
 git checkout -b feature/my-feature
@@ -379,10 +379,10 @@ git push origin feature/my-feature
 
 ## 🌍 Community
 
-- **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop)
-- **Twitter**: [@SmartCropOS](https://twitter.com/SmartCropOS)
-- **YouTube**: [SmartCrop Channel](https://youtube.com/@smartcropos)
+- **Forum**: [community.cropwise.io](https://community.cropwise.io)
+- **Discord**: [discord.gg/cropwise](https://discord.gg/cropwise)
+- **Twitter**: [@CropWiseOS](https://twitter.com/CropWiseOS)
+- **YouTube**: [CropWise Channel](https://youtube.com/@cropwiseos)
 
 ---
 
@@ -419,7 +419,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ by the SmartCrop team and contributors.
+Built with ❤️ by the CropWise team and contributors.
 
 **Special Thanks:**
 - All our [contributors](CONTRIBUTORS.md)
@@ -433,13 +433,13 @@ Built with ❤️ by the SmartCrop team and contributors.
 
 ### **Free Support**
 - 📚 [Documentation](docs/)
-- 💬 [Community Forum](https://community.smartcrop.io)
-- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
+- 💬 [Community Forum](https://community.cropwise.io)
+- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/cropwise/issues)
 
 ### **Paid Support**
-- 📧 Email: support@smartcrop.io
-- 📱 Phone: +1-555-SMARTCROP
-- 💼 Enterprise SLA: enterprise@smartcrop.io
+- 📧 Email: support@cropwise.io
+- 📱 Phone: +1-555-CROPWISE
+- 💼 Enterprise SLA: enterprise@cropwise.io
 
 ### **Emergency Support** (Enterprise only)
 - 🚨 24/7 Hotline: +1-555-EMERGENCY
@@ -449,17 +449,17 @@ Built with ❤️ by the SmartCrop team and contributors.
 
 ## 🔗 Links
 
-- **Website**: [smartcrop.io](https://smartcrop.io)
-- **Documentation**: [docs.smartcrop.io](https://docs.smartcrop.io)
-- **API Docs**: [api.smartcrop.io/docs](https://api.smartcrop.io/docs)
-- **Status Page**: [status.smartcrop.io](https://status.smartcrop.io)
-- **Blog**: [blog.smartcrop.io](https://blog.smartcrop.io)
+- **Website**: [cropwise.io](https://cropwise.io)
+- **Documentation**: [docs.cropwise.io](https://docs.cropwise.io)
+- **API Docs**: [api.cropwise.io/docs](https://api.cropwise.io/docs)
+- **Status Page**: [status.cropwise.io](https://status.cropwise.io)
+- **Blog**: [blog.cropwise.io](https://blog.cropwise.io)
 
 ---
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yellowflowersorganics-star/smartcrop&type=Date)](https://star-history.com/#yellowflowersorganics-star/smartcrop&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=yellowflowersorganics-star/cropwise&type=Date)](https://star-history.com/#yellowflowersorganics-star/cropwise&Date)
 
 ---
 
@@ -467,7 +467,7 @@ Built with ❤️ by the SmartCrop team and contributors.
 
 **Made with 🌱 for farmers, by developers**
 
-[Get Started](docs/INSTALLATION.md) • [View Docs](docs/) • [Join Community](https://community.smartcrop.io)
+[Get Started](docs/INSTALLATION.md) • [View Docs](docs/) • [Join Community](https://community.cropwise.io)
 
 </div>
 
@@ -475,7 +475,7 @@ Built with ❤️ by the SmartCrop team and contributors.
 
 ## 🔒 Security
 
-Found a security vulnerability? Please email **security@smartcrop.io** instead of using the issue tracker.
+Found a security vulnerability? Please email **security@cropwise.io** instead of using the issue tracker.
 
 ---
 
@@ -498,9 +498,9 @@ Found a security vulnerability? Please email **security@smartcrop.io** instead o
 
 **⭐ Star us on GitHub — it helps!**
 
-[![GitHub stars](https://img.shields.io/github/stars/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/yellowflowersorganics-star/smartcrop?style=social)](https://github.com/yellowflowersorganics-star/smartcrop/watchers)
+[![GitHub stars](https://img.shields.io/github/stars/yellowflowersorganics-star/cropwise?style=social)](https://github.com/yellowflowersorganics-star/cropwise/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yellowflowersorganics-star/cropwise?style=social)](https://github.com/yellowflowersorganics-star/cropwise/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/yellowflowersorganics-star/cropwise?style=social)](https://github.com/yellowflowersorganics-star/cropwise/watchers)
 
 </div>
 

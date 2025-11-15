@@ -1,10 +1,10 @@
 branch-defaults:
   develop:
-    environment: smartcrop-staging
+    environment: cropwise-staging
   main:
-    environment: smartcrop-production
+    environment: cropwise-production
   test-deployment:
-    environment: smartcrop-dev
+    environment: cropwise-dev
     group_suffix: null
 deploy:
   artifact: archive.zip

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://smartcrop.io/schemas/mqtt-message.json",
+  "$id": "https://cropwise.io/schemas/mqtt-message.json",
   "title": "MQTT Message Schemas",
   "description": "Message formats for MQTT communication between devices and backend",
   "definitions": {

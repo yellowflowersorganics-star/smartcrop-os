@@ -1,6 +1,6 @@
 # 🏗️ AWS Infrastructure Setup Guide (No Domain Required)
 
-Complete guide to set up AWS infrastructure for SmartCrop deployment.
+Complete guide to set up AWS infrastructure for CropWise deployment.
 
 ---
 
@@ -50,7 +50,7 @@ You'll create these AWS resources to run your application:
 
 1. Click **"Create repository"**
 2. **Visibility**: Private
-3. **Repository name**: `smartcrop-backend-dev`
+3. **Repository name**: `cropwise-backend-dev`
 4. **Tag immutability**: Disabled
 5. **Scan on push**: Enabled (security)
 6. Click **"Create repository"**
@@ -58,15 +58,15 @@ You'll create these AWS resources to run your application:
 ### **1.3 Repeat for Production**
 
 Create another repository:
-- Name: `smartcrop-backend-prod`
+- Name: `cropwise-backend-prod`
 - Same settings
 
 ### **1.4 Note the Repository URIs**
 
 You'll see something like:
 ```
-123456789012.dkr.ecr.us-east-1.amazonaws.com/smartcrop-backend-dev
-123456789012.dkr.ecr.us-east-1.amazonaws.com/smartcrop-backend-prod
+123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend-dev
+123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend-prod
 ```
 
 Save these for later!
@@ -83,7 +83,7 @@ Save these for later!
 ### **2.2 Create Cluster**
 
 1. Click **"Create cluster"**
-2. **Cluster name**: `smartcrop-dev-cluster`
+2. **Cluster name**: `cropwise-dev-cluster`
 3. **Infrastructure**: AWS Fargate (serverless)
 4. **Monitoring**: Enable Container Insights (optional, costs extra)
 5. Click **"Create"**
@@ -91,7 +91,7 @@ Save these for later!
 ### **2.3 Repeat for Production**
 
 Create another cluster:
-- Name: `smartcrop-prod-cluster`
+- Name: `cropwise-prod-cluster`
 
 ---
 
@@ -111,7 +111,7 @@ Create another cluster:
 ### **3.3 Configure Load Balancer**
 
 **Basic Configuration:**
-- **Name**: `smartcrop-dev-alb`
+- **Name**: `cropwise-dev-alb`
 - **Scheme**: Internet-facing
 - **IP address type**: IPv4
 
@@ -134,7 +134,7 @@ Create another cluster:
 
 1. Click **"Create target group"**
 2. **Target type**: IP addresses (for Fargate)
-3. **Target group name**: `smartcrop-dev-backend-tg`
+3. **Target group name**: `cropwise-dev-backend-tg`
 4. **Protocol**: HTTP
 5. **Port**: 3000 (your backend port)
 6. **VPC**: Same as ALB
@@ -151,7 +151,7 @@ Create another cluster:
 
 After creation, you'll see:
 ```
-DNS name: smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com
+DNS name: cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com
 ```
 
 **This is your backend API URL!** Save it!
@@ -159,8 +159,8 @@ DNS name: smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com
 ### **3.7 Repeat for Production**
 
 Create another ALB:
-- Name: `smartcrop-prod-alb`
-- Target group: `smartcrop-prod-backend-tg`
+- Name: `cropwise-prod-alb`
+- Target group: `cropwise-prod-backend-tg`
 
 ---
 
@@ -174,7 +174,7 @@ Create another ALB:
 ### **4.2 Create Task Definition**
 
 1. Click **"Create new task definition"**
-2. **Task definition family**: `smartcrop-backend-dev`
+2. **Task definition family**: `cropwise-backend-dev`
 3. **Launch type**: AWS Fargate
 
 **Infrastructure:**
@@ -183,10 +183,10 @@ Create another ALB:
 - **Memory**: 1 GB
 
 **Container Configuration:**
-- **Container name**: `smartcrop-backend`
+- **Container name**: `cropwise-backend`
 - **Image URI**: Your ECR URI from Step 1.4
   ```
-  123456789012.dkr.ecr.us-east-1.amazonaws.com/smartcrop-backend-dev:latest
+  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend-dev:latest
   ```
 - **Port mappings**: 3000 (TCP)
 
@@ -203,14 +203,14 @@ GOOGLE_CLIENT_SECRET = (Use value from GitHub Secret)
 
 **Logging:**
 - Enable CloudWatch Logs
-- Log group: `/ecs/smartcrop-backend-dev`
+- Log group: `/ecs/cropwise-backend-dev`
 
 4. Click **"Create"**
 
 ### **4.3 Repeat for Production**
 
 Create another task definition:
-- Family: `smartcrop-backend-prod`
+- Family: `cropwise-backend-prod`
 - Use production ECR image
 - Same configuration
 
@@ -223,7 +223,7 @@ Create another task definition:
 ### **5.1 Go to Your ECS Cluster**
 
 1. Open: https://console.aws.amazon.com/ecs/home#/clusters
-2. Click: `smartcrop-dev-cluster`
+2. Click: `cropwise-dev-cluster`
 3. Click **"Create service"**
 
 ### **5.2 Configure Service**
@@ -234,8 +234,8 @@ Create another task definition:
 
 **Deployment Configuration:**
 - **Application type**: Service
-- **Family**: `smartcrop-backend-dev`
-- **Service name**: `smartcrop-backend-dev`
+- **Family**: `cropwise-backend-dev`
+- **Service name**: `cropwise-backend-dev`
 - **Desired tasks**: 1 (start small)
 
 **Networking:**
@@ -247,8 +247,8 @@ Create another task definition:
 
 **Load Balancing:**
 - **Load balancer type**: Application Load Balancer
-- **Load balancer**: `smartcrop-dev-alb`
-- **Target group**: `smartcrop-dev-backend-tg`
+- **Load balancer**: `cropwise-dev-alb`
+- **Target group**: `cropwise-dev-backend-tg`
 - **Health check grace period**: 60 seconds
 
 **Auto Scaling (Optional):**
@@ -271,7 +271,7 @@ Wait 3-5 minutes for service to start.
 
 ```powershell
 # Test health endpoint
-curl http://smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com/health
+curl http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com/health
 ```
 
 Expected response:
@@ -284,7 +284,7 @@ Expected response:
 
 ### **5.5 Repeat for Production**
 
-Create production service in `smartcrop-prod-cluster`
+Create production service in `cropwise-prod-cluster`
 
 ---
 
@@ -298,8 +298,8 @@ Create production service in `smartcrop-prod-cluster`
 ### **6.2 Create Bucket**
 
 1. Click **"Create bucket"**
-2. **Bucket name**: `smartcrop-dev-frontend` (must be globally unique)
-   - If taken, try: `smartcrop-dev-frontend-YOUR_COMPANY`
+2. **Bucket name**: `cropwise-dev-frontend` (must be globally unique)
+   - If taken, try: `cropwise-dev-frontend-YOUR_COMPANY`
 3. **Region**: us-east-1 (same as other resources)
 4. **Block Public Access**: UNCHECK all (we'll use CloudFront)
 5. **Bucket Versioning**: Enable (optional)
@@ -331,19 +331,19 @@ Create production service in `smartcrop-prod-cluster`
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::smartcrop-dev-frontend/*"
+      "Resource": "arn:aws:s3:::cropwise-dev-frontend/*"
     }
   ]
 }
 ```
 
-4. Replace `smartcrop-dev-frontend` with your bucket name
+4. Replace `cropwise-dev-frontend` with your bucket name
 5. Click **"Save changes"**
 
 ### **6.5 Repeat for Production**
 
 Create another bucket:
-- Name: `smartcrop-prod-frontend`
+- Name: `cropwise-prod-frontend`
 
 ---
 
@@ -360,7 +360,7 @@ Create another bucket:
 
 **Origin Settings:**
 - **Origin domain**: Select your S3 bucket from dropdown
-  - `smartcrop-dev-frontend.s3.us-east-1.amazonaws.com`
+  - `cropwise-dev-frontend.s3.us-east-1.amazonaws.com`
 - **Origin path**: Leave empty
 - **Origin access**: Public (or Origin Access Control for more security)
 
@@ -422,11 +422,11 @@ Name: CLOUDFRONT_DEV_DISTRIBUTION_ID
 Value: E1234ABCDEFGH
 ```
 
-👉 https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions/new
+👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions/new
 
 ### **7.7 Repeat for Production**
 
-Create production distribution for `smartcrop-prod-frontend` bucket
+Create production distribution for `cropwise-prod-frontend` bucket
 
 ---
 
@@ -438,7 +438,7 @@ Add these new secrets based on the resources you created:
 
 ```
 Name: VITE_API_URL
-Value: http://smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com
+Value: http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com
 ```
 
 ### **CloudFront Distribution IDs**
@@ -451,7 +451,7 @@ Name: CLOUDFRONT_PROD_DISTRIBUTION_ID
 Value: E5678IJKLMNOP (production distribution)
 ```
 
-👉 Update at: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+👉 Update at: https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 ---
 
@@ -468,7 +468,7 @@ Add your actual AWS URLs to Google Cloud Console:
    ```
 4. **Add Authorized Redirect URIs:**
    ```
-   http://smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com/api/auth/google/callback
+   http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com/api/auth/google/callback
    https://d111111abcdef8.cloudfront.net/auth/google/callback
    http://localhost:3000/api/auth/google/callback
    ```
@@ -481,14 +481,14 @@ Add your actual AWS URLs to Google Cloud Console:
 Now you're ready to deploy:
 
 ```powershell
-cd C:\Users\praghav\smartcrop-os
+cd C:\Users\praghav\cropwise
 
 # Deploy to development
 git checkout develop
 git push origin develop
 
 # Watch deployment
-start https://github.com/yellowflowersorganics-star/smartcrop-os/actions
+start https://github.com/yellowflowersorganics-star/cropwise/actions
 ```
 
 ---
@@ -498,15 +498,15 @@ start https://github.com/yellowflowersorganics-star/smartcrop-os/actions
 Before deploying, verify you've created:
 
 ### **Development Environment**
-- [x] ECR Repository: `smartcrop-backend-dev`
-- [x] ECS Cluster: `smartcrop-dev-cluster`
-- [x] ECS Task Definition: `smartcrop-backend-dev`
-- [x] ECS Service: `smartcrop-backend-dev`
-- [x] Application Load Balancer: `smartcrop-dev-alb`
-- [x] Target Group: `smartcrop-dev-backend-tg`
-- [x] S3 Bucket: `smartcrop-dev-frontend`
+- [x] ECR Repository: `cropwise-backend-dev`
+- [x] ECS Cluster: `cropwise-dev-cluster`
+- [x] ECS Task Definition: `cropwise-backend-dev`
+- [x] ECS Service: `cropwise-backend-dev`
+- [x] Application Load Balancer: `cropwise-dev-alb`
+- [x] Target Group: `cropwise-dev-backend-tg`
+- [x] S3 Bucket: `cropwise-dev-frontend`
 - [x] CloudFront Distribution
-- [x] RDS PostgreSQL: `smartcrop-production-db`
+- [x] RDS PostgreSQL: `cropwise-production-db`
 
 ### **Production Environment**
 - [ ] Same resources with `-prod` suffix
@@ -546,12 +546,12 @@ After setup, you'll have:
 
 **Development:**
 - Frontend: `https://d111111abcdef8.cloudfront.net`
-- Backend: `http://smartcrop-dev-alb-123456789.us-east-1.elb.amazonaws.com`
-- Database: `smartcrop-production-db.xxx.us-east-1.rds.amazonaws.com`
+- Backend: `http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com`
+- Database: `cropwise-production-db.xxx.us-east-1.rds.amazonaws.com`
 
 **Production:**
 - Frontend: `https://d222222abcdef9.cloudfront.net`
-- Backend: `http://smartcrop-prod-alb-987654321.us-east-1.elb.amazonaws.com`
+- Backend: `http://cropwise-prod-alb-987654321.us-east-1.elb.amazonaws.com`
 - Database: Same RDS instance (or create separate for prod)
 
 ---

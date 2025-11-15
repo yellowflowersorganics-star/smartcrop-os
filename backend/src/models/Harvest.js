@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Harvest Model
+ * CropWise - Harvest Model
  * Tracks harvest data, yield, quality, and metrics per flush/batch
  */
 

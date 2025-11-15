@@ -1,12 +1,12 @@
-# 🌱 SmartCrop OS - Project Summary
+# 🌱 CropWise - Project Summary
 
 ## Overview
 
-**SmartCrop OS** is a universal IoT platform for controlled-environment agriculture that dynamically adapts to any crop through software-defined environmental parameters called **"Crop Recipes"**.
+**CropWise** is a universal IoT platform for controlled-environment agriculture that dynamically adapts to any crop through software-defined environmental parameters called **"Crop Recipes"**.
 
 ## 🎯 Core Innovation
 
-Instead of building separate systems for each crop type, SmartCrop OS uses:
+Instead of building separate systems for each crop type, CropWise uses:
 - **Crop Recipes**: JSON-defined environmental parameters for each growth stage
 - **Universal Hardware**: Same sensors and actuators work for any crop
 - **Dynamic Control**: Automatic adjustment of setpoints as crops progress through stages
@@ -16,7 +16,7 @@ Instead of building separate systems for each crop type, SmartCrop OS uses:
 
 ### 1. **Complete Project Structure**
 ```
-smartcrop-os/
+cropwise/
 ├── backend/          # Node.js/Express API & services
 ├── frontend/         # React dashboard
 ├── edge/            # ESP32 firmware & Node-RED
@@ -120,14 +120,14 @@ smartcrop-os/
 ### MQTT Communication
 ```
 Device → Cloud:
-- smartcrop/{deviceId}/telemetry
-- smartcrop/{deviceId}/status
-- smartcrop/{deviceId}/alert
+- cropwise/{deviceId}/telemetry
+- cropwise/{deviceId}/status
+- cropwise/{deviceId}/alert
 
 Cloud → Device:
-- smartcrop/{deviceId}/setpoints
-- smartcrop/{deviceId}/command
-- smartcrop/{deviceId}/config
+- cropwise/{deviceId}/setpoints
+- cropwise/{deviceId}/command
+- cropwise/{deviceId}/config
 ```
 
 ## 🚀 Quick Start
@@ -311,14 +311,14 @@ cd edge/esp32 && pio run -t upload
 
 ## 📞 Support & Community
 
-- **GitHub**: https://github.com/yellowflowers/smartcrop-os
-- **Documentation**: https://docs.smartcrop.io
-- **Discord**: https://discord.gg/smartcrop
+- **GitHub**: https://github.com/yellowflowers/cropwise
+- **Documentation**: https://docs.cropwise.io
+- **Discord**: https://discord.gg/cropwise
 - **Email**: support@yellowflowers.tech
 
 ---
 
-**SmartCrop OS v1.0.0**  
+**CropWise v1.0.0**  
 Built with ❤️ for sustainable agriculture  
 Copyright © 2025 Yellow Flowers Technologies
 

@@ -1,4 +1,4 @@
-# SmartCrop - Backend
+# CropWise - Backend
 
 Multi-tenant SaaS platform for smart crop management.
 
@@ -174,15 +174,15 @@ Authorization: Bearer <your-jwt-token>
 ## 🔄 MQTT Topics
 
 ### Device → Backend
-- `smartcrop/{deviceId}/telemetry` - Sensor data
-- `smartcrop/{deviceId}/status` - Device status
-- `smartcrop/{deviceId}/alert` - Alerts/warnings
-- `smartcrop/{deviceId}/response` - Command responses
+- `cropwise/{deviceId}/telemetry` - Sensor data
+- `cropwise/{deviceId}/status` - Device status
+- `cropwise/{deviceId}/alert` - Alerts/warnings
+- `cropwise/{deviceId}/response` - Command responses
 
 ### Backend → Device
-- `smartcrop/{deviceId}/command` - Control commands
-- `smartcrop/{deviceId}/setpoints` - Environmental setpoints
-- `smartcrop/{deviceId}/config` - Configuration updates
+- `cropwise/{deviceId}/command` - Control commands
+- `cropwise/{deviceId}/setpoints` - Environmental setpoints
+- `cropwise/{deviceId}/config` - Configuration updates
 
 ## 📊 Database Schema
 

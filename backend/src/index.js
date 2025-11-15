@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Backend Entry Point
+ * CropWise - Backend Entry Point
  * Main server initialization and configuration
  */
 
@@ -95,7 +95,7 @@ const startServer = async () => {
 
     // Start Express server
     app.listen(PORT, () => {
-      logger.info(`\n🌱 SmartCrop Backend running on port ${PORT}`);
+      logger.info(`\n🌱 CropWise Backend running on port ${PORT}`);
       logger.info(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
       logger.info(`🔗 API: http://localhost:${PORT}/api`);
       logger.info(`📖 Health: http://localhost:${PORT}/health\n`);

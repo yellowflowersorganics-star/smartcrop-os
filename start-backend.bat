@@ -1,7 +1,7 @@
 @echo off
 echo.
 echo ========================================
-echo   SmartCrop OS - Starting Backend
+echo   CropWise - Starting Backend
 echo ========================================
 echo.
 

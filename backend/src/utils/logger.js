@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Logger Configuration
+ * CropWise - Logger Configuration
  */
 
 const winston = require('winston');

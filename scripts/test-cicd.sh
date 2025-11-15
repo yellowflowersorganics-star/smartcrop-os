@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 SmartCrop - CI/CD Pipeline Test Script"
+echo "🚀 CropWise - CI/CD Pipeline Test Script"
 echo "============================================="
 echo ""
 
@@ -79,7 +79,7 @@ echo "📋 Next Steps:"
 echo "===================================="
 echo ""
 echo "1. Go to your GitHub repository:"
-echo "   https://github.com/yellowflowersorganics-star/smartcrop"
+echo "   https://github.com/yellowflowersorganics-star/cropwise"
 echo ""
 echo "2. Click 'Pull requests' tab"
 echo ""
@@ -91,7 +91,7 @@ echo ""
 echo "5. Click 'Create pull request'"
 echo ""
 echo "6. Watch the Actions tab to see CI/CD run:"
-echo "   https://github.com/yellowflowersorganics-star/smartcrop/actions"
+echo "   https://github.com/yellowflowersorganics-star/cropwise/actions"
 echo ""
 echo "7. Once checks pass:"
 echo "   - Review the PR"

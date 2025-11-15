@@ -1,6 +1,6 @@
 ---
 name: 🐛 Bug Report
-about: Report a bug to help us improve SmartCrop OS
+about: Report a bug to help us improve CropWise
 title: '[BUG] '
 labels: bug, needs-triage
 assignees: ''

@@ -26,7 +26,7 @@ You should see:
 ```
 ✅ Database connected successfully
 ✅ Database models synchronized
-🌱 SmartCrop OS Backend running on port 3000
+🌱 CropWise Backend running on port 3000
 📊 Environment: development
 🔗 API: http://localhost:3000/api
 ```
@@ -38,7 +38,7 @@ You should see:
 2. **Clear and restart**:
 ```bash
 cd backend
-rm -f smartcrop.db  # Remove old database
+rm -f cropwise.db  # Remove old database
 npm run dev
 ```
 
@@ -99,7 +99,7 @@ Look in the backend terminal for errors. Common issues:
 3. **Database errors**
    ```bash
    cd backend
-   rm -f smartcrop.db  # Start fresh
+   rm -f cropwise.db  # Start fresh
    npm run dev
    ```
 
@@ -126,7 +126,7 @@ Look in the frontend terminal. Common issues:
 ⚠️  Redis not available (optional for development)
 ⚠️  MQTT broker not available (optional for development)
 
-🌱 SmartCrop OS Backend running on port 3000
+🌱 CropWise Backend running on port 3000
 📊 Environment: development
 🔗 API: http://localhost:3000/api
 📖 Health: http://localhost:3000/health
@@ -140,7 +140,7 @@ Look in the frontend terminal. Common issues:
 ## 🎯 Quick Verification Checklist
 
 - [ ] Backend terminal is running `npm run dev`
-- [ ] You see "SmartCrop OS Backend running on port 3000"
+- [ ] You see "CropWise Backend running on port 3000"
 - [ ] Frontend terminal is running `npm run dev`  
 - [ ] Browser is open to http://localhost:8080
 - [ ] You see the login/register page
@@ -150,7 +150,7 @@ Look in the frontend terminal. Common issues:
 
 1. **Keep both terminals visible** so you can see errors
 2. **Check browser console (F12)** for frontend errors
-3. **The database file** is created at `backend/smartcrop.db`
+3. **The database file** is created at `backend/cropwise.db`
 4. **First user** becomes admin automatically
 
 ## 🆘 Need More Help?

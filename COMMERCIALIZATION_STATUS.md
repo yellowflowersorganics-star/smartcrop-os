@@ -9,7 +9,7 @@
 
 ## 🎯 Vision Recap
 
-Transform **SmartCrop OS** (open-source single-tenant platform) into **Yellow Flowers SmartFarm Cloud** (commercial multi-tenant SaaS platform) with:
+Transform **CropWise** (open-source single-tenant platform) into **Yellow Flowers SmartFarm Cloud** (commercial multi-tenant SaaS platform) with:
 
 - **3 Subscription Tiers**: Starter (₹1,500/mo) → Growth (₹3,000/mo) → Enterprise (₹6,000/mo)
 - **Target**: 100 customers in Year 1 = ₹2.85L MRR (₹34.2L ARR)
@@ -18,7 +18,7 @@ Transform **SmartCrop OS** (open-source single-tenant platform) into **Yellow Fl
 
 ---
 
-## ✅ What's Already Built (SmartCrop OS v1.0)
+## ✅ What's Already Built (CropWise v1.0)
 
 ### Backend (Node.js) - 70% Complete
 ```
@@ -501,7 +501,7 @@ Q4 2026 (Oct-Dec)
 ## 🎉 Summary
 
 ### What You Have Now
-1. ✅ **Complete foundation** - SmartCrop OS with recipe system
+1. ✅ **Complete foundation** - CropWise with recipe system
 2. ✅ **Commercial architecture** - Multi-tenant design documented
 3. ✅ **Multi-tenant models** - Organization, Subscription, Invoice
 4. ✅ **Billing service** - Razorpay integration ready
@@ -526,7 +526,7 @@ Q4 2026 (Oct-Dec)
 
 ## 🚀 You're Ready to Build!
 
-**SmartCrop OS → Yellow Flowers SmartFarm Cloud transformation is well-planned and ready to execute.**
+**CropWise → Yellow Flowers SmartFarm Cloud transformation is well-planned and ready to execute.**
 
 The foundation is solid, the architecture is designed, the economics are viable, and the path forward is clear. You now have everything you need to build a successful commercial SaaS platform!
 

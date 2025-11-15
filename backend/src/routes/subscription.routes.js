@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Subscription & Billing Routes
+ * CropWise - Subscription & Billing Routes
  */
 
 const express = require('express');

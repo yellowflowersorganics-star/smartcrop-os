@@ -1,0 +1,270 @@
+name: Setup Repository Labels
+
+on:
+  workflow_dispatch:  # Manual trigger only
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/labels.yml'
+
+jobs:
+  sync-labels:
+    name: Sync Repository Labels
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync Labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labels = [
+              // PR Status Labels
+              {
+                name: 'needs-issue',
+                color: 'e11d21',
+                description: 'PR needs to be linked to a GitHub issue'
+              },
+              {
+                name: 'has-issue',
+                color: '0e8a16',
+                description: 'PR is correctly linked to a GitHub issue'
+              },
+              
+              // Type Labels
+              {
+                name: 'bug',
+                color: 'd73a4a',
+                description: 'Something isn\'t working'
+              },
+              {
+                name: 'feature',
+                color: 'a2eeef',
+                description: 'New feature or request'
+              },
+              {
+                name: 'enhancement',
+                color: '84b6eb',
+                description: 'Improvement to existing feature'
+              },
+              {
+                name: 'documentation',
+                color: '0075ca',
+                description: 'Improvements or additions to documentation'
+              },
+              {
+                name: 'refactor',
+                color: 'fbca04',
+                description: 'Code refactoring'
+              },
+              {
+                name: 'performance',
+                color: 'ff9800',
+                description: 'Performance improvement'
+              },
+              {
+                name: 'security',
+                color: 'b60205',
+                description: 'Security vulnerability or improvement'
+              },
+              {
+                name: 'testing',
+                color: 'c2e0c6',
+                description: 'Adding or improving tests'
+              },
+              {
+                name: 'ci/cd',
+                color: '5319e7',
+                description: 'CI/CD pipeline changes'
+              },
+              
+              // Priority Labels
+              {
+                name: 'priority: critical',
+                color: 'b60205',
+                description: 'Critical priority - needs immediate attention'
+              },
+              {
+                name: 'priority: high',
+                color: 'd93f0b',
+                description: 'High priority'
+              },
+              {
+                name: 'priority: medium',
+                color: 'fbca04',
+                description: 'Medium priority'
+              },
+              {
+                name: 'priority: low',
+                color: 'c5def5',
+                description: 'Low priority'
+              },
+              
+              // Status Labels
+              {
+                name: 'status: in-progress',
+                color: 'fef2c0',
+                description: 'Work is in progress'
+              },
+              {
+                name: 'status: blocked',
+                color: 'd73a4a',
+                description: 'Blocked by another issue or dependency'
+              },
+              {
+                name: 'status: needs-review',
+                color: 'fbca04',
+                description: 'Needs code review'
+              },
+              {
+                name: 'status: changes-requested',
+                color: 'ff9800',
+                description: 'Changes requested in code review'
+              },
+              {
+                name: 'status: ready-to-merge',
+                color: '0e8a16',
+                description: 'Approved and ready to merge'
+              },
+              
+              // Component Labels
+              {
+                name: 'backend',
+                color: '1d76db',
+                description: 'Backend/API related'
+              },
+              {
+                name: 'frontend',
+                color: '006b75',
+                description: 'Frontend/UI related'
+              },
+              {
+                name: 'database',
+                color: '0052cc',
+                description: 'Database related'
+              },
+              {
+                name: 'iot',
+                color: '5319e7',
+                description: 'IoT/Hardware integration'
+              },
+              {
+                name: 'devops',
+                color: '1d76db',
+                description: 'DevOps/Infrastructure'
+              },
+              
+              // Size Labels
+              {
+                name: 'size: XS',
+                color: 'c2e0c6',
+                description: 'Extra small change (< 10 lines)'
+              },
+              {
+                name: 'size: S',
+                color: 'bfd4f2',
+                description: 'Small change (10-50 lines)'
+              },
+              {
+                name: 'size: M',
+                color: 'fef2c0',
+                description: 'Medium change (50-200 lines)'
+              },
+              {
+                name: 'size: L',
+                color: 'fbca04',
+                description: 'Large change (200-500 lines)'
+              },
+              {
+                name: 'size: XL',
+                color: 'ff9800',
+                description: 'Extra large change (> 500 lines)'
+              },
+              
+              // Special Labels
+              {
+                name: 'good first issue',
+                color: '7057ff',
+                description: 'Good for newcomers'
+              },
+              {
+                name: 'help wanted',
+                color: '008672',
+                description: 'Extra attention is needed'
+              },
+              {
+                name: 'duplicate',
+                color: 'cfd3d7',
+                description: 'This issue or pull request already exists'
+              },
+              {
+                name: 'wontfix',
+                color: 'ffffff',
+                description: 'This will not be worked on'
+              },
+              {
+                name: 'invalid',
+                color: 'e4e669',
+                description: 'This doesn\'t seem right'
+              },
+              {
+                name: 'question',
+                color: 'd876e3',
+                description: 'Further information is requested'
+              },
+              {
+                name: 'breaking-change',
+                color: 'b60205',
+                description: 'This PR introduces breaking changes'
+              },
+              {
+                name: 'needs-migration',
+                color: 'ff9800',
+                description: 'Requires database migration'
+              },
+              {
+                name: 'dependencies',
+                color: '0366d6',
+                description: 'Dependency updates'
+              }
+            ];
+            
+            console.log(`Syncing ${labels.length} labels...`);
+            
+            for (const label of labels) {
+              try {
+                // Try to update existing label
+                await github.rest.issues.updateLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  color: label.color,
+                  description: label.description
+                });
+                console.log(`✅ Updated label: ${label.name}`);
+              } catch (error) {
+                // Label doesn't exist, create it
+                try {
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: label.name,
+                    color: label.color,
+                    description: label.description
+                  });
+                  console.log(`✅ Created label: ${label.name}`);
+                } catch (createError) {
+                  console.error(`❌ Failed to create label ${label.name}:`, createError);
+                }
+              }
+            }
+            
+            console.log('✅ Label sync complete!');
+

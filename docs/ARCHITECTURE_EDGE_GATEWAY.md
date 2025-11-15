@@ -1,4 +1,4 @@
-# 🏗️ SmartCrop OS - Edge Gateway Architecture
+# 🏗️ CropWise - Edge Gateway Architecture
 ## Organization → Unit → Zone → ESP32 → Devices
 
 **Updated Architecture**: ESP32s connect to local Raspberry Pi, not directly to cloud
@@ -82,12 +82,12 @@ Buffer & Forward to Cloud
 ```
 Raspberry Pi Gateway
     │ Internet/WiFi
-    │ MQTT/TLS: mqtt.smartcrop.cloud:8883
+    │ MQTT/TLS: mqtt.cropwise.cloud:8883
     ▼
 Cloud MQTT Broker (EMQX)
     │ Topic: yfcloud/<org_id>/<unit_id>/#
     ▼
-SmartCrop Cloud API
+CropWise Cloud API
     │ Parse, Store, Analyze
     ▼
 Web Dashboard / Mobile App
@@ -383,10 +383,10 @@ Storage: SQLite (local buffer)
     "persistence": true
   },
   "cloud_mqtt": {
-    "broker": "mqtt.smartcrop.cloud",
+    "broker": "mqtt.cropwise.cloud",
     "port": 8883,
     "tls": true,
-    "client_cert": "/etc/smartcrop/gateway.crt",
+    "client_cert": "/etc/cropwise/gateway.crt",
     "topics": {
       "telemetry": "yfcloud/org_abc123/unit_001/telemetry_aggregated",
       "status": "yfcloud/org_abc123/unit_001/gateway_status",
@@ -430,19 +430,19 @@ Storage: SQLite (local buffer)
    sudo apt update && sudo apt upgrade -y
    sudo apt install mosquitto mosquitto-clients nodejs npm
    
-   # Install SmartCrop Gateway software
+   # Install CropWise Gateway software
    cd /opt
-   git clone https://github.com/yellowflowers/smartcrop-gateway.git
-   cd smartcrop-gateway
+   git clone https://github.com/yellowflowers/cropwise-gateway.git
+   cd cropwise-gateway
    npm install
    
    # Configure
-   sudo nano /etc/smartcrop/gateway.json
+   sudo nano /etc/cropwise/gateway.json
    # Add organization_id, unit_id, cloud credentials
    
    # Start services
-   sudo systemctl enable smartcrop-gateway
-   sudo systemctl start smartcrop-gateway
+   sudo systemctl enable cropwise-gateway
+   sudo systemctl start cropwise-gateway
    ```
 
 ### Step 2: Provision ESP32 Controllers
@@ -481,7 +481,7 @@ mosquitto_sub -h localhost -t "unit1/#" -v
 # unit1/zone_b/telemetry {...}
 
 # Check cloud connection:
-tail -f /var/log/smartcrop/gateway.log
+tail -f /var/log/cropwise/gateway.log
 
 # Should see:
 # [INFO] Connected to cloud MQTT

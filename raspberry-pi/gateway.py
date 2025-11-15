@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-SmartCrop OS - Raspberry Pi Gateway
-Receives data from ESP32 devices via MQTT and forwards to SmartCrop OS API
+CropWise - Raspberry Pi Gateway
+Receives data from ESP32 devices via MQTT and forwards to CropWise API
 """
 
 import json
@@ -26,7 +26,7 @@ except ImportError:
 # Configuration
 MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
-MQTT_TOPIC_PREFIX = os.getenv('MQTT_TOPIC_PREFIX', 'smartcrop')
+MQTT_TOPIC_PREFIX = os.getenv('MQTT_TOPIC_PREFIX', 'cropwise')
 
 API_BASE_URL = os.getenv('API_URL', 'http://localhost:3000/api')
 AUTH_TOKEN = os.getenv('AUTH_TOKEN', '')
@@ -38,7 +38,7 @@ latest_readings = defaultdict(dict)
 last_send_time = defaultdict(float)
 message_count = defaultdict(int)
 
-class SmartCropGateway:
+class CropWiseGateway:
     def __init__(self):
         self.mqtt_client = mqtt.Client(client_id=GATEWAY_ID)
         self.mqtt_client.on_connect = self.on_connect
@@ -78,7 +78,7 @@ class SmartCropGateway:
             topic = msg.topic
             payload = json.loads(msg.payload.decode())
             
-            # Extract zone ID from topic: smartcrop/zone/<zone_id>/sensors
+            # Extract zone ID from topic: cropwise/zone/<zone_id>/sensors
             parts = topic.split('/')
             if len(parts) >= 3 and parts[2]:
                 zone_id = parts[2]
@@ -124,7 +124,7 @@ class SmartCropGateway:
             print(f"❌ Error processing message: {e}")
     
     def send_to_api(self, data):
-        """Send sensor data to SmartCrop OS API"""
+        """Send sensor data to CropWise API"""
         if not AUTH_TOKEN:
             print("⚠️  No AUTH_TOKEN configured, skipping API send")
             return
@@ -172,7 +172,7 @@ class SmartCropGateway:
     def run(self):
         """Start the gateway"""
         print("=" * 60)
-        print("🚀 SmartCrop OS Gateway Starting...")
+        print("🚀 CropWise Gateway Starting...")
         print(f"📡 Gateway ID: {GATEWAY_ID}")
         print(f"🔌 MQTT Broker: {MQTT_BROKER}:{MQTT_PORT}")
         print(f"🌐 API Server: {API_BASE_URL}")
@@ -216,6 +216,6 @@ class SmartCropGateway:
             self.mqtt_client.loop_stop()
 
 if __name__ == "__main__":
-    gateway = SmartCropGateway()
+    gateway = CropWiseGateway()
     gateway.run()
 

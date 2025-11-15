@@ -1,13 +1,13 @@
 #!/bin/bash
 ###############################################################################
-# SmartCrop OS - Raspberry Pi Gateway Setup Script
+# CropWise - Raspberry Pi Gateway Setup Script
 # Automated installation for Raspberry Pi 5
 ###############################################################################
 
 set -e  # Exit on error
 
 echo "=========================================="
-echo "🍄 SmartCrop OS Gateway Setup"
+echo "🍄 CropWise Gateway Setup"
 echo "=========================================="
 echo ""
 
@@ -43,9 +43,9 @@ echo -e "${GREEN}✅ Python tools installed${NC}"
 echo ""
 
 echo "📁 Step 4: Creating gateway directory..."
-mkdir -p ~/smartcrop-gateway
-cd ~/smartcrop-gateway
-echo -e "${GREEN}✅ Directory created: ~/smartcrop-gateway${NC}"
+mkdir -p ~/cropwise-gateway
+cd ~/cropwise-gateway
+echo -e "${GREEN}✅ Directory created: ~/cropwise-gateway${NC}"
 echo ""
 
 echo "🔧 Step 5: Setting up Python virtual environment..."
@@ -58,8 +58,8 @@ echo -e "${GREEN}✅ Python environment ready${NC}"
 echo ""
 
 echo "⚙️  Step 6: Configuring Mosquitto..."
-sudo tee /etc/mosquitto/conf.d/smartcrop.conf > /dev/null <<EOF
-# SmartCrop OS MQTT Configuration
+sudo tee /etc/mosquitto/conf.d/cropwise.conf > /dev/null <<EOF
+# CropWise MQTT Configuration
 listener 1883
 allow_anonymous true
 
@@ -83,7 +83,7 @@ echo ""
 echo "🧪 Step 7: Testing MQTT broker..."
 timeout 2 mosquitto_sub -h localhost -t test/topic -v &
 sleep 1
-mosquitto_pub -h localhost -t test/topic -m "SmartCrop Gateway Test"
+mosquitto_pub -h localhost -t test/topic -m "CropWise Gateway Test"
 sleep 1
 echo -e "${GREEN}✅ MQTT broker working${NC}"
 echo ""
@@ -94,16 +94,16 @@ echo "=========================================="
 echo ""
 echo "📝 Next steps:"
 echo ""
-echo "1. Get your SmartCrop OS API details:"
-echo "   - Login to SmartCrop OS"
+echo "1. Get your CropWise API details:"
+echo "   - Login to CropWise"
 echo "   - Get your auth token (F12 → Network → Authorization header)"
 echo "   - Get your server IP/URL"
 echo ""
 echo "2. Run configuration:"
-echo "   cd ~/smartcrop-gateway"
+echo "   cd ~/cropwise-gateway"
 echo "   ./configure.sh"
 echo ""
-echo "3. Gateway files will be created in: ~/smartcrop-gateway"
+echo "3. Gateway files will be created in: ~/cropwise-gateway"
 echo ""
 echo "Raspberry Pi IP: $(hostname -I | awk '{print $1}')"
 echo ""

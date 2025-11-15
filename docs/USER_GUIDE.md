@@ -1,9 +1,9 @@
-# 👤 SmartCrop - User Guide
+# 👤 CropWise - User Guide
 
 **Version:** 1.0.0  
 **Last Updated:** November 2025
 
-Welcome to SmartCrop! This guide will help you get started with managing your smart farm.
+Welcome to CropWise! This guide will help you get started with managing your smart farm.
 
 ---
 
@@ -33,7 +33,7 @@ Welcome to SmartCrop! This guide will help you get started with managing your sm
 
 ### Creating Your Account
 
-1. **Visit** https://www.smartcrop.io
+1. **Visit** https://www.cropwise.io
 2. **Click** "Sign Up" or "Get Started"
 3. **Choose** sign-up method:
    - Email & Password
@@ -49,7 +49,7 @@ Welcome to SmartCrop! This guide will help you get started with managing your sm
 
 ### First Login
 
-1. **Go to** https://www.smartcrop.io/login
+1. **Go to** https://www.cropwise.io/login
 2. **Sign in** with your credentials or Google
 3. **Tour** the dashboard (first-time users)
 4. **Complete** the setup wizard:
@@ -660,7 +660,7 @@ Connect and manage your ESP32 sensors and controllers.
 1. **Purchase** ESP32 boards and sensors
 2. **Flash** firmware (provided)
 3. **Configure** WiFi credentials
-4. **Register** device in SmartCrop
+4. **Register** device in CropWise
 5. **Assign** to zone
 6. **Start** monitoring
 
@@ -795,11 +795,11 @@ Stay informed with multi-channel alerts.
 
 ## 📱 Mobile App
 
-SmartCrop works great on mobile browsers and has a dedicated app (coming soon).
+CropWise works great on mobile browsers and has a dedicated app (coming soon).
 
 ### Mobile Web App
 
-**Access**: https://www.smartcrop.io on mobile browser
+**Access**: https://www.cropwise.io on mobile browser
 
 **Features**:
 - ✅ Responsive design
@@ -832,7 +832,7 @@ SmartCrop works great on mobile browsers and has a dedicated app (coming soon).
 - GPS location tracking
 - Background notifications
 
-**Beta Access**: Contact support@smartcrop.io
+**Beta Access**: Contact support@cropwise.io
 
 ---
 
@@ -840,7 +840,7 @@ SmartCrop works great on mobile browsers and has a dedicated app (coming soon).
 
 ### General Questions
 
-**Q: Is SmartCrop free?**
+**Q: Is CropWise free?**
 A: We offer a free tier (up to 2 farms, 10 zones, 5 devices). Paid plans start at $49/month.
 
 **Q: Can I use it without IoT devices?**
@@ -887,7 +887,7 @@ A: Refresh page (Ctrl+R). Check internet connection. Clear cache if persistent.
 A: Check permissions. Only Admins and Managers see all tasks.
 
 **Q: How do I delete my account?**
-A: Contact support@smartcrop.io. Export your data first.
+A: Contact support@cropwise.io. Export your data first.
 
 ---
 
@@ -895,22 +895,22 @@ A: Contact support@smartcrop.io. Export your data first.
 
 ### Getting Help
 
-- **📚 Documentation**: [docs.smartcrop.io](https://docs.smartcrop.io)
+- **📚 Documentation**: [docs.cropwise.io](https://docs.cropwise.io)
 - **💬 Live Chat**: Available on website (Mon-Fri, 9 AM - 5 PM EST)
-- **📧 Email**: support@smartcrop.io
-- **📱 Phone**: +1-555-SMARTCROP (Business hours)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
+- **📧 Email**: support@cropwise.io
+- **📱 Phone**: +1-555-CROPWISE (Business hours)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yellowflowersorganics-star/cropwise/issues)
 
 ### Community
 
-- **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Facebook Group**: SmartCrop Users
-- **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop)
+- **Forum**: [community.cropwise.io](https://community.cropwise.io)
+- **Facebook Group**: CropWise Users
+- **Discord**: [discord.gg/cropwise](https://discord.gg/cropwise)
 - **YouTube**: Tutorials and tips
 
 ### Training & Webinars
 
-**Free Onboarding**: Book at [smartcrop.io/training](https://smartcrop.io/training)
+**Free Onboarding**: Book at [cropwise.io/training](https://cropwise.io/training)
 
 **Topics**:
 - Getting Started (30 min)
@@ -970,5 +970,5 @@ A: Contact support@smartcrop.io. Export your data first.
 
 **Happy Farming! 🌱**
 
-*Got questions? We're here to help: support@smartcrop.io*
+*Got questions? We're here to help: support@cropwise.io*
 

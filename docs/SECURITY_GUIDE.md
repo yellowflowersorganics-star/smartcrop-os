@@ -1,12 +1,12 @@
-# 🔐 SmartCrop - Security Guide
+# 🔐 CropWise - Security Guide
 
-Best practices and security measures for SmartCrop.
+Best practices and security measures for CropWise.
 
 ---
 
 ## 🎯 Security Overview
 
-SmartCrop implements multiple layers of security to protect your data and systems:
+CropWise implements multiple layers of security to protect your data and systems:
 
 - **Authentication**: JWT tokens + Google OAuth 2.0
 - **Authorization**: Role-based access control (RBAC)
@@ -154,7 +154,7 @@ server {
 ```bash
 # Enable encryption at rest (AWS RDS)
 aws rds modify-db-instance \
-    --db-instance-identifier smartcrop-db \
+    --db-instance-identifier cropwise-db \
     --storage-encrypted \
     --apply-immediately
 ```
@@ -380,7 +380,7 @@ const dbPassword = "secure_password";
 ```bash
 # Store secret
 aws secretsmanager create-secret \
-    --name smartcrop/database/password \
+    --name cropwise/database/password \
     --secret-string "super_secure_password"
 
 # Retrieve in application
@@ -388,7 +388,7 @@ const AWS = require('aws-sdk');
 const secretsManager = new AWS.SecretsManager();
 
 const secret = await secretsManager.getSecretValue({ 
-  SecretId: 'smartcrop/database/password' 
+  SecretId: 'cropwise/database/password' 
 }).promise();
 
 const dbPassword = JSON.parse(secret.SecretString).password;
@@ -422,7 +422,7 @@ sudo apt update
 sudo apt upgrade
 
 # Restart services
-sudo systemctl restart smartcrop-backend
+sudo systemctl restart cropwise-backend
 sudo systemctl restart postgresql
 sudo systemctl restart nginx
 ```
@@ -492,7 +492,7 @@ sudo logwatch --output mail --mailto admin@yourdomain.com --detail high
 **DO NOT** create a public GitHub issue.
 
 Instead:
-1. Email: **security@smartcrop.io**
+1. Email: **security@cropwise.io**
 2. Include:
    - Description of vulnerability
    - Steps to reproduce
@@ -552,8 +552,8 @@ Instead:
 
 ## 📞 Security Contact
 
-- **Email**: security@smartcrop.io
-- **PGP Key**: [Download](https://smartcrop.io/security/pgp-key.asc)
+- **Email**: security@cropwise.io
+- **PGP Key**: [Download](https://cropwise.io/security/pgp-key.asc)
 - **Bug Bounty**: Coming soon
 
 ---

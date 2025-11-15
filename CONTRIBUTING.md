@@ -1,6 +1,6 @@
-# 🤝 Contributing to SmartCrop
+# 🤝 Contributing to CropWise
 
-Thank you for your interest in contributing to SmartCrop! This document provides guidelines and best practices for contributing to the project.
+Thank you for your interest in contributing to CropWise! This document provides guidelines and best practices for contributing to the project.
 
 ## 📋 Table of Contents
 
@@ -61,14 +61,14 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Fork the repository on GitHub
-# Click the "Fork" button at https://github.com/yellowflowersorganics-star/smartcrop
+# Click the "Fork" button at https://github.com/yellowflowersorganics-star/cropwise
 
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/smartcrop.git
-cd smartcrop
+git clone https://github.com/YOUR_USERNAME/cropwise.git
+cd cropwise
 
 # 3. Add upstream remote
-git remote add upstream https://github.com/yellowflowersorganics-star/smartcrop.git
+git remote add upstream https://github.com/yellowflowersorganics-star/cropwise.git
 
 # 4. Install dependencies
 cd backend && npm install
@@ -486,12 +486,12 @@ Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md):
 - **GitHub Issues**: Bug reports and feature requests
 - **GitHub Discussions**: General questions and ideas
 - **Slack**: Real-time chat (ask for invite)
-- **Email**: support@smartcrop.io
+- **Email**: support@cropwise.io
 
 ### Getting Help
 
 - Check [documentation](docs/)
-- Search [existing issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
+- Search [existing issues](https://github.com/yellowflowersorganics-star/cropwise/issues)
 - Ask in GitHub Discussions
 - Join our Slack channel
 
@@ -499,7 +499,7 @@ Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md):
 
 ## 🎓 Learning Resources
 
-### SmartCrop Documentation
+### CropWise Documentation
 
 - [Getting Started](docs/GETTING_STARTED.md)
 - [Git Workflow](docs/GIT_WORKFLOW.md)
@@ -538,21 +538,21 @@ All contributors are recognized in:
 
 ## ⚖️ License
 
-By contributing to SmartCrop, you agree that your contributions will be licensed under the [MIT License](LICENSE).
+By contributing to CropWise, you agree that your contributions will be licensed under the [MIT License](LICENSE).
 
 ---
 
 ## 📞 Contact
 
 - **Project Lead**: [your-email@example.com]
-- **Support**: support@smartcrop.io
-- **Security**: security@smartcrop.io
+- **Support**: support@cropwise.io
+- **Security**: security@cropwise.io
 
 ---
 
 ## 🎉 Thank You!
 
-Thank you for contributing to SmartCrop! Your contributions help make farming smarter and more sustainable. 🌱🚀
+Thank you for contributing to CropWise! Your contributions help make farming smarter and more sustainable. 🌱🚀
 
 **Happy Coding!** 💚
 

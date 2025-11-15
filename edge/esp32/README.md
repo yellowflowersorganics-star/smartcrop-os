@@ -1,4 +1,4 @@
-# SmartCrop OS - ESP32 Edge Controller
+# CropWise - ESP32 Edge Controller
 
 Firmware for ESP32-based environmental monitoring and control.
 
@@ -61,9 +61,9 @@ Edit `src/config.h`:
 #define WIFI_SSID "YourWiFiSSID"
 #define WIFI_PASSWORD "YourWiFiPassword"
 
-#define MQTT_BROKER "mqtt.smartcrop.io"
+#define MQTT_BROKER "mqtt.cropwise.io"
 #define MQTT_PORT 1883
-#define MQTT_USERNAME "smartcrop"
+#define MQTT_USERNAME "cropwise"
 #define MQTT_PASSWORD "your_password"
 ```
 
@@ -86,18 +86,18 @@ pio device monitor
 
 | Topic | Description | Payload |
 |:------|:------------|:--------|
-| `smartcrop/{deviceId}/telemetry` | Sensor readings | Environmental data + actuator states |
-| `smartcrop/{deviceId}/status` | Device status | Online/offline, uptime, memory |
-| `smartcrop/{deviceId}/alert` | Alerts/warnings | Error conditions |
-| `smartcrop/{deviceId}/response` | Command response | Acknowledgments |
+| `cropwise/{deviceId}/telemetry` | Sensor readings | Environmental data + actuator states |
+| `cropwise/{deviceId}/status` | Device status | Online/offline, uptime, memory |
+| `cropwise/{deviceId}/alert` | Alerts/warnings | Error conditions |
+| `cropwise/{deviceId}/response` | Command response | Acknowledgments |
 
 ### Cloud → Device
 
 | Topic | Description | Payload |
 |:------|:------------|:--------|
-| `smartcrop/{deviceId}/setpoints` | Environmental targets | Temperature, humidity, CO₂, light |
-| `smartcrop/{deviceId}/command` | Control commands | Override, emergency stop |
-| `smartcrop/{deviceId}/config` | Configuration | Settings update |
+| `cropwise/{deviceId}/setpoints` | Environmental targets | Temperature, humidity, CO₂, light |
+| `cropwise/{deviceId}/command` | Control commands | Override, emergency stop |
+| `cropwise/{deviceId}/config` | Configuration | Settings update |
 
 ## 📊 Telemetry Message Format
 

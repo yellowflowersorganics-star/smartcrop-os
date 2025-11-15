@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Device Controller (Stub)
+ * CropWise - Device Controller (Stub)
  */
 
 class DeviceController {

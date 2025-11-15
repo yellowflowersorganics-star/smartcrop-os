@@ -1,6 +1,6 @@
-# SmartCrop - Frontend Dashboard
+# CropWise - Frontend Dashboard
 
-Modern web dashboard for SmartCrop built with React, Vite, and Tailwind CSS.
+Modern web dashboard for CropWise built with React, Vite, and Tailwind CSS.
 
 ## 🚀 Features
 
@@ -129,8 +129,8 @@ const { data, isLoading } = useQuery({
 ### Docker
 
 ```bash
-docker build -t smartcrop-frontend .
-docker run -p 8080:80 smartcrop-frontend
+docker build -t cropwise-frontend .
+docker run -p 8080:80 cropwise-frontend
 ```
 
 ### Static Hosting

@@ -1,4 +1,4 @@
-# 🏗️ SmartCrop OS Architecture Summary
+# 🏗️ CropWise Architecture Summary
 ## Updated: Edge Gateway Model (Org → Unit → Zone → ESP32)
 
 ---
@@ -88,12 +88,12 @@ unit1/zone_a/command        ← Actions
 Raspberry Pi Gateway
     │ Internet/WiFi
     │ Protocol: MQTT/TLS
-    │ Broker: mqtt.smartcrop.cloud:8883
+    │ Broker: mqtt.cropwise.cloud:8883
     ▼
 Cloud MQTT Broker (EMQX)
     │ Authentication & Routing
     ▼
-SmartCrop Cloud Backend
+CropWise Cloud Backend
     │ API, Database, Analytics
     ▼
 Web Dashboard / Mobile App
@@ -253,7 +253,7 @@ cd backend && npm install && npm run dev
 cd frontend && npm install && npm run dev
 
 # Database
-Uses SQLite by default (smartcrop.db)
+Uses SQLite by default (cropwise.db)
 ```
 
 ### Option 2: Production (Docker)
@@ -370,8 +370,8 @@ docker-compose up -d
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 ```
 
 ### 2. Start Backend
@@ -399,7 +399,7 @@ pio run -t upload
 ### 5. Setup Raspberry Pi
 ```bash
 # On Raspberry Pi
-curl -sSL https://raw.githubusercontent.com/yellowflowers/smartcrop-gateway/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/yellowflowers/cropwise-gateway/main/install.sh | bash
 ```
 
 ---
@@ -418,7 +418,7 @@ curl -sSL https://raw.githubusercontent.com/yellowflowers/smartcrop-gateway/main
 
 - **Email**: support@yellowflowers.tech
 - **Documentation**: https://docs.yellowflowers.tech
-- **GitHub**: https://github.com/yellowflowersorganics-star/smartcrop-os
+- **GitHub**: https://github.com/yellowflowersorganics-star/cropwise
 
 ---
 

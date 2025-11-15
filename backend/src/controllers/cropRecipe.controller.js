@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Crop Recipe Controller
+ * CropWise - Crop Recipe Controller
  */
 
 const { CropRecipe } = require('../models');

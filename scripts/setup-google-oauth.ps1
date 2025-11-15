@@ -1,11 +1,11 @@
-# SmartCrop - Google OAuth Configuration Script
+# CropWise - Google OAuth Configuration Script
 # This script helps you add Google OAuth credentials to your .env file
 
-Write-Host "`n🔐 SmartCrop - Google OAuth Setup" -ForegroundColor Green
+Write-Host "`n🔐 CropWise - Google OAuth Setup" -ForegroundColor Green
 Write-Host "====================================`n" -ForegroundColor Green
 
 # Get current directory
-$envPath = "C:\Users\praghav\smartcrop\backend\.env"
+$envPath = "C:\Users\praghav\cropwise\backend\.env"
 
 # Check if .env exists
 if (!(Test-Path $envPath)) {

@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Request Validators
+ * CropWise - Request Validators
  */
 
 const Joi = require('joi');

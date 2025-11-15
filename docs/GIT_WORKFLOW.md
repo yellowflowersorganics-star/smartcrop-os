@@ -1,4 +1,4 @@
-# 🔀 SmartCrop - Git Workflow & Branching Strategy
+# 🔀 CropWise - Git Workflow & Branching Strategy
 
 ## 📋 Table of Contents
 
@@ -405,9 +405,9 @@ npm version prerelease --preid=alpha
 
 | Environment | Branch | URL | Purpose |
 |-------------|--------|-----|---------|
-| **Development** | `develop` | `dev.smartcrop.io` | Latest features, unstable |
-| **Staging** | `release/*` | `staging.smartcrop.io` | Pre-production testing |
-| **Production** | `main` | `www.smartcrop.io` | Live application |
+| **Development** | `develop` | `dev.cropwise.io` | Latest features, unstable |
+| **Staging** | `release/*` | `staging.cropwise.io` | Pre-production testing |
+| **Production** | `main` | `www.cropwise.io` | Live application |
 
 ---
 
@@ -589,7 +589,7 @@ git push origin main
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
 
 # Set up Git Flow (one-time)
 git flow init

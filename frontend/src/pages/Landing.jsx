@@ -24,7 +24,7 @@ export default function Landing() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Sprout className="w-8 h-8 text-green-600" />
-              <span className="text-2xl font-bold text-gray-900">SmartCrop</span>
+              <span className="text-2xl font-bold text-gray-900">CropWise</span>
             </div>
             
             {/* Desktop Navigation */}
@@ -463,7 +463,7 @@ export default function Landing() {
                 Revolutionizing Agriculture with IoT Technology
               </h2>
               <p className="text-lg text-gray-600 mb-4">
-                SmartCrop is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. 
+                CropWise is a comprehensive, end-to-end IoT platform designed specifically for modern agriculture. 
                 We empower farmers, researchers, and agricultural businesses to optimize crop production through 
                 data-driven decisions and intelligent automation.
               </p>
@@ -527,7 +527,7 @@ export default function Landing() {
       {/* How It Works Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-          How SmartCrop Works
+          How CropWise Works
         </h2>
         <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
           A complete ecosystem connecting your hardware, data, and decisions in real-time
@@ -584,7 +584,7 @@ export default function Landing() {
       <section className="bg-gradient-to-br from-green-50 to-blue-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Why Choose SmartCrop?
+            Why Choose CropWise?
           </h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
             Transform your farming operation with proven benefits
@@ -889,8 +889,8 @@ export default function Landing() {
                     </div>
                     <div className="ml-4">
                       <h4 className="font-semibold text-gray-900">Email</h4>
-                      <p className="text-gray-600">support@smartcropos.com</p>
-                      <p className="text-gray-600">sales@smartcropos.com</p>
+                      <p className="text-gray-600">support@cropwiseos.com</p>
+                      <p className="text-gray-600">sales@cropwiseos.com</p>
                     </div>
                   </div>
 
@@ -966,7 +966,7 @@ export default function Landing() {
         <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-2xl p-12 text-center text-white">
           <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Farm?</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join farmers around the world using SmartCrop for precision agriculture
+            Join farmers around the world using CropWise for precision agriculture
           </p>
           <Link
             to="/register"
@@ -986,7 +986,7 @@ export default function Landing() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Sprout className="w-8 h-8 text-green-500" />
-                <span className="text-xl font-bold">SmartCrop</span>
+                <span className="text-xl font-bold">CropWise</span>
               </div>
               <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                 Revolutionary IoT platform for modern agriculture. Empowering farmers with data-driven precision farming solutions.
@@ -1001,7 +1001,7 @@ export default function Landing() {
                 <Link to="/coming-soon" className="text-gray-400 hover:text-green-500 transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </Link>
-                <a href="https://github.com/yellowflowersorganics-star/smartcrop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-500 transition-colors">
+                <a href="https://github.com/yellowflowersorganics-star/cropwise" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-500 transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
               </div>
@@ -1037,7 +1037,7 @@ export default function Landing() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/cropwise/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Changelog
                   </a>
                 </li>
@@ -1049,12 +1049,12 @@ export default function Landing() {
               <h3 className="text-lg font-semibold mb-4">Resources</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/cropwise/tree/main/docs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/yellowflowersorganics-star/smartcrop/blob/main/docs/USER_GUIDE.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="https://github.com/yellowflowersorganics-star/cropwise/blob/main/docs/USER_GUIDE.md" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">
                     User Guide
                   </a>
                 </li>
@@ -1123,7 +1123,7 @@ export default function Landing() {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-gray-400 text-sm mb-4 md:mb-0">
-                © 2025 SmartCrop. All rights reserved. Professional IoT agriculture platform.
+                © 2025 CropWise. All rights reserved. Professional IoT agriculture platform.
               </div>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">

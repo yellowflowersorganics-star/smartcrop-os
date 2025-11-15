@@ -1,4 +1,4 @@
-# 🌱 SmartCrop OS (Yellow Flowers SmartFarm Cloud)
+# 🌱 CropWise (Yellow Flowers SmartFarm Cloud)
 
 > **Enterprise-grade IoT platform for controlled-environment agriculture with edge-gateway architecture**
 
@@ -40,7 +40,7 @@ Raspberry Pi Gateway (per unit)
     │ Internet → MQTT/TLS
     │ Topics: yfcloud/<org>/<unit>/*
     ▼
-SmartCrop Cloud (SaaS)
+CropWise Cloud (SaaS)
     │ Multi-tenant backend
     │ Crop recipes & analytics
     │ Billing & subscriptions
@@ -155,8 +155,8 @@ yfcloud/org_abc123/unit_001/firmware_update       → OTA trigger
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 
 # 2. Start backend (uses SQLite)
 cd backend
@@ -196,15 +196,15 @@ docker-compose up -d
 
 ```bash
 # On Raspberry Pi
-curl -sSL https://raw.githubusercontent.com/yellowflowers/smartcrop-gateway/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/yellowflowers/cropwise-gateway/main/install.sh | bash
 
 # Configure
-sudo nano /etc/smartcrop/gateway.json
+sudo nano /etc/cropwise/gateway.json
 # Set: organization_id, unit_id, cloud credentials
 
 # Start service
-sudo systemctl enable smartcrop-gateway
-sudo systemctl start smartcrop-gateway
+sudo systemctl enable cropwise-gateway
+sudo systemctl start cropwise-gateway
 ```
 
 #### **B. Flash ESP32 Controller**
@@ -310,7 +310,7 @@ pio device monitor  # View logs
 ## 📦 Project Structure
 
 ```
-smartcrop-os/
+cropwise/
 ├── backend/                    # Node.js backend
 │   ├── src/
 │   │   ├── models/            # Sequelize models (Organization, Unit, Zone, Device, ...)
@@ -376,7 +376,7 @@ MIT License - see [LICENSE](./LICENSE)
 - **Website**: https://yellowflowers.tech
 - **Email**: support@yellowflowers.tech
 - **Documentation**: https://docs.yellowflowers.tech
-- **GitHub Issues**: https://github.com/yellowflowersorganics-star/smartcrop-os/issues
+- **GitHub Issues**: https://github.com/yellowflowersorganics-star/cropwise/issues
 
 ---
 

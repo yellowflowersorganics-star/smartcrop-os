@@ -1,8 +1,8 @@
-# Google OAuth Setup for SmartCrop
+# Google OAuth Setup for CropWise
 
 ## Prerequisites
 - Google Cloud Platform account
-- SmartCrop backend running
+- CropWise backend running
 
 ## Step 1: Create Google Cloud Project
 
@@ -16,7 +16,7 @@
 2. Click **Create Credentials** → **OAuth client ID**
 3. Select **Web application**
 4. Configure:
-   - **Name**: SmartCrop
+   - **Name**: CropWise
    - **Authorized JavaScript origins**:
      - `http://localhost:8080` (development)
      - `https://yourdomain.com` (production)

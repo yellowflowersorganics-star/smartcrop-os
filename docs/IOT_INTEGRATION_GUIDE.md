@@ -4,7 +4,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     SmartCrop OS Server                      │
+│                     CropWise Server                      │
 │                    (Cloud/Local Server)                      │
 └──────────────────────────┬──────────────────────────────────┘
                            │ REST API (WiFi/Internet)
@@ -111,7 +111,7 @@ max_queued_messages 1000
 
 ```bash
 # Create password file
-sudo mosquitto_passwd -c /etc/mosquitto/passwd smartcrop
+sudo mosquitto_passwd -c /etc/mosquitto/passwd cropwise
 
 # Update mosquitto.conf
 sudo nano /etc/mosquitto/mosquitto.conf
@@ -154,8 +154,8 @@ python3 -c "import paho.mqtt.client as mqtt; print('MQTT library OK')"
 ### 1.6 Create Gateway Directory
 
 ```bash
-mkdir -p /home/pi/smartcrop-gateway
-cd /home/pi/smartcrop-gateway
+mkdir -p /home/pi/cropwise-gateway
+cd /home/pi/cropwise-gateway
 ```
 
 ### 1.7 Create Gateway Script
@@ -171,8 +171,8 @@ Paste the following code:
 ```python
 #!/usr/bin/env python3
 """
-SmartCrop OS - Raspberry Pi Gateway
-Receives data from ESP32 devices via MQTT and forwards to SmartCrop OS API
+CropWise - Raspberry Pi Gateway
+Receives data from ESP32 devices via MQTT and forwards to CropWise API
 """
 
 import json
@@ -190,7 +190,7 @@ load_dotenv()
 # Configuration
 MQTT_BROKER = "localhost"
 MQTT_PORT = 1883
-MQTT_TOPIC_PREFIX = "smartcrop"  # ESP32s publish to smartcrop/zone/<zone_id>/sensors
+MQTT_TOPIC_PREFIX = "cropwise"  # ESP32s publish to cropwise/zone/<zone_id>/sensors
 
 API_BASE_URL = os.getenv('API_URL', 'http://localhost:3000/api')
 AUTH_TOKEN = os.getenv('AUTH_TOKEN', '')
@@ -201,7 +201,7 @@ latest_readings = defaultdict(dict)
 last_send_time = defaultdict(float)
 SEND_INTERVAL = 300  # Send to API every 5 minutes
 
-class SmartCropGateway:
+class CropWiseGateway:
     def __init__(self):
         self.mqtt_client = mqtt.Client(client_id=GATEWAY_ID)
         self.mqtt_client.on_connect = self.on_connect
@@ -230,7 +230,7 @@ class SmartCropGateway:
             topic = msg.topic
             payload = json.loads(msg.payload.decode())
             
-            # Extract zone ID from topic: smartcrop/zone/<zone_id>/sensors
+            # Extract zone ID from topic: cropwise/zone/<zone_id>/sensors
             parts = topic.split('/')
             if len(parts) >= 3 and parts[2]:
                 zone_id = parts[2]
@@ -265,7 +265,7 @@ class SmartCropGateway:
             print(f"❌ Error processing message: {e}")
     
     def send_to_api(self, data):
-        """Send sensor data to SmartCrop OS API"""
+        """Send sensor data to CropWise API"""
         try:
             url = f"{API_BASE_URL}/telemetry/readings"
             headers = {
@@ -288,7 +288,7 @@ class SmartCropGateway:
     def run(self):
         """Start the gateway"""
         print("=" * 60)
-        print("🚀 SmartCrop OS Gateway Starting...")
+        print("🚀 CropWise Gateway Starting...")
         print(f"📡 Gateway ID: {GATEWAY_ID}")
         print(f"🔌 MQTT Broker: {MQTT_BROKER}:{MQTT_PORT}")
         print(f"🌐 API Server: {API_BASE_URL}")
@@ -306,7 +306,7 @@ class SmartCropGateway:
             print(f"❌ Fatal error: {e}")
 
 if __name__ == "__main__":
-    gateway = SmartCropGateway()
+    gateway = CropWiseGateway()
     gateway.run()
 ```
 
@@ -326,7 +326,7 @@ nano .env
 Add configuration:
 
 ```env
-# SmartCrop OS API Configuration
+# CropWise API Configuration
 API_URL=http://YOUR_SERVER_IP:3000/api
 AUTH_TOKEN=your_jwt_token_here
 
@@ -336,7 +336,7 @@ FARM_ID=your_farm_id_here
 ```
 
 **How to get AUTH_TOKEN:**
-1. Open SmartCrop OS in browser
+1. Open CropWise in browser
 2. Login
 3. Press F12 → Network tab
 4. Refresh page
@@ -346,15 +346,15 @@ FARM_ID=your_farm_id_here
 ### 1.9 Test Gateway
 
 ```bash
-cd /home/pi/smartcrop-gateway
+cd /home/pi/cropwise-gateway
 python3 gateway.py
 ```
 
 You should see:
 ```
-🚀 SmartCrop OS Gateway Starting...
+🚀 CropWise Gateway Starting...
 ✅ Connected to MQTT Broker at localhost:1883
-📡 Subscribed to: smartcrop/zone/+/sensors
+📡 Subscribed to: cropwise/zone/+/sensors
 ```
 
 ### 1.10 Setup Auto-Start Service
@@ -362,21 +362,21 @@ You should see:
 Create systemd service:
 
 ```bash
-sudo nano /etc/systemd/system/smartcrop-gateway.service
+sudo nano /etc/systemd/system/cropwise-gateway.service
 ```
 
 Add the following:
 
 ```ini
 [Unit]
-Description=SmartCrop OS Gateway Service
+Description=CropWise Gateway Service
 After=network.target mosquitto.service
 
 [Service]
 Type=simple
 User=pi
-WorkingDirectory=/home/pi/smartcrop-gateway
-ExecStart=/usr/bin/python3 /home/pi/smartcrop-gateway/gateway.py
+WorkingDirectory=/home/pi/cropwise-gateway
+ExecStart=/usr/bin/python3 /home/pi/cropwise-gateway/gateway.py
 Restart=always
 RestartSec=10
 Environment=PYTHONUNBUFFERED=1
@@ -389,12 +389,12 @@ Enable and start:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable smartcrop-gateway
-sudo systemctl start smartcrop-gateway
-sudo systemctl status smartcrop-gateway
+sudo systemctl enable cropwise-gateway
+sudo systemctl start cropwise-gateway
+sudo systemctl status cropwise-gateway
 
 # View logs
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 ```
 
 ---
@@ -454,7 +454,7 @@ Create new sketch in Arduino IDE:
 
 ```cpp
 /*
- * SmartCrop OS - ESP32 Zone Sensor Node
+ * CropWise - ESP32 Zone Sensor Node
  * Reads environmental sensors and publishes to MQTT
  */
 
@@ -471,7 +471,7 @@ const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 const char* MQTT_BROKER = "192.168.1.100";  // Raspberry Pi IP
 const int MQTT_PORT = 1883;
 const char* DEVICE_ID = "ESP32-ZONE-001";
-const char* ZONE_ID = "your_zone_id_here";  // Get from SmartCrop OS
+const char* ZONE_ID = "your_zone_id_here";  // Get from CropWise
 // =====================================================
 
 // MQTT Topics
@@ -496,7 +496,7 @@ const unsigned long SENSOR_INTERVAL = 60000;  // Read every 60 seconds
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("\n🚀 SmartCrop OS ESP32 Sensor Node");
+  Serial.println("\n🚀 CropWise ESP32 Sensor Node");
   Serial.println("==================================");
   Serial.printf("Device ID: %s\n", DEVICE_ID);
   Serial.printf("Zone ID: %s\n", ZONE_ID);
@@ -512,8 +512,8 @@ void setup() {
   }
   
   // Setup MQTT topics
-  sprintf(SENSOR_TOPIC, "smartcrop/zone/%s/sensors", ZONE_ID);
-  sprintf(STATUS_TOPIC, "smartcrop/zone/%s/status", ZONE_ID);
+  sprintf(SENSOR_TOPIC, "cropwise/zone/%s/sensors", ZONE_ID);
+  sprintf(STATUS_TOPIC, "cropwise/zone/%s/status", ZONE_ID);
   
   // Connect to WiFi
   connectWiFi();
@@ -575,7 +575,7 @@ void reconnectMQTT() {
       
       // Subscribe to control topics (future use)
       char controlTopic[100];
-      sprintf(controlTopic, "smartcrop/zone/%s/control", ZONE_ID);
+      sprintf(controlTopic, "cropwise/zone/%s/control", ZONE_ID);
       mqttClient.subscribe(controlTopic);
       
     } else {
@@ -667,11 +667,11 @@ void publishStatus(const char* status) {
    const char* WIFI_PASSWORD = "YourWiFiPassword";
    const char* MQTT_BROKER = "192.168.1.100";  // Your RPi IP
    const char* DEVICE_ID = "ESP32-ZONE-001";
-   const char* ZONE_ID = "abc-123-def-456";    // From SmartCrop OS
+   const char* ZONE_ID = "abc-123-def-456";    // From CropWise
    ```
 
-2. **Get Zone ID from SmartCrop OS:**
-   - Login to SmartCrop OS
+2. **Get Zone ID from CropWise:**
+   - Login to CropWise
    - Go to Zones page
    - Click on a zone
    - Copy ID from URL: `http://localhost:5173/zones/<ZONE_ID>`
@@ -698,11 +698,11 @@ void publishStatus(const char* status) {
 ### 3.1 Monitor MQTT Traffic on Raspberry Pi
 
 ```bash
-# Subscribe to all smartcrop topics
-mosquitto_sub -h localhost -t "smartcrop/#" -v
+# Subscribe to all cropwise topics
+mosquitto_sub -h localhost -t "cropwise/#" -v
 
 # Subscribe to specific zone
-mosquitto_sub -h localhost -t "smartcrop/zone/YOUR_ZONE_ID/sensors" -v
+mosquitto_sub -h localhost -t "cropwise/zone/YOUR_ZONE_ID/sensors" -v
 ```
 
 ### 3.2 Test Complete Data Flow
@@ -711,19 +711,19 @@ mosquitto_sub -h localhost -t "smartcrop/zone/YOUR_ZONE_ID/sensors" -v
 2. **ESP32 publishes to MQTT** → Check Serial Monitor
 3. **RPi receives MQTT** → Check `mosquitto_sub` output
 4. **RPi sends to API** (every 5 minutes) → Check gateway logs
-5. **View in SmartCrop OS** → Zone Detail page
+5. **View in CropWise** → Zone Detail page
 
 ### 3.3 View Gateway Logs
 
 ```bash
 # Real-time logs
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 
 # Last 100 lines
-sudo journalctl -u smartcrop-gateway -n 100
+sudo journalctl -u cropwise-gateway -n 100
 
 # Today's logs
-sudo journalctl -u smartcrop-gateway --since today
+sudo journalctl -u cropwise-gateway --since today
 ```
 
 ### 3.4 Common Issues and Solutions
@@ -738,9 +738,9 @@ sudo journalctl -u smartcrop-gateway --since today
 - Check Mosquitto is running: `sudo systemctl status mosquitto`
 - Test with: `mosquitto_pub -h RASPBERRY_PI_IP -t test -m "hello"`
 
-**Issue: No data in SmartCrop OS**
+**Issue: No data in CropWise**
 - Check AUTH_TOKEN is valid (try logging out and in)
-- Verify gateway logs: `sudo journalctl -u smartcrop-gateway -f`
+- Verify gateway logs: `sudo journalctl -u cropwise-gateway -f`
 - Check API_URL in `.env` file
 
 ---
@@ -809,7 +809,7 @@ cp /etc/mosquitto/mosquitto.conf /home/pi/backup/
 
 **Backup gateway code:**
 ```bash
-cp -r /home/pi/smartcrop-gateway /home/pi/backup/
+cp -r /home/pi/cropwise-gateway /home/pi/backup/
 ```
 
 ---
@@ -818,7 +818,7 @@ cp -r /home/pi/smartcrop-gateway /home/pi/backup/
 
 ### Actuator Control
 - Add relays to ESP32 for fans, heaters, humidifiers
-- Subscribe to control topics from SmartCrop OS
+- Subscribe to control topics from CropWise
 - Implement PID control loops
 
 ### Edge Computing
@@ -829,7 +829,7 @@ cp -r /home/pi/smartcrop-gateway /home/pi/backup/
 ### Multiple Farms
 - Deploy multiple Raspberry Pi gateways
 - Each gateway manages one farm
-- Central SmartCrop OS server
+- Central CropWise server
 
 ### OTA Updates
 - Update ESP32 firmware over WiFi
@@ -842,7 +842,7 @@ cp -r /home/pi/smartcrop-gateway /home/pi/backup/
 
 1. **Enable MQTT Authentication**
    ```bash
-   sudo mosquitto_passwd -c /etc/mosquitto/passwd smartcrop
+   sudo mosquitto_passwd -c /etc/mosquitto/passwd cropwise
    ```
 
 2. **Use HTTPS for API**
@@ -870,10 +870,10 @@ cp -r /home/pi/smartcrop-gateway /home/pi/backup/
 sudo systemctl status mosquitto
 
 # Check gateway service
-sudo systemctl status smartcrop-gateway
+sudo systemctl status cropwise-gateway
 
 # View gateway logs
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 
 # Test MQTT locally
 mosquitto_pub -h localhost -t test -m "hello"
@@ -887,7 +887,7 @@ sudo netstat -tulpn | grep LISTEN
 
 # Restart services
 sudo systemctl restart mosquitto
-sudo systemctl restart smartcrop-gateway
+sudo systemctl restart cropwise-gateway
 ```
 
 ---
@@ -923,8 +923,8 @@ sudo systemctl restart smartcrop-gateway
 ### Integration Testing
 - [ ] ESP32 publishes data to MQTT (check Serial Monitor)
 - [ ] Raspberry Pi receives data (check mosquitto_sub)
-- [ ] Gateway forwards to SmartCrop OS API (check logs)
-- [ ] Data visible in SmartCrop OS Zone Detail page
+- [ ] Gateway forwards to CropWise API (check logs)
+- [ ] Data visible in CropWise Zone Detail page
 - [ ] Charts updating with real sensor data
 
 ---

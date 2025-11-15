@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Control Controller (Stub)
+ * CropWise - Control Controller (Stub)
  */
 
 class ControlController {

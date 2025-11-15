@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Zone Model
+ * CropWise - Zone Model
  * Represents a controlled environment zone within a farm
  */
 

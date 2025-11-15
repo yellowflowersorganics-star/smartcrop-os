@@ -11,7 +11,7 @@ The ESP32 Zone Controller provides:
 - ⚡ **8 Relay Control** - Fans, heaters, lights, pumps, etc.
 - 🎚️ **2 PWM Outputs** - Variable speed control (VFD, dimmers)
 - 🌡️ **Environmental Sensors** - Temperature, humidity, light, CO2
-- 📡 **MQTT Communication** - Real-time control from SmartCrop OS
+- 📡 **MQTT Communication** - Real-time control from CropWise
 - 🎮 **Local Control** - 3 buttons for manual operation
 - 🪄 **Auto Recipe Execution** - Follows recipe stages automatically
 
@@ -118,7 +118,7 @@ Go to **Sketch** → **Include Library** → **Manage Libraries**, then install:
 
 ### **Step 4: Download Firmware**
 
-1. Copy firmware from: `esp32-firmware/SmartCropZoneController/SmartCropZoneController.ino`
+1. Copy firmware from: `esp32-firmware/CropWiseZoneController/CropWiseZoneController.ino`
 2. Open in Arduino IDE
 
 ### **Step 5: Configure**
@@ -160,7 +160,7 @@ Examples:
 3. You should see:
    ```
    ========================================
-   SmartCrop OS - ESP32 Zone Controller
+   CropWise - ESP32 Zone Controller
    ========================================
    
    ✓ GPIO pins initialized
@@ -171,7 +171,7 @@ Examples:
    ✓ WiFi connected
      IP: 192.168.1.150
    Connecting to MQTT broker... connected!
-   ✓ Subscribed to: smartcrop/ESP32-ZONE-A/command/#
+   ✓ Subscribed to: cropwise/ESP32-ZONE-A/command/#
    ✓ Setup complete!
    ```
 
@@ -211,7 +211,7 @@ curl -X POST http://localhost:3000/api/equipment/{equipmentId}/on \
 Serial monitor shows:
 ```
 📥 MQTT Message Received:
-  Topic: smartcrop/ESP32-ZONE-A/command/fan/ExhaustFan
+  Topic: cropwise/ESP32-ZONE-A/command/fan/ExhaustFan
   Payload: {"commandId":"...","commandType":"turn_on",...}
 🎮 Executing command: turn_on for ExhaustFan
 ✓ ExhaustFan ON
@@ -320,7 +320,7 @@ POST /api/recipe-execution/start
 
 ### **2. ESP32 Receives Config**
 
-MQTT topic: `smartcrop/ESP32-ZONE-A/display/recipe`
+MQTT topic: `cropwise/ESP32-ZONE-A/display/recipe`
 
 ```json
 {
@@ -436,7 +436,7 @@ New equipment commands:
    ```
 3. Test with mosquitto_sub:
    ```bash
-   mosquitto_sub -h localhost -t 'smartcrop/#' -v
+   mosquitto_sub -h localhost -t 'cropwise/#' -v
    ```
 4. Check firewall rules
 
@@ -664,7 +664,7 @@ Your ESP32 can:
 - ✅ Display recipe progress in real-time
 - ✅ Control 8+ equipment automatically
 - ✅ Monitor environment 24/7
-- ✅ Receive commands from SmartCrop OS
+- ✅ Receive commands from CropWise
 - ✅ Report status via MQTT
 - ✅ Operate in auto or manual mode
 

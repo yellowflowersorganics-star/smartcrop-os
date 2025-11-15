@@ -55,7 +55,7 @@ jobs:
         env:
           POSTGRES_USER: test_user
           POSTGRES_PASSWORD: test_password
-          POSTGRES_DB: smartcrop_test
+          POSTGRES_DB: cropwise_test
         ports:
           - 5432:5432
         options: >-
@@ -94,7 +94,7 @@ jobs:
           DB_DIALECT: postgres
           DB_HOST: localhost
           DB_PORT: 5432
-          DB_NAME: smartcrop_test
+          DB_NAME: cropwise_test
           DB_USER: test_user
           DB_PASSWORD: test_password
           REDIS_HOST: localhost
@@ -161,11 +161,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t smartcrop-backend:${{ github.sha }} ./backend
+          docker build -t cropwise-backend:${{ github.sha }} ./backend
 
       - name: Save Docker Image
         run: |
-          docker save smartcrop-backend:${{ github.sha }} > backend-image.tar
+          docker save cropwise-backend:${{ github.sha }} > backend-image.tar
 
       - name: Upload Docker Image Artifact
         uses: actions/upload-artifact@v4
@@ -253,7 +253,7 @@ jobs:
     if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
     environment:
       name: development
-      url: https://dev.smartcrop.io
+      url: https://dev.cropwise.io
     
     steps:
       - name: Checkout code
@@ -281,19 +281,19 @@ jobs:
       - name: Tag and Push to ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: smartcrop-backend-dev
+          ECR_REPOSITORY: cropwise-backend-dev
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker tag smartcrop-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker tag smartcrop-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker tag cropwise-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag cropwise-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       - name: Deploy to ECS
         run: |
           aws ecs update-service \
-            --cluster smartcrop-dev-cluster \
-            --service smartcrop-backend-dev \
+            --cluster cropwise-dev-cluster \
+            --service cropwise-backend-dev \
             --force-new-deployment
 
       - name: Download Frontend Build
@@ -304,7 +304,7 @@ jobs:
 
       - name: Deploy Frontend to S3
         run: |
-          aws s3 sync frontend/dist/ s3://smartcrop-dev-frontend --delete
+          aws s3 sync frontend/dist/ s3://cropwise-dev-frontend --delete
 
       - name: Invalidate CloudFront Cache
         continue-on-error: true
@@ -327,7 +327,7 @@ jobs:
             curl -X POST "$SLACK_WEBHOOK_URL" \
               -H 'Content-Type: application/json' \
               -d '{
-                "text": "✅ SmartCrop deployed to DEV environment",
+                "text": "✅ CropWise deployed to DEV environment",
                 "blocks": [{
                   "type": "section",
                   "text": {
@@ -350,7 +350,7 @@ jobs:
     if: startsWith(github.ref, 'refs/heads/release/')
     environment:
       name: staging
-      url: https://staging.smartcrop.io
+      url: https://staging.cropwise.io
     
     steps:
       - name: Checkout code
@@ -377,7 +377,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: production
-      url: https://www.smartcrop.io
+      url: https://www.cropwise.io
     
     steps:
       - name: Checkout code
@@ -405,19 +405,19 @@ jobs:
       - name: Tag and Push to ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: smartcrop-backend-prod
+          ECR_REPOSITORY: cropwise-backend-prod
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker tag smartcrop-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker tag smartcrop-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker tag cropwise-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag cropwise-backend:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       - name: Deploy to Production ECS
         run: |
           aws ecs update-service \
-            --cluster smartcrop-prod-cluster \
-            --service smartcrop-backend-prod \
+            --cluster cropwise-prod-cluster \
+            --service cropwise-backend-prod \
             --force-new-deployment
 
       - name: Download Frontend Build
@@ -428,7 +428,7 @@ jobs:
 
       - name: Deploy Frontend to S3
         run: |
-          aws s3 sync frontend/dist/ s3://smartcrop-prod-frontend --delete
+          aws s3 sync frontend/dist/ s3://cropwise-prod-frontend --delete
 
       - name: Invalidate CloudFront Cache
         continue-on-error: true
@@ -462,12 +462,12 @@ jobs:
             curl -X POST "$SLACK_WEBHOOK_URL" \
               -H 'Content-Type: application/json' \
               -d '{
-                "text": "🚀 SmartCrop deployed to PRODUCTION",
+                "text": "🚀 CropWise deployed to PRODUCTION",
                 "blocks": [{
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Production Deployment Successful* :rocket:\n\n*Version:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*Deployed by:* ${{ github.actor }}\n*URL:* https://www.smartcrop.io"
+                    "text": "*Production Deployment Successful* :rocket:\n\n*Version:* ${{ github.ref_name }}\n*Commit:* ${{ github.sha }}\n*Deployed by:* ${{ github.actor }}\n*URL:* https://www.cropwise.io"
                   }
                 }]
               }'

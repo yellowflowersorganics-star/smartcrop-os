@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Models Index
+ * CropWise - Models Index
  * Initializes all database models and associations
  */
 

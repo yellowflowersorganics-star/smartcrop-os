@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Authentication Routes
+ * CropWise - Authentication Routes
  */
 
 const express = require('express');

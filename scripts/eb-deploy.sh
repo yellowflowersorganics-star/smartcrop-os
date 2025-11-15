@@ -1,9 +1,9 @@
 #!/bin/bash
-# SmartCrop OS - Elastic Beanstalk Deployment Script
+# CropWise - Elastic Beanstalk Deployment Script
 
 set -e
 
-echo "🌱 SmartCrop OS - Elastic Beanstalk Deployment"
+echo "🌱 CropWise - Elastic Beanstalk Deployment"
 echo "=============================================="
 
 # Colors
@@ -32,7 +32,7 @@ if [ ! -d ".elasticbeanstalk" ]; then
     echo -e "${YELLOW}⚠️  Elastic Beanstalk not initialized${NC}"
     echo "Initializing..."
     
-    eb init smartcrop-os-backend \
+    eb init cropwise-backend \
         --platform "Node.js 18 running on 64bit Amazon Linux 2023" \
         --region us-east-1
     

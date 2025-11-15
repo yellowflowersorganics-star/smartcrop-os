@@ -1,4 +1,4 @@
-# 🍄 SmartCrop OS - IoT Setup Guide
+# 🍄 CropWise - IoT Setup Guide
 
 ## Quick Start - Raspberry Pi 5 Setup
 
@@ -33,7 +33,7 @@ ssh pi@192.168.1.XXX
 
 ### Step 4: Upload Setup Files
 
-From your computer (in the `smartcrop-os/raspberry-pi` directory):
+From your computer (in the `cropwise/raspberry-pi` directory):
 
 ```bash
 # Copy files to Raspberry Pi
@@ -57,14 +57,14 @@ chmod +x setup-gateway.sh configure.sh
 ```
 
 Follow the prompts:
-1. **API URL**: Your SmartCrop OS server (e.g., `http://192.168.1.10:3000/api`)
-2. **AUTH_TOKEN**: Get from SmartCrop OS (see below)
+1. **API URL**: Your CropWise server (e.g., `http://192.168.1.10:3000/api`)
+2. **AUTH_TOKEN**: Get from CropWise (see below)
 3. **Gateway ID**: Default is fine (`RPI5-GATEWAY-001`)
 4. **Send Interval**: Default 300 seconds (5 minutes) is recommended
 
 #### How to Get AUTH_TOKEN:
 
-1. Open SmartCrop OS in browser
+1. Open CropWise in browser
 2. Login
 3. Press **F12** (Developer Tools)
 4. Go to **Network** tab
@@ -77,19 +77,19 @@ Follow the prompts:
 
 ```bash
 # Start service
-sudo systemctl start smartcrop-gateway
+sudo systemctl start cropwise-gateway
 
 # Check if running
-sudo systemctl status smartcrop-gateway
+sudo systemctl status cropwise-gateway
 
 # View live logs
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 ```
 
 You should see:
 ```
 ✅ Connected to MQTT Broker at localhost:1883
-📡 Subscribed to: smartcrop/zone/+/sensors
+📡 Subscribed to: cropwise/zone/+/sensors
 ```
 
 ### Step 7: Test MQTT Broker
@@ -98,7 +98,7 @@ Open a new SSH session and run:
 
 ```bash
 # Subscribe to all messages
-mosquitto_sub -h localhost -t "smartcrop/#" -v
+mosquitto_sub -h localhost -t "cropwise/#" -v
 ```
 
 Leave this running - you'll see messages when ESP32 connects!
@@ -176,11 +176,11 @@ ESP32 Dev Board:
    const char* WIFI_PASSWORD = "YourPassword";
    const char* MQTT_BROKER = "192.168.1.XXX";  // Your Raspberry Pi IP
    const char* DEVICE_ID = "ESP32-ZONE-001";
-   const char* ZONE_ID = "abc-123-def-456";    // From SmartCrop OS
+   const char* ZONE_ID = "abc-123-def-456";    // From CropWise
    ```
 
    **To get ZONE_ID:**
-   - Login to SmartCrop OS
+   - Login to CropWise
    - Go to Zones page
    - Click on a zone
    - Copy ID from URL: `http://localhost:5173/zones/<ZONE_ID>`
@@ -198,7 +198,7 @@ ESP32 Dev Board:
    - You should see:
 
    ```
-   🚀 SmartCrop OS ESP32 Sensor Node
+   🚀 CropWise ESP32 Sensor Node
    ✅ WiFi connected!
    ✅ MQTT Connected!
    📊 Reading sensors...
@@ -218,18 +218,18 @@ ESP32 Dev Board:
 On Raspberry Pi terminal:
 
 ```bash
-mosquitto_sub -h localhost -t "smartcrop/#" -v
+mosquitto_sub -h localhost -t "cropwise/#" -v
 ```
 
 You should see messages every 60 seconds:
 ```
-smartcrop/zone/abc-123/sensors {"device_id":"ESP32-ZONE-001",...}
+cropwise/zone/abc-123/sensors {"device_id":"ESP32-ZONE-001",...}
 ```
 
 ### 2. Check Gateway Logs
 
 ```bash
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 ```
 
 You should see:
@@ -238,9 +238,9 @@ You should see:
 ✅ Sent to API: Zone abc-123 at 14:30:15
 ```
 
-### 3. Check SmartCrop OS
+### 3. Check CropWise
 
-1. Login to SmartCrop OS
+1. Login to CropWise
 2. Go to Zones → Select your zone
 3. Scroll to "Environmental Monitoring"
 4. You should see real-time data updating!
@@ -253,15 +253,15 @@ You should see:
 
 ```bash
 # Check gateway status
-sudo systemctl status smartcrop-gateway
+sudo systemctl status cropwise-gateway
 
 # Start/Stop/Restart gateway
-sudo systemctl start smartcrop-gateway
-sudo systemctl stop smartcrop-gateway
-sudo systemctl restart smartcrop-gateway
+sudo systemctl start cropwise-gateway
+sudo systemctl stop cropwise-gateway
+sudo systemctl restart cropwise-gateway
 
 # View logs
-sudo journalctl -u smartcrop-gateway -f
+sudo journalctl -u cropwise-gateway -f
 
 # Check Mosquitto status
 sudo systemctl status mosquitto
@@ -270,17 +270,17 @@ sudo systemctl status mosquitto
 sudo systemctl restart mosquitto
 
 # Test MQTT
-mosquitto_sub -h localhost -t "smartcrop/#" -v
+mosquitto_sub -h localhost -t "cropwise/#" -v
 
 # Find Raspberry Pi IP
 hostname -I
 
 # Edit configuration
-cd ~/smartcrop-gateway
+cd ~/cropwise-gateway
 nano .env
 
 # After editing config, restart:
-sudo systemctl restart smartcrop-gateway
+sudo systemctl restart cropwise-gateway
 ```
 
 ### ESP32 Serial Monitor Commands
@@ -311,7 +311,7 @@ After opening Serial Monitor (115200 baud), you'll see:
 - Mosquitto is running: `sudo systemctl status mosquitto`
 - Test with: `mosquitto_pub -h <RPI_IP> -t test -m "hello"`
 
-### No Data in SmartCrop OS
+### No Data in CropWise
 
 ✅ **Check:**
 1. ESP32 is sending to MQTT (check Serial Monitor)
@@ -325,13 +325,13 @@ After opening Serial Monitor (115200 baud), you'll see:
 ✅ **Check:**
 ```bash
 # Check service status
-sudo systemctl status smartcrop-gateway
+sudo systemctl status cropwise-gateway
 
 # Check logs for errors
-sudo journalctl -u smartcrop-gateway -n 50
+sudo journalctl -u cropwise-gateway -n 50
 
 # Test manually
-cd ~/smartcrop-gateway
+cd ~/cropwise-gateway
 source venv/bin/activate
 python3 gateway.py
 ```
@@ -376,10 +376,10 @@ Reboot: `sudo reboot`
 
 ```bash
 # Create password file
-sudo mosquitto_passwd -c /etc/mosquitto/passwd smartcrop
+sudo mosquitto_passwd -c /etc/mosquitto/passwd cropwise
 
 # Edit config
-sudo nano /etc/mosquitto/conf.d/smartcrop.conf
+sudo nano /etc/mosquitto/conf.d/cropwise.conf
 
 # Change:
 # allow_anonymous false
@@ -413,7 +413,7 @@ sudo apt update && sudo apt upgrade -y
 
 ✅ **You're all set!**
 
-Your SmartCrop OS now has:
+Your CropWise now has:
 - Real-time environmental monitoring
 - Professional MQTT-based IoT architecture
 - Scalable to 100+ zones
@@ -432,8 +432,8 @@ See `docs/IOT_INTEGRATION_GUIDE.md` for advanced features!
 ## Support
 
 For issues:
-1. Check logs: `sudo journalctl -u smartcrop-gateway -f`
-2. Test MQTT: `mosquitto_sub -h localhost -t "smartcrop/#" -v`
+1. Check logs: `sudo journalctl -u cropwise-gateway -f`
+2. Test MQTT: `mosquitto_sub -h localhost -t "cropwise/#" -v`
 3. Review this guide's Troubleshooting section
 
 Happy farming! 🍄🚀

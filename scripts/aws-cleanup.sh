@@ -1,13 +1,13 @@
 #!/bin/bash
-# SmartCrop OS - AWS Cleanup Script
+# CropWise - AWS Cleanup Script
 # WARNING: This will delete all AWS resources!
 
 set -e
 
-echo "🗑️  SmartCrop OS - AWS Cleanup"
+echo "🗑️  CropWise - AWS Cleanup"
 echo "==============================="
 echo ""
-echo "⚠️  WARNING: This will DELETE all SmartCrop OS resources from AWS!"
+echo "⚠️  WARNING: This will DELETE all CropWise resources from AWS!"
 echo "⚠️  This action CANNOT be undone!"
 echo ""
 read -p "Type 'DELETE' to confirm: " CONFIRM
@@ -18,7 +18,7 @@ if [ "$CONFIRM" != "DELETE" ]; then
 fi
 
 AWS_REGION=${AWS_REGION:-us-east-1}
-APP_NAME="smartcrop-os"
+APP_NAME="cropwise"
 
 echo ""
 echo "Starting cleanup..."
@@ -111,6 +111,6 @@ rm -f aws-config.json
 
 echo ""
 echo "✅ Cleanup complete!"
-echo "All SmartCrop OS resources have been deleted from AWS."
+echo "All CropWise resources have been deleted from AWS."
 echo ""
 

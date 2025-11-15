@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - MQTT Service
+ * CropWise - MQTT Service
  * Handles communication with edge devices
  */
 
@@ -18,7 +18,7 @@ class MQTTService {
    */
   async connect() {
     const options = {
-      clientId: process.env.MQTT_CLIENT_ID || 'smartcrop-backend',
+      clientId: process.env.MQTT_CLIENT_ID || 'cropwise-backend',
       username: process.env.MQTT_USERNAME,
       password: process.env.MQTT_PASSWORD,
       clean: true,
@@ -58,10 +58,10 @@ class MQTTService {
    */
   subscribeToTopics() {
     const topics = [
-      'smartcrop/+/telemetry',      // Device telemetry
-      'smartcrop/+/status',          // Device status
-      'smartcrop/+/response',        // Command responses
-      'smartcrop/+/alert'            // Device alerts
+      'cropwise/+/telemetry',      // Device telemetry
+      'cropwise/+/status',          // Device status
+      'cropwise/+/response',        // Command responses
+      'cropwise/+/alert'            // Device alerts
     ];
 
     topics.forEach(topic => {
@@ -173,7 +173,7 @@ class MQTTService {
    * Publish control command to device
    */
   publishCommand(deviceId, command) {
-    const topic = `smartcrop/${deviceId}/command`;
+    const topic = `cropwise/${deviceId}/command`;
     const payload = JSON.stringify({
       ...command,
       timestamp: new Date().toISOString(),
@@ -193,7 +193,7 @@ class MQTTService {
    * Publish setpoints to device
    */
   publishSetpoints(deviceId, setpoints) {
-    const topic = `smartcrop/${deviceId}/setpoints`;
+    const topic = `cropwise/${deviceId}/setpoints`;
     const payload = JSON.stringify({
       ...setpoints,
       timestamp: new Date().toISOString()

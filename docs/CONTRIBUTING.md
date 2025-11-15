@@ -1,6 +1,6 @@
-# Contributing to SmartCrop OS
+# Contributing to CropWise
 
-Thank you for your interest in contributing to SmartCrop OS! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to CropWise! This document provides guidelines and instructions for contributing.
 
 ## 🤝 Code of Conduct
 
@@ -33,8 +33,8 @@ We are committed to providing a welcoming and inclusive environment. Please be r
 
 1. **Fork the repository**
    ```bash
-   git clone https://github.com/yourusername/smartcrop-os.git
-   cd smartcrop-os
+   git clone https://github.com/yourusername/cropwise.git
+   cd cropwise
    ```
 
 2. **Create a feature branch**
@@ -208,8 +208,8 @@ Contributors will be:
 
 ## 📞 Getting Help
 
-- **Discord**: https://discord.gg/smartcrop
-- **GitHub Discussions**: https://github.com/yellowflowers/smartcrop-os/discussions
+- **Discord**: https://discord.gg/cropwise
+- **GitHub Discussions**: https://github.com/yellowflowers/cropwise/discussions
 - **Email**: dev@yellowflowers.tech
 
 ## 📄 License
@@ -218,5 +218,5 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-**Thank you for making SmartCrop OS better! 🌱**
+**Thank you for making CropWise better! 🌱**
 

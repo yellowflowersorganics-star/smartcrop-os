@@ -97,7 +97,7 @@ git push --force --all
 **1. Use .env files (never commit them)**
 ```bash
 # backend/.env
-DATABASE_URL=postgresql://localhost:5432/smartcrop
+DATABASE_URL=postgresql://localhost:5432/cropwise
 JWT_SECRET=your-local-secret
 # NO AWS credentials here!
 ```
@@ -132,7 +132,7 @@ const s3 = new AWS.S3({
 ### For GitHub Actions (CI/CD)
 
 **Store secrets in GitHub Secrets:**
-https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 **Required secrets:**
 - `AWS_ACCESS_KEY_ID` - Development environment
@@ -201,7 +201,7 @@ cd git-secrets
 ./install.ps1
 
 # Setup in your repo
-cd C:\Users\praghav\smartcrop-os
+cd C:\Users\praghav\cropwise
 git secrets --install
 git secrets --register-aws
 ```
@@ -212,7 +212,7 @@ git secrets --register-aws
 pip install truffleHog
 
 # Scan repo
-trufflehog --regex --entropy=True https://github.com/yellowflowersorganics-star/smartcrop-os
+trufflehog --regex --entropy=True https://github.com/yellowflowersorganics-star/cropwise
 ```
 
 ### 3. GitHub Secret Scanning

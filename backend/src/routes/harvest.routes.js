@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Harvest Routes
+ * CropWise - Harvest Routes
  * Routes for harvest recording and tracking
  */
 

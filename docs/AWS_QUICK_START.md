@@ -1,6 +1,6 @@
-# 🚀 SmartCrop OS - AWS Quick Start (5 Minutes)
+# 🚀 CropWise - AWS Quick Start (5 Minutes)
 
-Get SmartCrop OS running on AWS in 5 minutes!
+Get CropWise running on AWS in 5 minutes!
 
 ## Prerequisites
 
@@ -89,8 +89,8 @@ aws ec2 run-instances \
 ssh -i your-key.pem ec2-user@YOUR_EC2_IP
 
 cd /home/ec2-user
-git clone https://github.com/your-repo/smartcrop-os.git
-cd smartcrop-os/backend
+git clone https://github.com/your-repo/cropwise.git
+cd cropwise/backend
 npm install --production
 pm2 start src/index.js
 ```
@@ -129,7 +129,7 @@ IoT:       AWS IoT Core (MQTT)
 ```bash
 # View logs
 eb logs                    # Elastic Beanstalk
-aws logs tail /ecs/smartcrop-backend --follow  # ECS
+aws logs tail /ecs/cropwise-backend --follow  # ECS
 
 # Update environment variables
 eb setenv KEY=value

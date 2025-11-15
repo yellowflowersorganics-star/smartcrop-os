@@ -1,6 +1,6 @@
 ---
 name: ✨ Feature Request
-about: Suggest a new feature for SmartCrop OS
+about: Suggest a new feature for CropWise
 title: '[FEATURE] '
 labels: enhancement, needs-triage
 assignees: ''

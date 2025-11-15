@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Subscription Controller (Stub)
+ * CropWise - Subscription Controller (Stub)
  */
 
 class SubscriptionController {

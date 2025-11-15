@@ -1,6 +1,6 @@
 # ⚡ Quick Start with AWS Elastic Beanstalk (No Domain Required)
 
-**Fastest way to deploy SmartCrop** - Setup in 15 minutes!
+**Fastest way to deploy CropWise** - Setup in 15 minutes!
 
 ---
 
@@ -36,14 +36,14 @@ eb --version
 ### **STEP 2: Initialize Elastic Beanstalk**
 
 ```powershell
-cd C:\Users\praghav\smartcrop\backend
+cd C:\Users\praghav\cropwise\backend
 
 # Initialize EB in your project
 eb init
 
 # Follow prompts:
 # - Select region: ap-south-1
-# - Application name: smartcrop-backend
+# - Application name: cropwise-backend
 # - Platform: Docker
 # - Do you want to set up SSH: No (or Yes if you want access)
 ```
@@ -52,7 +52,7 @@ eb init
 
 ```powershell
 # Create development environment
-eb create smartcrop-dev `
+eb create cropwise-dev `
   --instance-type t3.small `
   --envvars `
     DATABASE_URL=$env:DATABASE_URL,`
@@ -76,34 +76,34 @@ This command creates:
 
 After creation, you'll see:
 ```
-Environment created: smartcrop-dev
-URL: smartcrop-dev.us-east-1.elasticbeanstalk.com
+Environment created: cropwise-dev
+URL: cropwise-dev.us-east-1.elasticbeanstalk.com
 ```
 
 **This is your backend API URL!**
 
 ```powershell
 # Test it
-curl http://smartcrop-dev.us-east-1.elasticbeanstalk.com/health
+curl http://cropwise-dev.us-east-1.elasticbeanstalk.com/health
 ```
 
 ### **STEP 5: Deploy Frontend to S3**
 
 ```powershell
-cd C:\Users\praghav\smartcrop\frontend
+cd C:\Users\praghav\cropwise\frontend
 
 # Build frontend with backend URL
-$env:VITE_API_URL="http://smartcrop-dev.us-east-1.elasticbeanstalk.com"
+$env:VITE_API_URL="http://cropwise-dev.us-east-1.elasticbeanstalk.com"
 npm run build
 
 # Create S3 bucket
-aws s3 mb s3://smartcrop-frontend-dev
+aws s3 mb s3://cropwise-frontend-dev
 
 # Upload frontend
-aws s3 sync dist/ s3://smartcrop-frontend-dev --delete
+aws s3 sync dist/ s3://cropwise-frontend-dev --delete
 
 # Enable static website hosting
-aws s3 website s3://smartcrop-frontend-dev `
+aws s3 website s3://cropwise-frontend-dev `
   --index-document index.html `
   --error-document index.html
 
@@ -116,13 +116,13 @@ $policy = @"
     "Effect": "Allow",
     "Principal": "*",
     "Action": "s3:GetObject",
-    "Resource": "arn:aws:s3:::smartcrop-frontend-dev/*"
+    "Resource": "arn:aws:s3:::cropwise-frontend-dev/*"
   }]
 }
 "@
 
 Set-Content -Path policy.json -Value $policy
-aws s3api put-bucket-policy --bucket smartcrop-frontend-dev --policy file://policy.json
+aws s3api put-bucket-policy --bucket cropwise-frontend-dev --policy file://policy.json
 Remove-Item policy.json
 ```
 
@@ -130,10 +130,10 @@ Remove-Item policy.json
 
 ```powershell
 # Get S3 website URL
-aws s3api get-bucket-website --bucket smartcrop-frontend-dev
+aws s3api get-bucket-website --bucket cropwise-frontend-dev
 
 # Your URL will be:
-# http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com
+# http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
 ```
 
 ---
@@ -144,13 +144,13 @@ Add your URLs to GitHub Secrets:
 
 ```
 Name: VITE_API_URL
-Value: http://smartcrop-dev.us-east-1.elasticbeanstalk.com
+Value: http://cropwise-dev.us-east-1.elasticbeanstalk.com
 
 Name: FRONTEND_URL (if needed)
-Value: http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com
+Value: http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
 ```
 
-👉 https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions/new
+👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions/new
 
 ---
 
@@ -162,13 +162,13 @@ Add your Elastic Beanstalk URLs:
 2. Click your OAuth 2.0 Client ID
 3. **Add Authorized JavaScript Origins:**
    ```
-   http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com
+   http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
    http://localhost:8080
    ```
 4. **Add Authorized Redirect URIs:**
    ```
-   http://smartcrop-dev.us-east-1.elasticbeanstalk.com/api/auth/google/callback
-   http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com/auth/google/callback
+   http://cropwise-dev.us-east-1.elasticbeanstalk.com/api/auth/google/callback
+   http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com/auth/google/callback
    http://localhost:3000/api/auth/google/callback
    ```
 5. Click **"Save"**
@@ -179,10 +179,10 @@ Add your Elastic Beanstalk URLs:
 
 ```powershell
 # Test backend
-curl http://smartcrop-dev.us-east-1.elasticbeanstalk.com/health
+curl http://cropwise-dev.us-east-1.elasticbeanstalk.com/health
 
 # Open frontend
-start http://smartcrop-frontend-dev.s3-website-us-east-1.amazonaws.com
+start http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
 
 # Check logs
 eb logs
@@ -195,7 +195,7 @@ eb logs
 Super simple:
 
 ```powershell
-cd C:\Users\praghav\smartcrop\backend
+cd C:\Users\praghav\cropwise\backend
 
 # Deploy backend
 git commit -am "Update backend"
@@ -204,7 +204,7 @@ eb deploy
 # Deploy frontend
 cd ../frontend
 npm run build
-aws s3 sync dist/ s3://smartcrop-frontend-dev --delete
+aws s3 sync dist/ s3://cropwise-frontend-dev --delete
 ```
 
 ---
@@ -245,7 +245,7 @@ When ready for production:
 
 ```powershell
 # Create production environment
-eb create smartcrop-prod `
+eb create cropwise-prod `
   --instance-type t3.medium `
   --scale 2 `
   --envvars `
@@ -254,7 +254,7 @@ eb create smartcrop-prod `
     SESSION_SECRET=$env:SESSION_SECRET
 
 # Create production frontend bucket
-aws s3 mb s3://smartcrop-frontend-prod
+aws s3 mb s3://cropwise-frontend-prod
 ```
 
 ---

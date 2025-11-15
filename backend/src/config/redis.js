@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Redis Configuration
+ * CropWise - Redis Configuration
  */
 
 const redis = require('redis');

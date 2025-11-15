@@ -1,6 +1,6 @@
-# Getting Started with SmartCrop OS
+# Getting Started with CropWise
 
-Complete guide to setting up and running SmartCrop OS from scratch.
+Complete guide to setting up and running CropWise from scratch.
 
 ## 📋 Prerequisites
 
@@ -25,8 +25,8 @@ The fastest way to get started:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yellowflowers/smartcrop-os.git
-cd smartcrop-os
+git clone https://github.com/yellowflowers/cropwise.git
+cd cropwise
 
 # Start all services
 docker-compose up -d
@@ -56,7 +56,7 @@ cp ../.env.example .env
 # Edit .env with your database credentials
 
 # Create database
-createdb smartcrop_db
+createdb cropwise_db
 
 # Run migrations
 npm run migrate
@@ -101,7 +101,7 @@ brew install mosquitto
 # Download from https://mosquitto.org/download/
 
 # Create password file
-mosquitto_passwd -c password.txt smartcrop
+mosquitto_passwd -c password.txt cropwise
 # Enter password when prompted
 
 # Start broker
@@ -214,7 +214,7 @@ In `edge/esp32/src/config.h`:
 
 #define MQTT_BROKER "localhost"  // or your server IP
 #define MQTT_PORT 1883
-#define MQTT_USERNAME "smartcrop"
+#define MQTT_USERNAME "cropwise"
 #define MQTT_PASSWORD "your_mqtt_password"
 ```
 
@@ -337,12 +337,12 @@ npm run dev
 
 ## 💬 Community & Support
 
-- **Documentation**: https://docs.smartcrop.io
-- **GitHub Issues**: https://github.com/yellowflowers/smartcrop-os/issues
-- **Discord**: https://discord.gg/smartcrop
+- **Documentation**: https://docs.cropwise.io
+- **GitHub Issues**: https://github.com/yellowflowers/cropwise/issues
+- **Discord**: https://discord.gg/cropwise
 - **Email**: support@yellowflowers.tech
 
 ---
 
-**Welcome to SmartCrop OS! 🌱 Happy growing!**
+**Welcome to CropWise! 🌱 Happy growing!**
 

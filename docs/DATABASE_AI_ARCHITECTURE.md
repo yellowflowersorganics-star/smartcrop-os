@@ -1,4 +1,4 @@
-# 🗄️ SmartCrop OS - Database Architecture & AI Readiness
+# 🗄️ CropWise - Database Architecture & AI Readiness
 
 ## 📊 Current Database Stack
 
@@ -6,7 +6,7 @@
 
 #### **Why SQL (Relational) Database?**
 
-SmartCrop OS uses **PostgreSQL** (production) and **SQLite** (development) - both SQL databases. Here's why:
+CropWise uses **PostgreSQL** (production) and **SQLite** (development) - both SQL databases. Here's why:
 
 ### ✅ **Reasons for Choosing SQL:**
 
@@ -219,7 +219,7 @@ WHERE ai_analysis->'detections'->0->>'class' = 'bacterial_blotch';
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   SmartCrop OS Platform                 │
+│                   CropWise Platform                 │
 │                                                         │
 │  ┌─────────────────┐         ┌──────────────────┐    │
 │  │  React/Native   │         │  Backend API     │    │
@@ -291,7 +291,7 @@ WHERE ai_analysis->'detections'->0->>'class' = 'bacterial_blotch';
 │                                                        │
 │  ┌─────────────────┐         ┌──────────────────┐   │
 │  │  CloudFront CDN │         │  Route 53 (DNS)  │   │
-│  │  (React App)    │         │  smartcrop.io    │   │
+│  │  (React App)    │         │  cropwise.io    │   │
 │  └─────────────────┘         └──────────────────┘   │
 │           │                            │              │
 │           ▼                            ▼              │
@@ -364,7 +364,7 @@ WHERE ai_analysis->'detections'->0->>'class' = 'bacterial_blotch';
 
 ### **✅ YES - Your Backend is Ready for Mobile Apps**
 
-SmartCrop OS is built with a **RESTful API** that works perfectly with mobile apps.
+CropWise is built with a **RESTful API** that works perfectly with mobile apps.
 
 ### **Tech Stack for Mobile:**
 
@@ -399,7 +399,7 @@ SmartCrop OS is built with a **RESTful API** that works perfectly with mobile ap
 │              ▼ REST API                     │
 │  ┌───────────────────────────────────────┐ │
 │  │  Same Backend API as Web App          │ │
-│  │  https://api.smartcrop.io             │ │
+│  │  https://api.cropwise.io             │ │
 │  └───────────────────────────────────────┘ │
 └─────────────────────────────────────────────┘
 ```

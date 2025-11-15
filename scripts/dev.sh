@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# SmartCrop OS - Development Script
+# CropWise - Development Script
 # Start all services for local development
 
-echo "🌱 Starting SmartCrop OS Development Environment"
+echo "🌱 Starting CropWise Development Environment"
 echo "================================================"
 
 # Function to kill background processes on exit

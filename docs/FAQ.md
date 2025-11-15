@@ -1,18 +1,18 @@
-# ❓ SmartCrop - Frequently Asked Questions
+# ❓ CropWise - Frequently Asked Questions
 
-Common questions and answers about SmartCrop.
+Common questions and answers about CropWise.
 
 ---
 
 ## 📋 General Questions
 
-### What is SmartCrop?
+### What is CropWise?
 
-SmartCrop is an open-source, IoT-powered farm management platform designed for controlled-environment agriculture. It helps farmers manage their operations through real-time monitoring, batch tracking, harvest recording, analytics, and automated environmental control.
+CropWise is an open-source, IoT-powered farm management platform designed for controlled-environment agriculture. It helps farmers manage their operations through real-time monitoring, batch tracking, harvest recording, analytics, and automated environmental control.
 
-### Is SmartCrop really free?
+### Is CropWise really free?
 
-Yes! SmartCrop is 100% open-source under the MIT License. You can:
+Yes! CropWise is 100% open-source under the MIT License. You can:
 - ✅ Use it commercially
 - ✅ Modify the source code
 - ✅ Self-host on your own servers
@@ -20,9 +20,9 @@ Yes! SmartCrop is 100% open-source under the MIT License. You can:
 
 Optional cloud hosting services are available for a fee, but the software itself is free forever.
 
-### What types of crops can I grow with SmartCrop?
+### What types of crops can I grow with CropWise?
 
-SmartCrop is designed for controlled-environment agriculture and works well with:
+CropWise is designed for controlled-environment agriculture and works well with:
 - **Mushrooms** (oyster, shiitake, lion's mane, etc.) ✅ Fully supported
 - **Leafy greens** (lettuce, spinach, herbs) ✅ Fully supported
 - **Vegetables** (tomatoes, peppers, cucumbers) ✅ Fully supported
@@ -33,7 +33,7 @@ The system is crop-agnostic — you define the environmental parameters for your
 
 ### Do I need to be a programmer to use it?
 
-**No!** SmartCrop has a user-friendly web interface that requires no programming knowledge. However, if you want to:
+**No!** CropWise has a user-friendly web interface that requires no programming knowledge. However, if you want to:
 - Customize the system
 - Add new features
 - Integrate with other tools
@@ -42,7 +42,7 @@ Some programming knowledge (JavaScript/Node.js) will be helpful.
 
 ### Can I use it without IoT devices?
 
-**Yes!** You can use SmartCrop for:
+**Yes!** You can use CropWise for:
 - Farm and zone management
 - Batch tracking
 - Harvest recording
@@ -95,7 +95,7 @@ For commercial operations, we recommend a dedicated server or cloud hosting.
 
 ### Does it work on Windows?
 
-**Yes!** SmartCrop runs on:
+**Yes!** CropWise runs on:
 - ✅ Windows 10/11
 - ✅ Windows Server 2019+
 - ✅ Ubuntu/Debian Linux
@@ -124,7 +124,7 @@ See [IoT Integration Guide](IOT_INTEGRATION_GUIDE.md) for complete list.
 
 ### Can I integrate with existing systems?
 
-**Yes!** SmartCrop provides:
+**Yes!** CropWise provides:
 - **REST API**: Full API access
 - **Webhooks**: Real-time event notifications
 - **CSV Export**: Bulk data export
@@ -184,7 +184,7 @@ See [AWS Deployment Guide](DEPLOY_TO_AWS_NOW.md) for detailed cost breakdown.
 
 ### Is my data secure?
 
-**Yes!** SmartCrop uses:
+**Yes!** CropWise uses:
 - **Encryption**: All data encrypted at rest and in transit (HTTPS/TLS)
 - **Authentication**: JWT tokens + Google OAuth
 - **Authorization**: Role-based access control (RBAC)
@@ -218,7 +218,7 @@ See [Security Guide](SECURITY_GUIDE.md) for details.
 
 **Cloud-hosted**: 
 - Your team members (based on permissions)
-- SmartCrop team (only for support, with your permission)
+- CropWise team (only for support, with your permission)
 - **Never sold to third parties**
 
 ---
@@ -282,7 +282,7 @@ Arduino requires additional WiFi shield ($15-30).
 
 ### Can I manage multiple farms?
 
-**Yes!** SmartCrop supports:
+**Yes!** CropWise supports:
 - Unlimited farms
 - Unlimited zones per farm
 - Unlimited batches
@@ -373,7 +373,7 @@ pm2 restart
 
 - **GitHub**: Watch the repository (Releases only)
 - **Email**: Subscribe to our newsletter
-- **RSS**: [blog.smartcrop.io/feed](https://blog.smartcrop.io/feed)
+- **RSS**: [blog.cropwise.io/feed](https://blog.cropwise.io/feed)
 - **Discord**: #announcements channel
 
 ---
@@ -383,31 +383,31 @@ pm2 restart
 ### Where can I get help?
 
 **Free support:**
-- 📚 [Documentation](https://docs.smartcrop.io)
-- 💬 [Community Forum](https://community.smartcrop.io)
-- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
-- 💬 [Discord](https://discord.gg/smartcrop)
+- 📚 [Documentation](https://docs.cropwise.io)
+- 💬 [Community Forum](https://community.cropwise.io)
+- 🐛 [GitHub Issues](https://github.com/yellowflowersorganics-star/cropwise/issues)
+- 💬 [Discord](https://discord.gg/cropwise)
 
 **Paid support:**
-- 📧 Email: support@smartcrop.io
-- 📱 Phone: +1-555-SMARTCROP
+- 📧 Email: support@cropwise.io
+- 📱 Phone: +1-555-CROPWISE
 - 💼 Enterprise: SLA with <1 hour response time
 
 ### Can I hire someone to set it up for me?
 
 **Yes!** Options:
 1. **Official setup service**: $299 one-time fee
-2. **Certified partners**: See [Partners page](https://smartcrop.io/partners)
+2. **Certified partners**: See [Partners page](https://cropwise.io/partners)
 3. **Hire a freelancer**: Post on Upwork, Fiverr
 4. **Community help**: Ask in forum (may be free!)
 
 ### Is there a community?
 
 **Yes!** Join us:
-- **Discord**: [discord.gg/smartcrop](https://discord.gg/smartcrop) - 500+ members
-- **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Facebook**: SmartCrop Users Group
-- **Reddit**: r/SmartCropOS (coming soon)
+- **Discord**: [discord.gg/cropwise](https://discord.gg/cropwise) - 500+ members
+- **Forum**: [community.cropwise.io](https://community.cropwise.io)
+- **Facebook**: CropWise Users Group
+- **Reddit**: r/CropWiseOS (coming soon)
 
 ### Can I contribute to the project?
 
@@ -427,7 +427,7 @@ See [Contributing Guide](../CONTRIBUTING.md).
 
 ### Can it scale to 100+ zones?
 
-**Yes!** SmartCrop scales to:
+**Yes!** CropWise scales to:
 - 1,000+ zones (with proper hardware)
 - 10,000+ batches
 - Millions of sensor readings
@@ -490,7 +490,7 @@ See [Admin Guide](ADMIN_GUIDE.md) for scaling strategies.
 - White-glove onboarding
 - Dedicated account manager
 
-**Contact**: enterprise@smartcrop.io
+**Contact**: enterprise@cropwise.io
 
 ---
 
@@ -558,10 +558,10 @@ Configure in Settings → Preferences.
 
 Can't find your answer? We're here to help!
 
-- **Email**: support@smartcrop.io
-- **Live Chat**: [smartcrop.io](https://smartcrop.io) (Mon-Fri, 9 AM - 5 PM EST)
-- **Schedule a call**: [calendly.com/smartcrop](https://calendly.com/smartcrop)
-- **Forum**: [community.smartcrop.io](https://community.smartcrop.io)
+- **Email**: support@cropwise.io
+- **Live Chat**: [cropwise.io](https://cropwise.io) (Mon-Fri, 9 AM - 5 PM EST)
+- **Schedule a call**: [calendly.com/cropwise](https://calendly.com/cropwise)
+- **Forum**: [community.cropwise.io](https://community.cropwise.io)
 
 ---
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################################################
-# SmartCrop OS - AWS Deployment Script
+# CropWise - AWS Deployment Script
 # This script automates the deployment process to AWS
 ###############################################################################
 
@@ -15,7 +15,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}  SmartCrop OS - AWS Deployment${NC}"
+echo -e "${BLUE}  CropWise - AWS Deployment${NC}"
 echo -e "${BLUE}========================================${NC}\n"
 
 # Check if AWS CLI is installed
@@ -45,7 +45,7 @@ echo -e "${BLUE}Region: ${AWS_REGION}${NC}\n"
 
 # Function to create S3 bucket for deployment
 create_s3_bucket() {
-    BUCKET_NAME="smartcrop-deployment-${AWS_ACCOUNT_ID}"
+    BUCKET_NAME="cropwise-deployment-${AWS_ACCOUNT_ID}"
     
     echo -e "${YELLOW}Creating S3 bucket: ${BUCKET_NAME}${NC}"
     
@@ -92,7 +92,7 @@ build_frontend() {
 deploy_frontend() {
     echo -e "\n${YELLOW}Deploying frontend to S3...${NC}"
     
-    FRONTEND_BUCKET="smartcrop-frontend-${AWS_ACCOUNT_ID}"
+    FRONTEND_BUCKET="cropwise-frontend-${AWS_ACCOUNT_ID}"
     
     # Create bucket
     if aws s3 ls "s3://${FRONTEND_BUCKET}" 2>&1 | grep -q 'NoSuchBucket'; then

@@ -1,13 +1,13 @@
 # 🔄 Node-RED Flow Migration Guide
-## From ChatGPT Flow to SmartCrop OS Architecture
+## From ChatGPT Flow to CropWise Architecture
 
 ---
 
 ## 📊 Comparison
 
-### **ChatGPT Flow** vs **SmartCrop OS Flow**
+### **ChatGPT Flow** vs **CropWise Flow**
 
-| Feature | ChatGPT Flow | SmartCrop OS Flow |
+| Feature | ChatGPT Flow | CropWise Flow |
 |:--------|:------------|:------------------|
 | **Architecture** | Single zone, manual recipe mgmt | Multi-zone, cloud-integrated |
 | **MQTT Topics** | Custom (`yf/recipes/#`, `yellowfarm/yf1/...`) | Standardized (`unit1/zone_a/*`, `yfcloud/*/*`) |
@@ -52,7 +52,7 @@ timer/trigger
 
 ---
 
-### SmartCrop OS Topics
+### CropWise Topics
 
 ```
 # Local MQTT (ESP32 → Raspberry Pi)
@@ -90,7 +90,7 @@ yfcloud/<org_id>/<unit_id>/firmware_update
 flow.set('recipe_' + id, recipe);
 ```
 
-**SmartCrop OS**:
+**CropWise**:
 ```javascript
 // Recipes managed by backend API
 // Gateway caches locally for offline operation
@@ -119,7 +119,7 @@ flow.set(zone + '_batch', {
 });
 ```
 
-**SmartCrop OS**:
+**CropWise**:
 ```javascript
 // Batch started from dashboard
 // API call: POST /api/zones/:id/start
@@ -146,7 +146,7 @@ setTimeout(function(){
 }, ms);
 ```
 
-**SmartCrop OS**:
+**CropWise**:
 ```javascript
 // Automatic stage progression
 // Recipe defines stage durations
@@ -170,7 +170,7 @@ setTimeout(function(){
 Not implemented (assumed external)
 ```
 
-**SmartCrop OS**:
+**CropWise**:
 ```javascript
 // ESP32 publishes every 60s
 unit1/zone_a/telemetry → Pi aggregates → Cloud
@@ -198,7 +198,7 @@ ESP32 → Local MQTT → Pi (aggregate) → Cloud MQTT → API → Database
 const zone = 'zone-01'; // Hardcoded
 ```
 
-**After** (SmartCrop OS):
+**After** (CropWise):
 ```javascript
 // Automatically handles all zones in unit
 const buffer = flow.get('telemetry_buffer') || {};
@@ -215,7 +215,7 @@ No cloud connection
 Everything local
 ```
 
-**After** (SmartCrop OS):
+**After** (CropWise):
 ```javascript
 // Bi-directional cloud sync
 // - Telemetry → Cloud (every 60s)
@@ -233,7 +233,7 @@ Everything local
 Requires connectivity for recipe mgmt
 ```
 
-**After** (SmartCrop OS):
+**After** (CropWise):
 ```javascript
 // Local buffer in SQLite
 // Caches recipes locally
@@ -250,7 +250,7 @@ Requires connectivity for recipe mgmt
 No API integration
 ```
 
-**After** (SmartCrop OS):
+**After** (CropWise):
 ```javascript
 // Full REST API integration
 // - POST /api/units/:id/gateway-heartbeat
@@ -272,19 +272,19 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 # Install Mosquitto
 sudo apt install -y mosquitto mosquitto-clients
 
-# Clone SmartCrop OS
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os/edge/node-red
+# Clone CropWise
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise/edge/node-red
 ```
 
 ### Step 2: Configure Gateway
 
 ```bash
 # Create config directory
-sudo mkdir -p /etc/smartcrop
+sudo mkdir -p /etc/cropwise
 
 # Create environment file
-sudo nano /etc/smartcrop/gateway.env
+sudo nano /etc/cropwise/gateway.env
 ```
 
 Add:
@@ -292,9 +292,9 @@ Add:
 ORGANIZATION_ID=org_abc123
 UNIT_ID=unit_001
 GATEWAY_ID=rpi_b827eb123456
-API_URL=https://api.smartcrop.cloud
+API_URL=https://api.cropwise.cloud
 API_TOKEN=your_jwt_token
-CLOUD_MQTT_BROKER=mqtt.smartcrop.cloud
+CLOUD_MQTT_BROKER=mqtt.cropwise.cloud
 CLOUD_MQTT_PORT=8883
 CLOUD_MQTT_USERNAME=gateway_unit_001
 CLOUD_MQTT_PASSWORD=your_mqtt_password
@@ -304,7 +304,7 @@ CLOUD_MQTT_PASSWORD=your_mqtt_password
 
 1. Access Node-RED: `http://raspberry-pi-ip:1880`
 2. Menu → Import
-3. Select `flows/smartcrop-gateway.json`
+3. Select `flows/cropwise-gateway.json`
 4. Configure MQTT brokers (local + cloud)
 5. Deploy
 
@@ -327,7 +327,7 @@ Update ESP32 firmware to use new topics:
 mosquitto_sub -h localhost -t "unit1/#" -v
 
 # Test cloud MQTT
-mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
+mosquitto_sub -h mqtt.cropwise.cloud -p 8883 \
   -u gateway_unit_001 -P password \
   -t "yfcloud/org_abc123/unit_001/#" -v
 ```
@@ -336,9 +336,9 @@ mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
 
 ## 📋 Feature Mapping
 
-### ChatGPT Flow → SmartCrop OS
+### ChatGPT Flow → CropWise
 
-| ChatGPT Feature | SmartCrop OS Equivalent |
+| ChatGPT Feature | CropWise Equivalent |
 |:----------------|:------------------------|
 | Recipe validation | Backend API validation + JSON schema |
 | Recipe storage | PostgreSQL + local cache |
@@ -379,7 +379,7 @@ mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
 - Learning Node-RED basics
 - Prototyping quickly
 
-### ✅ Use SmartCrop OS Flow If:
+### ✅ Use CropWise Flow If:
 - Production deployment
 - Multiple zones/units
 - Cloud monitoring needed
@@ -392,7 +392,7 @@ mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
 
 ## 💡 Recommendation
 
-**Start with SmartCrop OS flow** - it's designed for your architecture and includes everything you need:
+**Start with CropWise flow** - it's designed for your architecture and includes everything you need:
 - ✅ Organization → Unit → Zone hierarchy
 - ✅ ESP32 → Raspberry Pi → Cloud
 - ✅ Full backend integration
@@ -400,7 +400,7 @@ mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
 - ✅ Offline operation
 - ✅ Production-ready
 
-The ChatGPT flow is useful for understanding concepts, but the SmartCrop OS flow is built specifically for your requirements:
+The ChatGPT flow is useful for understanding concepts, but the CropWise flow is built specifically for your requirements:
 > "In an organization there will be multiple units and in one unit there will be multiple zones and each zone have ESP32 which will be connected with sensor, relays, to control the devices like fan, humidifier, Chiller, boiler, light, FCU, AHU, etc. each ESP32 will subscribed to Raspberry Pi."
 
 ---
@@ -413,5 +413,5 @@ The ChatGPT flow is useful for understanding concepts, but the SmartCrop OS flow
 
 ---
 
-**Conclusion**: The SmartCrop OS flow is a **production-grade, enterprise-ready** implementation of your exact architecture. The ChatGPT flow is a good learning reference but lacks multi-zone, multi-unit, and cloud integration features you need. 🚀
+**Conclusion**: The CropWise flow is a **production-grade, enterprise-ready** implementation of your exact architecture. The ChatGPT flow is a good learning reference but lacks multi-zone, multi-unit, and cloud integration features you need. 🚀
 

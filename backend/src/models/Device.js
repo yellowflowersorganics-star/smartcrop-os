@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Device Model
+ * CropWise - Device Model
  * Edge IoT devices (ESP32, sensors, actuators)
  */
 

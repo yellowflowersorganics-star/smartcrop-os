@@ -485,7 +485,7 @@ http://localhost:5173/analytics
 ## 📂 **Files Created (All Pushed to GitHub)**
 
 ```
-smartcrop-os/
+cropwise/
 ├── shared/examples/
 │   ├── oyster-mushroom-enhanced-v2.json    (Enhanced recipe)
 │   └── RECIPE_COMPARISON.md                (v1 vs v2 comparison)
@@ -496,7 +496,7 @@ smartcrop-os/
 └── HARVEST_TRACKING_SUMMARY.md             (This file)
 ```
 
-**GitHub Repository**: https://github.com/yellowflowersorganics-star/smartcrop-os
+**GitHub Repository**: https://github.com/yellowflowersorganics-star/cropwise
 
 ---
 

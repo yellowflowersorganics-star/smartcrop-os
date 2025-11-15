@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - User Model
+ * CropWise - User Model
  */
 
 const { DataTypes } = require('sequelize');

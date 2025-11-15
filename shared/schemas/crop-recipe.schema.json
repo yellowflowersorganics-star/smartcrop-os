@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://smartcrop.io/schemas/crop-recipe.json",
+  "$id": "https://cropwise.io/schemas/crop-recipe.json",
   "title": "Crop Recipe",
   "description": "Software-defined environmental parameters for controlled-environment crop cultivation",
   "type": "object",

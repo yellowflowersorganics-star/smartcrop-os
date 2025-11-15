@@ -581,7 +581,7 @@ For questions or issues with the Quality Control system:
 
 ---
 
-**Quality Control is now fully operational in SmartCrop OS! 🎊**
+**Quality Control is now fully operational in CropWise! 🎊**
 
 Start by creating quality standards, then perform inspections, and analyze your quality metrics! 🔬📊
 

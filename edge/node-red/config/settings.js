@@ -1,8 +1,8 @@
 /**
- * SmartCrop OS - Node-RED Configuration for Raspberry Pi Gateway
+ * CropWise - Node-RED Configuration for Raspberry Pi Gateway
  * 
  * This configuration file is used by Node-RED running on the Raspberry Pi
- * to manage local ESP32 controllers and forward data to SmartCrop Cloud
+ * to manage local ESP32 controllers and forward data to CropWise Cloud
  */
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     // ==================================================
     // Flow Configuration
     // ==================================================
-    flowFile: 'smartcrop-flows.json',
+    flowFile: 'cropwise-flows.json',
     flowFilePretty: true,
     
     // ==================================================
@@ -42,26 +42,26 @@ module.exports = {
     // HTTPS (optional - enable in production)
     // ==================================================
     // https: {
-    //     key: require("fs").readFileSync('/etc/smartcrop/gateway-key.pem'),
-    //     cert: require("fs").readFileSync('/etc/smartcrop/gateway-cert.pem')
+    //     key: require("fs").readFileSync('/etc/cropwise/gateway-key.pem'),
+    //     cert: require("fs").readFileSync('/etc/cropwise/gateway-cert.pem')
     // },
     
     // ==================================================
     // Environment Variables (accessible in flows via env.get())
     // ==================================================
     functionGlobalContext: {
-        // SmartCrop Configuration
+        // CropWise Configuration
         ORGANIZATION_ID: process.env.ORGANIZATION_ID || 'org_abc123',
         UNIT_ID: process.env.UNIT_ID || 'unit_001',
         GATEWAY_ID: process.env.GATEWAY_ID || 'unknown',
         GATEWAY_VERSION: '1.0.0',
         
         // API Configuration
-        API_URL: process.env.API_URL || 'https://api.smartcrop.cloud',
+        API_URL: process.env.API_URL || 'https://api.cropwise.cloud',
         API_TOKEN: process.env.API_TOKEN || '',
         
         // MQTT Configuration
-        CLOUD_MQTT_BROKER: process.env.CLOUD_MQTT_BROKER || 'mqtt.smartcrop.cloud',
+        CLOUD_MQTT_BROKER: process.env.CLOUD_MQTT_BROKER || 'mqtt.cropwise.cloud',
         CLOUD_MQTT_PORT: process.env.CLOUD_MQTT_PORT || 8883,
         CLOUD_MQTT_USERNAME: process.env.CLOUD_MQTT_USERNAME || '',
         CLOUD_MQTT_PASSWORD: process.env.CLOUD_MQTT_PASSWORD || '',
@@ -85,7 +85,7 @@ module.exports = {
             level: "info",
             metrics: false,
             audit: false,
-            file: "/var/log/smartcrop/node-red.log"
+            file: "/var/log/cropwise/node-red.log"
         }
     },
     
@@ -113,11 +113,11 @@ module.exports = {
             enabled: false
         },
         page: {
-            title: "SmartCrop Gateway - Node-RED",
+            title: "CropWise Gateway - Node-RED",
             favicon: "/absolute/path/to/theme/icon"
         },
         header: {
-            title: "SmartCrop Gateway",
+            title: "CropWise Gateway",
             image: "/absolute/path/to/header/image"
         }
     },

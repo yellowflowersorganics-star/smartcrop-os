@@ -61,7 +61,7 @@ export default function About() {
   ];
 
   const milestones = [
-    { year: '2020', event: 'SmartCrop founded by agricultural engineers', icon: Sprout },
+    { year: '2020', event: 'CropWise founded by agricultural engineers', icon: Sprout },
     { year: '2021', event: 'First 100 farms onboarded, raised seed funding', icon: TrendingUp },
     { year: '2022', event: 'Expanded to 15 countries, launched mobile app', icon: Globe },
     { year: '2023', event: 'Reached 1,000+ active farms, Series A funding', icon: Award },
@@ -76,7 +76,7 @@ export default function About() {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
               <Sprout className="w-8 h-8 text-green-600" />
-              <span className="text-2xl font-bold text-gray-900">SmartCrop</span>
+              <span className="text-2xl font-bold text-gray-900">CropWise</span>
             </Link>
             <div className="flex items-center space-x-4">
               <Link to="/" className="text-gray-700 hover:text-green-600 font-medium transition-colors">
@@ -106,7 +106,7 @@ export default function About() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            About <span className="text-green-600">SmartCrop</span>
+            About <span className="text-green-600">CropWise</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             We're on a mission to revolutionize agriculture through intelligent IoT solutions, 
@@ -168,7 +168,7 @@ export default function About() {
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              SmartCrop was born in 2020 when co-founders Dr. Sarah Chen and Michael Rodriguez met at 
+              CropWise was born in 2020 when co-founders Dr. Sarah Chen and Michael Rodriguez met at 
               an agricultural technology conference. Sarah, a PhD in Agricultural Engineering, had spent 
               years researching precision farming techniques for small-scale operations. Michael, a seasoned 
               IoT engineer, had just left his position at a major tech company to pursue his passion for 
@@ -185,13 +185,13 @@ export default function About() {
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
               They started with a single mushroom farm in California, installing custom ESP32-based sensors 
-              and building the first version of SmartCrop on nights and weekends. Within three months, 
+              and building the first version of CropWise on nights and weekends. Within three months, 
               the farm saw a 35% increase in yield and 40% reduction in water usage. Word spread quickly 
               through the local farming community.
             </p>
 
             <p className="text-gray-700 text-lg leading-relaxed">
-              Today, SmartCrop powers over 1,000 farms across 15 countries, from small urban vertical 
+              Today, CropWise powers over 1,000 farms across 15 countries, from small urban vertical 
               farms to large commercial mushroom operations. Our platform has helped farmers collectively 
               save millions of gallons of water, reduce energy costs by 30%, and increase average yields 
               by 35%. But we're just getting started.
@@ -331,10 +331,10 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Sprout className="w-6 h-6 text-green-500" />
-            <span className="text-lg font-bold">SmartCrop</span>
+            <span className="text-lg font-bold">CropWise</span>
           </div>
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} SmartCrop. All rights reserved.
+            © {new Date().getFullYear()} CropWise. All rights reserved.
           </p>
         </div>
       </footer>

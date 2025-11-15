@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Database Configuration
+ * CropWise - Database Configuration
  */
 
 require('dotenv').config();
@@ -7,13 +7,13 @@ require('dotenv').config();
 module.exports = {
   // Use SQLite for development (no PostgreSQL setup needed!)
   dialect: process.env.DB_DIALECT || 'sqlite',
-  storage: process.env.DB_STORAGE || './smartcrop.db',
+  storage: process.env.DB_STORAGE || './cropwise.db',
   
   // PostgreSQL config (for production)
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'smartcrop_db',
-  username: process.env.DB_USER || 'smartcrop_user',
+  database: process.env.DB_NAME || 'cropwise_db',
+  username: process.env.DB_USER || 'cropwise_user',
   password: process.env.DB_PASSWORD || 'password',
   
   logging: process.env.NODE_ENV === 'development' ? console.log : false,

@@ -8,7 +8,7 @@
 
 ## 📋 Summary
 
-Updated SmartCrop OS architecture from **direct cloud connection** to **edge-gateway model** based on user requirements:
+Updated CropWise architecture from **direct cloud connection** to **edge-gateway model** based on user requirements:
 
 > "In an organization there will be multiple units and in one unit there will be multiple zones and each zone have ESP32 which will be connected with sensor, relays, to control the devices like fan, humidifier, Chiller, boiler, light, FCU, AHU, etc. each ESP32 will subscribed to Raspberry Pi. So one unit have multiple ESP32 and one Raspberry Pi connected with wifi"
 

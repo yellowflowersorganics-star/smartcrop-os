@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Analytics Controller
+ * CropWise - Analytics Controller
  * Provides aggregated data and insights for dashboard and reporting
  */
 

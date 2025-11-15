@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Farm Model
+ * CropWise - Farm Model
  */
 
 const { DataTypes } = require('sequelize');

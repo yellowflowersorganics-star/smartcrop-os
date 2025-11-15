@@ -1,9 +1,9 @@
 #!/bin/bash
-# SmartCrop OS - CloudFormation Deployment
+# CropWise - CloudFormation Deployment
 
 set -e
 
-echo "🌱 SmartCrop OS - CloudFormation Deployment"
+echo "🌱 CropWise - CloudFormation Deployment"
 echo "=========================================="
 
 # Colors
@@ -13,7 +13,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 # Configuration
-STACK_NAME="smartcrop-os-production"
+STACK_NAME="cropwise-production"
 TEMPLATE_FILE="aws/cloudformation-template.yaml"
 AWS_REGION=${AWS_REGION:-us-east-1}
 

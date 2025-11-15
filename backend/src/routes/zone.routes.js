@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Zone Management Routes
+ * CropWise - Zone Management Routes
  */
 
 const express = require('express');

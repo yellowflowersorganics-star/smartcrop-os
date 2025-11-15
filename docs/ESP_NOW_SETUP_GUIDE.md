@@ -1,4 +1,4 @@
-# 🔧 SmartCrop OS - ESP-NOW Setup Guide v2.0
+# 🔧 CropWise - ESP-NOW Setup Guide v2.0
 
 ## 📋 Table of Contents
 1. [Overview](#overview)
@@ -346,11 +346,11 @@ Go to **Tools → Manage Libraries** and install:
 
 ### 4. Download Firmware
 
-Clone or download the SmartCrop OS repository:
+Clone or download the CropWise repository:
 
 ```bash
-git clone https://github.com/yellowflowersorganics-star/smartcrop-os.git
-cd smartcrop-os/esp32-firmware
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise/esp32-firmware
 ```
 
 **Firmware Structure:**
@@ -421,7 +421,7 @@ String DEVICE_ID = "ESP32-MASTER-ZONE-A";
 
 ```
 ═══════════════════════════════════════════════════════
-  SmartCrop OS - ESP32 MASTER CONTROLLER v2.0
+  CropWise - ESP32 MASTER CONTROLLER v2.0
   Architecture: Hierarchical Master-Slave
 ═══════════════════════════════════════════════════════
 
@@ -487,7 +487,7 @@ uint8_t masterMAC[] = {0x24, 0x6F, 0x28, 0xAB, 0xCD, 0xEF};  // ← REPLACE THIS
 
 ```
 ═══════════════════════════════════════════════════════
-  SmartCrop OS - ESP32 SENSOR SLAVE v2.0
+  CropWise - ESP32 SENSOR SLAVE v2.0
   Slave ID: 1 (SENSOR-A)
 ═══════════════════════════════════════════════════════
 
@@ -701,7 +701,7 @@ Registering with master... ✓
 
 **Command:**
 ```bash
-mosquitto_pub -h 192.168.1.100 -t smartcrop/farm1/zone-a/master/command/recipe/start -m '{
+mosquitto_pub -h 192.168.1.100 -t cropwise/farm1/zone-a/master/command/recipe/start -m '{
   "recipeName": "Test Recipe",
   "recipeId": "test-123",
   "currentStage": 0,
@@ -726,7 +726,7 @@ mosquitto_pub -h 192.168.1.100 -t smartcrop/farm1/zone-a/master/command/recipe/s
 3. Check Master Serial Monitor:
 
 ```
-📥 MQTT: smartcrop/farm1/zone-a/master/command/recipe/start
+📥 MQTT: cropwise/farm1/zone-a/master/command/recipe/start
 🔥 RECIPE START command received
 ✓ Local equipment configured
 📡 Stage config broadcast to 2 slaves
@@ -761,7 +761,7 @@ FHU- WiFi:OK
 1. Send irrigation schedule via MQTT:
 
 ```bash
-mosquitto_pub -h 192.168.1.100 -t smartcrop/farm1/zone-a/master/command/recipe/transition -m '{
+mosquitto_pub -h 192.168.1.100 -t cropwise/farm1/zone-a/master/command/recipe/transition -m '{
   "newStage": 1,
   "stageName": "Fruiting",
   "stageConfig": {
@@ -1168,7 +1168,7 @@ Before final deployment:
 - [BH1750 Datasheet](https://www.mouser.com/datasheet/2/348/bh1750fvi-e-186247.pdf)
 - [MQ-135 Datasheet](https://www.olimex.com/Products/Components/Sensors/Gas/SNS-MQ135/resources/SNS-MQ135.pdf)
 
-**SmartCrop OS Docs:**
+**CropWise Docs:**
 - [Architecture Documentation](./IOT_ARCHITECTURE_V2.md)
 - [Backend API Reference](./API_DOCUMENTATION.md)
 - [MQTT Topics Guide](./MQTT_TOPICS.md)
@@ -1181,7 +1181,7 @@ If you've completed this guide, you now have a fully functional **Hierarchical M
 
 ✅ ESP32-MASTER as central hub  
 ✅ ESP-NOW slaves for distributed sensing  
-✅ MQTT connectivity to SmartCrop OS backend  
+✅ MQTT connectivity to CropWise backend  
 ✅ Scalable from 1 to 6 ESP32s  
 ✅ Real-time environmental monitoring  
 ✅ Automated equipment control  
@@ -1199,7 +1199,7 @@ If you've completed this guide, you now have a fully functional **Hierarchical M
 ---
 
 **Need Help?**
-- GitHub Issues: [SmartCrop OS](https://github.com/yellowflowersorganics-star/smartcrop-os/issues)
-- Email: support@smartcrop.io
-- Discord: [SmartCrop Community](https://discord.gg/smartcrop)
+- GitHub Issues: [CropWise](https://github.com/yellowflowersorganics-star/cropwise/issues)
+- Email: support@cropwise.io
+- Discord: [CropWise Community](https://discord.gg/cropwise)
 

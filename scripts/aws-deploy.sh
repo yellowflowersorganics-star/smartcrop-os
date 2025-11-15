@@ -1,10 +1,10 @@
 #!/bin/bash
-# SmartCrop OS - AWS Deployment Script
+# CropWise - AWS Deployment Script
 # This script automates deployment to AWS
 
 set -e  # Exit on error
 
-echo "🌱 SmartCrop OS - AWS Deployment"
+echo "🌱 CropWise - AWS Deployment"
 echo "================================"
 
 # Colors
@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 AWS_REGION=${AWS_REGION:-us-east-1}
-APP_NAME="smartcrop-os"
+APP_NAME="cropwise"
 ENVIRONMENT=${ENVIRONMENT:-production}
 
 echo -e "${BLUE}Region: $AWS_REGION${NC}"
@@ -78,8 +78,8 @@ echo "🚀 Step 4: Pushing images to ECR..."
 ECR_BACKEND="$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$APP_NAME-backend:latest"
 ECR_FRONTEND="$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$APP_NAME-frontend:latest"
 
-docker tag smartcrop-backend:latest $ECR_BACKEND
-docker tag smartcrop-frontend:latest $ECR_FRONTEND
+docker tag cropwise-backend:latest $ECR_BACKEND
+docker tag cropwise-frontend:latest $ECR_FRONTEND
 
 docker push $ECR_BACKEND
 docker push $ECR_FRONTEND
@@ -96,7 +96,7 @@ echo "  Frontend: $ECR_FRONTEND"
 # Step 6: Deploy to ECS
 echo ""
 echo "🚀 Step 6: Deploying to ECS..."
-echo "Run: aws ecs update-service --cluster smartcrop-cluster --service smartcrop-backend --force-new-deployment"
+echo "Run: aws ecs update-service --cluster cropwise-cluster --service cropwise-backend --force-new-deployment"
 
 echo ""
 echo -e "${GREEN}========================================${NC}"

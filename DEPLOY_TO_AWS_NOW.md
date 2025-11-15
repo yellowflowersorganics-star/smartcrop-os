@@ -1,4 +1,4 @@
-# 🚀 Deploy SmartCrop to AWS - Quick Start
+# 🚀 Deploy CropWise to AWS - Quick Start
 
 **Estimated Time:** 45-60 minutes  
 **Estimated Cost:** $50-150/month
@@ -99,8 +99,8 @@ NODE_ENV=production
 DB_DIALECT=postgres
 DB_HOST=YOUR_RDS_ENDPOINT_HERE
 DB_PORT=5432
-DB_NAME=smartcrop_db
-DB_USER=smartcrop_admin
+DB_NAME=cropwise_db
+DB_USER=cropwise_admin
 DB_PASSWORD=YOUR_STRONG_PASSWORD_HERE
 
 # JWT Secret (generate a strong random string)
@@ -138,11 +138,11 @@ PORT=3000
 ```powershell
 # Create RDS instance
 aws rds create-db-instance `
-  --db-instance-identifier smartcrop-db `
+  --db-instance-identifier cropwise-db `
   --db-instance-class db.t3.micro `
   --engine postgres `
   --engine-version 15.4 `
-  --master-username smartcrop_admin `
+  --master-username cropwise_admin `
   --master-user-password YOUR_STRONG_PASSWORD_HERE `
   --allocated-storage 20 `
   --backup-retention-period 7 `
@@ -151,11 +151,11 @@ aws rds create-db-instance `
   --region us-east-1
 
 # Wait for database to be available (takes ~10 minutes)
-aws rds wait db-instance-available --db-instance-identifier smartcrop-db
+aws rds wait db-instance-available --db-instance-identifier cropwise-db
 
 # Get the database endpoint
 aws rds describe-db-instances `
-  --db-instance-identifier smartcrop-db `
+  --db-instance-identifier cropwise-db `
   --query 'DBInstances[0].Endpoint.Address' `
   --output text
 ```
@@ -169,18 +169,18 @@ aws rds describe-db-instances `
 ```powershell
 # Create security group for ElastiCache
 aws elasticache create-cache-cluster `
-  --cache-cluster-id smartcrop-redis `
+  --cache-cluster-id cropwise-redis `
   --cache-node-type cache.t3.micro `
   --engine redis `
   --num-cache-nodes 1 `
   --region us-east-1
 
 # Wait for creation (~5 minutes)
-aws elasticache wait cache-cluster-available --cache-cluster-id smartcrop-redis
+aws elasticache wait cache-cluster-available --cache-cluster-id cropwise-redis
 
 # Get Redis endpoint
 aws elasticache describe-cache-clusters `
-  --cache-cluster-id smartcrop-redis `
+  --cache-cluster-id cropwise-redis `
   --show-cache-node-info `
   --query 'CacheClusters[0].CacheNodes[0].Endpoint.Address' `
   --output text
@@ -201,7 +201,7 @@ eb init
 
 # You'll be prompted:
 # 1. Select a default region: (choose us-east-1 or your preferred region)
-# 2. Enter Application Name: smartcrop-os
+# 2. Enter Application Name: cropwise
 # 3. Do you want to set up SSH: Y (recommended)
 # 4. Select platform: Node.js
 # 5. Select platform version: Node.js 18 running on 64bit Amazon Linux 2023
@@ -214,11 +214,11 @@ eb init
 
 ```powershell
 # Create environment with database and load balancer
-eb create smartcrop-production `
+eb create cropwise-production `
   --elb-type application `
   --database `
   --database.engine postgres `
-  --database.username smartcrop_admin `
+  --database.username cropwise_admin `
   --instance-type t3.small `
   --envvars NODE_ENV=production
 
@@ -242,8 +242,8 @@ eb setenv `
   DB_DIALECT=postgres `
   DB_HOST=YOUR_RDS_ENDPOINT_HERE `
   DB_PORT=5432 `
-  DB_NAME=smartcrop_db `
-  DB_USER=smartcrop_admin `
+  DB_NAME=cropwise_db `
+  DB_USER=cropwise_admin `
   DB_PASSWORD=YOUR_STRONG_PASSWORD_HERE `
   JWT_SECRET=YOUR_SUPER_SECRET_JWT_KEY_HERE `
   REDIS_HOST=YOUR_REDIS_ENDPOINT_HERE `
@@ -275,7 +275,7 @@ eb open
 
 **Your backend API is now live!** 🎉
 
-Copy the URL (e.g., `http://smartcrop-production.us-east-1.elasticbeanstalk.com`)
+Copy the URL (e.g., `http://cropwise-production.us-east-1.elasticbeanstalk.com`)
 
 ---
 
@@ -293,19 +293,19 @@ VITE_API_URL=http://YOUR_BACKEND_URL_FROM_STEP_10.elasticbeanstalk.com
 npm run build
 
 # Create S3 bucket for frontend
-aws s3 mb s3://smartcrop-frontend-YOUR_UNIQUE_ID --region us-east-1
+aws s3 mb s3://cropwise-frontend-YOUR_UNIQUE_ID --region us-east-1
 
 # Enable static website hosting
-aws s3 website s3://smartcrop-frontend-YOUR_UNIQUE_ID `
+aws s3 website s3://cropwise-frontend-YOUR_UNIQUE_ID `
   --index-document index.html `
   --error-document index.html
 
 # Upload built files
-aws s3 sync dist/ s3://smartcrop-frontend-YOUR_UNIQUE_ID --delete
+aws s3 sync dist/ s3://cropwise-frontend-YOUR_UNIQUE_ID --delete
 
 # Make bucket public (for website hosting)
 aws s3api put-bucket-policy `
-  --bucket smartcrop-frontend-YOUR_UNIQUE_ID `
+  --bucket cropwise-frontend-YOUR_UNIQUE_ID `
   --policy '{
     "Version": "2012-10-17",
     "Statement": [{
@@ -313,12 +313,12 @@ aws s3api put-bucket-policy `
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::smartcrop-frontend-YOUR_UNIQUE_ID/*"
+      "Resource": "arn:aws:s3:::cropwise-frontend-YOUR_UNIQUE_ID/*"
     }]
   }'
 
 # Get website URL
-echo "Your frontend is live at: http://smartcrop-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com"
+echo "Your frontend is live at: http://cropwise-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com"
 ```
 
 ---
@@ -328,7 +328,7 @@ echo "Your frontend is live at: http://smartcrop-frontend-YOUR_UNIQUE_ID.s3-webs
 ```powershell
 # Create CloudFront distribution for faster global access
 aws cloudfront create-distribution `
-  --origin-domain-name smartcrop-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com `
+  --origin-domain-name cropwise-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com `
   --default-root-object index.html
 
 # Wait for distribution to deploy (~15 minutes)
@@ -339,11 +339,11 @@ aws cloudfront create-distribution `
 
 ### **Step 13: (Optional) Set Up Custom Domain** (15 minutes)
 
-If you have a domain (e.g., `smartcrop.io`):
+If you have a domain (e.g., `cropwise.io`):
 
 ```powershell
 # 1. Create hosted zone in Route 53
-aws route53 create-hosted-zone --name smartcrop.io --caller-reference $(date +%s)
+aws route53 create-hosted-zone --name cropwise.io --caller-reference $(date +%s)
 
 # 2. Point your domain registrar's nameservers to Route 53 nameservers
 
@@ -354,7 +354,7 @@ aws route53 change-resource-record-sets `
     "Changes": [{
       "Action": "CREATE",
       "ResourceRecordSet": {
-        "Name": "www.smartcrop.io",
+        "Name": "www.cropwise.io",
         "Type": "A",
         "AliasTarget": {
           "HostedZoneId": "Z2FDTNDATAQYW2",
@@ -367,8 +367,8 @@ aws route53 change-resource-record-sets `
 
 # 4. Create SSL certificate
 aws acm request-certificate `
-  --domain-name smartcrop.io `
-  --subject-alternative-names *.smartcrop.io `
+  --domain-name cropwise.io `
+  --subject-alternative-names *.cropwise.io `
   --validation-method DNS
 
 # 5. Verify domain ownership (follow email instructions)
@@ -446,7 +446,7 @@ eb health
 ```powershell
 # Create CloudWatch alarm for high CPU
 aws cloudwatch put-metric-alarm `
-  --alarm-name smartcrop-high-cpu `
+  --alarm-name cropwise-high-cpu `
   --alarm-description "Alert when CPU exceeds 80%" `
   --metric-name CPUUtilization `
   --namespace AWS/ElasticBeanstalk `
@@ -527,7 +527,7 @@ aws cloudfront create-invalidation `
 ## 🆘 Need Help?
 
 - **AWS Support**: https://console.aws.amazon.com/support/
-- **SmartCrop Documentation**: `docs/AWS_DEPLOYMENT_GUIDE.md`
+- **CropWise Documentation**: `docs/AWS_DEPLOYMENT_GUIDE.md`
 - **AWS Free Tier**: https://aws.amazon.com/free/
 - **Elastic Beanstalk Docs**: https://docs.aws.amazon.com/elasticbeanstalk/
 
@@ -535,7 +535,7 @@ aws cloudfront create-invalidation `
 
 ## ✅ Deployment Complete!
 
-Your SmartCrop platform is now live on AWS! 🎉
+Your CropWise platform is now live on AWS! 🎉
 
 **Your URLs:**
 - **Backend API**: `http://YOUR_BACKEND_URL.elasticbeanstalk.com`

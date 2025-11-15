@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Harvest Controller
+ * CropWise - Harvest Controller
  * Manages harvest recording and tracking
  */
 

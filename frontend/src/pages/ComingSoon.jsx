@@ -137,7 +137,7 @@ export default function ComingSoon() {
         <div className="mt-8 text-sm text-gray-600">
           <p>
             Have a feature request?{' '}
-            <a href="mailto:support@smartcrop.io" className="text-green-600 hover:text-green-700 font-medium">
+            <a href="mailto:support@cropwise.io" className="text-green-600 hover:text-green-700 font-medium">
               Let us know
             </a>
           </p>

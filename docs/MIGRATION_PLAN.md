@@ -1,7 +1,7 @@
-# 🔄 SmartCrop OS → Yellow Flowers SmartFarm Cloud
+# 🔄 CropWise → Yellow Flowers SmartFarm Cloud
 ## Migration & Implementation Plan
 
-**Current Status**: SmartCrop OS v1.0 (Single-tenant foundation)  
+**Current Status**: CropWise v1.0 (Single-tenant foundation)  
 **Target**: Yellow Flowers SmartFarm Cloud (Multi-tenant SaaS)  
 **Timeline**: 6-9 months to full commercial launch
 
@@ -9,7 +9,7 @@
 
 ## 📊 Gap Analysis
 
-### What We Have (SmartCrop OS)
+### What We Have (CropWise)
 ✅ Backend API with Node.js/Express  
 ✅ PostgreSQL database  
 ✅ JWT authentication  
@@ -291,7 +291,7 @@ const Subscription = sequelize.define('Subscription', {
 
 ```javascript
 // Old (Single-tenant):
-smartcrop/{deviceId}/telemetry
+cropwise/{deviceId}/telemetry
 
 // New (Multi-tenant):
 yfcloud/{customerId}/{farmId}/{zoneId}/telemetry

@@ -18,7 +18,7 @@ Before starting, ensure you have:
 
 ### **Current Setup (Without Domain):**
 ```
-Frontend: http://smartcrop-dev-frontend.s3-website.ap-south-1.amazonaws.com
+Frontend: http://cropwise-dev-frontend.s3-website.ap-south-1.amazonaws.com
 Backend:  http://65.0.87.98:3000
 ```
 
@@ -83,7 +83,7 @@ cropwise.io
 |------|------|-------|-----|
 | CNAME Record | _abc123def | _xyz789.acm-validations.aws. | Automatic |
 | CNAME Record | www | dxxxxx.cloudfront.net | Automatic |
-| CNAME Record | api | smartcrop-dev-alb-xxxxx.ap-south-1.elb.amazonaws.com | Automatic |
+| CNAME Record | api | cropwise-dev-alb-xxxxx.ap-south-1.elb.amazonaws.com | Automatic |
 | A Record | @ | (CloudFront IP via Alias) | Automatic |
 
 ### **Option B: Using Route 53 (Recommended for AWS)**
@@ -116,9 +116,9 @@ cropwise.io
 
 **Origin settings:**
 ```
-Origin domain: smartcrop-dev-frontend.s3-website.ap-south-1.amazonaws.com
+Origin domain: cropwise-dev-frontend.s3-website.ap-south-1.amazonaws.com
 Origin path: (leave empty)
-Name: S3-smartcrop-frontend
+Name: S3-cropwise-frontend
 Protocol: HTTP only (S3 website endpoints don't support HTTPS)
 ```
 
@@ -224,7 +224,7 @@ For HTTPS listener:
 
 ### **4.3 Update ECS Service**
 
-👉 https://console.aws.amazon.com/ecs/home?region=ap-south-1#/clusters/smartcrop-dev-cluster/services/smartcrop-backend-dev
+👉 https://console.aws.amazon.com/ecs/home?region=ap-south-1#/clusters/cropwise-dev-cluster/services/cropwise-backend-dev
 
 1. Click **"Update service"**
 2. Expand **"Load balancing"**
@@ -246,7 +246,7 @@ api.cropwise.io  →  cropwise-api-alb-xxxxx.ap-south-1.elb.amazonaws.com
 
 ### **5.1 Update GitHub Secrets**
 
-👉 https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
+👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 Update these secrets:
 
@@ -256,7 +256,7 @@ VITE_API_URL=https://api.cropwise.io
 
 ### **5.2 Update ECS Environment Variables**
 
-👉 https://console.aws.amazon.com/ecs/home?region=ap-south-1#/taskDefinitions/smartcrop-backend-dev
+👉 https://console.aws.amazon.com/ecs/home?region=ap-south-1#/taskDefinitions/cropwise-backend-dev
 
 1. Create new task definition revision
 2. Update environment variables:
@@ -300,7 +300,7 @@ git push origin develop
 
 ### **6.2 Wait for Deployment**
 
-Monitor: https://github.com/yellowflowersorganics-star/smartcrop/actions
+Monitor: https://github.com/yellowflowersorganics-star/cropwise/actions
 
 After deployment completes, invalidate CloudFront cache:
 

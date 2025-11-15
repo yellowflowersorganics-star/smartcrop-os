@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Telemetry Model
+ * CropWise - Telemetry Model
  * Stores environmental sensor data readings
  */
 

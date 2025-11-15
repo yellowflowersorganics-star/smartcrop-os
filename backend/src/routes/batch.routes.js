@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Batch Routes
+ * CropWise - Batch Routes
  * Routes for managing growth cycle batches
  */
 

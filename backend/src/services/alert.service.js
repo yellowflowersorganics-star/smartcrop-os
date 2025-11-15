@@ -665,7 +665,7 @@ class AlertService {
       message += `${alert.message}`;
     }
 
-    message += `\n\n- SmartCrop`;
+    message += `\n\n- CropWise`;
     return message;
   }
 

@@ -22,7 +22,7 @@ class MQTTControlService {
         logger.info(`Connecting to MQTT broker: ${this.brokerUrl}`);
 
         this.client = mqtt.connect(this.brokerUrl, {
-          clientId: `smartcrop-backend-${Date.now()}`,
+          clientId: `cropwise-backend-${Date.now()}`,
           clean: true,
           reconnectPeriod: 5000,
           connectTimeout: 30000
@@ -33,7 +33,7 @@ class MQTTControlService {
           logger.info('✅ MQTT Control Service connected');
           
           // Subscribe to status updates from all devices
-          this.client.subscribe('smartcrop/+/status/#', (err) => {
+          this.client.subscribe('cropwise/+/status/#', (err) => {
             if (err) {
               logger.error('Failed to subscribe to status topics:', err);
             } else {
@@ -42,7 +42,7 @@ class MQTTControlService {
           });
 
           // Subscribe to command acknowledgments
-          this.client.subscribe('smartcrop/+/ack/#', (err) => {
+          this.client.subscribe('cropwise/+/ack/#', (err) => {
             if (err) {
               logger.error('Failed to subscribe to ack topics:', err);
             } else {
@@ -102,7 +102,7 @@ class MQTTControlService {
    * Handle device status updates
    */
   async handleStatusUpdate(topic, payload) {
-    // Extract device ID from topic: smartcrop/{deviceId}/status/...
+    // Extract device ID from topic: cropwise/{deviceId}/status/...
     const parts = topic.split('/');
     const deviceId = parts[1];
 
@@ -229,7 +229,7 @@ class MQTTControlService {
       }
 
       // Build MQTT topic
-      const topic = `smartcrop/${equipment.deviceId}/command/${equipment.type}/${equipment.name}`;
+      const topic = `cropwise/${equipment.deviceId}/command/${equipment.type}/${equipment.name}`;
 
       // Publish command
       return new Promise((resolve, reject) => {
@@ -267,7 +267,7 @@ class MQTTControlService {
         await this.connect();
       }
 
-      const topic = `smartcrop/${deviceId}/config/stage`;
+      const topic = `cropwise/${deviceId}/config/stage`;
       const payload = {
         stageName: stageConfig.name,
         duration: stageConfig.duration,
@@ -312,7 +312,7 @@ class MQTTControlService {
         await this.connect();
       }
 
-      const topic = `smartcrop/${deviceId}/display/recipe`;
+      const topic = `cropwise/${deviceId}/display/recipe`;
       const payload = {
         recipeName: recipeInfo.cropName,
         currentStage: recipeInfo.currentStage,
@@ -359,7 +359,7 @@ class MQTTControlService {
         await this.connect();
       }
 
-      const topic = `smartcrop/${deviceId}/command/status_request`;
+      const topic = `cropwise/${deviceId}/command/status_request`;
       const payload = {
         requestId: `status_${Date.now()}`,
         timestamp: new Date().toISOString()

@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Telemetry Routes
+ * CropWise - Telemetry Routes
  */
 
 const express = require('express');

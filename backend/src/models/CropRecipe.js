@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Crop Recipe Model
+ * CropWise - Crop Recipe Model
  * Defines environmental parameters for each crop growth stage
  */
 

@@ -1,4 +1,4 @@
-# 🚀 SmartCrop Deployment Test Checklist
+# 🚀 CropWise Deployment Test Checklist
 
 Complete guide to test your production deployment.
 
@@ -9,7 +9,7 @@ Complete guide to test your production deployment.
 Before deploying, verify all secrets are configured:
 
 ### **GitHub Secrets Status**
-Visit: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
+Visit: https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 - [x] `VITE_API_URL` ✅
 - [x] `AWS_ACCESS_KEY_ID` ✅
@@ -32,7 +32,7 @@ Visit: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/
 ### **1.1 Push to Develop Branch**
 
 ```powershell
-cd C:\Users\praghav\smartcrop
+cd C:\Users\praghav\cropwise
 
 # Ensure you're on develop branch
 git checkout develop
@@ -51,7 +51,7 @@ git push origin develop
 
 ### **1.2 Monitor Deployment**
 
-1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop/actions
+1. **Go to**: https://github.com/yellowflowersorganics-star/cropwise/actions
 2. **Watch** the workflow run in real-time
 3. **Expected duration**: 5-10 minutes
 
@@ -65,7 +65,7 @@ Check that all jobs completed:
 - ✅ **Security Scan** - No vulnerabilities found
 - ✅ **Deploy to DEV** - Deployed to development environment
 
-**Development URL**: https://dev.smartcrop.io (or your configured URL)
+**Development URL**: https://dev.cropwise.io (or your configured URL)
 
 ---
 
@@ -75,7 +75,7 @@ Check that all jobs completed:
 
 ```powershell
 # Test backend API
-curl https://dev-api.smartcrop.io/health
+curl https://dev-api.cropwise.io/health
 
 # Expected response:
 # {
@@ -87,7 +87,7 @@ curl https://dev-api.smartcrop.io/health
 
 ### **2.2 Frontend Access**
 
-1. **Open**: https://dev.smartcrop.io
+1. **Open**: https://dev.cropwise.io
 2. **Verify**:
    - ✅ Page loads without errors
    - ✅ Login page is visible
@@ -98,7 +98,7 @@ curl https://dev-api.smartcrop.io/health
 
 ```powershell
 # Check backend logs for database connection
-# In AWS Console → ECS → smartcrop-dev-cluster → Tasks → View Logs
+# In AWS Console → ECS → cropwise-dev-cluster → Tasks → View Logs
 
 # Should see:
 # ✅ "Database connected successfully"
@@ -107,7 +107,7 @@ curl https://dev-api.smartcrop.io/health
 
 ### **2.4 Test User Registration**
 
-1. **Go to**: https://dev.smartcrop.io/register
+1. **Go to**: https://dev.cropwise.io/register
 2. **Fill in**:
    - Email: test@example.com
    - Password: TestPassword123!
@@ -119,7 +119,7 @@ curl https://dev-api.smartcrop.io/health
 
 ### **2.5 Test Google OAuth**
 
-1. **Go to**: https://dev.smartcrop.io/login
+1. **Go to**: https://dev.cropwise.io/login
 2. **Click**: "Sign in with Google"
 3. **Expected**:
    - ✅ Redirects to Google login
@@ -147,7 +147,7 @@ curl https://dev-api.smartcrop.io/health
 ### **3.1 Merge to Main Branch**
 
 ```powershell
-cd C:\Users\praghav\smartcrop
+cd C:\Users\praghav\cropwise
 
 # Switch to main branch
 git checkout main
@@ -167,7 +167,7 @@ git push origin main
 
 ### **3.2 Monitor Production Deployment**
 
-1. **Go to**: https://github.com/yellowflowersorganics-star/smartcrop/actions
+1. **Go to**: https://github.com/yellowflowersorganics-star/cropwise/actions
 2. **Watch** the production deployment workflow
 3. **Note**: Production may require manual approval (security feature)
 4. **Duration**: 5-15 minutes
@@ -180,7 +180,7 @@ All jobs should complete successfully:
 - ✅ **Deploy to Production** - Completed
 - ✅ **Health Checks** - Passing
 
-**Production URL**: https://www.smartcrop.io (or your configured URL)
+**Production URL**: https://www.cropwise.io (or your configured URL)
 
 ---
 
@@ -190,7 +190,7 @@ All jobs should complete successfully:
 
 ```powershell
 # Test production API
-curl https://api.smartcrop.io/health
+curl https://api.cropwise.io/health
 
 # Expected:
 # {
@@ -202,7 +202,7 @@ curl https://api.smartcrop.io/health
 
 ### **4.2 Production Frontend**
 
-1. **Open**: https://www.smartcrop.io
+1. **Open**: https://www.cropwise.io
 2. **Verify**:
    - ✅ HTTPS enabled (secure connection)
    - ✅ Page loads quickly
@@ -213,14 +213,14 @@ curl https://api.smartcrop.io/health
 
 **Check CloudWatch Logs**:
 1. Go to: https://console.aws.amazon.com/cloudwatch/
-2. **Log Groups** → `/ecs/smartcrop-prod`
+2. **Log Groups** → `/ecs/cropwise-prod`
 3. **Look for**:
    - ✅ "Connected to database"
    - ✅ No connection errors
 
 **Check RDS Status**:
 1. Go to: https://console.aws.amazon.com/rds/
-2. **Databases** → `smartcrop-production-db`
+2. **Databases** → `cropwise-production-db`
 3. **Verify**:
    - ✅ Status: Available
    - ✅ CPU Utilization < 50%
@@ -256,7 +256,7 @@ curl https://api.smartcrop.io/health
 ```powershell
 # Create CPU alarm
 aws cloudwatch put-metric-alarm `
-  --alarm-name smartcrop-prod-high-cpu `
+  --alarm-name cropwise-prod-high-cpu `
   --alarm-description "Alert when CPU > 80%" `
   --metric-name CPUUtilization `
   --namespace AWS/ECS `
@@ -338,8 +338,8 @@ Error: Connection refused to database
 2. Click your OAuth Client ID
 3. Verify redirect URIs match exactly:
    ```
-   https://api.smartcrop.io/api/auth/google/callback
-   https://www.smartcrop.io/auth/google/callback
+   https://api.cropwise.io/api/auth/google/callback
+   https://www.cropwise.io/auth/google/callback
    ```
 4. No typos, no trailing slashes
 5. Save and wait 5 minutes
@@ -458,7 +458,7 @@ After successful deployment:
 
 ## 📚 Additional Resources
 
-- **GitHub Actions**: https://github.com/yellowflowersorganics-star/smartcrop/actions
+- **GitHub Actions**: https://github.com/yellowflowersorganics-star/cropwise/actions
 - **AWS Console**: https://console.aws.amazon.com
 - **CloudWatch Logs**: https://console.aws.amazon.com/cloudwatch/
 - **RDS Console**: https://console.aws.amazon.com/rds/
@@ -468,7 +468,7 @@ After successful deployment:
 
 ## 🎉 Congratulations!
 
-If all tests pass, you've successfully deployed SmartCrop to production! 🚀
+If all tests pass, you've successfully deployed CropWise to production! 🚀
 
 **Your architecture**:
 ```

@@ -7,9 +7,9 @@
 
 ## 📊 Platform Evolution
 
-### From SmartCrop OS → SmartFarm Cloud
+### From CropWise → SmartFarm Cloud
 
-| Component | SmartCrop OS (Current) | SmartFarm Cloud (Target) | Status |
+| Component | CropWise (Current) | SmartFarm Cloud (Target) | Status |
 |:----------|:----------------------|:-------------------------|:-------|
 | **Architecture** | Single-tenant | Multi-tenant SaaS | 🔄 Upgrade needed |
 | **Authentication** | ✅ JWT-based | ✅ JWT + OAuth2 | ✅ Foundation ready |
@@ -506,7 +506,7 @@ ACL Rules (EMQX):
 ## 🚀 Technical Implementation Phases
 
 ### Phase 2A: Multi-Tenancy Foundation (2 months)
-**Goal**: Add customer isolation to current SmartCrop OS
+**Goal**: Add customer isolation to current CropWise
 
 **Tasks**:
 - [ ] Add `organization_id` to all models

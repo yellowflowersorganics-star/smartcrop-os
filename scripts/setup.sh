@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# SmartCrop OS - Setup Script
+# CropWise - Setup Script
 # Automates the initial setup process
 
 set -e
 
-echo "🌱 SmartCrop OS Setup Script"
+echo "🌱 CropWise Setup Script"
 echo "============================"
 echo ""
 

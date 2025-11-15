@@ -1,6 +1,6 @@
 # AWS Deployment Configurations
 
-This directory contains all AWS deployment configurations for SmartCrop OS.
+This directory contains all AWS deployment configurations for CropWise.
 
 ## Files Overview
 
@@ -55,9 +55,9 @@ aws ecs register-task-definition \
 
 # Update service
 aws ecs update-service \
-  --cluster smartcrop-cluster \
-  --service smartcrop-backend \
-  --task-definition smartcrop-backend:NEW_REVISION
+  --cluster cropwise-cluster \
+  --service cropwise-backend \
+  --task-definition cropwise-backend:NEW_REVISION
 ```
 
 ### Modify CloudFormation Stack
@@ -67,7 +67,7 @@ vi aws/cloudformation-template.yaml
 
 # Update stack
 aws cloudformation update-stack \
-  --stack-name smartcrop-os-production \
+  --stack-name cropwise-production \
   --template-body file://aws/cloudformation-template.yaml \
   --capabilities CAPABILITY_IAM
 ```
@@ -128,10 +128,10 @@ aws cloudformation update-stack \
 View logs:
 ```bash
 # Backend logs
-aws logs tail /ecs/smartcrop-backend --follow
+aws logs tail /ecs/cropwise-backend --follow
 
 # Frontend logs
-aws logs tail /ecs/smartcrop-frontend --follow
+aws logs tail /ecs/cropwise-frontend --follow
 ```
 
 View metrics in CloudWatch Console:

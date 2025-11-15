@@ -1,13 +1,13 @@
-# 📚 SmartCrop Documentation
+# 📚 CropWise Documentation
 
-**Complete documentation for SmartCrop - Your Enterprise IoT Farm Management Platform**
+**Complete documentation for CropWise - Your Enterprise IoT Farm Management Platform**
 
 ---
 
 ## 🎯 Quick Navigation
 
 ### **New User?** Start here:
-1. [🚀 Installation Guide](INSTALLATION.md) - Get SmartCrop running
+1. [🚀 Installation Guide](INSTALLATION.md) - Get CropWise running
 2. [👤 User Guide](USER_GUIDE.md) - Learn how to use the platform
 3. [❓ FAQ](FAQ.md) - Common questions answered
 
@@ -215,9 +215,9 @@ const example = "like this";
 ```
 
 **File Paths**:
-- Absolute: `/var/www/smartcrop/backend/`
+- Absolute: `/var/www/cropwise/backend/`
 - Relative: `backend/src/index.js`
-- Windows: `C:\Users\praghav\smartcrop\`
+- Windows: `C:\Users\praghav\cropwise\`
 
 **Placeholders**:
 - `your_value_here` - Replace with your actual value
@@ -263,8 +263,8 @@ Can't find what you're looking for?
 
 - **Search**: Use Ctrl+F in your browser
 - **GitHub Search**: Search all docs on GitHub
-- **Ask**: [Community Forum](https://community.smartcrop.io)
-- **Email**: docs@smartcrop.io
+- **Ask**: [Community Forum](https://community.cropwise.io)
+- **Email**: docs@cropwise.io
 
 ---
 
@@ -273,10 +273,10 @@ Can't find what you're looking for?
 Documentation is continuously improved.
 
 **Stay informed**:
-- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/smartcrop)
+- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/cropwise)
 - 👁️ Watch for releases
 - 📧 Subscribe to newsletter
-- 💬 Join [Discord](https://discord.gg/smartcrop)
+- 💬 Join [Discord](https://discord.gg/cropwise)
 
 ---
 
@@ -305,7 +305,7 @@ Documentation is continuously improved.
 
 ## 📋 Documentation Checklist
 
-Before deploying SmartCrop, ensure you've read:
+Before deploying CropWise, ensure you've read:
 
 **Essential**:
 - [ ] Installation Guide
@@ -329,17 +329,17 @@ Before deploying SmartCrop, ensure you've read:
 ## 🎯 Quick Links
 
 **External Resources**:
-- [Official Website](https://smartcrop.io)
-- [Community Forum](https://community.smartcrop.io)
-- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop)
+- [Official Website](https://cropwise.io)
+- [Community Forum](https://community.cropwise.io)
+- [GitHub Repository](https://github.com/yellowflowersorganics-star/cropwise)
 - [API Documentation](http://localhost:8080/api-docs)
-- [Blog](https://blog.smartcrop.io)
-- [YouTube Channel](https://youtube.com/@smartcropos)
+- [Blog](https://blog.cropwise.io)
+- [YouTube Channel](https://youtube.com/@cropwiseos)
 
 **Support**:
-- [Support Email](mailto:support@smartcrop.io)
-- [Discord](https://discord.gg/smartcrop)
-- [Twitter](https://twitter.com/SmartCropOS)
+- [Support Email](mailto:support@cropwise.io)
+- [Discord](https://discord.gg/cropwise)
+- [Twitter](https://twitter.com/CropWiseOS)
 
 ---
 
@@ -350,7 +350,7 @@ Before deploying SmartCrop, ensure you've read:
 *Documentation Version: 1.0.0*  
 *Last Updated: November 2025*
 
-[⬆️ Back to Top](#-smartcrop-documentation)
+[⬆️ Back to Top](#-cropwise-documentation)
 
 </div>
 

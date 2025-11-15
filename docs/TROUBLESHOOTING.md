@@ -1,4 +1,4 @@
-# 🔧 SmartCrop - Troubleshooting Guide
+# 🔧 CropWise - Troubleshooting Guide
 
 Quick solutions to common issues.
 
@@ -13,7 +13,7 @@ Quick solutions to common issues.
 curl http://localhost:3000/health
 
 # Database connection
-psql -h localhost -U smartcrop_admin -d smartcrop_db -c "SELECT 1;"
+psql -h localhost -U cropwise_admin -d cropwise_db -c "SELECT 1;"
 
 # Redis connection
 redis-cli ping
@@ -48,7 +48,7 @@ PORT=3001
 sudo systemctl status postgresql
 
 # Test connection
-psql -h localhost -U smartcrop_admin -d smartcrop_db
+psql -h localhost -U cropwise_admin -d cropwise_db
 
 # Check credentials in .env
 cat backend/.env | grep DB_
@@ -121,7 +121,7 @@ cat backend/.env | grep DB_PASSWORD
 
 # Reset PostgreSQL password
 sudo -u postgres psql
-ALTER USER smartcrop_admin WITH PASSWORD 'new_password';
+ALTER USER cropwise_admin WITH PASSWORD 'new_password';
 \q
 
 # Update .env
@@ -155,7 +155,7 @@ pool: {
 sudo systemctl status mosquitto
 
 # Test MQTT connection
-mosquitto_sub -h localhost -p 1883 -t 'smartcrop/#' -v
+mosquitto_sub -h localhost -p 1883 -t 'cropwise/#' -v
 
 # Check device logs (if ESP32 connected via USB)
 screen /dev/ttyUSB0 115200
@@ -238,7 +238,7 @@ GOOGLE_CALLBACK_URL=https://yourdomain.com/api/auth/google/callback
 JWT_EXPIRES_IN=7d  # or 30d for longer sessions
 
 # Restart backend
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 ```
 
 ---
@@ -255,9 +255,9 @@ free -h
 df -h
 
 # Check database performance
-psql -d smartcrop_db -c "SELECT pg_stat_statements_reset();"
+psql -d cropwise_db -c "SELECT pg_stat_statements_reset();"
 # Run slow query
-psql -d smartcrop_db -c "SELECT query, calls, total_time FROM pg_stat_statements ORDER BY total_time DESC LIMIT 10;"
+psql -d cropwise_db -c "SELECT query, calls, total_time FROM pg_stat_statements ORDER BY total_time DESC LIMIT 10;"
 ```
 
 **Solutions**:
@@ -293,7 +293,7 @@ psql -d smartcrop_db -c "SELECT query, calls, total_time FROM pg_stat_statements
 **Solution**:
 ```bash
 # Restart services
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 sudo systemctl restart postgresql
 
 # Increase swap space
@@ -347,7 +347,7 @@ npm run build
 **Solution**:
 ```bash
 # Check logs
-docker logs smartcrop-backend
+docker logs cropwise-backend
 
 # Rebuild without cache
 docker-compose build --no-cache
@@ -370,7 +370,7 @@ cd backend
 npm run migrate:undo
 
 # Or restore from backup
-psql -h localhost -U smartcrop_admin -d smartcrop_db < /backups/smartcrop_db.sql
+psql -h localhost -U cropwise_admin -d cropwise_db < /backups/cropwise_db.sql
 ```
 
 #### Duplicate Records
@@ -533,23 +533,23 @@ SELECT pg_terminate_backend(pid);
 
 ```bash
 # Backend application logs
-/var/www/smartcrop/backend/logs/combined.log
-/var/www/smartcrop/backend/logs/error.log
+/var/www/cropwise/backend/logs/combined.log
+/var/www/cropwise/backend/logs/error.log
 
 # PM2 logs
-~/.pm2/logs/smartcrop-backend-out.log
-~/.pm2/logs/smartcrop-backend-error.log
+~/.pm2/logs/cropwise-backend-out.log
+~/.pm2/logs/cropwise-backend-error.log
 
 # Nginx logs
-/var/log/nginx/smartcrop_access.log
-/var/log/nginx/smartcrop_error.log
+/var/log/nginx/cropwise_access.log
+/var/log/nginx/cropwise_error.log
 
 # PostgreSQL logs
 /var/log/postgresql/postgresql-15-main.log
 
 # System logs
 /var/log/syslog
-journalctl -u smartcrop-backend
+journalctl -u cropwise-backend
 ```
 
 ### Log Analysis
@@ -601,10 +601,10 @@ Gather this information:
 
 ### Contact Support
 
-- **Email**: support@smartcrop.io
-- **GitHub Issues**: https://github.com/yellowflowersorganics-star/smartcrop/issues
-- **Community Forum**: https://community.smartcrop.io
-- **Emergency**: +1-555-SMARTCROP
+- **Email**: support@cropwise.io
+- **GitHub Issues**: https://github.com/yellowflowersorganics-star/cropwise/issues
+- **Community Forum**: https://community.cropwise.io
+- **Emergency**: +1-555-CROPWISE
 
 ---
 
@@ -619,5 +619,5 @@ Gather this information:
 ---
 
 **Still stuck? We're here to help!**  
-*support@smartcrop.io*
+*support@cropwise.io*
 

@@ -1,12 +1,12 @@
 #!/bin/bash
 ###############################################################################
-# SmartCrop OS Gateway Configuration Script
+# CropWise Gateway Configuration Script
 ###############################################################################
 
 set -e
 
 echo "=========================================="
-echo "⚙️  SmartCrop OS Gateway Configuration"
+echo "⚙️  CropWise Gateway Configuration"
 echo "=========================================="
 echo ""
 
@@ -19,7 +19,7 @@ echo "📝 Please provide the following information:"
 echo ""
 
 # Get API URL
-read -p "SmartCrop OS API URL (e.g., http://192.168.1.10:3000/api): " API_URL
+read -p "CropWise API URL (e.g., http://192.168.1.10:3000/api): " API_URL
 if [ -z "$API_URL" ]; then
     echo "❌ API URL is required"
     exit 1
@@ -28,7 +28,7 @@ fi
 # Get Auth Token
 echo ""
 echo "To get your AUTH_TOKEN:"
-echo "1. Open SmartCrop OS in browser and login"
+echo "1. Open CropWise in browser and login"
 echo "2. Press F12 to open Developer Tools"
 echo "3. Go to Network tab"
 echo "4. Refresh the page"
@@ -50,8 +50,8 @@ read -p "Send interval in seconds (default: 300 = 5 minutes): " SEND_INTERVAL
 SEND_INTERVAL=${SEND_INTERVAL:-300}
 
 # Create .env file
-cat > ~/smartcrop-gateway/.env <<EOF
-# SmartCrop OS Gateway Configuration
+cat > ~/cropwise-gateway/.env <<EOF
+# CropWise Gateway Configuration
 # Generated: $(date)
 
 # API Configuration
@@ -62,35 +62,35 @@ AUTH_TOKEN=$AUTH_TOKEN
 GATEWAY_ID=$GATEWAY_ID
 MQTT_BROKER=localhost
 MQTT_PORT=1883
-MQTT_TOPIC_PREFIX=smartcrop
+MQTT_TOPIC_PREFIX=cropwise
 SEND_INTERVAL=$SEND_INTERVAL
 EOF
 
 echo ""
-echo "✅ Configuration saved to ~/smartcrop-gateway/.env"
+echo "✅ Configuration saved to ~/cropwise-gateway/.env"
 echo ""
 
 # Copy gateway.py if not exists
-if [ ! -f ~/smartcrop-gateway/gateway.py ]; then
+if [ ! -f ~/cropwise-gateway/gateway.py ]; then
     echo "📥 Copying gateway.py..."
     # User should have uploaded this file
-    echo "⚠️  Please upload gateway.py to ~/smartcrop-gateway/"
+    echo "⚠️  Please upload gateway.py to ~/cropwise-gateway/"
     echo ""
 fi
 
 # Setup systemd service
 echo "🔧 Setting up auto-start service..."
 
-sudo tee /etc/systemd/system/smartcrop-gateway.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/cropwise-gateway.service > /dev/null <<EOF
 [Unit]
-Description=SmartCrop OS Gateway Service
+Description=CropWise Gateway Service
 After=network.target mosquitto.service
 
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=$HOME/smartcrop-gateway
-ExecStart=$HOME/smartcrop-gateway/venv/bin/python3 $HOME/smartcrop-gateway/gateway.py
+WorkingDirectory=$HOME/cropwise-gateway
+ExecStart=$HOME/cropwise-gateway/venv/bin/python3 $HOME/cropwise-gateway/gateway.py
 Restart=always
 RestartSec=10
 Environment=PYTHONUNBUFFERED=1
@@ -100,7 +100,7 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable smartcrop-gateway
+sudo systemctl enable cropwise-gateway
 
 echo "✅ Service configured"
 echo ""
@@ -116,13 +116,13 @@ echo "   Send Interval: $SEND_INTERVAL seconds"
 echo "   Raspberry Pi IP: $RPI_IP"
 echo ""
 echo "🚀 To start the gateway:"
-echo "   sudo systemctl start smartcrop-gateway"
+echo "   sudo systemctl start cropwise-gateway"
 echo ""
 echo "📊 To view logs:"
-echo "   sudo journalctl -u smartcrop-gateway -f"
+echo "   sudo journalctl -u cropwise-gateway -f"
 echo ""
 echo "🧪 To test manually first:"
-echo "   cd ~/smartcrop-gateway"
+echo "   cd ~/cropwise-gateway"
 echo "   source venv/bin/activate"
 echo "   python3 gateway.py"
 echo ""

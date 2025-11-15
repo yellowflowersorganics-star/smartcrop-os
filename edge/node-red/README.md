@@ -1,6 +1,6 @@
-# 🍓 SmartCrop OS - Raspberry Pi Gateway (Node-RED)
+# 🍓 CropWise - Raspberry Pi Gateway (Node-RED)
 
-Node-RED flows for the Raspberry Pi gateway to manage local ESP32 controllers and bridge to SmartCrop Cloud.
+Node-RED flows for the Raspberry Pi gateway to manage local ESP32 controllers and bridge to CropWise Cloud.
 
 ---
 
@@ -13,7 +13,7 @@ ESP32 Controllers (Zones)
     ↓ WiFi → Local MQTT (port 1883)
 Raspberry Pi Gateway (Node-RED)
     ↓ Internet → Cloud MQTT/TLS (port 8883)
-SmartCrop Cloud Backend
+CropWise Cloud Backend
 ```
 
 ---
@@ -69,29 +69,29 @@ sudo systemctl start mosquitto
 mosquitto_sub -h localhost -t "#" -v
 ```
 
-### 4. Configure SmartCrop Gateway
+### 4. Configure CropWise Gateway
 
 ```bash
 # Create configuration directory
-sudo mkdir -p /etc/smartcrop
+sudo mkdir -p /etc/cropwise
 
 # Create environment file
-sudo nano /etc/smartcrop/gateway.env
+sudo nano /etc/cropwise/gateway.env
 ```
 
 **Add configuration**:
 ```bash
-# SmartCrop Configuration
+# CropWise Configuration
 ORGANIZATION_ID=org_abc123
 UNIT_ID=unit_001
 GATEWAY_ID=rpi_b827eb123456
 
 # API Configuration
-API_URL=https://api.smartcrop.cloud
+API_URL=https://api.cropwise.cloud
 API_TOKEN=your_jwt_token_here
 
 # Cloud MQTT Configuration
-CLOUD_MQTT_BROKER=mqtt.smartcrop.cloud
+CLOUD_MQTT_BROKER=mqtt.cropwise.cloud
 CLOUD_MQTT_PORT=8883
 CLOUD_MQTT_USERNAME=gateway_unit_001
 CLOUD_MQTT_PASSWORD=your_mqtt_password
@@ -108,7 +108,7 @@ LOCAL_MQTT_PORT=1883
 
 2. **Import Flow**:
    - Menu (☰) → Import
-   - Paste contents of `flows/smartcrop-gateway.json`
+   - Paste contents of `flows/cropwise-gateway.json`
    - Click "Import"
 
 3. **Configure MQTT Brokers**:
@@ -118,7 +118,7 @@ LOCAL_MQTT_PORT=1883
      - Server: `localhost`
      - Port: `1883`
    - **Cloud Broker**:
-     - Server: `mqtt.smartcrop.cloud`
+     - Server: `mqtt.cropwise.cloud`
      - Port: `8883`
      - Enable TLS
      - Username/Password from `gateway.env`
@@ -300,7 +300,7 @@ mosquitto_pub -h localhost -t "unit1/zone_a/telemetry" \
 
 **Subscribe to cloud**:
 ```bash
-mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 \
+mosquitto_sub -h mqtt.cropwise.cloud -p 8883 \
   --cafile ca.crt \
   -u gateway_unit_001 -P your_password \
   -t "yfcloud/org_abc123/unit_001/#" -v
@@ -376,7 +376,7 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 mosquitto_sub -h localhost -t test
 
 # Test cloud broker
-mosquitto_sub -h mqtt.smartcrop.cloud -p 8883 -t test --insecure
+mosquitto_sub -h mqtt.cropwise.cloud -p 8883 -t test --insecure
 
 # Check Mosquitto status
 sudo systemctl status mosquitto
@@ -396,7 +396,7 @@ sudo systemctl restart mosquitto
 ### Cloud Not Receiving Data
 
 1. **Check Internet**: `ping google.com`
-2. **Check Cloud Broker**: `ping mqtt.smartcrop.cloud`
+2. **Check Cloud Broker**: `ping mqtt.cropwise.cloud`
 3. **Check Credentials**: Verify `gateway.env` settings
 4. **Check Logs**: `sudo journalctl -u nodered -f`
 5. **Test Manually**: Use `mosquitto_pub` to test
@@ -421,19 +421,19 @@ sudo systemctl is-enabled mosquitto
 
 ```bash
 # Create update script
-sudo nano /usr/local/bin/update-smartcrop.sh
+sudo nano /usr/local/bin/update-cropwise.sh
 ```
 
 ```bash
 #!/bin/bash
-cd /home/pi/smartcrop-gateway
+cd /home/pi/cropwise-gateway
 git pull origin main
 sudo systemctl restart nodered
 ```
 
 ```bash
 # Make executable
-sudo chmod +x /usr/local/bin/update-smartcrop.sh
+sudo chmod +x /usr/local/bin/update-cropwise.sh
 
 # Add to cron (daily at 3 AM)
 sudo crontab -e
@@ -441,7 +441,7 @@ sudo crontab -e
 
 Add:
 ```
-0 3 * * * /usr/local/bin/update-smartcrop.sh >> /var/log/smartcrop-update.log 2>&1
+0 3 * * * /usr/local/bin/update-cropwise.sh >> /var/log/cropwise-update.log 2>&1
 ```
 
 ### Watchdog (Auto-restart if crashed)
@@ -471,17 +471,17 @@ sudo systemctl start watchdog
 ## 📝 Configuration Files
 
 - **Node-RED settings**: `~/.node-red/settings.js`
-- **Flow file**: `~/.node-red/smartcrop-flows.json`
+- **Flow file**: `~/.node-red/cropwise-flows.json`
 - **Mosquitto config**: `/etc/mosquitto/mosquitto.conf`
-- **SmartCrop config**: `/etc/smartcrop/gateway.env`
-- **Certificates**: `/etc/smartcrop/*.crt`, `*.key`
+- **CropWise config**: `/etc/cropwise/gateway.env`
+- **Certificates**: `/etc/cropwise/*.crt`, `*.key`
 
 ---
 
 ## 🤝 Support
 
 - **Documentation**: `/docs/ARCHITECTURE_EDGE_GATEWAY.md`
-- **GitHub Issues**: https://github.com/yellowflowersorganics-star/smartcrop-os/issues
+- **GitHub Issues**: https://github.com/yellowflowersorganics-star/cropwise/issues
 - **Email**: support@yellowflowers.tech
 
 ---

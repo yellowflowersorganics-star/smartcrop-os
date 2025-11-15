@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'SmartCrop OS - Complete Infrastructure'
+Description: 'CropWise - Complete Infrastructure'
 
 Parameters:
   Environment:
@@ -189,7 +189,7 @@ Resources:
       DBInstanceClass: db.t3.micro
       Engine: postgres
       EngineVersion: '15.4'
-      MasterUsername: smartcrop_admin
+      MasterUsername: cropwise_admin
       MasterUserPassword: !Ref DBPassword
       AllocatedStorage: 20
       DBSubnetGroupName: !Ref DBSubnetGroup
@@ -198,7 +198,7 @@ Resources:
       BackupRetentionPeriod: 7
       PubliclyAccessible: false
       StorageEncrypted: true
-      DBName: smartcrop_db
+      DBName: cropwise_db
 
   # ElastiCache Redis
   RedisSubnetGroup:

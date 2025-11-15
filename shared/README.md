@@ -1,6 +1,6 @@
-# SmartCrop OS - Shared Schemas and Models
+# CropWise - Shared Schemas and Models
 
-Common data structures, JSON schemas, and protocols used across all components of SmartCrop OS.
+Common data structures, JSON schemas, and protocols used across all components of CropWise.
 
 ## 📁 Structure
 
@@ -90,7 +90,7 @@ Defines message formats for device-to-cloud communication.
 ### Device → Backend
 
 #### Telemetry
-**Topic**: `smartcrop/{deviceId}/telemetry`
+**Topic**: `cropwise/{deviceId}/telemetry`
 
 ```json
 {
@@ -110,7 +110,7 @@ Defines message formats for device-to-cloud communication.
 ```
 
 #### Status
-**Topic**: `smartcrop/{deviceId}/status`
+**Topic**: `cropwise/{deviceId}/status`
 
 ```json
 {
@@ -125,7 +125,7 @@ Defines message formats for device-to-cloud communication.
 ### Backend → Device
 
 #### Setpoints
-**Topic**: `smartcrop/{deviceId}/setpoints`
+**Topic**: `cropwise/{deviceId}/setpoints`
 
 ```json
 {
@@ -138,7 +138,7 @@ Defines message formats for device-to-cloud communication.
 ```
 
 #### Command
-**Topic**: `smartcrop/{deviceId}/command`
+**Topic**: `cropwise/{deviceId}/command`
 
 ```json
 {

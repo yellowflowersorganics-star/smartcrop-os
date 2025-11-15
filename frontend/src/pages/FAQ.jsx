@@ -17,20 +17,20 @@ export default function FAQ() {
       color: 'green',
       faqs: [
         {
-          question: 'What is SmartCrop?',
-          answer: 'SmartCrop is a comprehensive IoT-powered farm management platform designed specifically for mushroom cultivation and vertical farming. It provides real-time environmental monitoring, batch tracking, harvest recording, inventory management, and profitability analytics - all in one integrated system.'
+          question: 'What is CropWise?',
+          answer: 'CropWise is a comprehensive IoT-powered farm management platform designed specifically for mushroom cultivation and vertical farming. It provides real-time environmental monitoring, batch tracking, harvest recording, inventory management, and profitability analytics - all in one integrated system.'
         },
         {
-          question: 'Do I need technical knowledge to use SmartCrop?',
-          answer: 'No! SmartCrop is designed to be user-friendly for farmers of all technical levels. Our intuitive interface requires no coding or technical expertise. We provide step-by-step guides, video tutorials, and 24/7 support to help you get started.'
+          question: 'Do I need technical knowledge to use CropWise?',
+          answer: 'No! CropWise is designed to be user-friendly for farmers of all technical levels. Our intuitive interface requires no coding or technical expertise. We provide step-by-step guides, video tutorials, and 24/7 support to help you get started.'
         },
         {
           question: 'How long does it take to set up?',
-          answer: 'You can create an account and start using SmartCrop immediately. For IoT sensor integration, setup typically takes 1-2 hours per zone, depending on your farm size. Our quick-start guide walks you through the entire process, and our support team is available to assist.'
+          answer: 'You can create an account and start using CropWise immediately. For IoT sensor integration, setup typically takes 1-2 hours per zone, depending on your farm size. Our quick-start guide walks you through the entire process, and our support team is available to assist.'
         },
         {
           question: 'Can I import my existing farm data?',
-          answer: 'Yes! SmartCrop supports CSV imports for farms, zones, inventory items, and historical data. We also offer a data migration service for enterprise customers transitioning from other systems.'
+          answer: 'Yes! CropWise supports CSV imports for farms, zones, inventory items, and historical data. We also offer a data migration service for enterprise customers transitioning from other systems.'
         }
       ]
     },
@@ -40,20 +40,20 @@ export default function FAQ() {
       color: 'blue',
       faqs: [
         {
-          question: 'What sensors does SmartCrop support?',
-          answer: 'SmartCrop works with ESP32-based sensors for temperature, humidity, CO2, light intensity, soil moisture, and pH. We provide detailed wiring guides for DHT22, BH1750, MQ-135, and other common sensors. Our MQTT-based architecture also supports custom sensor integrations.'
+          question: 'What sensors does CropWise support?',
+          answer: 'CropWise works with ESP32-based sensors for temperature, humidity, CO2, light intensity, soil moisture, and pH. We provide detailed wiring guides for DHT22, BH1750, MQ-135, and other common sensors. Our MQTT-based architecture also supports custom sensor integrations.'
         },
         {
           question: 'Do I need to buy sensors from you?',
           answer: 'No! You can use any ESP32-compatible sensors. We provide open-source Arduino code and comprehensive guides for DIY sensor setup. This keeps costs low - typically $20-40 per sensor node. We also partner with hardware suppliers if you prefer pre-assembled solutions.'
         },
         {
-          question: 'How do sensors connect to SmartCrop?',
-          answer: 'Sensors connect via WiFi to a local MQTT broker (like Mosquitto on a Raspberry Pi), which then forwards data to SmartCrop via our REST API. This architecture works on-premise or in the cloud, ensuring your data stays secure and operations continue even during internet outages.'
+          question: 'How do sensors connect to CropWise?',
+          answer: 'Sensors connect via WiFi to a local MQTT broker (like Mosquitto on a Raspberry Pi), which then forwards data to CropWise via our REST API. This architecture works on-premise or in the cloud, ensuring your data stays secure and operations continue even during internet outages.'
         },
         {
           question: 'What if I don\'t have IoT sensors yet?',
-          answer: 'You can still use SmartCrop! All features work with manual data entry. The platform provides simulated environmental data for testing. You can add IoT sensors later at your own pace - the system is designed to grow with your operation.'
+          answer: 'You can still use CropWise! All features work with manual data entry. The platform provides simulated environmental data for testing. You can add IoT sensors later at your own pace - the system is designed to grow with your operation.'
         }
       ]
     },
@@ -63,7 +63,7 @@ export default function FAQ() {
       color: 'purple',
       faqs: [
         {
-          question: 'How much does SmartCrop cost?',
+          question: 'How much does CropWise cost?',
           answer: 'We offer three plans: Starter (Free forever, up to 2 farms, 10 zones, 5 devices), Professional ($49/month, up to 10 farms, unlimited zones, 50 devices), and Enterprise (custom pricing for large operations). All plans include core features, with Professional and Enterprise adding advanced analytics and priority support.'
         },
         {
@@ -86,16 +86,16 @@ export default function FAQ() {
       color: 'orange',
       faqs: [
         {
-          question: 'What features does SmartCrop include?',
-          answer: 'SmartCrop includes: Farm & Zone Management, Growing Recipes, Batch Tracking, Harvest Recording, Real-time Environmental Monitoring, Alerts & Notifications, Inventory Management, Task Management, Labor Tracking, Cost & Revenue Tracking, Profitability Analytics, Quality Control, SOP Management, and comprehensive Analytics & Reporting.'
+          question: 'What features does CropWise include?',
+          answer: 'CropWise includes: Farm & Zone Management, Growing Recipes, Batch Tracking, Harvest Recording, Real-time Environmental Monitoring, Alerts & Notifications, Inventory Management, Task Management, Labor Tracking, Cost & Revenue Tracking, Profitability Analytics, Quality Control, SOP Management, and comprehensive Analytics & Reporting.'
         },
         {
           question: 'Can I manage multiple farms?',
-          answer: 'Yes! SmartCrop is designed for multi-farm operations. You can manage unlimited farms (depending on your plan), each with multiple zones, different crop recipes, and separate teams. The dashboard provides a consolidated view across all your operations.'
+          answer: 'Yes! CropWise is designed for multi-farm operations. You can manage unlimited farms (depending on your plan), each with multiple zones, different crop recipes, and separate teams. The dashboard provides a consolidated view across all your operations.'
         },
         {
           question: 'Does it work for crops other than mushrooms?',
-          answer: 'While SmartCrop was originally designed for mushroom cultivation, it works for any crop that requires environmental monitoring and stage-based growing protocols. Many customers use it for leafy greens, herbs, microgreens, and other specialty crops in vertical farms.'
+          answer: 'While CropWise was originally designed for mushroom cultivation, it works for any crop that requires environmental monitoring and stage-based growing protocols. Many customers use it for leafy greens, herbs, microgreens, and other specialty crops in vertical farms.'
         },
         {
           question: 'Can I create custom growing recipes?',
@@ -118,7 +118,7 @@ export default function FAQ() {
         },
         {
           question: 'Who can access my farm data?',
-          answer: 'Only authorized users on your account can access your data. You control user permissions with role-based access control (RBAC). SmartCrop staff never access your data without explicit permission, and then only to provide technical support or resolve specific issues.'
+          answer: 'Only authorized users on your account can access your data. You control user permissions with role-based access control (RBAC). CropWise staff never access your data without explicit permission, and then only to provide technical support or resolve specific issues.'
         },
         {
           question: 'Do you sell my data?',
@@ -141,7 +141,7 @@ export default function FAQ() {
         },
         {
           question: 'Is there a user community?',
-          answer: 'Yes! Our active community forum has 5,000+ farmers sharing tips, best practices, and growing recipes. We also host monthly webinars, regional meetups, and an annual SmartCrop Conference where users connect and learn from each other.'
+          answer: 'Yes! Our active community forum has 5,000+ farmers sharing tips, best practices, and growing recipes. We also host monthly webinars, regional meetups, and an annual CropWise Conference where users connect and learn from each other.'
         },
         {
           question: 'Can I request new features?',
@@ -181,7 +181,7 @@ export default function FAQ() {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
               <Sprout className="w-8 h-8 text-green-600" />
-              <span className="text-2xl font-bold text-gray-900">SmartCrop</span>
+              <span className="text-2xl font-bold text-gray-900">CropWise</span>
             </Link>
             <div className="flex items-center space-x-4">
               <Link to="/" className="text-gray-700 hover:text-green-600 font-medium transition-colors">
@@ -214,7 +214,7 @@ export default function FAQ() {
             Frequently Asked <span className="text-green-600">Questions</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Find answers to common questions about SmartCrop. Can't find what you're looking for? 
+            Find answers to common questions about CropWise. Can't find what you're looking for? 
             <Link to="/#contact" className="text-green-600 hover:underline ml-1">Contact us</Link>
           </p>
 
@@ -322,10 +322,10 @@ export default function FAQ() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Sprout className="w-6 h-6 text-green-500" />
-            <span className="text-lg font-bold">SmartCrop</span>
+            <span className="text-lg font-bold">CropWise</span>
           </div>
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} SmartCrop. All rights reserved.
+            © {new Date().getFullYear()} CropWise. All rights reserved.
           </p>
         </div>
       </footer>

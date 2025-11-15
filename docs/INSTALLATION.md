@@ -1,4 +1,4 @@
-# 🚀 SmartCrop - Installation Guide
+# 🚀 CropWise - Installation Guide
 
 Complete installation instructions for all platforms.
 
@@ -22,8 +22,8 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
-cd smartcrop
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 
 # 2. Start all services
 docker-compose up -d
@@ -43,8 +43,8 @@ docker-compose up -d
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
-cd smartcrop
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 ```
 
 ### Step 2: Backend Setup
@@ -67,14 +67,14 @@ nano .env
 ```bash
 # Database (use SQLite for quick start)
 DB_DIALECT=sqlite
-DB_STORAGE=./smartcrop.db
+DB_STORAGE=./cropwise.db
 
 # Or PostgreSQL for production
 # DB_DIALECT=postgres
 # DB_HOST=localhost
 # DB_PORT=5432
-# DB_NAME=smartcrop_db
-# DB_USER=smartcrop_admin
+# DB_NAME=cropwise_db
+# DB_USER=cropwise_admin
 # DB_PASSWORD=your_password
 
 # JWT Secret (generate a random string)
@@ -185,13 +185,13 @@ sudo -i -u postgres
 psql
 
 # Create database
-CREATE DATABASE smartcrop_db;
+CREATE DATABASE cropwise_db;
 
 # Create user
-CREATE USER smartcrop_admin WITH PASSWORD 'your_secure_password';
+CREATE USER cropwise_admin WITH PASSWORD 'your_secure_password';
 
 # Grant privileges
-GRANT ALL PRIVILEGES ON DATABASE smartcrop_db TO smartcrop_admin;
+GRANT ALL PRIVILEGES ON DATABASE cropwise_db TO cropwise_admin;
 
 # Exit
 \q
@@ -205,8 +205,8 @@ exit
 DB_DIALECT=postgres
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=smartcrop_db
-DB_USER=smartcrop_admin
+DB_NAME=cropwise_db
+DB_USER=cropwise_admin
 DB_PASSWORD=your_secure_password
 ```
 
@@ -346,8 +346,8 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
-cd smartcrop
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 
 # Create environment files
 cp backend/.env.example backend/.env
@@ -467,7 +467,7 @@ For production deployment, see:
 
 ```bash
 # Stop services
-pm2 stop smartcrop-backend
+pm2 stop cropwise-backend
 
 # Pull updates
 git pull origin main
@@ -485,7 +485,7 @@ cd ../frontend
 npm run build
 
 # Restart services
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 ```
 
 ---
@@ -499,23 +499,23 @@ pm2 restart smartcrop-backend
 docker-compose down -v
 
 # Remove images
-docker rmi smartcrop-backend smartcrop-frontend
+docker rmi cropwise-backend cropwise-frontend
 ```
 
 ### Manual
 
 ```bash
 # Stop services
-pm2 delete smartcrop-backend
+pm2 delete cropwise-backend
 
 # Remove PostgreSQL database
 sudo -u postgres psql
-DROP DATABASE smartcrop_db;
-DROP USER smartcrop_admin;
+DROP DATABASE cropwise_db;
+DROP USER cropwise_admin;
 \q
 
 # Remove application files
-rm -rf /path/to/smartcrop
+rm -rf /path/to/cropwise
 
 # Remove Node modules (frees space)
 rm -rf ~/.npm
@@ -542,7 +542,7 @@ PORT=3001
 **Solution**:
 ```bash
 # Test PostgreSQL connection
-psql -h localhost -U smartcrop_admin -d smartcrop_db
+psql -h localhost -U cropwise_admin -d cropwise_db
 
 # Check PostgreSQL is running
 sudo systemctl status postgresql
@@ -583,10 +583,10 @@ After installation:
 
 ## 🆘 Need Help?
 
-- **Documentation**: [docs.smartcrop.io](https://docs.smartcrop.io)
-- **Support**: support@smartcrop.io
-- **Community**: [community.smartcrop.io](https://community.smartcrop.io)
-- **Issues**: [GitHub Issues](https://github.com/yellowflowersorganics-star/smartcrop/issues)
+- **Documentation**: [docs.cropwise.io](https://docs.cropwise.io)
+- **Support**: support@cropwise.io
+- **Community**: [community.cropwise.io](https://community.cropwise.io)
+- **Issues**: [GitHub Issues](https://github.com/yellowflowersorganics-star/cropwise/issues)
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Farm Controller
+ * CropWise - Farm Controller
  */
 
 const { Farm, Zone } = require('../models');

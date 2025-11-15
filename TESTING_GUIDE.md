@@ -1,4 +1,4 @@
-# 🧪 SmartCrop - Complete Testing Guide
+# 🧪 CropWise - Complete Testing Guide
 ## From Scratch to First Harvest
 
 **Let's test everything step by step!**
@@ -56,7 +56,7 @@ cat .env
 NODE_ENV=development
 PORT=3000
 DB_DIALECT=sqlite
-DB_STORAGE=./smartcrop.db
+DB_STORAGE=./cropwise.db
 JWT_SECRET=your-secret-key-here
 ```
 
@@ -67,16 +67,16 @@ JWT_SECRET=your-secret-key-here
 echo NODE_ENV=development > .env
 echo PORT=3000 >> .env
 echo DB_DIALECT=sqlite >> .env
-echo DB_STORAGE=./smartcrop.db >> .env
-echo JWT_SECRET=smartcrop-secret-key-2024 >> .env
+echo DB_STORAGE=./cropwise.db >> .env
+echo JWT_SECRET=cropwise-secret-key-2024 >> .env
 
 # Linux/Mac
 cat > .env << EOF
 NODE_ENV=development
 PORT=3000
 DB_DIALECT=sqlite
-DB_STORAGE=./smartcrop.db
-JWT_SECRET=smartcrop-secret-key-2024
+DB_STORAGE=./cropwise.db
+JWT_SECRET=cropwise-secret-key-2024
 EOF
 ```
 
@@ -88,7 +88,7 @@ npm run dev
 
 **Expected output**:
 ```
-🌱 SmartCrop Backend running on port 3000
+🌱 CropWise Backend running on port 3000
 📊 Environment: development
 🔗 API: http://localhost:3000/api
 📖 Health: http://localhost:3000/health
@@ -102,7 +102,7 @@ npm run dev
 
 **❌ If you see errors**:
 - Port 3000 already in use? → Change PORT in .env to 3001
-- Database error? → Delete `smartcrop.db` and restart
+- Database error? → Delete `cropwise.db` and restart
 - Module not found? → Run `npm install` again
 
 ---
@@ -143,7 +143,7 @@ curl http://localhost:3000/api
 **Expected response**:
 ```json
 {
-  "name": "SmartCrop API",
+  "name": "CropWise API",
   "version": "1.0.0",
   "status": "operational",
   "documentation": "/api/docs"
@@ -161,12 +161,12 @@ curl http://localhost:3000/api
 ```bash
 curl -X POST http://localhost:3000/api/auth/register ^
   -H "Content-Type: application/json" ^
-  -d "{\"email\":\"test@smartcrop.com\",\"password\":\"Test1234\",\"name\":\"Test User\",\"organizationName\":\"Test Farm\"}"
+  -d "{\"email\":\"test@cropwise.com\",\"password\":\"Test1234\",\"name\":\"Test User\",\"organizationName\":\"Test Farm\"}"
 
 # Linux/Mac (use single quotes)
 curl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@smartcrop.com","password":"Test1234","name":"Test User","organizationName":"Test Farm"}'
+  -d '{"email":"test@cropwise.com","password":"Test1234","name":"Test User","organizationName":"Test Farm"}'
 ```
 
 **Expected response**:
@@ -177,7 +177,7 @@ curl -X POST http://localhost:3000/api/auth/register \
   "data": {
     "user": {
       "id": "uuid-here",
-      "email": "test@smartcrop.com",
+      "email": "test@cropwise.com",
       "name": "Test User",
       "organizationId": "org-uuid-here"
     },
@@ -202,12 +202,12 @@ export TOKEN="paste-your-token-here"
 ```bash
 curl -X POST http://localhost:3000/api/auth/login ^
   -H "Content-Type: application/json" ^
-  -d "{\"email\":\"test@smartcrop.com\",\"password\":\"Test1234\"}"
+  -d "{\"email\":\"test@cropwise.com\",\"password\":\"Test1234\"}"
 
 # Linux/Mac
 curl -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@smartcrop.com","password":"Test1234"}'
+  -d '{"email":"test@cropwise.com","password":"Test1234"}'
 ```
 
 **Expected response**:
@@ -217,7 +217,7 @@ curl -X POST http://localhost:3000/api/auth/login \
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
     "id": "uuid",
-    "email": "test@smartcrop.com",
+    "email": "test@cropwise.com",
     "name": "Test User"
   }
 }
@@ -532,7 +532,7 @@ npm run dev
 http://localhost:5173
 ```
 
-**You should see**: SmartCrop dashboard
+**You should see**: CropWise dashboard
 
 ---
 
@@ -542,7 +542,7 @@ http://localhost:5173
 
 1. Go to: `http://localhost:5173/login`
 2. Enter credentials:
-   - Email: `test@smartcrop.com`
+   - Email: `test@cropwise.com`
    - Password: `Test1234`
 3. Click "Login"
 
@@ -636,8 +636,8 @@ kill -9 <PID>
 ```bash
 # Delete database and restart
 cd backend
-del smartcrop.db  # Windows
-rm smartcrop.db   # Linux/Mac
+del cropwise.db  # Windows
+rm cropwise.db   # Linux/Mac
 npm run dev
 ```
 
@@ -678,9 +678,9 @@ Save this as `test-api.sh` (Linux/Mac) or `test-api.bat` (Windows):
 ```bash
 #!/bin/bash
 
-# Test SmartCrop API
+# Test CropWise API
 
-echo "🧪 Testing SmartCrop API..."
+echo "🧪 Testing CropWise API..."
 
 # Health check
 echo "\n1. Testing health endpoint..."
@@ -721,7 +721,7 @@ chmod +x test-api.sh
 
 After all tests, you should have:
 
-- ✅ **1 User account** (test@smartcrop.com)
+- ✅ **1 User account** (test@cropwise.com)
 - ✅ **1 Organization** (Test Farm)
 - ✅ **1 Unit** (Test Building)
 - ✅ **1 Zone** (Incubation Room 1)
@@ -782,7 +782,7 @@ If you encounter issues:
    - Frontend: Open browser console (F12)
 
 2. **Verify data**:
-   - Check `smartcrop.db` with DB Browser for SQLite
+   - Check `cropwise.db` with DB Browser for SQLite
    - Verify tokens are valid
 
 3. **Common commands**:

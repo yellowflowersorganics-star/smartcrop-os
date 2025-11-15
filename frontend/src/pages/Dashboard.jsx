@@ -125,7 +125,7 @@ export default function Dashboard() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-600 mt-2">
-          Welcome to <span className="whitespace-nowrap">SmartCrop</span> - Monitor your mushroom cultivation
+          Welcome to <span className="whitespace-nowrap">CropWise</span> - Monitor your mushroom cultivation
         </p>
       </div>
 

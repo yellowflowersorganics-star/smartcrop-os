@@ -1,10 +1,10 @@
 #!/bin/bash
-# SmartCrop OS - AWS Infrastructure Setup
+# CropWise - AWS Infrastructure Setup
 # This script creates all required AWS resources
 
 set -e
 
-echo "🌱 SmartCrop OS - AWS Infrastructure Setup"
+echo "🌱 CropWise - AWS Infrastructure Setup"
 echo "=========================================="
 
 # Colors
@@ -16,8 +16,8 @@ NC='\033[0m'
 
 # Configuration
 AWS_REGION=${AWS_REGION:-us-east-1}
-APP_NAME="smartcrop-os"
-DB_USERNAME="smartcrop_admin"
+APP_NAME="cropwise"
+DB_USERNAME="cropwise_admin"
 DB_PASSWORD=${DB_PASSWORD:-$(openssl rand -base64 32 | tr -d "=+/" | cut -c1-25)}
 
 echo -e "${BLUE}Region: $AWS_REGION${NC}"
@@ -181,7 +181,7 @@ echo "💾 Step 6: Creating RDS Subnet Group..."
 
 aws rds create-db-subnet-group \
     --db-subnet-group-name "$APP_NAME-db-subnet-group" \
-    --db-subnet-group-description "Subnet group for SmartCrop OS database" \
+    --db-subnet-group-description "Subnet group for CropWise database" \
     --subnet-ids $PRIVATE_SUBNET_1 $PRIVATE_SUBNET_2
 
 echo -e "${GREEN}✅ RDS subnet group created${NC}"
@@ -203,7 +203,7 @@ aws rds create-db-instance \
     --backup-retention-period 7 \
     --publicly-accessible false \
     --storage-encrypted \
-    --db-name smartcrop_db
+    --db-name cropwise_db
 
 echo -e "${GREEN}✅ RDS instance creation started${NC}"
 
@@ -213,7 +213,7 @@ echo "⚡ Step 8: Creating ElastiCache Subnet Group..."
 
 aws elasticache create-cache-subnet-group \
     --cache-subnet-group-name "$APP_NAME-redis-subnet-group" \
-    --cache-subnet-group-description "Subnet group for SmartCrop OS Redis" \
+    --cache-subnet-group-description "Subnet group for CropWise Redis" \
     --subnet-ids $PRIVATE_SUBNET_1 $PRIVATE_SUBNET_2
 
 echo -e "${GREEN}✅ ElastiCache subnet group created${NC}"

@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Analytics Routes
+ * CropWise - Analytics Routes
  */
 
 const express = require('express');

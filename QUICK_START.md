@@ -1,4 +1,4 @@
-# 🚀 SmartCrop - Quick Start Guide
+# 🚀 CropWise - Quick Start Guide
 
 **Status**: ✅ Setup Complete | Dependencies Installed | Ready to Run
 
@@ -82,8 +82,8 @@ NODE_ENV=development
 PORT=3000
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=smartcrop_db
-DB_USER=smartcrop_user
+DB_NAME=cropwise_db
+DB_USER=cropwise_user
 DB_PASSWORD=your_password
 MQTT_BROKER_URL=mqtt://localhost:1883
 REDIS_HOST=localhost
@@ -206,7 +206,7 @@ curl http://localhost:3000/api
 
 # Should return:
 # {
-#   "name": "SmartCrop API",
+#   "name": "CropWise API",
 #   "version": "1.0.0",
 #   "status": "operational"
 # }
@@ -218,7 +218,7 @@ Open http://localhost:8080 - should see login page
 ### Check MQTT
 ```bash
 # Subscribe to telemetry topic
-mosquitto_sub -h localhost -t "smartcrop/+/telemetry" -u smartcrop -P your_password
+mosquitto_sub -h localhost -t "cropwise/+/telemetry" -u cropwise -P your_password
 
 # You should see device telemetry messages
 ```
@@ -314,12 +314,12 @@ npm run dev
 docker-compose up -d postgres
 
 # Manual: Create database
-createdb smartcrop_db
+createdb cropwise_db
 
 # Check credentials in backend/.env
 DB_HOST=localhost
-DB_NAME=smartcrop_db
-DB_USER=smartcrop_user
+DB_NAME=cropwise_db
+DB_USER=cropwise_user
 DB_PASSWORD=your_password
 ```
 
@@ -391,5 +391,5 @@ docker-compose up -d
 
 ---
 
-**🌱 You're ready to grow with SmartCrop!**
+**🌱 You're ready to grow with CropWise!**
 

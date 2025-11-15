@@ -1,6 +1,6 @@
 # 🔐 GitHub Secrets Setup Guide
 
-Complete guide to gather and configure all secrets needed for SmartCrop GitHub Actions CI/CD pipeline.
+Complete guide to gather and configure all secrets needed for CropWise GitHub Actions CI/CD pipeline.
 
 ---
 
@@ -50,7 +50,7 @@ These secrets are needed **only when you're ready to deploy to AWS**.
 1. Log in to AWS Console: https://console.aws.amazon.com
 2. Go to **IAM** (Identity and Access Management)
 3. Click **Users** → **Add users**
-4. Username: `smartcrop-dev-deployer`
+4. Username: `cropwise-dev-deployer`
 5. Access type: ✅ **Programmatic access**
 6. Permissions: Attach policies:
    - `AmazonEC2ContainerRegistryFullAccess`
@@ -112,7 +112,7 @@ Value: us-east-1
 **What it is**: Separate AWS credentials for PRODUCTION deployments
 
 **How to get it**:
-- Same process as #2, but create a different user: `smartcrop-prod-deployer`
+- Same process as #2, but create a different user: `cropwise-prod-deployer`
 - **Best Practice**: Use separate credentials for prod to limit blast radius
 
 **Where to add it**:
@@ -431,7 +431,7 @@ postgresql://username:password@hostname:5432/database_name
 
 **Example** (AWS RDS):
 ```
-postgresql://smartcrop:SecurePass123!@smartcrop-db.abc123.us-east-1.rds.amazonaws.com:5432/smartcrop_prod
+postgresql://cropwise:SecurePass123!@cropwise-db.abc123.us-east-1.rds.amazonaws.com:5432/cropwise_prod
 ```
 
 **How to get it**:
@@ -460,7 +460,7 @@ redis://hostname:6379
 
 **Example** (AWS ElastiCache):
 ```
-redis://smartcrop-redis.abc123.0001.use1.cache.amazonaws.com:6379
+redis://cropwise-redis.abc123.0001.use1.cache.amazonaws.com:6379
 ```
 
 **How to get it**:
@@ -483,7 +483,7 @@ Value: redis://your-redis-endpoint:6379
 
 1. **Go to your repository**:
    ```
-   https://github.com/yellowflowersorganics-star/smartcrop
+   https://github.com/yellowflowersorganics-star/cropwise
    ```
 
 2. **Navigate to Settings**:
@@ -504,7 +504,7 @@ Value: redis://your-redis-endpoint:6379
    - You can update or delete it
 
 ### Direct Link
-👉 https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
+👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 ---
 
@@ -514,7 +514,7 @@ Copy this template and fill in your values:
 
 ```bash
 # ============================================
-# SmartCrop - GitHub Secrets
+# CropWise - GitHub Secrets
 # ============================================
 
 # Priority 1: Essential (Add Now)
@@ -733,5 +733,5 @@ Track your progress:
 
 **Version**: 2.0.0
 
-**Maintained by**: SmartCrop Team
+**Maintained by**: CropWise Team
 

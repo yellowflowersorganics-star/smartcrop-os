@@ -1,5 +1,5 @@
 /**
- * SmartCrop - Telemetry Controller
+ * CropWise - Telemetry Controller
  * Manages environmental sensor data and readings
  */
 

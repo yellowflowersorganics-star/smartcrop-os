@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Recipe Engine
+ * CropWise - Recipe Engine
  * Core logic for crop recipe execution and stage management
  */
 

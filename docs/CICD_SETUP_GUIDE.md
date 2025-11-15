@@ -1,8 +1,8 @@
-# 🚀 CI/CD Setup Guide for SmartCrop
+# 🚀 CI/CD Setup Guide for CropWise
 
 Complete guide to set up and manage your CI/CD pipeline with GitHub Actions.
 
-**Repository**: https://github.com/yellowflowersorganics-star/smartcrop
+**Repository**: https://github.com/yellowflowersorganics-star/cropwise
 
 ---
 
@@ -20,7 +20,7 @@ Complete guide to set up and manage your CI/CD pipeline with GitHub Actions.
 
 ## 🎯 Overview
 
-Your SmartCrop repository has **two automated workflows**:
+Your CropWise repository has **two automated workflows**:
 
 ### **1. CI/CD Pipeline** (`.github/workflows/ci.yml`)
 **Triggers**: Every push and pull request to `main` or `develop`
@@ -62,7 +62,7 @@ Before setting up CI/CD, ensure you have:
 
 ## 🔐 GitHub Secrets Setup
 
-Visit: https://github.com/yellowflowersorganics-star/smartcrop/settings/secrets/actions
+Visit: https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
 ### **Required Secrets (Add These Now)**
 
@@ -164,7 +164,7 @@ Click "New repository secret" for each:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│              SmartCrop CI/CD Pipeline                │
+│              CropWise CI/CD Pipeline                │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  1. CODE QUALITY                                        │
@@ -207,9 +207,9 @@ Click "New repository secret" for each:
 
 | Branch | Environment | Auto-Deploy | Approval Required | URL |
 |--------|-------------|-------------|-------------------|-----|
-| `develop` | Development | ✅ Yes | ❌ No | dev.smartcrop.io |
-| `release/*` | Staging | ✅ Yes | ❌ No | staging.smartcrop.io |
-| `main` | Production | ⏸️ Manual | ✅ Yes | www.smartcrop.io |
+| `develop` | Development | ✅ Yes | ❌ No | dev.cropwise.io |
+| `release/*` | Staging | ✅ Yes | ❌ No | staging.cropwise.io |
+| `main` | Production | ⏸️ Manual | ✅ Yes | www.cropwise.io |
 
 ---
 
@@ -238,7 +238,7 @@ git push origin feature/test-cicd
 
 ### **Step 2: Create Pull Request**
 
-1. Go to: https://github.com/yellowflowersorganics-star/smartcrop/pulls
+1. Go to: https://github.com/yellowflowersorganics-star/cropwise/pulls
 2. Click "New pull request"
 3. **Base**: `develop` ← **Compare**: `feature/test-cicd`
 4. Click "Create pull request"
@@ -246,7 +246,7 @@ git push origin feature/test-cicd
 
 ### **Step 3: Watch the Pipeline**
 
-1. Go to **Actions** tab: https://github.com/yellowflowersorganics-star/smartcrop/actions
+1. Go to **Actions** tab: https://github.com/yellowflowersorganics-star/cropwise/actions
 2. Click on your workflow run
 3. Watch each job execute:
    - ✅ Lint Code
@@ -338,7 +338,7 @@ git push origin release/v1.0.1
 
 ### **Viewing Workflow Runs**
 
-**All Runs**: https://github.com/yellowflowersorganics-star/smartcrop/actions
+**All Runs**: https://github.com/yellowflowersorganics-star/cropwise/actions
 
 **Filter by**:
 - Event (push, pull_request)
@@ -524,7 +524,7 @@ Add to deploy job:
   - name: Run Database Migrations
     run: |
       aws ecs run-task \
-        --cluster smartcrop-prod \
+        --cluster cropwise-prod \
         --task-definition migration-task \
         --launch-type FARGATE
 
@@ -602,7 +602,7 @@ Already configured:
 ```yaml
 environment:
   name: production
-  url: https://www.smartcrop.io
+  url: https://www.cropwise.io
 ```
 
 This requires manual approval before production deploy.
@@ -621,7 +621,7 @@ This requires manual approval before production deploy.
 
 ### **View Insights**
 
-Visit: https://github.com/yellowflowersorganics-star/smartcrop/insights/actions
+Visit: https://github.com/yellowflowersorganics-star/cropwise/insights/actions
 
 Shows:
 - Workflow run times
@@ -702,7 +702,7 @@ on:
 
 ### **View All Workflows**
 ```
-https://github.com/yellowflowersorganics-star/smartcrop/actions
+https://github.com/yellowflowersorganics-star/cropwise/actions
 ```
 
 ### **Re-run Failed Job**

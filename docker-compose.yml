@@ -4,36 +4,36 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: smartcrop-postgres
+    container_name: cropwise-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: smartcrop_db
-      POSTGRES_USER: smartcrop_user
-      POSTGRES_PASSWORD: smartcrop_password
+      POSTGRES_DB: cropwise_db
+      POSTGRES_USER: cropwise_user
+      POSTGRES_PASSWORD: cropwise_password
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # Redis for caching and pub/sub
   redis:
     image: redis:7-alpine
-    container_name: smartcrop-redis
+    container_name: cropwise-redis
     restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # MQTT Broker (Eclipse Mosquitto)
   mosquitto:
     image: eclipse-mosquitto:2
-    container_name: smartcrop-mosquitto
+    container_name: cropwise-mosquitto
     restart: unless-stopped
     ports:
       - "1883:1883"
@@ -44,14 +44,14 @@ services:
       - mosquitto_data:/mosquitto/data
       - mosquitto_logs:/mosquitto/log
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # Backend API Service
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: smartcrop-backend
+    container_name: cropwise-backend
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -59,9 +59,9 @@ services:
       NODE_ENV: production
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_NAME: smartcrop_db
-      DB_USER: smartcrop_user
-      DB_PASSWORD: smartcrop_password
+      DB_NAME: cropwise_db
+      DB_USER: cropwise_user
+      DB_PASSWORD: cropwise_password
       MQTT_BROKER_URL: mqtt://mosquitto:1883
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -73,14 +73,14 @@ services:
       - ./backend:/app
       - /app/node_modules
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # Frontend Dashboard
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: smartcrop-frontend
+    container_name: cropwise-frontend
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -89,12 +89,12 @@ services:
     depends_on:
       - backend
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # Node-RED for advanced automation (optional)
   node-red:
     image: nodered/node-red:latest
-    container_name: smartcrop-nodered
+    container_name: cropwise-nodered
     restart: unless-stopped
     ports:
       - "1880:1880"
@@ -104,24 +104,24 @@ services:
       - nodered_data:/data
       - ./edge/node-red/flows:/data/flows
     networks:
-      - smartcrop-network
+      - cropwise-network
 
   # TimescaleDB for time-series data (alternative to PostgreSQL)
   # Uncomment if you need time-series optimization
   # timescaledb:
   #   image: timescale/timescaledb:latest-pg15
-  #   container_name: smartcrop-timescale
+  #   container_name: cropwise-timescale
   #   restart: unless-stopped
   #   environment:
-  #     POSTGRES_DB: smartcrop_timeseries
-  #     POSTGRES_USER: smartcrop_user
-  #     POSTGRES_PASSWORD: smartcrop_password
+  #     POSTGRES_DB: cropwise_timeseries
+  #     POSTGRES_USER: cropwise_user
+  #     POSTGRES_PASSWORD: cropwise_password
   #   ports:
   #     - "5433:5432"
   #   volumes:
   #     - timescale_data:/var/lib/postgresql/data
   #   networks:
-  #     - smartcrop-network
+  #     - cropwise-network
 
 volumes:
   postgres_data:
@@ -132,6 +132,6 @@ volumes:
   # timescale_data:
 
 networks:
-  smartcrop-network:
+  cropwise-network:
     driver: bridge
 

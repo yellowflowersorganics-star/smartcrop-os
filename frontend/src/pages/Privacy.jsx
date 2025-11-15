@@ -26,7 +26,7 @@ export default function Privacy() {
           {/* Introduction */}
           <section>
             <p className="text-gray-700 leading-relaxed">
-              At SmartCrop, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our IoT agriculture platform and services.
+              At CropWise, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our IoT agriculture platform and services.
             </p>
           </section>
 
@@ -144,7 +144,7 @@ export default function Privacy() {
               <li><strong>Restrict:</strong> Limit how we use your data</li>
             </ul>
             <p className="text-gray-700 mt-4">
-              To exercise these rights, contact us at <a href="mailto:privacy@smartcrop.io" className="text-green-600 hover:text-green-700 underline">privacy@smartcrop.io</a>
+              To exercise these rights, contact us at <a href="mailto:privacy@cropwise.io" className="text-green-600 hover:text-green-700 underline">privacy@cropwise.io</a>
             </p>
           </section>
 
@@ -189,7 +189,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Children's Privacy</h2>
             <p className="text-gray-700">
-              SmartCrop is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. 
+              CropWise is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. 
               If you believe we have collected data from a child, please contact us immediately.
             </p>
           </section>
@@ -199,7 +199,7 @@ export default function Privacy() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Changes to This Policy</h2>
             <p className="text-gray-700">
               We may update this Privacy Policy from time to time. We will notify you of significant changes via email or prominent notice on our platform. 
-              Continued use of SmartCrop after changes constitutes acceptance of the updated policy.
+              Continued use of CropWise after changes constitutes acceptance of the updated policy.
             </p>
           </section>
 
@@ -213,9 +213,9 @@ export default function Privacy() {
               If you have questions about this Privacy Policy or wish to exercise your rights, contact us:
             </p>
             <div className="space-y-2 text-gray-700">
-              <p><strong>Email:</strong> <a href="mailto:privacy@smartcrop.io" className="text-green-600 hover:text-green-700 underline">privacy@smartcrop.io</a></p>
-              <p><strong>Data Protection Officer:</strong> <a href="mailto:dpo@smartcrop.io" className="text-green-600 hover:text-green-700 underline">dpo@smartcrop.io</a></p>
-              <p><strong>Mail:</strong> SmartCrop, Privacy Department, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
+              <p><strong>Email:</strong> <a href="mailto:privacy@cropwise.io" className="text-green-600 hover:text-green-700 underline">privacy@cropwise.io</a></p>
+              <p><strong>Data Protection Officer:</strong> <a href="mailto:dpo@cropwise.io" className="text-green-600 hover:text-green-700 underline">dpo@cropwise.io</a></p>
+              <p><strong>Mail:</strong> CropWise, Privacy Department, 123 Agriculture Way, Tech Valley, CA 94000, USA</p>
             </div>
           </section>
 

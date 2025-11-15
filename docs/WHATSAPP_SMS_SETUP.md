@@ -1,12 +1,12 @@
 # 📱 WhatsApp & SMS Notification Setup Guide
 
-Complete guide to enable WhatsApp and SMS notifications in SmartCrop OS using Twilio.
+Complete guide to enable WhatsApp and SMS notifications in CropWise using Twilio.
 
 ---
 
 ## 🎯 Overview
 
-SmartCrop OS now supports **multi-channel notifications**:
+CropWise now supports **multi-channel notifications**:
 - 📱 **WhatsApp** - Rich formatted messages
 - 💬 **SMS** - Fallback text messages  
 - 📧 **Email** - (Coming soon)
@@ -132,7 +132,7 @@ curl -X POST http://localhost:3000/api/notifications/send/whatsapp \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -d '{
     "to": "+919876543210",
-    "message": "🌱 Hello from SmartCrop OS! This is a test WhatsApp message."
+    "message": "🌱 Hello from CropWise! This is a test WhatsApp message."
   }'
 ```
 
@@ -144,7 +144,7 @@ curl -X POST http://localhost:3000/api/notifications/send/sms \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -d '{
     "to": "+919876543210",
-    "message": "Hello from SmartCrop OS! This is a test SMS."
+    "message": "Hello from CropWise! This is a test SMS."
   }'
 ```
 
@@ -197,7 +197,7 @@ Total: 3 tasks
 
 Have a productive day! 🚀
 
-- SmartCrop OS
+- CropWise
 ```
 
 ### **Task Notifications (Real-Time)**
@@ -216,7 +216,7 @@ Details: Contact supplier and arrange delivery
 
 Please complete this task on time.
 
-- SmartCrop OS
+- CropWise
 ```
 
 ### **Environmental Alerts (Real-Time)**
@@ -234,7 +234,7 @@ Temperature is 25.5% above maximum (32.5°C > 26°C)
 
 Take action: View Zone
 
-- SmartCrop OS
+- CropWise
 ```
 
 ### **Inventory Alerts (Every 6 Hours)**
@@ -250,7 +250,7 @@ Wheat Straw is running low. Current: 50 kg, Minimum: 200 kg
 
 Take action: Restock Now
 
-- SmartCrop OS
+- CropWise
 ```
 
 ---
@@ -427,7 +427,7 @@ npm run dev
 
 ## 🎉 You're All Set!
 
-Your SmartCrop OS is now equipped with professional WhatsApp & SMS notifications!
+Your CropWise is now equipped with professional WhatsApp & SMS notifications!
 
 **Next Steps:**
 - Add all employee phone numbers

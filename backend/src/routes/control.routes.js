@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Control Routes
+ * CropWise - Control Routes
  * Manual control and override commands
  */
 

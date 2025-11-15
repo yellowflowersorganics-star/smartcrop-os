@@ -1,6 +1,6 @@
-# 🚀 SmartCrop - Complete AWS Deployment Guide
+# 🚀 CropWise - Complete AWS Deployment Guide
 
-This guide will walk you through deploying SmartCrop to AWS from scratch.
+This guide will walk you through deploying CropWise to AWS from scratch.
 
 ## 📋 Table of Contents
 
@@ -138,21 +138,21 @@ Choose based on your needs:
 ```bash
 # Create database
 aws rds create-db-instance \
-  --db-instance-identifier smartcrop-db \
+  --db-instance-identifier cropwise-db \
   --db-instance-class db.t3.micro \
   --engine postgres \
-  --master-username smartcrop_admin \
+  --master-username cropwise_admin \
   --master-user-password YOUR_STRONG_PASSWORD_HERE \
   --allocated-storage 20 \
   --backup-retention-period 7 \
   --publicly-accessible false
 
 # Wait for database to be available (~10 minutes)
-aws rds wait db-instance-available --db-instance-identifier smartcrop-db
+aws rds wait db-instance-available --db-instance-identifier cropwise-db
 
 # Get database endpoint
 aws rds describe-db-instances \
-  --db-instance-identifier smartcrop-db \
+  --db-instance-identifier cropwise-db \
   --query 'DBInstances[0].Endpoint.Address' \
   --output text
 ```
@@ -162,14 +162,14 @@ aws rds describe-db-instances \
 ```bash
 # Create Redis cluster
 aws elasticache create-cache-cluster \
-  --cache-cluster-id smartcrop-redis \
+  --cache-cluster-id cropwise-redis \
   --cache-node-type cache.t3.micro \
   --engine redis \
   --num-cache-nodes 1
 
 # Get Redis endpoint
 aws elasticache describe-cache-clusters \
-  --cache-cluster-id smartcrop-redis \
+  --cache-cluster-id cropwise-redis \
   --show-cache-node-info \
   --query 'CacheClusters[0].CacheNodes[0].Endpoint.Address' \
   --output text
@@ -181,19 +181,19 @@ aws elasticache describe-cache-clusters \
 cd backend
 
 # Initialize EB application
-eb init smartcrop-backend \
+eb init cropwise-backend \
   --platform "Node.js 18 running on 64bit Amazon Linux 2023" \
   --region us-east-1
 
 # Create environment
-eb create smartcrop-production \
+eb create cropwise-production \
   --instance-type t3.small \
   --envvars \
     NODE_ENV=production,\
     DB_HOST=YOUR_RDS_ENDPOINT,\
     DB_PORT=5432,\
-    DB_NAME=smartcrop_db,\
-    DB_USER=smartcrop_admin,\
+    DB_NAME=cropwise_db,\
+    DB_USER=cropwise_admin,\
     DB_PASSWORD=YOUR_DB_PASSWORD,\
     REDIS_HOST=YOUR_REDIS_ENDPOINT,\
     REDIS_PORT=6379,\
@@ -227,14 +227,14 @@ cd ../frontend
 npm run build
 
 # Create S3 bucket
-aws s3 mb s3://smartcrop-frontend-YOUR_UNIQUE_ID
+aws s3 mb s3://cropwise-frontend-YOUR_UNIQUE_ID
 
 # Upload files
-aws s3 sync dist/ s3://smartcrop-frontend-YOUR_UNIQUE_ID --acl public-read
+aws s3 sync dist/ s3://cropwise-frontend-YOUR_UNIQUE_ID --acl public-read
 
 # Create CloudFront distribution
 aws cloudfront create-distribution \
-  --origin-domain-name smartcrop-frontend-YOUR_UNIQUE_ID.s3.amazonaws.com \
+  --origin-domain-name cropwise-frontend-YOUR_UNIQUE_ID.s3.amazonaws.com \
   --default-root-object index.html
 ```
 
@@ -306,9 +306,9 @@ This will:
 ```bash
 # Backend service
 aws ecs create-service \
-  --cluster smartcrop-cluster \
-  --service-name smartcrop-backend \
-  --task-definition smartcrop-backend \
+  --cluster cropwise-cluster \
+  --service-name cropwise-backend \
+  --task-definition cropwise-backend \
   --desired-count 2 \
   --launch-type FARGATE \
   --network-configuration "awsvpcConfiguration={subnets=[SUBNET_ID_1,SUBNET_ID_2],securityGroups=[SG_ID],assignPublicIp=ENABLED}" \
@@ -316,9 +316,9 @@ aws ecs create-service \
 
 # Frontend service  
 aws ecs create-service \
-  --cluster smartcrop-cluster \
-  --service-name smartcrop-frontend \
-  --task-definition smartcrop-frontend \
+  --cluster cropwise-cluster \
+  --service-name cropwise-frontend \
+  --task-definition cropwise-frontend \
   --desired-count 2 \
   --launch-type FARGATE
 ```
@@ -345,27 +345,27 @@ cat aws-config.json | jq -r '.albDns'
 ```bash
 # Create key pair
 aws ec2 create-key-pair \
-  --key-name smartcrop-key \
+  --key-name cropwise-key \
   --query 'KeyMaterial' \
-  --output text > smartcrop-key.pem
+  --output text > cropwise-key.pem
 
-chmod 400 smartcrop-key.pem
+chmod 400 cropwise-key.pem
 
 # Launch instance
 aws ec2 run-instances \
   --image-id ami-0c55b159cbfafe1f0 \
   --instance-type t3.small \
-  --key-name smartcrop-key \
+  --key-name cropwise-key \
   --security-group-ids sg-xxxxxxxxx \
   --subnet-id subnet-xxxxxxxxx \
-  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=smartcrop-server}]'
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=cropwise-server}]'
 ```
 
 ### Step 2: SSH and Install Dependencies
 
 ```bash
 # SSH into instance
-ssh -i smartcrop-key.pem ec2-user@YOUR_EC2_IP
+ssh -i cropwise-key.pem ec2-user@YOUR_EC2_IP
 
 # Update system
 sudo yum update -y
@@ -398,8 +398,8 @@ sudo npm install -g pm2
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/smartcrop.git
-cd smartcrop
+git clone https://github.com/your-username/cropwise.git
+cd cropwise
 
 # Install backend dependencies
 cd backend
@@ -411,7 +411,7 @@ NODE_ENV=production
 PORT=3000
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=smartcrop_db
+DB_NAME=cropwise_db
 DB_USER=postgres
 DB_PASSWORD=your_password
 REDIS_HOST=localhost
@@ -422,7 +422,7 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 EOF
 
 # Start backend with PM2
-pm2 start src/index.js --name smartcrop-backend
+pm2 start src/index.js --name cropwise-backend
 pm2 save
 pm2 startup
 ```
@@ -430,7 +430,7 @@ pm2 startup
 ### Step 4: Configure Nginx
 
 ```bash
-sudo nano /etc/nginx/conf.d/smartcrop.conf
+sudo nano /etc/nginx/conf.d/cropwise.conf
 ```
 
 Add:
@@ -441,7 +441,7 @@ server {
 
     # Frontend
     location / {
-        root /home/ec2-user/smartcrop/frontend/dist;
+        root /home/ec2-user/cropwise/frontend/dist;
         try_files $uri $uri/ /index.html;
     }
 
@@ -468,7 +468,7 @@ sudo systemctl restart nginx
 ### Step 5: Build and Deploy Frontend
 
 ```bash
-cd /home/ec2-user/smartcrop/frontend
+cd /home/ec2-user/cropwise/frontend
 npm install
 npm run build
 ```
@@ -531,7 +531,7 @@ aws route53 change-resource-record-sets \
 
 ```bash
 # Create IoT Thing
-aws iot create-thing --thing-name smartcrop-esp32-001
+aws iot create-thing --thing-name cropwise-esp32-001
 
 # Create certificate
 aws iot create-keys-and-certificate \
@@ -541,12 +541,12 @@ aws iot create-keys-and-certificate \
 
 # Create IoT Policy
 aws iot create-policy \
-  --policy-name smartcrop-policy \
+  --policy-name cropwise-policy \
   --policy-document file://iot-policy.json
 
 # Attach policy to certificate
 aws iot attach-policy \
-  --policy-name smartcrop-policy \
+  --policy-name cropwise-policy \
   --target CERTIFICATE_ARN
 ```
 
@@ -570,7 +570,7 @@ npm run seed
 ```bash
 # Create dashboard
 aws cloudwatch put-dashboard \
-  --dashboard-name smartcrop-monitoring \
+  --dashboard-name cropwise-monitoring \
   --dashboard-body file://cloudwatch-dashboard.json
 ```
 
@@ -579,7 +579,7 @@ aws cloudwatch put-dashboard \
 ```bash
 # CPU Utilization alarm
 aws cloudwatch put-metric-alarm \
-  --alarm-name smartcrop-high-cpu \
+  --alarm-name cropwise-high-cpu \
   --alarm-description "Alert when CPU > 80%" \
   --metric-name CPUUtilization \
   --namespace AWS/EC2 \
@@ -590,7 +590,7 @@ aws cloudwatch put-metric-alarm \
 
 # Database connections alarm
 aws cloudwatch put-metric-alarm \
-  --alarm-name smartcrop-db-connections \
+  --alarm-name cropwise-db-connections \
   --metric-name DatabaseConnections \
   --namespace AWS/RDS \
   --statistic Average \
@@ -607,8 +607,8 @@ aws cloudwatch put-metric-alarm \
 
 # Manual snapshot
 aws rds create-db-snapshot \
-  --db-instance-identifier smartcrop-db \
-  --db-snapshot-identifier smartcrop-backup-$(date +%Y%m%d)
+  --db-instance-identifier cropwise-db \
+  --db-snapshot-identifier cropwise-backup-$(date +%Y%m%d)
 ```
 
 ### Log Management
@@ -618,14 +618,14 @@ aws rds create-db-snapshot \
 eb logs
 
 # View logs (ECS)
-aws logs tail /ecs/smartcrop-backend --follow
+aws logs tail /ecs/cropwise-backend --follow
 
 # Export logs to S3
 aws logs create-export-task \
-  --log-group-name /aws/elasticbeanstalk/smartcrop-production \
+  --log-group-name /aws/elasticbeanstalk/cropwise-production \
   --from $(date -d '7 days ago' +%s)000 \
   --to $(date +%s)000 \
-  --destination smartcrop-logs-backup
+  --destination cropwise-logs-backup
 ```
 
 ---
@@ -637,7 +637,7 @@ aws logs create-export-task \
 ```bash
 # Check logs
 eb logs  # Elastic Beanstalk
-aws logs tail /ecs/smartcrop-backend --follow  # ECS
+aws logs tail /ecs/cropwise-backend --follow  # ECS
 
 # Common issues:
 # 1. Environment variables missing
@@ -651,14 +651,14 @@ aws logs tail /ecs/smartcrop-backend --follow  # ECS
 ```bash
 # Check RDS status
 aws rds describe-db-instances \
-  --db-instance-identifier smartcrop-db
+  --db-instance-identifier cropwise-db
 
 # Check security group rules
 aws ec2 describe-security-groups \
   --group-ids sg-xxxxxxxxx
 
 # Test connection from EC2
-psql -h YOUR_RDS_ENDPOINT -U smartcrop_admin -d smartcrop_db
+psql -h YOUR_RDS_ENDPOINT -U cropwise_admin -d cropwise_db
 ```
 
 ### High Costs
@@ -685,9 +685,9 @@ eb deploy --version <previous-version-label>
 
 # Rollback (ECS)
 aws ecs update-service \
-  --cluster smartcrop-cluster \
-  --service smartcrop-backend \
-  --task-definition smartcrop-backend:PREVIOUS_REVISION
+  --cluster cropwise-cluster \
+  --service cropwise-backend \
+  --task-definition cropwise-backend:PREVIOUS_REVISION
 ```
 
 ---
@@ -722,7 +722,7 @@ aws ecs update-service \
 - **AWS Documentation**: https://docs.aws.amazon.com/
 - **AWS Free Tier**: https://aws.amazon.com/free/
 - **Cost Calculator**: https://calculator.aws/
-- **SmartCrop Issues**: https://github.com/your-repo/issues
+- **CropWise Issues**: https://github.com/your-repo/issues
 
 ---
 
@@ -737,5 +737,5 @@ aws ecs update-service \
 ⬜ Backup strategy  
 ⬜ CI/CD pipeline  
 
-**Congratulations! Your SmartCrop is now running on AWS!** 🎉
+**Congratulations! Your CropWise is now running on AWS!** 🎉
 

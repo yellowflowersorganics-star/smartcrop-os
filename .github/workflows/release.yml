@@ -41,9 +41,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: SmartCrop OS ${{ steps.get_version.outputs.VERSION }}
+          release_name: CropWise ${{ steps.get_version.outputs.VERSION }}
           body: |
-            ## 🚀 SmartCrop OS ${{ steps.get_version.outputs.VERSION }}
+            ## 🚀 CropWise ${{ steps.get_version.outputs.VERSION }}
             
             ${{ steps.changelog.outputs.CHANGELOG }}
             
@@ -53,7 +53,7 @@ jobs:
             
             ```bash
             # Clone the repository
-            git clone https://github.com/your-org/smartcrop-os.git
+            git clone https://github.com/your-org/cropwise.git
             git checkout ${{ steps.get_version.outputs.VERSION }}
             
             # Install dependencies
@@ -67,19 +67,19 @@ jobs:
             ### 🐳 Docker
             
             ```bash
-            docker pull smartcrop/backend:${{ steps.get_version.outputs.VERSION }}
-            docker pull smartcrop/frontend:${{ steps.get_version.outputs.VERSION }}
+            docker pull cropwise/backend:${{ steps.get_version.outputs.VERSION }}
+            docker pull cropwise/frontend:${{ steps.get_version.outputs.VERSION }}
             ```
             
             ### 📚 Documentation
             
-            - [Release Notes](https://github.com/your-org/smartcrop-os/releases/tag/${{ steps.get_version.outputs.VERSION }})
-            - [API Documentation](https://docs.smartcrop.io)
-            - [Deployment Guide](https://github.com/your-org/smartcrop-os/blob/main/docs/AWS_DEPLOYMENT_GUIDE.md)
+            - [Release Notes](https://github.com/your-org/cropwise/releases/tag/${{ steps.get_version.outputs.VERSION }})
+            - [API Documentation](https://docs.cropwise.io)
+            - [Deployment Guide](https://github.com/your-org/cropwise/blob/main/docs/AWS_DEPLOYMENT_GUIDE.md)
             
             ### 🐛 Found a bug?
             
-            Please [report it](https://github.com/your-org/smartcrop-os/issues/new?template=bug_report.md)
+            Please [report it](https://github.com/your-org/cropwise/issues/new?template=bug_report.md)
           draft: false
           prerelease: false
 
@@ -114,10 +114,10 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            smartcrop/backend:latest
-            smartcrop/backend:${{ steps.get_version.outputs.VERSION }}
-          cache-from: type=registry,ref=smartcrop/backend:buildcache
-          cache-to: type=registry,ref=smartcrop/backend:buildcache,mode=max
+            cropwise/backend:latest
+            cropwise/backend:${{ steps.get_version.outputs.VERSION }}
+          cache-from: type=registry,ref=cropwise/backend:buildcache
+          cache-to: type=registry,ref=cropwise/backend:buildcache,mode=max
 
       - name: Build and push Frontend image
         uses: docker/build-push-action@v5
@@ -126,10 +126,10 @@ jobs:
           file: ./frontend/Dockerfile.prod
           push: true
           tags: |
-            smartcrop/frontend:latest
-            smartcrop/frontend:${{ steps.get_version.outputs.VERSION }}
-          cache-from: type=registry,ref=smartcrop/frontend:buildcache
-          cache-to: type=registry,ref=smartcrop/frontend:buildcache,mode=max
+            cropwise/frontend:latest
+            cropwise/frontend:${{ steps.get_version.outputs.VERSION }}
+          cache-from: type=registry,ref=cropwise/frontend:buildcache
+          cache-to: type=registry,ref=cropwise/frontend:buildcache,mode=max
 
   # ============================================
   # Deploy to Production
@@ -140,7 +140,7 @@ jobs:
     needs: build-and-push
     environment:
       name: production
-      url: https://www.smartcrop.io
+      url: https://www.cropwise.io
     
     steps:
       - name: Checkout code
@@ -161,13 +161,13 @@ jobs:
         run: |
           # Update backend task definition with new image version
           TASK_DEFINITION=$(aws ecs describe-task-definition \
-            --task-definition smartcrop-backend-prod \
+            --task-definition cropwise-backend-prod \
             --query 'taskDefinition' \
             --output json)
           
           NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | \
             jq --arg VERSION "${{ steps.get_version.outputs.VERSION }}" \
-            '.containerDefinitions[0].image = "smartcrop/backend:" + $VERSION')
+            '.containerDefinitions[0].image = "cropwise/backend:" + $VERSION')
           
           aws ecs register-task-definition \
             --cli-input-json "$NEW_TASK_DEFINITION"
@@ -175,26 +175,26 @@ jobs:
       - name: Deploy to ECS
         run: |
           aws ecs update-service \
-            --cluster smartcrop-prod-cluster \
-            --service smartcrop-backend-prod \
+            --cluster cropwise-prod-cluster \
+            --service cropwise-backend-prod \
             --force-new-deployment \
             --desired-count 2
 
       - name: Wait for deployment to complete
         run: |
           aws ecs wait services-stable \
-            --cluster smartcrop-prod-cluster \
-            --services smartcrop-backend-prod
+            --cluster cropwise-prod-cluster \
+            --services cropwise-backend-prod
 
       - name: Deploy Frontend to S3
         run: |
           # Frontend is already built in Docker image
           # Extract and deploy to S3
-          docker create --name frontend-temp smartcrop/frontend:${{ steps.get_version.outputs.VERSION }}
+          docker create --name frontend-temp cropwise/frontend:${{ steps.get_version.outputs.VERSION }}
           docker cp frontend-temp:/usr/share/nginx/html ./dist
           docker rm frontend-temp
           
-          aws s3 sync ./dist s3://smartcrop-prod-frontend --delete
+          aws s3 sync ./dist s3://cropwise-prod-frontend --delete
 
       - name: Invalidate CloudFront
         continue-on-error: true
@@ -213,7 +213,7 @@ jobs:
           
           # Backend health check
           for i in {1..5}; do
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://api.smartcrop.io/health)
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://api.cropwise.io/health)
             if [ $HTTP_CODE -eq 200 ]; then
               echo "✅ Backend health check passed"
               break
@@ -223,7 +223,7 @@ jobs:
           done
           
           # Frontend health check
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://www.smartcrop.io)
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://www.cropwise.io)
           if [ $HTTP_CODE -eq 200 ]; then
             echo "✅ Frontend health check passed"
           else
@@ -238,7 +238,7 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
-              "text": "🚀 SmartCrop OS ${{ steps.get_version.outputs.VERSION }} deployed to PRODUCTION",
+              "text": "🚀 CropWise ${{ steps.get_version.outputs.VERSION }} deployed to PRODUCTION",
               "blocks": [
                 {
                   "type": "header",
@@ -264,7 +264,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*URL:*\n<https://www.smartcrop.io|SmartCrop OS>"
+                      "text": "*URL:*\n<https://www.cropwise.io|CropWise>"
                     }
                   ]
                 },
@@ -277,7 +277,7 @@ jobs:
                         "type": "plain_text",
                         "text": "View Release Notes"
                       },
-                      "url": "https://github.com/your-org/smartcrop-os/releases/tag/v${{ steps.get_version.outputs.VERSION }}"
+                      "url": "https://github.com/your-org/cropwise/releases/tag/v${{ steps.get_version.outputs.VERSION }}"
                     },
                     {
                       "type": "button",
@@ -285,7 +285,7 @@ jobs:
                         "type": "plain_text",
                         "text": "View Changes"
                       },
-                      "url": "https://github.com/your-org/smartcrop-os/compare/v${{ steps.get_version.outputs.VERSION }}...HEAD"
+                      "url": "https://github.com/your-org/cropwise/compare/v${{ steps.get_version.outputs.VERSION }}...HEAD"
                     }
                   ]
                 }
@@ -299,7 +299,7 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
-              "text": "❌ SmartCrop OS ${{ steps.get_version.outputs.VERSION }} deployment FAILED",
+              "text": "❌ CropWise ${{ steps.get_version.outputs.VERSION }} deployment FAILED",
               "blocks": [
                 {
                   "type": "header",

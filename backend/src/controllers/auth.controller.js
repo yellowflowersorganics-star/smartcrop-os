@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Authentication Controller
+ * CropWise - Authentication Controller
  */
 
 const { User } = require('../models');

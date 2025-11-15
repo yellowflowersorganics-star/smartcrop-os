@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Crop Recipe Routes
+ * CropWise - Crop Recipe Routes
  * CRUD operations for crop recipes
  */
 

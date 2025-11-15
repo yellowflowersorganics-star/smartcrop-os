@@ -1,7 +1,7 @@
 # Test CI/CD Pipeline Script (PowerShell)
 # This script creates a test PR to verify your CI/CD pipeline is working
 
-Write-Host "🚀 SmartCrop - CI/CD Pipeline Test Script" -ForegroundColor Green
+Write-Host "🚀 CropWise - CI/CD Pipeline Test Script" -ForegroundColor Green
 Write-Host "=============================================" -ForegroundColor Green
 Write-Host ""
 
@@ -72,7 +72,7 @@ Write-Host "📋 Next Steps:" -ForegroundColor Green
 Write-Host "====================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "1. Go to your GitHub repository:"
-Write-Host "   https://github.com/yellowflowersorganics-star/smartcrop" -ForegroundColor Cyan
+Write-Host "   https://github.com/yellowflowersorganics-star/cropwise" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "2. Click 'Pull requests' tab"
 Write-Host ""
@@ -84,7 +84,7 @@ Write-Host ""
 Write-Host "5. Click 'Create pull request'"
 Write-Host ""
 Write-Host "6. Watch the Actions tab to see CI/CD run:"
-Write-Host "   https://github.com/yellowflowersorganics-star/smartcrop/actions" -ForegroundColor Cyan
+Write-Host "   https://github.com/yellowflowersorganics-star/cropwise/actions" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "7. Once checks pass:"
 Write-Host "   - Review the PR"

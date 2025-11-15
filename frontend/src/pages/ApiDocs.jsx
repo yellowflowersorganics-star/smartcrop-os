@@ -142,7 +142,7 @@ export default function ApiDocs() {
             <Book className="w-12 h-12" />
             <div>
               <h1 className="text-4xl font-bold">API Documentation</h1>
-              <p className="text-green-100 text-lg">SmartCrop REST API v1.0</p>
+              <p className="text-green-100 text-lg">CropWise REST API v1.0</p>
             </div>
           </div>
           
@@ -1089,7 +1089,7 @@ curl -X POST ${baseUrl}/api/batches \\
               Contact Support
             </Link>
             <a
-              href="https://github.com/yourusername/smartcrop"
+              href="https://github.com/yourusername/cropwise"
               className="bg-green-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-900 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -1105,7 +1105,7 @@ curl -X POST ${baseUrl}/api/batches \\
       <footer className="bg-gray-900 text-white py-8 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} SmartCrop. All rights reserved.
+            © {new Date().getFullYear()} CropWise. All rights reserved.
           </p>
           <div className="mt-4 flex justify-center gap-6">
             <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">

@@ -1,5 +1,5 @@
 {
-  "family": "smartcrop-frontend",
+  "family": "cropwise-frontend",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "frontend",
-      "image": "ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/smartcrop-os-frontend:latest",
+      "image": "ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/cropwise-frontend:latest",
       "essential": true,
       "portMappings": [
         {
@@ -25,7 +25,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/smartcrop-frontend",
+          "awslogs-group": "/ecs/cropwise-frontend",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }

@@ -1,4 +1,4 @@
-# SmartCrop OS - Python Backend (Alternative)
+# CropWise - Python Backend (Alternative)
 # Use this if you prefer Python over Node.js
 
 # Web Framework

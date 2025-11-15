@@ -1,6 +1,15 @@
 # Changelog
 
-All notable changes to SmartCrop will be documented in this file.
+## Rebranding Notice
+
+**Effective November 2024**: This project was rebranded from **SmartCrop** to **CropWise** due to domain availability.
+
+All historical references to "SmartCrop" in this changelog have been preserved for accuracy.
+
+---
+
+
+All notable changes to CropWise will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -123,11 +132,11 @@ npm run migrate
 
 ## Links
 
-- [GitHub Repository](https://github.com/yellowflowersorganics-star/smartcrop)
-- [Documentation](https://docs.smartcrop.io)
-- [API Reference](https://api.smartcrop.io/docs)
-- [Issue Tracker](https://github.com/yellowflowersorganics-star/smartcrop/issues)
-- [Changelog](https://github.com/yellowflowersorganics-star/smartcrop/blob/main/CHANGELOG.md)
+- [GitHub Repository](https://github.com/yellowflowersorganics-star/cropwise)
+- [Documentation](https://docs.cropwise.io)
+- [API Reference](https://api.cropwise.io/docs)
+- [Issue Tracker](https://github.com/yellowflowersorganics-star/cropwise/issues)
+- [Changelog](https://github.com/yellowflowersorganics-star/cropwise/blob/main/CHANGELOG.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # 🗄️ AWS RDS PostgreSQL Setup Guide
 
-Complete step-by-step guide to set up PostgreSQL on AWS RDS for SmartCrop.
+Complete step-by-step guide to set up PostgreSQL on AWS RDS for CropWise.
 
 ---
 
@@ -25,7 +25,7 @@ Complete step-by-step guide to set up PostgreSQL on AWS RDS for SmartCrop.
 
 ### What You'll Get:
 ```
-DATABASE_URL=postgresql://smartcrop_admin:YourSecurePassword123!@smartcrop-db.abc123xyz.us-east-1.rds.amazonaws.com:5432/smartcrop_production
+DATABASE_URL=postgresql://cropwise_admin:YourSecurePassword123!@cropwise-db.abc123xyz.us-east-1.rds.amazonaws.com:5432/cropwise_production
 ```
 
 ---
@@ -87,7 +87,7 @@ Choose based on your needs:
 
 #### **DB Instance Identifier:**
 ```
-smartcrop-production-db
+cropwise-production-db
 ```
 (This is just a name for AWS, not used in connection string)
 
@@ -95,13 +95,13 @@ smartcrop-production-db
 
 **Master Username:**
 ```
-smartcrop_admin
+cropwise_admin
 ```
 
 **Master Password:**
 ```
 Generate a secure password (or use this format):
-SmartCrop2025!Production@DB
+CropWise2025!Production@DB
 ```
 
 **IMPORTANT**: 
@@ -186,7 +186,7 @@ db.t3.medium
 
 #### **VPC Security Group:**
 - ✅ **Create new**
-- Name: `smartcrop-db-sg`
+- Name: `cropwise-db-sg`
 
 #### **Availability Zone:**
 - ⭕ **No preference** (let AWS choose)
@@ -223,7 +223,7 @@ Click **"Additional configuration"** to expand:
 
 **Initial Database Name:**
 ```
-smartcrop_production
+cropwise_production
 ```
 ⚠️ **IMPORTANT**: This creates the initial database. If you leave this blank, no database is created!
 
@@ -288,10 +288,10 @@ Select logs to send to CloudWatch:
 
 ### **Step 2: Get the Endpoint**
 
-1. Click on your database name: `smartcrop-production-db`
+1. Click on your database name: `cropwise-production-db`
 2. In the **Connectivity & security** tab, find:
    ```
-   Endpoint: smartcrop-production-db.c9abc123xyz.us-east-1.rds.amazonaws.com
+   Endpoint: cropwise-production-db.c9abc123xyz.us-east-1.rds.amazonaws.com
    Port: 5432
    ```
 3. **Copy the Endpoint** (this is your database hostname)
@@ -305,12 +305,12 @@ postgresql://[username]:[password]@[endpoint]:[port]/[database_name]
 
 Example with your values:
 ```
-postgresql://smartcrop_admin:SmartCrop2025!Production@DB@smartcrop-production-db.c9abc123xyz.us-east-1.rds.amazonaws.com:5432/smartcrop_production
+postgresql://cropwise_admin:CropWise2025!Production@DB@cropwise-production-db.c9abc123xyz.us-east-1.rds.amazonaws.com:5432/cropwise_production
 ```
 
 **Your actual DATABASE_URL:**
 ```
-postgresql://smartcrop_admin:YOUR_PASSWORD_HERE@YOUR_ENDPOINT_HERE:5432/smartcrop_production
+postgresql://cropwise_admin:YOUR_PASSWORD_HERE@YOUR_ENDPOINT_HERE:5432/cropwise_production
 ```
 
 Replace:
@@ -319,7 +319,7 @@ Replace:
 
 ### **Step 4: Add to GitHub Secrets**
 
-1. Go to: https://github.com/yellowflowersorganics-star/smartcrop-os/settings/secrets/actions
+1. Go to: https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 2. Click **"New repository secret"**
 3. Name: `DATABASE_URL`
 4. Value: Your complete DATABASE_URL from above
@@ -355,7 +355,7 @@ Type: PostgreSQL
 Protocol: TCP
 Port: 5432
 Source: Security group of your ECS/EC2 instances
-Description: SmartCrop backend services
+Description: CropWise backend services
 ```
 
 ⚠️ **Never use 0.0.0.0/0** (allows anyone to connect)
@@ -371,10 +371,10 @@ Description: SmartCrop backend services
 # Download from: https://www.postgresql.org/download/windows/
 
 # Connect to database
-psql "postgresql://smartcrop_admin:YOUR_PASSWORD@YOUR_ENDPOINT:5432/smartcrop_production"
+psql "postgresql://cropwise_admin:YOUR_PASSWORD@YOUR_ENDPOINT:5432/cropwise_production"
 
 # Should see:
-# smartcrop_production=>
+# cropwise_production=>
 ```
 
 ### **Option 2: Using pgAdmin (GUI)**
@@ -383,12 +383,12 @@ psql "postgresql://smartcrop_admin:YOUR_PASSWORD@YOUR_ENDPOINT:5432/smartcrop_pr
 2. Install and open pgAdmin
 3. Right-click **Servers** → **Register** → **Server**
 4. **General** tab:
-   - Name: `SmartCrop Production`
+   - Name: `CropWise Production`
 5. **Connection** tab:
    - Host: `YOUR_ENDPOINT` (from RDS)
    - Port: `5432`
-   - Database: `smartcrop_production`
-   - Username: `smartcrop_admin`
+   - Database: `cropwise_production`
+   - Username: `cropwise_admin`
    - Password: `YOUR_PASSWORD`
 6. Click **Save**
 
@@ -400,7 +400,7 @@ Create a test file:
 // test-db-connection.js
 const { Client } = require('pg');
 
-const DATABASE_URL = 'postgresql://smartcrop_admin:YOUR_PASSWORD@YOUR_ENDPOINT:5432/smartcrop_production';
+const DATABASE_URL = 'postgresql://cropwise_admin:YOUR_PASSWORD@YOUR_ENDPOINT:5432/cropwise_production';
 
 const client = new Client({
   connectionString: DATABASE_URL,
@@ -433,7 +433,7 @@ testConnection();
 
 Run:
 ```powershell
-cd C:\Users\praghav\smartcrop-os
+cd C:\Users\praghav\cropwise
 node test-db-connection.js
 ```
 
@@ -491,20 +491,20 @@ After creating the database, you'll need to run migrations:
 
 ### **Using Prisma (if using Prisma ORM)**
 ```powershell
-cd C:\Users\praghav\smartcrop-os\backend
+cd C:\Users\praghav\cropwise\backend
 npm install
 npx prisma migrate deploy
 ```
 
 ### **Using TypeORM**
 ```powershell
-cd C:\Users\praghav\smartcrop-os\backend
+cd C:\Users\praghav\cropwise\backend
 npm run migration:run
 ```
 
 ### **Using SQL Scripts**
 ```powershell
-psql "postgresql://smartcrop_admin:PASSWORD@ENDPOINT:5432/smartcrop_production" < schema.sql
+psql "postgresql://cropwise_admin:PASSWORD@ENDPOINT:5432/cropwise_production" < schema.sql
 ```
 
 ---
@@ -547,7 +547,7 @@ Action: Send SNS notification to your email
 1. Go to RDS Console
 2. Select your database
 3. **Actions** → **Take snapshot**
-4. Name: `smartcrop-prod-manual-backup-2025-11-14`
+4. Name: `cropwise-prod-manual-backup-2025-11-14`
 5. **Manual snapshots never expire** until you delete them
 
 ### **Restore from Backup**
@@ -640,7 +640,7 @@ After creating your database:
 postgresql://[username]:[password]@[endpoint]:[port]/[database_name]
 
 # Example
-postgresql://smartcrop_admin:SecurePass123!@smartcrop-db.abc123.us-east-1.rds.amazonaws.com:5432/smartcrop_production
+postgresql://cropwise_admin:SecurePass123!@cropwise-db.abc123.us-east-1.rds.amazonaws.com:5432/cropwise_production
 
 # URL-encode special characters in password:
 # @ → %40
@@ -650,12 +650,12 @@ postgresql://smartcrop_admin:SecurePass123!@smartcrop-db.abc123.us-east-1.rds.am
 # % → %25
 
 # Example with encoded password (if password is: Pass@123!)
-postgresql://smartcrop_admin:Pass%40123%21@smartcrop-db.abc123.us-east-1.rds.amazonaws.com:5432/smartcrop_production
+postgresql://cropwise_admin:Pass%40123%21@cropwise-db.abc123.us-east-1.rds.amazonaws.com:5432/cropwise_production
 ```
 
 ---
 
 **Created**: November 14, 2025  
 **Last Updated**: November 14, 2025  
-**For**: SmartCrop Production Environment
+**For**: CropWise Production Environment
 

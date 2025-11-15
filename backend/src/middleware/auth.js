@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Authentication Middleware
+ * CropWise - Authentication Middleware
  */
 
 const jwt = require('jsonwebtoken');

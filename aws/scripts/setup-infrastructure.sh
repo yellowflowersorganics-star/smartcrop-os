@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################################################
-# SmartCrop OS - AWS Infrastructure Setup
+# CropWise - AWS Infrastructure Setup
 # Sets up RDS, ElastiCache, Security Groups, etc.
 ###############################################################################
 
@@ -14,7 +14,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}  SmartCrop OS - Infrastructure Setup${NC}"
+echo -e "${BLUE}  CropWise - Infrastructure Setup${NC}"
 echo -e "${BLUE}========================================${NC}\n"
 
 AWS_REGION=${AWS_REGION:-us-east-1}
@@ -38,7 +38,7 @@ create_vpc() {
     
     aws ec2 create-tags \
         --resources ${VPC_ID} \
-        --tags Key=Name,Value=smartcrop-vpc \
+        --tags Key=Name,Value=cropwise-vpc \
         --region ${AWS_REGION}
     
     echo -e "${GREEN}✓ VPC created: ${VPC_ID}${NC}"
@@ -70,7 +70,7 @@ create_subnets() {
     
     aws ec2 create-tags \
         --resources ${SUBNET_PUBLIC_1} \
-        --tags Key=Name,Value=smartcrop-public-1 \
+        --tags Key=Name,Value=cropwise-public-1 \
         --region ${AWS_REGION}
     
     # Public Subnet 2
@@ -84,7 +84,7 @@ create_subnets() {
     
     aws ec2 create-tags \
         --resources ${SUBNET_PUBLIC_2} \
-        --tags Key=Name,Value=smartcrop-public-2 \
+        --tags Key=Name,Value=cropwise-public-2 \
         --region ${AWS_REGION}
     
     # Private Subnet 1
@@ -98,7 +98,7 @@ create_subnets() {
     
     aws ec2 create-tags \
         --resources ${SUBNET_PRIVATE_1} \
-        --tags Key=Name,Value=smartcrop-private-1 \
+        --tags Key=Name,Value=cropwise-private-1 \
         --region ${AWS_REGION}
     
     # Private Subnet 2
@@ -112,7 +112,7 @@ create_subnets() {
     
     aws ec2 create-tags \
         --resources ${SUBNET_PRIVATE_2} \
-        --tags Key=Name,Value=smartcrop-private-2 \
+        --tags Key=Name,Value=cropwise-private-2 \
         --region ${AWS_REGION}
     
     echo -e "${GREEN}✓ Subnets created${NC}"
@@ -134,7 +134,7 @@ create_internet_gateway() {
     
     aws ec2 create-tags \
         --resources ${IGW_ID} \
-        --tags Key=Name,Value=smartcrop-igw \
+        --tags Key=Name,Value=cropwise-igw \
         --region ${AWS_REGION}
     
     echo -e "${GREEN}✓ Internet Gateway created: ${IGW_ID}${NC}"
@@ -146,8 +146,8 @@ create_security_groups() {
     
     # Application Security Group
     APP_SG=$(aws ec2 create-security-group \
-        --group-name smartcrop-app-sg \
-        --description "SmartCrop Application Security Group" \
+        --group-name cropwise-app-sg \
+        --description "CropWise Application Security Group" \
         --vpc-id ${VPC_ID} \
         --region ${AWS_REGION} \
         --query 'GroupId' \
@@ -177,8 +177,8 @@ create_security_groups() {
     
     # Database Security Group
     DB_SG=$(aws ec2 create-security-group \
-        --group-name smartcrop-db-sg \
-        --description "SmartCrop Database Security Group" \
+        --group-name cropwise-db-sg \
+        --description "CropWise Database Security Group" \
         --vpc-id ${VPC_ID} \
         --region ${AWS_REGION} \
         --query 'GroupId' \
@@ -194,8 +194,8 @@ create_security_groups() {
     
     # Redis Security Group
     REDIS_SG=$(aws ec2 create-security-group \
-        --group-name smartcrop-redis-sg \
-        --description "SmartCrop Redis Security Group" \
+        --group-name cropwise-redis-sg \
+        --description "CropWise Redis Security Group" \
         --vpc-id ${VPC_ID} \
         --region ${AWS_REGION} \
         --query 'GroupId' \
@@ -219,21 +219,21 @@ create_rds() {
     
     # Create DB subnet group
     aws rds create-db-subnet-group \
-        --db-subnet-group-name smartcrop-db-subnet \
-        --db-subnet-group-description "SmartCrop DB Subnet Group" \
+        --db-subnet-group-name cropwise-db-subnet \
+        --db-subnet-group-description "CropWise DB Subnet Group" \
         --subnet-ids ${SUBNET_PRIVATE_1} ${SUBNET_PRIVATE_2} \
         --region ${AWS_REGION}
     
     # Create RDS instance
     aws rds create-db-instance \
-        --db-instance-identifier smartcrop-db \
+        --db-instance-identifier cropwise-db \
         --db-instance-class db.t3.micro \
         --engine postgres \
         --engine-version 15.4 \
-        --master-username smartcrop_admin \
+        --master-username cropwise_admin \
         --master-user-password ${DB_PASSWORD} \
         --allocated-storage 20 \
-        --db-subnet-group-name smartcrop-db-subnet \
+        --db-subnet-group-name cropwise-db-subnet \
         --vpc-security-group-ids ${DB_SG} \
         --backup-retention-period 7 \
         --no-publicly-accessible \
@@ -249,18 +249,18 @@ create_redis() {
     
     # Create cache subnet group
     aws elasticache create-cache-subnet-group \
-        --cache-subnet-group-name smartcrop-redis-subnet \
-        --cache-subnet-group-description "SmartCrop Redis Subnet Group" \
+        --cache-subnet-group-name cropwise-redis-subnet \
+        --cache-subnet-group-description "CropWise Redis Subnet Group" \
         --subnet-ids ${SUBNET_PRIVATE_1} ${SUBNET_PRIVATE_2} \
         --region ${AWS_REGION}
     
     # Create Redis cluster
     aws elasticache create-cache-cluster \
-        --cache-cluster-id smartcrop-redis \
+        --cache-cluster-id cropwise-redis \
         --cache-node-type cache.t3.micro \
         --engine redis \
         --num-cache-nodes 1 \
-        --cache-subnet-group-name smartcrop-redis-subnet \
+        --cache-subnet-group-name cropwise-redis-subnet \
         --security-group-ids ${REDIS_SG} \
         --region ${AWS_REGION}
     
@@ -288,7 +288,7 @@ save_config() {
   },
   "database": {
     "password": "${DB_PASSWORD}",
-    "username": "smartcrop_admin"
+    "username": "cropwise_admin"
   }
 }
 EOF

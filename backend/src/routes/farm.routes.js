@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Farm Management Routes
+ * CropWise - Farm Management Routes
  */
 
 const express = require('express');

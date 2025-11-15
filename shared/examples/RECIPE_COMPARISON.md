@@ -533,7 +533,7 @@ After batch completion:
 - ✅ Batch reports
 - ✅ Continuous improvement framework
 
-**Perfect for**: Commercial mushroom farmers using SmartCrop OS who need:
+**Perfect for**: Commercial mushroom farmers using CropWise who need:
 - Production optimization
 - Cost tracking
 - Quality control

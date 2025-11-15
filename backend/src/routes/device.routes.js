@@ -1,5 +1,5 @@
 /**
- * SmartCrop OS - Device Management Routes
+ * CropWise - Device Management Routes
  */
 
 const express = require('express');

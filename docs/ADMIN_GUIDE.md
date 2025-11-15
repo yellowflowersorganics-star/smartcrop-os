@@ -1,9 +1,9 @@
-# 🔧 SmartCrop - Administrator Guide
+# 🔧 CropWise - Administrator Guide
 
 **Version:** 1.0.0  
 **Last Updated:** November 2025
 
-This guide is for system administrators responsible for deploying, configuring, and maintaining SmartCrop.
+This guide is for system administrators responsible for deploying, configuring, and maintaining CropWise.
 
 ---
 
@@ -80,8 +80,8 @@ This guide is for system administrators responsible for deploying, configuring, 
 
 ```bash
 # Clone repository
-git clone https://github.com/yellowflowersorganics-star/smartcrop.git
-cd smartcrop
+git clone https://github.com/yellowflowersorganics-star/cropwise.git
+cd cropwise
 
 # Copy environment files
 cp backend/.env.example backend/.env
@@ -176,8 +176,8 @@ PORT=3000
 DB_DIALECT=postgres
 DB_HOST=your-db-host.rds.amazonaws.com
 DB_PORT=5432
-DB_NAME=smartcrop_db
-DB_USER=smartcrop_admin
+DB_NAME=cropwise_db
+DB_USER=cropwise_admin
 DB_PASSWORD=your_secure_password
 
 # Security
@@ -192,7 +192,7 @@ REDIS_TLS=true
 
 # MQTT Broker
 MQTT_BROKER_URL=mqtt://your-mqtt-broker:1883
-MQTT_USERNAME=smartcrop
+MQTT_USERNAME=cropwise
 MQTT_PASSWORD=secure_mqtt_password
 
 # Google OAuth
@@ -213,7 +213,7 @@ FRONTEND_URL=https://www.yourdomain.com
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=your_aws_key
 AWS_SECRET_ACCESS_KEY=your_aws_secret
-S3_BUCKET_NAME=smartcrop-uploads
+S3_BUCKET_NAME=cropwise-uploads
 
 # Email (AWS SES)
 SMTP_HOST=email-smtp.us-east-1.amazonaws.com
@@ -259,16 +259,16 @@ VITE_ENABLE_ANALYTICS=true
 psql -h your-db-host -U postgres
 
 # Create database
-CREATE DATABASE smartcrop_db;
+CREATE DATABASE cropwise_db;
 
 # Create user
-CREATE USER smartcrop_admin WITH PASSWORD 'your_password';
+CREATE USER cropwise_admin WITH PASSWORD 'your_password';
 
 # Grant privileges
-GRANT ALL PRIVILEGES ON DATABASE smartcrop_db TO smartcrop_admin;
+GRANT ALL PRIVILEGES ON DATABASE cropwise_db TO cropwise_admin;
 
 # Enable extensions (for future AI/ML features)
-\c smartcrop_db
+\c cropwise_db
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pg_trgm";
 ```
@@ -291,7 +291,7 @@ npx sequelize-cli migration:generate --name add-new-feature
 
 #### Nginx Configuration
 
-**File**: `/etc/nginx/sites-available/smartcrop`
+**File**: `/etc/nginx/sites-available/cropwise`
 
 ```nginx
 # Redirect HTTP to HTTPS
@@ -323,7 +323,7 @@ server {
 
     # Frontend (React app)
     location / {
-        root /var/www/smartcrop/frontend/dist;
+        root /var/www/cropwise/frontend/dist;
         try_files $uri $uri/ /index.html;
         
         # Cache static assets
@@ -367,14 +367,14 @@ server {
     }
 
     # Logs
-    access_log /var/log/nginx/smartcrop_access.log;
-    error_log /var/log/nginx/smartcrop_error.log;
+    access_log /var/log/nginx/cropwise_access.log;
+    error_log /var/log/nginx/cropwise_error.log;
 }
 ```
 
 **Enable site**:
 ```bash
-sudo ln -s /etc/nginx/sites-available/smartcrop /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/cropwise /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -387,53 +387,53 @@ sudo systemctl reload nginx
 
 #### Automated PostgreSQL Backups
 
-**Create backup script**: `/opt/scripts/backup-smartcrop-db.sh`
+**Create backup script**: `/opt/scripts/backup-cropwise-db.sh`
 
 ```bash
 #!/bin/bash
 DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_DIR="/backups/smartcrop"
-DB_NAME="smartcrop_db"
-DB_USER="smartcrop_admin"
+BACKUP_DIR="/backups/cropwise"
+DB_NAME="cropwise_db"
+DB_USER="cropwise_admin"
 DB_HOST="your-db-host"
 
 # Create backup
-pg_dump -h $DB_HOST -U $DB_USER -F c -b -v -f "${BACKUP_DIR}/smartcrop_${DATE}.backup" $DB_NAME
+pg_dump -h $DB_HOST -U $DB_USER -F c -b -v -f "${BACKUP_DIR}/cropwise_${DATE}.backup" $DB_NAME
 
 # Compress
-gzip "${BACKUP_DIR}/smartcrop_${DATE}.backup"
+gzip "${BACKUP_DIR}/cropwise_${DATE}.backup"
 
 # Upload to S3 (optional)
-aws s3 cp "${BACKUP_DIR}/smartcrop_${DATE}.backup.gz" s3://your-backup-bucket/database/
+aws s3 cp "${BACKUP_DIR}/cropwise_${DATE}.backup.gz" s3://your-backup-bucket/database/
 
 # Keep only last 30 days locally
 find $BACKUP_DIR -type f -mtime +30 -delete
 
 # Log
-echo "$(date): Backup completed - smartcrop_${DATE}.backup.gz" >> /var/log/smartcrop-backup.log
+echo "$(date): Backup completed - cropwise_${DATE}.backup.gz" >> /var/log/cropwise-backup.log
 ```
 
 **Make executable**:
 ```bash
-chmod +x /opt/scripts/backup-smartcrop-db.sh
+chmod +x /opt/scripts/backup-cropwise-db.sh
 ```
 
 **Schedule with cron**: `crontab -e`
 ```bash
 # Daily backup at 2 AM
-0 2 * * * /opt/scripts/backup-smartcrop-db.sh
+0 2 * * * /opt/scripts/backup-cropwise-db.sh
 ```
 
 #### Restore from Backup
 
 ```bash
 # Restore from local backup
-pg_restore -h your-db-host -U smartcrop_admin -d smartcrop_db -c /backups/smartcrop/smartcrop_20241114_020000.backup
+pg_restore -h your-db-host -U cropwise_admin -d cropwise_db -c /backups/cropwise/cropwise_20241114_020000.backup
 
 # Or from S3
-aws s3 cp s3://your-backup-bucket/database/smartcrop_20241114_020000.backup.gz ./
-gunzip smartcrop_20241114_020000.backup.gz
-pg_restore -h your-db-host -U smartcrop_admin -d smartcrop_db -c smartcrop_20241114_020000.backup
+aws s3 cp s3://your-backup-bucket/database/cropwise_20241114_020000.backup.gz ./
+gunzip cropwise_20241114_020000.backup.gz
+pg_restore -h your-db-host -U cropwise_admin -d cropwise_db -c cropwise_20241114_020000.backup
 ```
 
 ### Database Maintenance
@@ -442,7 +442,7 @@ pg_restore -h your-db-host -U smartcrop_admin -d smartcrop_db -c smartcrop_20241
 
 ```bash
 # Connect to database
-psql -h your-db-host -U smartcrop_admin -d smartcrop_db
+psql -h your-db-host -U cropwise_admin -d cropwise_db
 
 # Vacuum (reclaim storage)
 VACUUM VERBOSE;
@@ -457,7 +457,7 @@ VACUUM FULL VERBOSE;
 **Automate with cron**:
 ```bash
 # Weekly vacuum on Sunday at 3 AM
-0 3 * * 0 psql -h your-db-host -U smartcrop_admin -d smartcrop_db -c "VACUUM ANALYZE;"
+0 3 * * 0 psql -h your-db-host -U cropwise_admin -d cropwise_db -c "VACUUM ANALYZE;"
 ```
 
 #### Index Maintenance
@@ -502,7 +502,7 @@ cd backend
 node scripts/create-admin.js
 
 # Or via database
-psql -h your-db-host -U smartcrop_admin -d smartcrop_db
+psql -h your-db-host -U cropwise_admin -d cropwise_db
 
 INSERT INTO users (email, password_hash, first_name, last_name, role, verified)
 VALUES (
@@ -522,7 +522,7 @@ VALUES (
 node scripts/reset-password.js user@example.com
 
 # Or manually update hash in database
-psql -h your-db-host -U smartcrop_admin -d smartcrop_db
+psql -h your-db-host -U cropwise_admin -d cropwise_db
 
 UPDATE users
 SET password_hash = '$2a$10$new_hashed_password'
@@ -601,7 +601,7 @@ nano backend/.env
 # Update JWT_SECRET
 
 # Restart backend
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 
 # Note: This will invalidate all existing sessions
 ```
@@ -634,25 +634,25 @@ npm update
 ```bash
 #!/bin/bash
 DATE=$(date +%Y%m%d)
-BACKUP_ROOT="/backups/smartcrop"
+BACKUP_ROOT="/backups/cropwise"
 
 # 1. Database backup
-pg_dump -h your-db-host -U smartcrop_admin -F c smartcrop_db > "${BACKUP_ROOT}/db_${DATE}.backup"
+pg_dump -h your-db-host -U cropwise_admin -F c cropwise_db > "${BACKUP_ROOT}/db_${DATE}.backup"
 
 # 2. Application code (if not in git)
-tar -czf "${BACKUP_ROOT}/app_${DATE}.tar.gz" /var/www/smartcrop
+tar -czf "${BACKUP_ROOT}/app_${DATE}.tar.gz" /var/www/cropwise
 
 # 3. Environment files
-tar -czf "${BACKUP_ROOT}/env_${DATE}.tar.gz" /var/www/smartcrop/backend/.env /var/www/smartcrop/frontend/.env
+tar -czf "${BACKUP_ROOT}/env_${DATE}.tar.gz" /var/www/cropwise/backend/.env /var/www/cropwise/frontend/.env
 
 # 4. Uploaded files (if any)
-tar -czf "${BACKUP_ROOT}/uploads_${DATE}.tar.gz" /var/www/smartcrop/uploads
+tar -czf "${BACKUP_ROOT}/uploads_${DATE}.tar.gz" /var/www/cropwise/uploads
 
 # 5. Logs
-tar -czf "${BACKUP_ROOT}/logs_${DATE}.tar.gz" /var/www/smartcrop/backend/logs
+tar -czf "${BACKUP_ROOT}/logs_${DATE}.tar.gz" /var/www/cropwise/backend/logs
 
 # 6. Upload to S3
-aws s3 sync $BACKUP_ROOT s3://your-backup-bucket/smartcrop/${DATE}/
+aws s3 sync $BACKUP_ROOT s3://your-backup-bucket/cropwise/${DATE}/
 
 echo "Backup completed: ${DATE}"
 ```
@@ -685,8 +685,8 @@ echo "Backup completed: ${DATE}"
 npm install -g pm2
 
 # Start application
-cd /var/www/smartcrop/backend
-pm2 start src/index.js --name smartcrop-backend
+cd /var/www/cropwise/backend
+pm2 start src/index.js --name cropwise-backend
 
 # Auto-start on boot
 pm2 startup
@@ -694,7 +694,7 @@ pm2 save
 
 # Monitor
 pm2 monit
-pm2 logs smartcrop-backend
+pm2 logs cropwise-backend
 pm2 status
 ```
 
@@ -723,7 +723,7 @@ FROM pg_stat_activity
 WHERE state = 'active' AND now() - query_start > interval '5 minutes';
 
 -- Database size
-SELECT pg_size_pretty(pg_database_size('smartcrop_db'));
+SELECT pg_size_pretty(pg_database_size('cropwise_db'));
 
 -- Table sizes
 SELECT schemaname, tablename, pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename))
@@ -737,22 +737,22 @@ LIMIT 10;
 
 ```bash
 # View backend logs
-tail -f /var/www/smartcrop/backend/logs/combined.log
+tail -f /var/www/cropwise/backend/logs/combined.log
 
 # View error logs
-tail -f /var/www/smartcrop/backend/logs/error.log
+tail -f /var/www/cropwise/backend/logs/error.log
 
 # View Nginx logs
-tail -f /var/log/nginx/smartcrop_access.log
-tail -f /var/log/nginx/smartcrop_error.log
+tail -f /var/log/nginx/cropwise_access.log
+tail -f /var/log/nginx/cropwise_error.log
 
 # Rotate logs (configure logrotate)
-sudo nano /etc/logrotate.d/smartcrop
+sudo nano /etc/logrotate.d/cropwise
 ```
 
 **Logrotate Configuration**:
 ```
-/var/www/smartcrop/backend/logs/*.log {
+/var/www/cropwise/backend/logs/*.log {
     daily
     rotate 30
     compress
@@ -852,7 +852,7 @@ gzip_types text/plain text/css application/json application/javascript;
 
 ```bash
 # Check logs
-pm2 logs smartcrop-backend
+pm2 logs cropwise-backend
 
 # Common causes:
 # 1. Port already in use
@@ -860,7 +860,7 @@ sudo lsof -i :3000
 sudo kill -9 <PID>
 
 # 2. Database connection failure
-psql -h your-db-host -U smartcrop_admin -d smartcrop_db
+psql -h your-db-host -U cropwise_admin -d cropwise_db
 
 # 3. Missing environment variables
 cat backend/.env
@@ -875,7 +875,7 @@ npm install
 
 ```bash
 # Test connection
-psql -h your-db-host -U smartcrop_admin -d smartcrop_db
+psql -h your-db-host -U cropwise_admin -d cropwise_db
 
 # Check PostgreSQL status
 sudo systemctl status postgresql
@@ -898,7 +898,7 @@ htop
 ps aux --sort=-%mem | head
 
 # Restart services if needed
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 sudo systemctl restart postgresql
 sudo systemctl restart redis
 ```
@@ -951,7 +951,7 @@ CREATE INDEX idx_batches_zone_status ON batches(zone_id, status);
 /opt/scripts/full-backup.sh
 
 # 2. Pull latest code
-cd /var/www/smartcrop
+cd /var/www/cropwise
 git pull origin main
 
 # 3. Update dependencies
@@ -967,7 +967,7 @@ cd ../frontend
 npm run build
 
 # 6. Restart services
-pm2 restart smartcrop-backend
+pm2 restart cropwise-backend
 sudo systemctl reload nginx
 
 # 7. Verify
@@ -983,7 +983,7 @@ curl http://localhost:3000/health
 **Load Balancer Setup** (AWS ALB or Nginx):
 
 ```nginx
-upstream smartcrop_backend {
+upstream cropwise_backend {
     least_conn;
     server backend1.local:3000;
     server backend2.local:3000;
@@ -993,7 +993,7 @@ upstream smartcrop_backend {
 server {
     listen 80;
     location /api {
-        proxy_pass http://smartcrop_backend;
+        proxy_pass http://cropwise_backend;
     }
 }
 ```
@@ -1013,10 +1013,10 @@ server {
 const sequelize = new Sequelize({
   replication: {
     read: [
-      { host: 'read-replica-1.rds.amazonaws.com', username: 'smartcrop_admin', password: 'password' },
-      { host: 'read-replica-2.rds.amazonaws.com', username: 'smartcrop_admin', password: 'password' }
+      { host: 'read-replica-1.rds.amazonaws.com', username: 'cropwise_admin', password: 'password' },
+      { host: 'read-replica-2.rds.amazonaws.com', username: 'cropwise_admin', password: 'password' }
     ],
-    write: { host: 'primary.rds.amazonaws.com', username: 'smartcrop_admin', password: 'password' }
+    write: { host: 'primary.rds.amazonaws.com', username: 'cropwise_admin', password: 'password' }
   }
 });
 ```
@@ -1025,13 +1025,13 @@ const sequelize = new Sequelize({
 
 ## 📞 Support
 
-**Technical Support**: admins@smartcrop.io  
+**Technical Support**: admins@cropwise.io  
 **Emergency Hotline**: +1-555-EMERGENCY  
-**Documentation**: https://docs.smartcrop.io  
+**Documentation**: https://docs.cropwise.io  
 
 ---
 
-**System Status**: https://status.smartcrop.io
+**System Status**: https://status.cropwise.io
 
 *Last reviewed: November 2025*
 
