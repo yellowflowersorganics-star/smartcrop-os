@@ -177,28 +177,30 @@ Create another ALB:
 2. **Task definition family**: `cropwise-backend-dev`
 3. **Launch type**: AWS Fargate
 
-**Infrastructure:**
+**Infrastructure (Development):**
 - **Operating system**: Linux/X86_64
-- **CPU**: 0.5 vCPU (512)
-- **Memory**: 1 GB
+- **CPU**: 0.25 vCPU (256) - Smaller for dev
+- **Memory**: 512 MB - Smaller for dev
 
 **Container Configuration:**
-- **Container name**: `cropwise-backend`
+- **Container name**: `cropwise-backend-dev`
 - **Image URI**: Your ECR URI from Step 1.4
   ```
-  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend-dev:latest
+  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:dev
   ```
 - **Port mappings**: 3000 (TCP)
 
 **Environment Variables:**
 Click "Add" for each:
 ```
-NODE_ENV = production
-DATABASE_URL = (Use value from GitHub Secret)
-JWT_SECRET = (Use value from GitHub Secret)
-SESSION_SECRET = (Use value from GitHub Secret)
+NODE_ENV = development
+DATABASE_URL = (Use DEV database value from GitHub Secret)
+JWT_SECRET = (Use DEV value from GitHub Secret)
+SESSION_SECRET = (Use DEV value from GitHub Secret)
 GOOGLE_CLIENT_ID = (Use value from GitHub Secret)
 GOOGLE_CLIENT_SECRET = (Use value from GitHub Secret)
+REDIS_URL = redis://cropwise-dev-redis:6379
+MQTT_BROKER_URL = mqtt://cropwise-dev-mqtt:1883
 ```
 
 **Logging:**
@@ -207,12 +209,85 @@ GOOGLE_CLIENT_SECRET = (Use value from GitHub Secret)
 
 4. Click **"Create"**
 
-### **4.3 Repeat for Production**
+### **4.3 Create Staging Task Definition**
 
-Create another task definition:
-- Family: `cropwise-backend-prod`
-- Use production ECR image
-- Same configuration
+Repeat the process with staging-specific values:
+
+1. Go to: https://console.aws.amazon.com/ecs/home#/taskDefinitions
+2. Click **"Create new task definition"**
+3. Family name: `cropwise-backend-stage`
+
+**Infrastructure (Staging):**
+- **Operating system**: Linux/X86_64
+- **CPU**: 0.5 vCPU (512) - Medium for staging
+- **Memory**: 1 GB - Medium for staging
+
+**Container Configuration:**
+- **Container name**: `cropwise-backend-stage`
+- **Image URI**: 
+  ```
+  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:stage
+  ```
+- **Port mappings**: 3000 (TCP)
+
+**Environment Variables:**
+```
+NODE_ENV = staging
+DATABASE_URL = (Use STAGING database value from GitHub Secret)
+JWT_SECRET = (Use STAGING value from GitHub Secret)
+SESSION_SECRET = (Use STAGING value from GitHub Secret)
+GOOGLE_CLIENT_ID = (Use value from GitHub Secret)
+GOOGLE_CLIENT_SECRET = (Use value from GitHub Secret)
+REDIS_URL = redis://cropwise-stage-redis:6379
+MQTT_BROKER_URL = mqtt://cropwise-stage-mqtt:1883
+```
+
+**Logging:**
+- Log group: `/ecs/cropwise-backend-stage`
+
+### **4.4 Create Production Task Definition**
+
+Repeat the process with production-specific values:
+
+1. Go to: https://console.aws.amazon.com/ecs/home#/taskDefinitions
+2. Click **"Create new task definition"**
+3. Family name: `cropwise-backend-prod`
+
+**Infrastructure (Production):**
+- **Operating system**: Linux/X86_64
+- **CPU**: 1 vCPU (1024) - Larger for production
+- **Memory**: 2 GB - Larger for production
+
+**Container Configuration:**
+- **Container name**: `cropwise-backend-prod`
+- **Image URI**: Use version tags for production
+  ```
+  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:v1.0.0
+  # Or use 'prod' tag for latest production build
+  ```
+- **Port mappings**: 3000 (TCP)
+
+**Environment Variables:**
+```
+NODE_ENV = production
+DATABASE_URL = (Use PRODUCTION database value from GitHub Secret)
+JWT_SECRET = (Use PRODUCTION value from GitHub Secret)
+SESSION_SECRET = (Use PRODUCTION value from GitHub Secret)
+GOOGLE_CLIENT_ID = (Use value from GitHub Secret)
+GOOGLE_CLIENT_SECRET = (Use value from GitHub Secret)
+REDIS_URL = redis://cropwise-prod-redis:6379
+MQTT_BROKER_URL = mqtt://cropwise-prod-mqtt:1883
+```
+
+**Logging:**
+- Log group: `/ecs/cropwise-backend-prod`
+
+**Important Notes:**
+- Each environment has its own task definition family
+- Use environment-specific container names to avoid conflicts
+- Use different image tags (dev/stage/prod or version numbers)
+- Each environment has separate environment variables and secrets
+- Production uses more resources (CPU/Memory) than dev/staging
 
 ---
 
