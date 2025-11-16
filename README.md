@@ -34,7 +34,15 @@ CropWise is a comprehensive, cloud-native platform for vertical farms and modern
 
 ## 🚀 Quick Start
 
-### Docker Compose (Fastest - 5 minutes)
+### **🎯 New to CropWise? Start Here!**
+
+**👉 Complete Setup Guide**: **[0-START-HERE.md](0-START-HERE.md)** 
+
+This guide takes you from zero to production in 10 sequential steps (4-6 hours total).
+
+---
+
+### Docker Compose (Local Development - 5 minutes)
 
 ```bash
 # Clone repository
@@ -45,7 +53,8 @@ cd cropwise
 docker-compose up -d
 
 # Access application
-open http://localhost:8080
+Frontend: http://localhost:5173
+Backend API: http://localhost:3000
 ```
 
 ### Manual Setup (15 minutes)
@@ -64,7 +73,7 @@ npm install
 npm run dev
 ```
 
-**👉 For detailed installation instructions, see [Installation Guide](docs/INSTALLATION.md)**
+**👉 For detailed setup, see [Local Development Guide](docs/setup/02-local-development.md)**
 
 ---
 
@@ -218,34 +227,80 @@ npm run dev
 
 ## 📚 Documentation
 
-### **Getting Started**
-- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up CropWise
-- [👤 User Guide](docs/USER_GUIDE.md) - Complete feature walkthrough
-- [🔧 Admin Guide](docs/ADMIN_GUIDE.md) - System administration
-- [🐛 Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
+**📖 Complete Documentation Hub**: **[docs/README.md](docs/README.md)**
 
-### **Development**
-- [🔀 Git Workflow](docs/GIT_WORKFLOW.md) - Branching strategy and CI/CD
-- [🤝 Contributing Guide](CONTRIBUTING.md) - How to contribute
-- [📝 Changelog](CHANGELOG.md) - Version history
-- [⚡ Quick Reference](docs/QUICK_REFERENCE.md) - Cheat sheet
+### **🚀 Setup (New Projects)**
 
-### **Deployment**
-- [☁️ AWS Deployment](DEPLOY_TO_AWS_NOW.md) - Deploy to production
-- [🗄️ Database & AI Architecture](docs/DATABASE_AI_ARCHITECTURE.md) - Database design
-- [📊 API Documentation](http://localhost:8080/api-docs) - Interactive API docs
+Complete 10-step setup guide: **[0-START-HERE.md](0-START-HERE.md)**
 
-### **IoT Integration**
-- [🤖 IoT Architecture V2](docs/IOT_ARCHITECTURE_V2.md) - Hierarchical design
-- [📡 ESP-NOW Setup](docs/ESP_NOW_SETUP_GUIDE.md) - Hardware configuration
-- [🔌 IoT Integration Guide](docs/IOT_INTEGRATION_GUIDE.md) - Complete setup
+Sequential setup guides (4-6 hours total):
+1. [GitHub Setup](docs/setup/01-github-setup.md) - Repository & workflows
+2. [Local Development](docs/setup/02-local-development.md) - Dev environment
+3. [AWS Account Setup](docs/setup/03-aws-account-setup.md) - AWS configuration
+4. [AWS Infrastructure](docs/setup/04-aws-infrastructure-dev.md) - ECS, ECR, ALB, S3
+5. [Database Setup](docs/setup/05-aws-database-setup.md) - RDS PostgreSQL
+6. [Google OAuth](docs/setup/06-google-oauth-setup.md) - Authentication
+7. [Communication Setup](docs/setup/07-communication-setup.md) - Twilio, Slack
+8. [Staging Deployment](docs/setup/08-staging-deployment.md) - Staging environment
+9. [Production Deployment](docs/setup/09-production-deployment.md) - Production environment
+10. [Monitoring & Security](docs/setup/10-monitoring-security.md) - CloudWatch, WAF
 
-### **Feature Guides**
-- [📦 Inventory Management](docs/INVENTORY_MANAGEMENT_GUIDE.md)
-- [✅ Task Management](docs/TASK_MANAGEMENT_GUIDE.md)
-- [👷 Labor & Cost Tracking](docs/LABOR_COST_TRACKING_GUIDE.md)
-- [🔬 Quality Control](docs/QUALITY_CONTROL_GUIDE.md)
-- [📲 WhatsApp & SMS Setup](docs/WHATSAPP_SMS_SETUP.md)
+---
+
+### **👨‍💻 Development (Daily Use)**
+
+- [Developer Guide](docs/development/DEVELOPER_GUIDE.md) - Complete development workflow
+- [Git Workflow](docs/development/GIT_WORKFLOW.md) - Branching, PRs, merging
+- [Testing Guide](docs/development/TESTING_GUIDE.md) - Unit, integration, E2E tests
+- [Contributing](docs/development/CONTRIBUTING.md) - How to contribute
+- [Team Onboarding](docs/development/TEAM_ONBOARDING.md) - New developer guide
+
+---
+
+### **🚀 Deployment & Operations**
+
+- [Deployment Guide](docs/deployment/DEPLOYMENT_GUIDE.md) - Complete deployment workflow
+- [CI/CD Setup](docs/deployment/CICD_SETUP_GUIDE.md) - GitHub Actions pipelines
+- [Release Process](docs/deployment/RELEASE_PROCESS.md) - Releases & hotfixes
+- [Troubleshooting](docs/deployment/TROUBLESHOOTING.md) - Common issues
+- [Admin Guide](docs/operations/ADMIN_GUIDE.md) - System administration
+- [Security Guide](docs/operations/SECURITY_GUIDE.md) - Security best practices
+
+---
+
+### **✨ Feature Guides**
+
+**IoT Integration**:
+- [IoT Integration Guide](docs/features/iot/IOT_INTEGRATION_GUIDE.md)
+- [ESP32 Zone Controller](docs/features/iot/ESP32_ZONE_CONTROLLER_GUIDE.md)
+- [ESP-NOW Setup](docs/features/iot/ESP_NOW_SETUP_GUIDE.md)
+
+**Management Features**:
+- [Task Management](docs/features/management/TASK_MANAGEMENT_GUIDE.md)
+- [Inventory Management](docs/features/management/INVENTORY_MANAGEMENT_GUIDE.md)
+- [Labor Cost Tracking](docs/features/management/LABOR_COST_TRACKING_GUIDE.md)
+- [Quality Control](docs/features/management/QUALITY_CONTROL_GUIDE.md)
+
+**Integrations**:
+- [WhatsApp & SMS Setup](docs/features/integrations/WHATSAPP_SMS_SETUP.md)
+- [Google OAuth Checklist](docs/features/integrations/GOOGLE_OAUTH_CHECKLIST.md)
+
+---
+
+### **📚 Reference**
+
+- [Quick Reference](docs/reference/QUICK_REFERENCE.md) - Command cheat sheet
+- [API Reference](docs/reference/API_REFERENCE.md) - API documentation
+- [FAQ](docs/reference/FAQ.md) - Frequently asked questions
+- [User Guide](docs/reference/USER_GUIDE.md) - End-user documentation
+
+---
+
+### **🏗️ Architecture**
+
+- [Architecture Overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) - System design
+- [Database Schema](docs/architecture/DATABASE_SCHEMA.md) - Database structure
+- [Edge Gateway](docs/architecture/EDGE_GATEWAY.md) - IoT architecture
 
 ---
 
