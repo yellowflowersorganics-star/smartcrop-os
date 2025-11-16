@@ -407,19 +407,28 @@ Sequential setup guides (4-6 hours total):
 
 ## 💰 Pricing
 
-### **Open Source (Free)**
-- ✅ Full source code access
-- ✅ Self-hosted deployment
-- ✅ Community support
-- ✅ All features included
-- ✅ Commercial use allowed
-
-### **Cloud Hosted (Optional)**
 | Plan | Price | Features |
 |------|-------|----------|
-| **Starter** | Free | 2 farms, 10 zones, 5 devices |
+| **Starter** | Free Trial | 2 farms, 10 zones, 5 devices, 30-day trial |
 | **Professional** | $49/mo | 10 farms, unlimited zones, 50 devices |
-| **Enterprise** | Custom | Unlimited + priority support + SLA |
+| **Enterprise** | Custom | Unlimited farms, priority support, SLA, custom integrations |
+
+### **What's Included:**
+- ✅ Full platform access
+- ✅ Regular updates and improvements
+- ✅ Mobile-optimized interface
+- ✅ IoT device integration
+- ✅ Analytics and reporting
+- ✅ Email support
+- ✅ Community forum access
+
+### **Enterprise Add-ons:**
+- 🔒 Advanced security features
+- 📞 24/7 phone support
+- 🎓 Training and onboarding
+- 🔧 Custom integrations
+- 📊 White-label options
+- 💼 Dedicated account manager
 
 ---
 
@@ -448,30 +457,25 @@ Sequential setup guides (4-6 hours total):
 
 ---
 
-## 🤝 Contributing
+## 💬 Feedback & Feature Requests
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We value your input! Help us improve CropWise.
 
-### **Ways to Contribute**
-- 🐛 Report bugs
-- ✨ Suggest features
-- 📝 Improve documentation
-- 🔧 Submit pull requests
-- ⭐ Star the project
+### **How You Can Help**
+- 🐛 **Report Bugs** - Found an issue? Let us know
+- ✨ **Request Features** - Share your ideas
+- 📝 **Documentation** - Suggest improvements
+- 💡 **Share Use Cases** - Tell us how you use CropWise
+- ⭐ **Reviews** - Leave a review on our platform
 
-### **Development Workflow**
-```bash
-# Fork and clone
-git clone https://github.com/YOUR_USERNAME/cropwise.git
+### **Submit Feedback**
+- **Bug Reports**: [support@cropwise.io](mailto:support@cropwise.io)
+- **Feature Requests**: [features@cropwise.io](mailto:features@cropwise.io)
+- **General Feedback**: [Community Forum](https://community.cropwise.io)
 
-# Create feature branch
-git checkout -b feature/my-feature
-
-# Make changes, commit, push
-git push origin feature/my-feature
-
-# Create Pull Request on GitHub
-```
+### **For Partners & Integrators**
+Interested in building integrations or partnerships?  
+Contact: [partners@cropwise.io](mailto:partners@cropwise.io)
 
 ---
 
@@ -497,33 +501,34 @@ git push origin feature/my-feature
 ## 🏆 Awards & Recognition
 
 - 🥇 **Best AgTech Solution 2024** - TechCrunch Disrupt
-- 🌟 **Top 10 Open Source Projects** - GitHub
+- 🌟 **Top 10 Farm Management Platforms** - AgTech Digest
 - 🚀 **Innovation Award** - Smart Farming Summit
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
+**CropWise** is proprietary software owned by CropWise Inc.
 
-**What this means:**
-- ✅ Commercial use allowed
-- ✅ Modification allowed
-- ✅ Distribution allowed
-- ✅ Private use allowed
-- ⚠️ No warranty provided
+**Terms of Use:**
+- ✅ Licensed for use per subscription plan
+- ✅ Commercial use allowed under license
+- ✅ Customization for internal use allowed
+- ❌ Redistribution not permitted
+- ❌ Source code remains proprietary
+- ⚠️ See [Terms of Service](https://cropwise.io/terms) for full details
 
 ---
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ by the CropWise team and contributors.
+Built with ❤️ by the CropWise team.
 
 **Special Thanks:**
-- All our [contributors](CONTRIBUTORS.md)
-- Open source community
+- Our valued customers and partners
 - Early adopters and beta testers
 - Agricultural experts who provided domain knowledge
+- Technology partners and integrators
 
 ---
 
