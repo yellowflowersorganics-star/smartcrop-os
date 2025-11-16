@@ -500,7 +500,7 @@ Contact: [partners@cropwise.io](mailto:partners@cropwise.io)
 
 ## 🏆 Awards & Recognition
 
-- 🥇 **Best AgTech Solution 2024** - TechCrunch Disrupt
+- 🥇 **Best AgTech Solution 2025** - TechCrunch Disrupt
 - 🌟 **Top 10 Farm Management Platforms** - AgTech Digest
 - 🚀 **Innovation Award** - Smart Farming Summit
 
@@ -541,11 +541,11 @@ Built with ❤️ by the CropWise team.
 
 ### **Paid Support**
 - 📧 Email: support@cropwise.io
-- 📱 Phone: +1-555-CROPWISE
+- 📱 Phone: +91-9354484998 (India)
 - 💼 Enterprise SLA: enterprise@cropwise.io
 
 ### **Emergency Support** (Enterprise only)
-- 🚨 24/7 Hotline: +1-555-EMERGENCY
+- 🚨 24/7 Hotline: +91-9354484998 (Enterprise customers)
 - ⏱️ Response time: <1 hour
 
 ---
