@@ -17,7 +17,7 @@ if [ "$CONFIRM" != "DELETE" ]; then
     exit 0
 fi
 
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 APP_NAME="cropwise"
 
 echo ""

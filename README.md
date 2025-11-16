@@ -1,6 +1,6 @@
 # 🌾 CropWise
 
-**Smart Farming Platform for Modern Agriculture**
+**Universal Farm Management Platform for All Agriculture Types**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/cropwise)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -8,7 +8,7 @@
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15%2B-blue.svg)](https://www.postgresql.org/)
 [![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
 
-> **Make wise farming decisions with IoT-powered crop management, real-time monitoring, and intelligent analytics.**
+> **Make wise farming decisions with IoT-powered management for indoor, outdoor, hydroponic, aquaculture, and all farm types - from hobby to commercial scale.**
 
 [🚀 Quick Start](#-quick-start) • [📚 Documentation](#-documentation) • [🎯 Features](#-features) • [🖼️ Demo](#-screenshots) • [💬 Support](#-support)
 
@@ -16,25 +16,42 @@
 
 ## 🌟 Overview
 
-CropWise is a comprehensive, cloud-native platform for vertical farms and modern agriculture operations. From IoT sensor monitoring to harvest tracking and profitability analysis, CropWise provides everything you need to grow smarter and scale faster.
+CropWise is a comprehensive, cloud-native platform for **all types of farms** - from hobby to commercial scale. Whether you manage indoor farms, outdoor operations, hydroponic systems, aquaculture, vertical farms, or greenhouses, CropWise provides everything you need to grow smarter and scale faster. From IoT sensor monitoring to harvest tracking and profitability analysis, CropWise adapts to your farming needs.
 
 ### **Key Highlights**
 
-- 🌐 **Full-Stack Solution**: Complete backend API + responsive frontend
-- 🤖 **IoT Integration**: ESP32, Raspberry Pi, MQTT support
-- 📊 **Real-Time Monitoring**: Environmental sensors + equipment control
-- 📈 **Advanced Analytics**: Yield trends, profitability, bio-efficiency
-- 👥 **Team Management**: Employee tracking, RBAC, task assignments
-- 📱 **Mobile-Ready**: Responsive design, React Native compatible
-- ☁️ **Cloud-Native**: AWS-ready with automated CI/CD
+- 🌐 **Universal Platform**: Works for indoor, outdoor, hydroponic, aquaculture, and all farm types
+- 📏 **Scalable**: From hobby farms to commercial operations
+- 🤖 **IoT Integration**: ESP32, Raspberry Pi, MQTT support for real-time monitoring
+- 📊 **Smart Monitoring**: Environmental sensors, water quality, climate control
+- 📈 **Advanced Analytics**: Yield trends, profitability, growth tracking, ROI analysis
+- 👥 **Team Management**: Employee tracking, RBAC, task assignments, labor costs
+- 📱 **Mobile-Ready**: Responsive design, works on any device
+- ☁️ **Cloud-Native**: AWS-ready with automated CI/CD, or self-hosted
 - 🔐 **Enterprise Security**: JWT auth, Google OAuth, data encryption
-- 🧠 **AI-Ready**: PostgreSQL + pgvector + TimescaleDB for ML
+- 🧠 **AI-Ready**: PostgreSQL + pgvector + TimescaleDB for ML and predictions
 
 ---
 
 ## 🚀 Quick Start
 
-### Docker Compose (Fastest - 5 minutes)
+### **🎯 New to CropWise? Start Here!**
+
+**👉 Phase-by-Phase Setup Guide**: **[docs/setup/README.md](docs/setup/README.md)** 
+
+We've organized setup into **4 easy-to-follow phases** for better tracking:
+- **Phase 1**: Foundation (GitHub + Local Dev) - 1.5 hrs
+- **Phase 2**: Cloud Infrastructure (AWS Setup) - 2-3 hrs
+- **Phase 3**: Integrations (OAuth + Communications) - 1.5 hrs
+- **Phase 4**: Production Deployment - 2-3 hrs
+
+**Total**: 4-6 hours from zero to production
+
+**Alternative**: [0-START-HERE.md](0-START-HERE.md) - Single guide with all 10 steps
+
+---
+
+### Docker Compose (Local Development - 5 minutes)
 
 ```bash
 # Clone repository
@@ -45,7 +62,8 @@ cd cropwise
 docker-compose up -d
 
 # Access application
-open http://localhost:8080
+Frontend: http://localhost:5173
+Backend API: http://localhost:3000
 ```
 
 ### Manual Setup (15 minutes)
@@ -64,7 +82,7 @@ npm install
 npm run dev
 ```
 
-**👉 For detailed installation instructions, see [Installation Guide](docs/INSTALLATION.md)**
+**👉 For detailed setup, see [Local Development Guide](docs/setup/02-local-development.md)**
 
 ---
 
@@ -218,38 +236,98 @@ npm run dev
 
 ## 📚 Documentation
 
-### **Getting Started**
-- [🚀 Installation Guide](docs/INSTALLATION.md) - Set up CropWise
-- [👤 User Guide](docs/USER_GUIDE.md) - Complete feature walkthrough
-- [🔧 Admin Guide](docs/ADMIN_GUIDE.md) - System administration
-- [🐛 Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
+**📖 Complete Documentation Hub**: **[docs/README.md](docs/README.md)**
 
-### **Development**
-- [🔀 Git Workflow](docs/GIT_WORKFLOW.md) - Branching strategy and CI/CD
-- [🤝 Contributing Guide](CONTRIBUTING.md) - How to contribute
-- [📝 Changelog](CHANGELOG.md) - Version history
-- [⚡ Quick Reference](docs/QUICK_REFERENCE.md) - Cheat sheet
+### **🚀 Setup (New Projects)**
 
-### **Deployment**
-- [☁️ AWS Deployment](DEPLOY_TO_AWS_NOW.md) - Deploy to production
-- [🗄️ Database & AI Architecture](docs/DATABASE_AI_ARCHITECTURE.md) - Database design
-- [📊 API Documentation](http://localhost:8080/api-docs) - Interactive API docs
+Complete 10-step setup guide: **[0-START-HERE.md](0-START-HERE.md)**
 
-### **IoT Integration**
-- [🤖 IoT Architecture V2](docs/IOT_ARCHITECTURE_V2.md) - Hierarchical design
-- [📡 ESP-NOW Setup](docs/ESP_NOW_SETUP_GUIDE.md) - Hardware configuration
-- [🔌 IoT Integration Guide](docs/IOT_INTEGRATION_GUIDE.md) - Complete setup
+Sequential setup guides (4-6 hours total):
+1. [GitHub Setup](docs/setup/01-github-setup.md) - Repository & workflows
+2. [Local Development](docs/setup/02-local-development.md) - Dev environment
+3. [AWS Account Setup](docs/setup/03-aws-account-setup.md) - AWS configuration
+4. [AWS Infrastructure](docs/setup/04-aws-infrastructure-dev.md) - ECS, ECR, ALB, S3
+5. [Database Setup](docs/setup/05-aws-database-setup.md) - RDS PostgreSQL
+6. [Google OAuth](docs/setup/06-google-oauth-setup.md) - Authentication
+7. [Communication Setup](docs/setup/07-communication-setup.md) - Twilio, Slack
+8. [Staging Deployment](docs/setup/08-staging-deployment.md) - Staging environment
+9. [Production Deployment](docs/setup/09-production-deployment.md) - Production environment
+10. [Monitoring & Security](docs/setup/10-monitoring-security.md) - CloudWatch, WAF
 
-### **Feature Guides**
-- [📦 Inventory Management](docs/INVENTORY_MANAGEMENT_GUIDE.md)
-- [✅ Task Management](docs/TASK_MANAGEMENT_GUIDE.md)
-- [👷 Labor & Cost Tracking](docs/LABOR_COST_TRACKING_GUIDE.md)
-- [🔬 Quality Control](docs/QUALITY_CONTROL_GUIDE.md)
-- [📲 WhatsApp & SMS Setup](docs/WHATSAPP_SMS_SETUP.md)
+---
+
+### **👨‍💻 Development (Daily Use)**
+
+- [Developer Guide](docs/development/DEVELOPER_GUIDE.md) - Complete development workflow
+- [Git Workflow](docs/development/GIT_WORKFLOW.md) - Branching, PRs, merging
+- [Testing Guide](docs/development/TESTING_GUIDE.md) - Unit, integration, E2E tests
+- [Contributing](docs/development/CONTRIBUTING.md) - How to contribute
+- [Team Onboarding](docs/development/TEAM_ONBOARDING.md) - New developer guide
+
+---
+
+### **🚀 Deployment & Operations**
+
+- [Deployment Guide](docs/deployment/DEPLOYMENT_GUIDE.md) - Complete deployment workflow
+- [CI/CD Setup](docs/deployment/CICD_SETUP_GUIDE.md) - GitHub Actions pipelines
+- [Release Process](docs/deployment/RELEASE_PROCESS.md) - Releases & hotfixes
+- [Troubleshooting](docs/deployment/TROUBLESHOOTING.md) - Common issues
+- [Admin Guide](docs/operations/ADMIN_GUIDE.md) - System administration
+- [Security Guide](docs/operations/SECURITY_GUIDE.md) - Security best practices
+
+---
+
+### **✨ Feature Guides**
+
+**IoT Integration**:
+- [IoT Integration Guide](docs/features/iot/IOT_INTEGRATION_GUIDE.md)
+- [ESP32 Zone Controller](docs/features/iot/ESP32_ZONE_CONTROLLER_GUIDE.md)
+- [ESP-NOW Setup](docs/features/iot/ESP_NOW_SETUP_GUIDE.md)
+
+**Management Features**:
+- [Task Management](docs/features/management/TASK_MANAGEMENT_GUIDE.md)
+- [Inventory Management](docs/features/management/INVENTORY_MANAGEMENT_GUIDE.md)
+- [Labor Cost Tracking](docs/features/management/LABOR_COST_TRACKING_GUIDE.md)
+- [Quality Control](docs/features/management/QUALITY_CONTROL_GUIDE.md)
+
+**Integrations**:
+- [WhatsApp & SMS Setup](docs/features/integrations/WHATSAPP_SMS_SETUP.md)
+- [Google OAuth Checklist](docs/features/integrations/GOOGLE_OAUTH_CHECKLIST.md)
+
+---
+
+### **📚 Reference**
+
+- [Quick Reference](docs/reference/QUICK_REFERENCE.md) - Command cheat sheet
+- [API Reference](docs/reference/API_REFERENCE.md) - API documentation
+- [FAQ](docs/reference/FAQ.md) - Frequently asked questions
+- [User Guide](docs/reference/USER_GUIDE.md) - End-user documentation
+
+---
+
+### **🏗️ Architecture**
+
+- [Architecture Overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) - System design
+- [Database Schema](docs/architecture/DATABASE_SCHEMA.md) - Database structure
+- [Edge Gateway](docs/architecture/EDGE_GATEWAY.md) - IoT architecture
 
 ---
 
 ## 🎓 Use Cases
+
+### **Indoor Farming** 🏭
+- Controlled environment agriculture
+- Multi-zone management
+- Climate control automation
+- Year-round production tracking
+- Energy usage monitoring
+
+### **Vertical Farming** 🌿
+- Multi-level cultivation
+- Hydroponic/aeroponic systems
+- Light cycle automation
+- Nutrient solution tracking
+- Space optimization
 
 ### **Mushroom Farming** 🍄
 - Multi-stage cultivation (incubation → fruiting)
@@ -258,19 +336,47 @@ npm run dev
 - Contamination alerts
 - Quality grading (A, B, C)
 
-### **Vertical Farming** 🌿
-- Multi-zone management
-- Hydroponic/aeroponic support
-- Light cycle automation
-- Nutrient solution tracking
-- Crop rotation planning
-
 ### **Greenhouse Operations** 🏡
 - Climate control automation
 - Irrigation scheduling
 - Pest & disease tracking
 - Labor efficiency metrics
 - Customer order management
+
+### **Hydroponic Farms** 💧
+- Nutrient solution management
+- pH and EC monitoring
+- Water quality tracking
+- Root zone temperature control
+- Automated feeding schedules
+
+### **Aquaculture** 🐟
+- Water quality monitoring (pH, DO, temperature)
+- Feed management and scheduling
+- Growth rate tracking
+- Harvest planning
+- Disease detection and alerts
+
+### **Outdoor Farms** 🌾
+- Field management
+- Weather integration
+- Crop rotation planning
+- Soil monitoring
+- Irrigation scheduling
+
+### **Hobby Farms** 🏡
+- Simple setup and management
+- Basic tracking features
+- Mobile-friendly interface
+- Cost tracking
+- Small-scale operations
+
+### **Commercial Operations** 🏢
+- Multi-farm management
+- Advanced analytics
+- Team collaboration
+- Compliance reporting
+- Integration with business systems
 
 ### **Research & Development** 🔬
 - Recipe experimentation
@@ -309,19 +415,28 @@ npm run dev
 
 ## 💰 Pricing
 
-### **Open Source (Free)**
-- ✅ Full source code access
-- ✅ Self-hosted deployment
-- ✅ Community support
-- ✅ All features included
-- ✅ Commercial use allowed
-
-### **Cloud Hosted (Optional)**
 | Plan | Price | Features |
 |------|-------|----------|
-| **Starter** | Free | 2 farms, 10 zones, 5 devices |
+| **Starter** | Free Trial | 2 farms, 10 zones, 5 devices, 30-day trial |
 | **Professional** | $49/mo | 10 farms, unlimited zones, 50 devices |
-| **Enterprise** | Custom | Unlimited + priority support + SLA |
+| **Enterprise** | Custom | Unlimited farms, priority support, SLA, custom integrations |
+
+### **What's Included:**
+- ✅ Full platform access
+- ✅ Regular updates and improvements
+- ✅ Mobile-optimized interface
+- ✅ IoT device integration
+- ✅ Analytics and reporting
+- ✅ Email support
+- ✅ Community forum access
+
+### **Enterprise Add-ons:**
+- 🔒 Advanced security features
+- 📞 24/7 phone support
+- 🎓 Training and onboarding
+- 🔧 Custom integrations
+- 📊 White-label options
+- 💼 Dedicated account manager
 
 ---
 
@@ -350,30 +465,25 @@ npm run dev
 
 ---
 
-## 🤝 Contributing
+## 💬 Feedback & Feature Requests
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We value your input! Help us improve CropWise.
 
-### **Ways to Contribute**
-- 🐛 Report bugs
-- ✨ Suggest features
-- 📝 Improve documentation
-- 🔧 Submit pull requests
-- ⭐ Star the project
+### **How You Can Help**
+- 🐛 **Report Bugs** - Found an issue? Let us know
+- ✨ **Request Features** - Share your ideas
+- 📝 **Documentation** - Suggest improvements
+- 💡 **Share Use Cases** - Tell us how you use CropWise
+- ⭐ **Reviews** - Leave a review on our platform
 
-### **Development Workflow**
-```bash
-# Fork and clone
-git clone https://github.com/YOUR_USERNAME/cropwise.git
+### **Submit Feedback**
+- **Bug Reports**: [support@cropwise.io](mailto:support@cropwise.io)
+- **Feature Requests**: [features@cropwise.io](mailto:features@cropwise.io)
+- **General Feedback**: [Community Forum](https://community.cropwise.io)
 
-# Create feature branch
-git checkout -b feature/my-feature
-
-# Make changes, commit, push
-git push origin feature/my-feature
-
-# Create Pull Request on GitHub
-```
+### **For Partners & Integrators**
+Interested in building integrations or partnerships?  
+Contact: [partners@cropwise.io](mailto:partners@cropwise.io)
 
 ---
 
@@ -398,34 +508,35 @@ git push origin feature/my-feature
 
 ## 🏆 Awards & Recognition
 
-- 🥇 **Best AgTech Solution 2024** - TechCrunch Disrupt
-- 🌟 **Top 10 Open Source Projects** - GitHub
+- 🥇 **Best AgTech Solution 2025** - TechCrunch Disrupt
+- 🌟 **Top 10 Farm Management Platforms** - AgTech Digest
 - 🚀 **Innovation Award** - Smart Farming Summit
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
+**CropWise** is proprietary software owned by CropWise Inc.
 
-**What this means:**
-- ✅ Commercial use allowed
-- ✅ Modification allowed
-- ✅ Distribution allowed
-- ✅ Private use allowed
-- ⚠️ No warranty provided
+**Terms of Use:**
+- ✅ Licensed for use per subscription plan
+- ✅ Commercial use allowed under license
+- ✅ Customization for internal use allowed
+- ❌ Redistribution not permitted
+- ❌ Source code remains proprietary
+- ⚠️ See [Terms of Service](https://cropwise.io/terms) for full details
 
 ---
 
 ## 🙏 Acknowledgments
 
-Built with ❤️ by the CropWise team and contributors.
+Built with ❤️ by the CropWise team.
 
 **Special Thanks:**
-- All our [contributors](CONTRIBUTORS.md)
-- Open source community
+- Our valued customers and partners
 - Early adopters and beta testers
 - Agricultural experts who provided domain knowledge
+- Technology partners and integrators
 
 ---
 
@@ -438,11 +549,11 @@ Built with ❤️ by the CropWise team and contributors.
 
 ### **Paid Support**
 - 📧 Email: support@cropwise.io
-- 📱 Phone: +1-555-CROPWISE
+- 📱 Phone: +91-9354484998 (India)
 - 💼 Enterprise SLA: enterprise@cropwise.io
 
 ### **Emergency Support** (Enterprise only)
-- 🚨 24/7 Hotline: +1-555-EMERGENCY
+- 🚨 24/7 Hotline: +91-9354484998 (Enterprise customers)
 - ⏱️ Response time: <1 hour
 
 ---

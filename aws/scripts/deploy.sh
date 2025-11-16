@@ -38,7 +38,7 @@ echo -e "${GREEN}✓ AWS credentials configured${NC}"
 
 # Get AWS account info
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 
 echo -e "${BLUE}Account ID: ${AWS_ACCOUNT_ID}${NC}"
 echo -e "${BLUE}Region: ${AWS_REGION}${NC}\n"
@@ -50,7 +50,7 @@ create_s3_bucket() {
     echo -e "${YELLOW}Creating S3 bucket: ${BUCKET_NAME}${NC}"
     
     if aws s3 ls "s3://${BUCKET_NAME}" 2>&1 | grep -q 'NoSuchBucket'; then
-        if [ "$AWS_REGION" = "us-east-1" ]; then
+        if [ "$AWS_REGION" = "ap-south-1" ]; then
             aws s3 mb "s3://${BUCKET_NAME}"
         else
             aws s3 mb "s3://${BUCKET_NAME}" --region "${AWS_REGION}"
@@ -96,7 +96,7 @@ deploy_frontend() {
     
     # Create bucket
     if aws s3 ls "s3://${FRONTEND_BUCKET}" 2>&1 | grep -q 'NoSuchBucket'; then
-        if [ "$AWS_REGION" = "us-east-1" ]; then
+        if [ "$AWS_REGION" = "ap-south-1" ]; then
             aws s3 mb "s3://${FRONTEND_BUCKET}"
         else
             aws s3 mb "s3://${FRONTEND_BUCKET}" --region "${AWS_REGION}"

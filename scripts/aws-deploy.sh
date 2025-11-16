@@ -14,7 +14,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Configuration
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 APP_NAME="cropwise"
 ENVIRONMENT=${ENVIRONMENT:-production}
 

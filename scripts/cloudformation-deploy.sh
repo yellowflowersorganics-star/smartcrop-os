@@ -15,7 +15,7 @@ NC='\033[0m'
 # Configuration
 STACK_NAME="cropwise-production"
 TEMPLATE_FILE="aws/cloudformation-template.yaml"
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 
 # Prompt for parameters
 echo ""

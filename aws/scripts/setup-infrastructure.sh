@@ -17,7 +17,7 @@ echo -e "${BLUE}========================================${NC}"
 echo -e "${BLUE}  CropWise - Infrastructure Setup${NC}"
 echo -e "${BLUE}========================================${NC}\n"
 
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 DB_PASSWORD=${DB_PASSWORD:-$(openssl rand -base64 16)}
 REDIS_PORT=6379
 DB_PORT=5432

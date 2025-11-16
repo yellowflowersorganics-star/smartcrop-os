@@ -34,7 +34,7 @@ if [ ! -d ".elasticbeanstalk" ]; then
     
     eb init cropwise-backend \
         --platform "Node.js 18 running on 64bit Amazon Linux 2023" \
-        --region us-east-1
+        --region ap-south-1
     
     echo -e "${GREEN}✅ EB initialized${NC}"
 fi

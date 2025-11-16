@@ -93,3 +93,7 @@ ml/data/raw/
 *.crt
 secrets/
 
+# Temporary work files (except README)
+temp/*
+!temp/README.md
+

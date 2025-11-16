@@ -10,7 +10,7 @@ pip install awscli --upgrade
 
 # 2. Configure AWS
 aws configure
-# Enter: Access Key, Secret Key, Region (us-east-1), Output (json)
+# Enter: Access Key, Secret Key, Region (ap-south-1), Output (json)
 
 # 3. Install Elastic Beanstalk CLI
 pip install awsebcli --upgrade

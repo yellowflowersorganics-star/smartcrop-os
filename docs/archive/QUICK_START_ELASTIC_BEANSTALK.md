@@ -77,14 +77,14 @@ This command creates:
 After creation, you'll see:
 ```
 Environment created: cropwise-dev
-URL: cropwise-dev.us-east-1.elasticbeanstalk.com
+URL: cropwise-dev.ap-south-1.elasticbeanstalk.com
 ```
 
 **This is your backend API URL!**
 
 ```powershell
 # Test it
-curl http://cropwise-dev.us-east-1.elasticbeanstalk.com/health
+curl http://cropwise-dev.ap-south-1.elasticbeanstalk.com/health
 ```
 
 ### **STEP 5: Deploy Frontend to S3**
@@ -93,7 +93,7 @@ curl http://cropwise-dev.us-east-1.elasticbeanstalk.com/health
 cd C:\Users\praghav\cropwise\frontend
 
 # Build frontend with backend URL
-$env:VITE_API_URL="http://cropwise-dev.us-east-1.elasticbeanstalk.com"
+$env:VITE_API_URL="http://cropwise-dev.ap-south-1.elasticbeanstalk.com"
 npm run build
 
 # Create S3 bucket
@@ -133,7 +133,7 @@ Remove-Item policy.json
 aws s3api get-bucket-website --bucket cropwise-frontend-dev
 
 # Your URL will be:
-# http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
+# http://cropwise-frontend-dev.s3-website-ap-south-1.amazonaws.com
 ```
 
 ---
@@ -144,10 +144,10 @@ Add your URLs to GitHub Secrets:
 
 ```
 Name: VITE_API_URL
-Value: http://cropwise-dev.us-east-1.elasticbeanstalk.com
+Value: http://cropwise-dev.ap-south-1.elasticbeanstalk.com
 
 Name: FRONTEND_URL (if needed)
-Value: http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
+Value: http://cropwise-frontend-dev.s3-website-ap-south-1.amazonaws.com
 ```
 
 👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions/new
@@ -162,13 +162,13 @@ Add your Elastic Beanstalk URLs:
 2. Click your OAuth 2.0 Client ID
 3. **Add Authorized JavaScript Origins:**
    ```
-   http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
+   http://cropwise-frontend-dev.s3-website-ap-south-1.amazonaws.com
    http://localhost:8080
    ```
 4. **Add Authorized Redirect URIs:**
    ```
-   http://cropwise-dev.us-east-1.elasticbeanstalk.com/api/auth/google/callback
-   http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com/auth/google/callback
+   http://cropwise-dev.ap-south-1.elasticbeanstalk.com/api/auth/google/callback
+   http://cropwise-frontend-dev.s3-website-ap-south-1.amazonaws.com/auth/google/callback
    http://localhost:3000/api/auth/google/callback
    ```
 5. Click **"Save"**
@@ -179,10 +179,10 @@ Add your Elastic Beanstalk URLs:
 
 ```powershell
 # Test backend
-curl http://cropwise-dev.us-east-1.elasticbeanstalk.com/health
+curl http://cropwise-dev.ap-south-1.elasticbeanstalk.com/health
 
 # Open frontend
-start http://cropwise-frontend-dev.s3-website-us-east-1.amazonaws.com
+start http://cropwise-frontend-dev.s3-website-ap-south-1.amazonaws.com
 
 # Check logs
 eb logs

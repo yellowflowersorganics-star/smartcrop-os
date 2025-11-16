@@ -1,356 +1,198 @@
 # 📚 CropWise Documentation
 
-**Complete documentation for CropWise - Your Enterprise IoT Farm Management Platform**
+**Welcome to the CropWise documentation hub!**
+
+This directory contains all documentation organized by purpose and workflow.
 
 ---
 
-## 🎯 Quick Navigation
+## 🚀 Quick Start
 
-### **New User?** Start here:
-1. [🚀 Installation Guide](INSTALLATION.md) - Get CropWise running
-2. [👤 User Guide](USER_GUIDE.md) - Learn how to use the platform
-3. [❓ FAQ](FAQ.md) - Common questions answered
+**👉 New to CropWise?** Start here: **[0-START-HERE.md](../0-START-HERE.md)**
 
-### **Developer?** Start here:
-1. [🔀 Git Workflow](GIT_WORKFLOW.md) - Branching strategy and CI/CD
-2. [🤝 Contributing Guide](../CONTRIBUTING.md) - How to contribute
-3. [⚡ Quick Reference](QUICK_REFERENCE.md) - Command cheat sheet
-
-### **Administrator?** Start here:
-1. [🔧 Admin Guide](ADMIN_GUIDE.md) - System administration
-2. [☁️ AWS Deployment](../DEPLOY_TO_AWS_NOW.md) - Deploy to production
-3. [🔐 Security Guide](SECURITY_GUIDE.md) - Security best practices
+This master guide provides a clear, sequential path from zero to production deployment.
 
 ---
 
-## 📖 Documentation Index
+## 📁 Documentation Structure
 
-### **Getting Started**
+### **1. Setup Guides** (`setup/`)
 
-| Document | Description | For |
-|----------|-------------|-----|
-| [🚀 Installation Guide](INSTALLATION.md) | Complete setup instructions for all platforms | Everyone |
-| [🎓 Getting Started](GETTING_STARTED.md) | First steps after installation | New users |
-| [👤 User Guide](USER_GUIDE.md) | Complete feature walkthrough | End users |
-| [❓ FAQ](FAQ.md) | Frequently asked questions | Everyone |
+**Sequential guides for initial project setup** (follow in order):
 
----
+| Step | Guide | Purpose | Time |
+|------|-------|---------|------|
+| 1 | [GitHub Setup](setup/01-github-setup.md) | Repository, branches, secrets | 30 min |
+| 2 | [Local Development](setup/02-local-development.md) | Dev environment setup | 45 min |
+| 3 | [AWS Account Setup](setup/03-aws-account-setup.md) | AWS account configuration | 20 min |
+| 4 | [AWS Infrastructure (Dev)](setup/04-aws-infrastructure-dev.md) | Development AWS resources | 60 min |
+| 5 | [AWS Database Setup](setup/05-aws-database-setup.md) | RDS PostgreSQL for all envs | 30 min |
+| 6 | [Google OAuth Setup](setup/06-google-oauth-setup.md) | Authentication integration | 20 min |
+| 7 | [Communication Setup](setup/07-communication-setup.md) | Twilio, Slack, WhatsApp | 30 min |
+| 8 | [Staging Deployment](setup/08-staging-deployment.md) | Staging environment | 45 min |
+| 9 | [Production Deployment](setup/09-production-deployment.md) | Production environment | 60 min |
+| 10 | [Monitoring & Security](setup/10-monitoring-security.md) | Monitoring and hardening | 45 min |
 
-### **Development**
-
-| Document | Description | For |
-|----------|-------------|-----|
-| [🔀 Git Workflow](GIT_WORKFLOW.md) | GitFlow branching strategy and CI/CD | Developers |
-| [🤝 Contributing](../CONTRIBUTING.md) | How to contribute code | Contributors |
-| [📝 Changelog](../CHANGELOG.md) | Version history and release notes | Everyone |
-| [⚡ Quick Reference](QUICK_REFERENCE.md) | Git and CI/CD cheat sheet | Developers |
-
----
-
-### **Deployment & Administration**
-
-| Document | Description | For |
-|----------|-------------|-----|
-| [🔧 Admin Guide](ADMIN_GUIDE.md) | System administration and maintenance | Admins |
-| [☁️ AWS Deployment](../DEPLOY_TO_AWS_NOW.md) | Step-by-step AWS deployment | DevOps |
-| [📊 AWS Architecture](AWS_DEPLOYMENT_GUIDE.md) | Detailed AWS infrastructure guide | DevOps |
-| [🚀 AWS Quick Start](AWS_QUICK_START.md) | Fast AWS deployment | DevOps |
-| [🔐 Security Guide](SECURITY_GUIDE.md) | Security best practices | Admins |
-| [🐛 Troubleshooting](TROUBLESHOOTING.md) | Common issues and solutions | Everyone |
+**Total Time**: 4-6 hours for complete setup
 
 ---
 
-### **IoT Integration**
+### **2. Development** (`development/`)
 
-| Document | Description | For |
-|----------|-------------|-----|
-| [🤖 IoT Architecture V2](IOT_ARCHITECTURE_V2.md) | Hierarchical Master-Slave design | IoT developers |
-| [📡 ESP-NOW Setup](ESP_NOW_SETUP_GUIDE.md) | Hardware configuration guide | Hardware engineers |
-| [🔌 IoT Integration](IOT_INTEGRATION_GUIDE.md) | Complete IoT setup walkthrough | Everyone |
-| [🎛️ ESP32 Zone Controller](ESP32_ZONE_CONTROLLER_GUIDE.md) | ESP32 firmware and configuration | IoT developers |
-| [🌐 Edge Gateway Architecture](ARCHITECTURE_EDGE_GATEWAY.md) | Raspberry Pi gateway setup | IoT developers |
+**Daily development guides and workflows**:
 
----
-
-### **Feature Guides**
-
-| Document | Description | For |
-|----------|-------------|-----|
-| [📦 Inventory Management](INVENTORY_MANAGEMENT_GUIDE.md) | Track supplies and materials | Farm managers |
-| [✅ Task Management](TASK_MANAGEMENT_GUIDE.md) | Organize team workflows | Farm managers |
-| [👷 Labor & Cost Tracking](LABOR_COST_TRACKING_GUIDE.md) | Track profitability | Farm managers |
-| [🔬 Quality Control](QUALITY_CONTROL_GUIDE.md) | Inspection and defect tracking | Quality managers |
-| [📲 WhatsApp & SMS](WHATSAPP_SMS_SETUP.md) | Notification setup guide | Admins |
+- **[Developer Guide](development/DEVELOPER_GUIDE.md)** - Complete development workflow
+- **[Git Workflow](development/GIT_WORKFLOW.md)** - Branching, PRs, merging
+- **[Testing Guide](development/TESTING_GUIDE.md)** - Unit, integration, E2E tests
+- **[Contributing](development/CONTRIBUTING.md)** - How to contribute code
+- **[Team Onboarding](development/TEAM_ONBOARDING.md)** - New developer onboarding
 
 ---
 
-### **Architecture & Design**
+### **3. Deployment** (`deployment/`)
 
-| Document | Description | For |
-|----------|-------------|-----|
-| [🗄️ Database & AI](DATABASE_AI_ARCHITECTURE.md) | Database design and AI readiness | Architects |
-| [🏢 Commercial Platform](COMMERCIAL_PLATFORM.md) | Multi-tenant SaaS architecture | Architects |
-| [📐 Migration Plan](MIGRATION_PLAN.md) | Migration strategies | Developers |
-| [🔧 API Units](API_UNITS.md) | API specifications | Developers |
+**Deployment and CI/CD guides**:
 
----
-
-### **Authentication & OAuth**
-
-| Document | Description | For |
-|----------|-------------|-----|
-| [🔑 Google OAuth Checklist](GOOGLE_OAUTH_CHECKLIST.md) | OAuth setup guide | Admins |
+- **[Deployment Guide](deployment/DEPLOYMENT_GUIDE.md)** - Complete deployment workflow
+- **[CI/CD Setup Guide](deployment/CICD_SETUP_GUIDE.md)** - GitHub Actions setup
+- **[Release Process](deployment/RELEASE_PROCESS.md)** - Release management
+- **[Troubleshooting](deployment/TROUBLESHOOTING.md)** - Common issues and fixes
 
 ---
 
-## 🎓 Learning Paths
+### **4. Operations** (`operations/`)
 
-### **Path 1: End User** (Farm Manager, Technician)
-```
-1. Read: Installation Guide
-2. Read: User Guide (Sections 1-8)
-3. Try: Create your first farm and zone
-4. Read: User Guide (Sections 9-17)
-5. Explore: Dashboard and analytics
-6. Reference: FAQ and Troubleshooting
-```
+**Operations and maintenance**:
 
-**Time**: 2-3 hours
+- **[Admin Guide](operations/ADMIN_GUIDE.md)** - System administration
+- **[Security Guide](operations/SECURITY_GUIDE.md)** - Security best practices
+- **[Secrets Management](operations/SECRETS_MANAGEMENT_GUIDE.md)** - Managing secrets
 
 ---
 
-### **Path 2: Developer** (Contributing to codebase)
-```
-1. Read: Installation Guide
-2. Read: Git Workflow
-3. Read: Contributing Guide
-4. Set up: Development environment
-5. Try: Make a small code change
-6. Submit: Your first Pull Request
-7. Reference: Quick Reference cheat sheet
-```
+### **5. Features** (`features/`)
 
-**Time**: 4-6 hours
+**Feature-specific documentation**:
 
----
+#### **IoT Features** (`features/iot/`)
+- [IoT Integration Guide](features/iot/IOT_INTEGRATION_GUIDE.md)
+- [ESP32 Zone Controller Guide](features/iot/ESP32_ZONE_CONTROLLER_GUIDE.md)
+- [ESP-NOW Setup Guide](features/iot/ESP_NOW_SETUP_GUIDE.md)
+- [IoT Architecture V2](features/iot/IOT_ARCHITECTURE_V2.md)
 
-### **Path 3: System Administrator** (Deploying & maintaining)
-```
-1. Read: Installation Guide
-2. Read: Admin Guide
-3. Set up: Test environment
-4. Read: Security Guide
-5. Read: AWS Deployment Guide
-6. Deploy: Production instance
-7. Monitor: System health and logs
-8. Reference: Troubleshooting Guide
-```
+#### **Management Features** (`features/management/`)
+- [Task Management Guide](features/management/TASK_MANAGEMENT_GUIDE.md)
+- [Inventory Management Guide](features/management/INVENTORY_MANAGEMENT_GUIDE.md)
+- [Labor Cost Tracking Guide](features/management/LABOR_COST_TRACKING_GUIDE.md)
+- [Quality Control Guide](features/management/QUALITY_CONTROL_GUIDE.md)
 
-**Time**: 8-12 hours
+#### **Integration Features** (`features/integrations/`)
+- [WhatsApp & SMS Setup](features/integrations/WHATSAPP_SMS_SETUP.md)
+- [Google OAuth Checklist](features/integrations/GOOGLE_OAUTH_CHECKLIST.md)
 
 ---
 
-### **Path 4: IoT Integrator** (Setting up sensors and controllers)
-```
-1. Read: IoT Architecture V2
-2. Read: ESP-NOW Setup Guide
-3. Purchase: Hardware components
-4. Flash: ESP32 firmware
-5. Test: Sensor readings
-6. Deploy: In production zone
-7. Monitor: Device health and data
-8. Reference: IoT Integration Guide
-```
+### **6. Reference** (`reference/`)
 
-**Time**: 2-4 days (including shipping)
+**Quick references and lookup guides**:
+
+- **[Quick Reference](reference/QUICK_REFERENCE.md)** - Command cheat sheet
+- **[API Reference](reference/API_REFERENCE.md)** - API documentation
+- **[FAQ](reference/FAQ.md)** - Frequently asked questions
+- **[User Guide](reference/USER_GUIDE.md)** - End-user documentation
 
 ---
 
-## 📊 Documentation Statistics
+### **7. Architecture** (`architecture/`)
 
-- **Total documents**: 27
-- **Total pages**: 350+ (estimated)
-- **Code examples**: 100+
-- **Diagrams**: 15+
-- **Last updated**: November 2025
+**System architecture documentation**:
 
----
-
-## 🔍 Search Tips
-
-Looking for something specific?
-
-### **By Topic**
-- **Setup**: Installation, Getting Started, Admin Guide
-- **Features**: User Guide, Feature Guides
-- **IoT**: All IoT guides (Architecture, ESP-NOW, Integration)
-- **Deployment**: AWS guides, Admin Guide
-- **Development**: Git Workflow, Contributing, Quick Reference
-- **Security**: Security Guide, Admin Guide
-- **Troubleshooting**: Troubleshooting, FAQ
-
-### **By Role**
-- **Farmer**: User Guide, FAQ
-- **Manager**: User Guide, Feature Guides
-- **Developer**: Git Workflow, Contributing, Architecture docs
-- **Admin**: Admin Guide, Deployment guides, Security Guide
-- **IoT Engineer**: IoT guides, ESP-NOW, Architecture
+- **[Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md)** - System design
+- **[Database Schema](architecture/DATABASE_SCHEMA.md)** - Database structure
+- **[Edge Gateway](architecture/EDGE_GATEWAY.md)** - Edge computing architecture
 
 ---
 
-## 📖 Reading the Docs
+### **8. Archive** (`archive/`)
 
-### **Conventions**
-
-**Code Blocks**:
-```bash
-# Commands are prefixed with #
-# Run these in your terminal
-npm install
-```
-
-```javascript
-// JavaScript code examples
-const example = "like this";
-```
-
-**File Paths**:
-- Absolute: `/var/www/cropwise/backend/`
-- Relative: `backend/src/index.js`
-- Windows: `C:\Users\praghav\cropwise\`
-
-**Placeholders**:
-- `your_value_here` - Replace with your actual value
-- `<required>` - Required parameter
-- `[optional]` - Optional parameter
-
-**Symbols**:
-- ✅ Recommended / Required
-- ❌ Not recommended / Prohibited
-- ⚠️ Warning / Caution
-- 💡 Tip / Best practice
-- 🔒 Security related
-- 🚀 Performance tip
+Historical and deprecated documentation (for reference only).
 
 ---
 
-## 🤝 Contributing to Docs
+## 🎯 Common Scenarios
 
-Found an error? Want to improve the docs?
+### **"I'm setting up the project from scratch"**
+→ Start with **[0-START-HERE.md](../0-START-HERE.md)** and follow steps 1-10
 
-### **How to Contribute**:
+### **"I'm a new developer joining the team"**
+→ Read **[Team Onboarding](development/TEAM_ONBOARDING.md)**
 
-1. **Fork** the repository
-2. **Edit** the markdown file
-3. **Submit** a Pull Request
-4. **Describe** what you changed and why
+### **"I need to deploy a hotfix"**
+→ Follow **[Release Process](deployment/RELEASE_PROCESS.md)** (hotfix section)
 
-### **Style Guide**:
+### **"The application is down"**
+→ Check **[Troubleshooting](deployment/TROUBLESHOOTING.md)**
 
-- Use clear, simple language
-- Include code examples
-- Add diagrams where helpful
-- Link to related documents
-- Keep formatting consistent
+### **"I need to add IoT device support"**
+→ Read **[IoT Integration Guide](features/iot/IOT_INTEGRATION_GUIDE.md)**
 
-See [Contributing Guide](../CONTRIBUTING.md) for details.
+### **"I need a quick command reference"**
+→ Check **[Quick Reference](reference/QUICK_REFERENCE.md)**
 
----
-
-## 📞 Need Help?
-
-Can't find what you're looking for?
-
-- **Search**: Use Ctrl+F in your browser
-- **GitHub Search**: Search all docs on GitHub
-- **Ask**: [Community Forum](https://community.cropwise.io)
-- **Email**: docs@cropwise.io
+### **"I want to understand the system architecture"**
+→ Read **[Architecture Overview](architecture/ARCHITECTURE_OVERVIEW.md)**
 
 ---
 
-## 🔄 Keep Updated
+## 📊 Documentation Status
 
-Documentation is continuously improved.
+| Category | Guides | Status |
+|----------|--------|--------|
+| Setup | 10 | ✅ Complete |
+| Development | 5 | ✅ Complete |
+| Deployment | 4 | ✅ Complete |
+| Operations | 3 | ✅ Complete |
+| Features | 11 | ✅ Complete |
+| Reference | 4 | ✅ Complete |
+| Architecture | 3 | ✅ Complete |
 
-**Stay informed**:
-- ⭐ Star the [GitHub repository](https://github.com/yellowflowersorganics-star/cropwise)
-- 👁️ Watch for releases
-- 📧 Subscribe to newsletter
-- 💬 Join [Discord](https://discord.gg/cropwise)
-
----
-
-## 📝 Documentation Roadmap
-
-**Coming Soon**:
-- [ ] Video tutorials
-- [ ] Interactive demos
-- [ ] API playground
-- [ ] Multi-language support
-- [ ] Searchable docs site
-- [ ] PDF export
+**Last Updated**: November 16, 2025
 
 ---
 
-## ⭐ Most Popular Docs
+## 🤝 Contributing to Documentation
 
-**Top 5 Most Accessed**:
-1. [Installation Guide](INSTALLATION.md) - Setup instructions
-2. [User Guide](USER_GUIDE.md) - Feature walkthrough
-3. [IoT Integration](IOT_INTEGRATION_GUIDE.md) - Hardware setup
-4. [AWS Deployment](../DEPLOY_TO_AWS_NOW.md) - Cloud deployment
-5. [Troubleshooting](TROUBLESHOOTING.md) - Problem solving
+Found an error or want to improve the docs?
 
----
+1. Create an issue with label `documentation`
+2. Make changes in a feature branch
+3. Submit PR with clear description
+4. Tag reviewers
 
-## 📋 Documentation Checklist
-
-Before deploying CropWise, ensure you've read:
-
-**Essential**:
-- [ ] Installation Guide
-- [ ] Admin Guide (if self-hosting)
-- [ ] Security Guide
-- [ ] User Guide (Sections 1-5)
-
-**Recommended**:
-- [ ] AWS Deployment Guide (if using AWS)
-- [ ] IoT Integration Guide (if using sensors)
-- [ ] Troubleshooting Guide
-- [ ] FAQ
-
-**Optional**:
-- [ ] Git Workflow (if contributing)
-- [ ] Database Architecture
-- [ ] Feature-specific guides
+See **[Contributing Guide](development/CONTRIBUTING.md)** for details.
 
 ---
 
-## 🎯 Quick Links
+## 📝 Documentation Standards
 
-**External Resources**:
-- [Official Website](https://cropwise.io)
-- [Community Forum](https://community.cropwise.io)
-- [GitHub Repository](https://github.com/yellowflowersorganics-star/cropwise)
-- [API Documentation](http://localhost:8080/api-docs)
-- [Blog](https://blog.cropwise.io)
-- [YouTube Channel](https://youtube.com/@cropwiseos)
-
-**Support**:
-- [Support Email](mailto:support@cropwise.io)
-- [Discord](https://discord.gg/cropwise)
-- [Twitter](https://twitter.com/CropWiseOS)
+- Use Markdown for all docs
+- Include table of contents for long docs
+- Add code examples where applicable
+- Keep guides focused and actionable
+- Update last modified date
+- Cross-reference related docs
 
 ---
 
-<div align="center">
+## 🆘 Need Help?
 
-**📚 Happy Reading! 🌱**
+If you can't find what you're looking for:
 
-*Documentation Version: 1.0.0*  
-*Last Updated: November 2025*
+1. Check the **[FAQ](reference/FAQ.md)**
+2. Search the docs (Ctrl/Cmd + F)
+3. Ask in team Slack channel
+4. Create a GitHub issue
 
-[⬆️ Back to Top](#-cropwise-documentation)
+---
 
-</div>
-
+**Happy farming! 🌱**
