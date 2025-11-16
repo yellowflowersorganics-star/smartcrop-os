@@ -375,6 +375,6 @@ We welcome contributions! Please read our [Contributing Guide](docs/development/
 
 ---
 
-**Last Updated**: November 16, 2024  
+**Last Updated**: November 16, 2025  
 **Maintained by**: CropWise Team
 

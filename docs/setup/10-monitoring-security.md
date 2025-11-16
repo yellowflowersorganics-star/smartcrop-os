@@ -499,7 +499,7 @@ If you need help:
 
 ---
 
-**Last Updated**: November 16, 2024
+**Last Updated**: November 16, 2025
 
 **You're all set! Happy farming! 🌱**
 

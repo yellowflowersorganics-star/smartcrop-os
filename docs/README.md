@@ -156,7 +156,7 @@ Historical and deprecated documentation (for reference only).
 | Reference | 4 | ✅ Complete |
 | Architecture | 3 | ✅ Complete |
 
-**Last Updated**: November 16, 2024
+**Last Updated**: November 16, 2025
 
 ---
 

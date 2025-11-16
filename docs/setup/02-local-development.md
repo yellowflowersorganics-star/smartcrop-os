@@ -500,5 +500,5 @@ Your local development environment is ready!
 
 ---
 
-**Last Updated**: November 16, 2024
+**Last Updated**: November 16, 2025
 
