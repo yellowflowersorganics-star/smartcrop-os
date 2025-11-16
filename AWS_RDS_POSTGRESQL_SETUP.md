@@ -30,11 +30,11 @@ You'll create **3 separate databases**, one for each environment:
 ### What You'll Get:
 ```bash
 # Three separate DATABASE_URLs for GitHub Secrets:
-DATABASE_URL_DEV=postgresql://cropwise_dev_admin:DevPass123!@cropwise-dev-db.abc123.us-east-1.rds.amazonaws.com:5432/cropwise_dev
+DATABASE_URL_DEV=postgresql://cropwise_dev_admin:DevPass123!@cropwise-dev-db.abc123.ap-south-1.rds.amazonaws.com:5432/cropwise_dev
 
-DATABASE_URL_STAGE=postgresql://cropwise_stage_admin:StagePass123!@cropwise-stage-db.xyz456.us-east-1.rds.amazonaws.com:5432/cropwise_stage
+DATABASE_URL_STAGE=postgresql://cropwise_stage_admin:StagePass123!@cropwise-stage-db.xyz456.ap-south-1.rds.amazonaws.com:5432/cropwise_stage
 
-DATABASE_URL_PROD=postgresql://cropwise_prod_admin:ProdPass123!@cropwise-prod-db.def789.us-east-1.rds.amazonaws.com:5432/cropwise_prod
+DATABASE_URL_PROD=postgresql://cropwise_prod_admin:ProdPass123!@cropwise-prod-db.def789.ap-south-1.rds.amazonaws.com:5432/cropwise_prod
 ```
 
 ---
@@ -47,7 +47,7 @@ Perfect for local development and testing. Can use Free Tier if available.
 
 1. Go to: https://console.aws.amazon.com
 2. Sign in with your AWS account
-3. **Select region**: **us-east-1** (N. Virginia)
+3. **Select region**: **ap-south-1** (N. Virginia)
 4. In search bar, type: **RDS** → Click **RDS**
 5. Click **Create database** button (orange)
 
@@ -487,7 +487,7 @@ You need to get the endpoint for each database and construct three separate DATA
 1. Click on database name: **`cropwise-dev-db`**
 2. In **Connectivity & security** tab, find:
    ```
-   Endpoint: cropwise-dev-db.c9abc123xyz.us-east-1.rds.amazonaws.com
+   Endpoint: cropwise-dev-db.c9abc123xyz.ap-south-1.rds.amazonaws.com
    Port: 5432
    ```
 3. Copy the endpoint
@@ -505,7 +505,7 @@ Your Development URL:
 DATABASE_URL_DEV=postgresql://cropwise_dev_admin:CropWiseDev2025!@YOUR_DEV_ENDPOINT:5432/cropwise_dev
 
 # Example:
-DATABASE_URL_DEV=postgresql://cropwise_dev_admin:CropWiseDev2025!@cropwise-dev-db.c9abc123xyz.us-east-1.rds.amazonaws.com:5432/cropwise_dev
+DATABASE_URL_DEV=postgresql://cropwise_dev_admin:CropWiseDev2025!@cropwise-dev-db.c9abc123xyz.ap-south-1.rds.amazonaws.com:5432/cropwise_dev
 ```
 
 ⚠️ **Password URL Encoding**: If your password has special characters, encode them:
@@ -521,7 +521,7 @@ DATABASE_URL_DEV=postgresql://cropwise_dev_admin:CropWiseDev2025!@cropwise-dev-d
 2. Click on database name: **`cropwise-stage-db`**
 3. In **Connectivity & security** tab, copy the endpoint:
    ```
-   Endpoint: cropwise-stage-db.d7def456abc.us-east-1.rds.amazonaws.com
+   Endpoint: cropwise-stage-db.d7def456abc.ap-south-1.rds.amazonaws.com
    Port: 5432
    ```
 
@@ -533,7 +533,7 @@ Your Staging URL:
 DATABASE_URL_STAGE=postgresql://cropwise_stage_admin:CropWiseStage2025!Secure@YOUR_STAGE_ENDPOINT:5432/cropwise_stage
 
 # Example:
-DATABASE_URL_STAGE=postgresql://cropwise_stage_admin:CropWiseStage2025%21Secure@cropwise-stage-db.d7def456abc.us-east-1.rds.amazonaws.com:5432/cropwise_stage
+DATABASE_URL_STAGE=postgresql://cropwise_stage_admin:CropWiseStage2025%21Secure@cropwise-stage-db.d7def456abc.ap-south-1.rds.amazonaws.com:5432/cropwise_stage
 ```
 
 Note: `!` is encoded as `%21` in the example above.
@@ -546,7 +546,7 @@ Note: `!` is encoded as `%21` in the example above.
 2. Click on database name: **`cropwise-prod-db`**
 3. In **Connectivity & security** tab, copy the endpoint:
    ```
-   Endpoint: cropwise-prod-db.e8ghi789jkl.us-east-1.rds.amazonaws.com
+   Endpoint: cropwise-prod-db.e8ghi789jkl.ap-south-1.rds.amazonaws.com
    Port: 5432
    ```
 4. **Multi-AZ Note**: The endpoint is the same even with Multi-AZ. AWS handles failover automatically.
@@ -559,7 +559,7 @@ Your Production URL:
 DATABASE_URL_PROD=postgresql://cropwise_prod_admin:YOUR_STRONG_PASSWORD@YOUR_PROD_ENDPOINT:5432/cropwise_prod
 
 # Example (with encoded special characters):
-DATABASE_URL_PROD=postgresql://cropwise_prod_admin:CropWiseProd2025%21SecureP%40ssw0rd%23@cropwise-prod-db.e8ghi789jkl.us-east-1.rds.amazonaws.com:5432/cropwise_prod
+DATABASE_URL_PROD=postgresql://cropwise_prod_admin:CropWiseProd2025%21SecureP%40ssw0rd%23@cropwise-prod-db.e8ghi789jkl.ap-south-1.rds.amazonaws.com:5432/cropwise_prod
 ```
 
 ---
@@ -1136,7 +1136,7 @@ aws sns create-topic --name billing-alerts
 
 # Subscribe your email
 aws sns subscribe \
-  --topic-arn arn:aws:sns:us-east-1:YOUR_ACCOUNT:billing-alerts \
+  --topic-arn arn:aws:sns:ap-south-1:YOUR_ACCOUNT:billing-alerts \
   --protocol email \
   --notification-endpoint your-email@example.com
 
@@ -1455,7 +1455,7 @@ cropwise-dev-db
 cropwise_dev_admin
 
 # Connection String
-postgresql://cropwise_dev_admin:CropWiseDev2025!@cropwise-dev-db.c9abc123xyz.us-east-1.rds.amazonaws.com:5432/cropwise_dev
+postgresql://cropwise_dev_admin:CropWiseDev2025!@cropwise-dev-db.c9abc123xyz.ap-south-1.rds.amazonaws.com:5432/cropwise_dev
 
 # GitHub Secret Name
 DATABASE_URL_DEV
@@ -1470,7 +1470,7 @@ cropwise-stage-db
 cropwise_stage_admin
 
 # Connection String
-postgresql://cropwise_stage_admin:CropWiseStage2025!Secure@cropwise-stage-db.d7def456abc.us-east-1.rds.amazonaws.com:5432/cropwise_stage
+postgresql://cropwise_stage_admin:CropWiseStage2025!Secure@cropwise-stage-db.d7def456abc.ap-south-1.rds.amazonaws.com:5432/cropwise_stage
 
 # GitHub Secret Name
 DATABASE_URL_STAGE
@@ -1485,7 +1485,7 @@ cropwise-prod-db
 cropwise_prod_admin
 
 # Connection String
-postgresql://cropwise_prod_admin:YOUR_STRONG_PASSWORD@cropwise-prod-db.e8ghi789jkl.us-east-1.rds.amazonaws.com:5432/cropwise_prod
+postgresql://cropwise_prod_admin:YOUR_STRONG_PASSWORD@cropwise-prod-db.e8ghi789jkl.ap-south-1.rds.amazonaws.com:5432/cropwise_prod
 
 # GitHub Secret Name
 DATABASE_URL_PROD

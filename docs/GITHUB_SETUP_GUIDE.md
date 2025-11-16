@@ -260,7 +260,7 @@ Click "New repository secret" for each. **Total: 30+ secrets** for complete mult
 
 | Secret Name | Value | Description |
 |-------------|-------|-------------|
-| `AWS_REGION` | `us-east-1` | AWS region for all resources |
+| `AWS_REGION` | `ap-south-1` | AWS region for all resources |
 | `AWS_ACCESS_KEY_ID` | Your AWS access key | AWS authentication |
 | `AWS_SECRET_ACCESS_KEY` | Your AWS secret key | AWS authentication |
 | `AWS_ECR_REPOSITORY` | `cropwise-backend` | ECR repository name |
@@ -347,7 +347,7 @@ Click "New repository secret" for each. **Total: 30+ secrets** for complete mult
 $REPO = "yellowflowersorganics-star/cropwise"
 
 # AWS Core
-gh secret set AWS_REGION --body "us-east-1" --repo $REPO
+gh secret set AWS_REGION --body "ap-south-1" --repo $REPO
 gh secret set AWS_ACCESS_KEY_ID --body "YOUR_AWS_KEY" --repo $REPO
 gh secret set AWS_SECRET_ACCESS_KEY --body "YOUR_AWS_SECRET" --repo $REPO
 gh secret set AWS_ECR_REPOSITORY --body "cropwise-backend" --repo $REPO

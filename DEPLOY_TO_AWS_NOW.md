@@ -60,7 +60,7 @@ aws configure
 # You'll be prompted for:
 # AWS Access Key ID: [Get from AWS Console]
 # AWS Secret Access Key: [Get from AWS Console]
-# Default region name: us-east-1
+# Default region name: ap-south-1
 # Default output format: json
 ```
 
@@ -148,7 +148,7 @@ aws rds create-db-instance `
   --backup-retention-period 7 `
   --storage-encrypted `
   --publicly-accessible false `
-  --region us-east-1
+  --region ap-south-1
 
 # Wait for database to be available (takes ~10 minutes)
 aws rds wait db-instance-available --db-instance-identifier cropwise-db
@@ -173,7 +173,7 @@ aws elasticache create-cache-cluster `
   --cache-node-type cache.t3.micro `
   --engine redis `
   --num-cache-nodes 1 `
-  --region us-east-1
+  --region ap-south-1
 
 # Wait for creation (~5 minutes)
 aws elasticache wait cache-cluster-available --cache-cluster-id cropwise-redis
@@ -200,7 +200,7 @@ cd backend
 eb init
 
 # You'll be prompted:
-# 1. Select a default region: (choose us-east-1 or your preferred region)
+# 1. Select a default region: (choose ap-south-1 or your preferred region)
 # 2. Enter Application Name: cropwise
 # 3. Do you want to set up SSH: Y (recommended)
 # 4. Select platform: Node.js
@@ -275,7 +275,7 @@ eb open
 
 **Your backend API is now live!** 🎉
 
-Copy the URL (e.g., `http://cropwise-production.us-east-1.elasticbeanstalk.com`)
+Copy the URL (e.g., `http://cropwise-production.ap-south-1.elasticbeanstalk.com`)
 
 ---
 
@@ -293,7 +293,7 @@ VITE_API_URL=http://YOUR_BACKEND_URL_FROM_STEP_10.elasticbeanstalk.com
 npm run build
 
 # Create S3 bucket for frontend
-aws s3 mb s3://cropwise-frontend-YOUR_UNIQUE_ID --region us-east-1
+aws s3 mb s3://cropwise-frontend-YOUR_UNIQUE_ID --region ap-south-1
 
 # Enable static website hosting
 aws s3 website s3://cropwise-frontend-YOUR_UNIQUE_ID `
@@ -318,7 +318,7 @@ aws s3api put-bucket-policy `
   }'
 
 # Get website URL
-echo "Your frontend is live at: http://cropwise-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com"
+echo "Your frontend is live at: http://cropwise-frontend-YOUR_UNIQUE_ID.s3-website-ap-south-1.amazonaws.com"
 ```
 
 ---
@@ -328,7 +328,7 @@ echo "Your frontend is live at: http://cropwise-frontend-YOUR_UNIQUE_ID.s3-websi
 ```powershell
 # Create CloudFront distribution for faster global access
 aws cloudfront create-distribution `
-  --origin-domain-name cropwise-frontend-YOUR_UNIQUE_ID.s3-website-us-east-1.amazonaws.com `
+  --origin-domain-name cropwise-frontend-YOUR_UNIQUE_ID.s3-website-ap-south-1.amazonaws.com `
   --default-root-object index.html
 
 # Wait for distribution to deploy (~15 minutes)
@@ -539,7 +539,7 @@ Your CropWise platform is now live on AWS! 🎉
 
 **Your URLs:**
 - **Backend API**: `http://YOUR_BACKEND_URL.elasticbeanstalk.com`
-- **Frontend App**: `http://YOUR_BUCKET.s3-website-us-east-1.amazonaws.com`
+- **Frontend App**: `http://YOUR_BUCKET.s3-website-ap-south-1.amazonaws.com`
 - **API Docs**: `http://YOUR_FRONTEND_URL/api-docs`
 
 **Share with your team and start managing your smart farm! 🌱🚀**

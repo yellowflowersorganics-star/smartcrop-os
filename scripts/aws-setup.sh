@@ -15,7 +15,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # Configuration
-AWS_REGION=${AWS_REGION:-us-east-1}
+AWS_REGION=${AWS_REGION:-ap-south-1}
 APP_NAME="cropwise"
 DB_USERNAME="cropwise_admin"
 DB_PASSWORD=${DB_PASSWORD:-$(openssl rand -base64 32 | tr -d "=+/" | cut -c1-25)}

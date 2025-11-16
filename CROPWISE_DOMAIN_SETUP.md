@@ -38,9 +38,9 @@ Docs:         https://docs.cropwise.io (optional)
 
 ### **1.1 Request SSL Certificate**
 
-👉 https://console.aws.amazon.com/acm/home?region=us-east-1
+👉 https://console.aws.amazon.com/acm/home?region=ap-south-1
 
-**Important:** CloudFront requires certificates in `us-east-1` region!
+**Important:** CloudFront requires certificates in `ap-south-1` region!
 
 1. Click **"Request certificate"**
 2. Select **"Request a public certificate"**
@@ -350,7 +350,7 @@ dig cropwise.io NS
 **Solution:** Wait up to 48 hours for DNS propagation
 
 ### **Issue: SSL Certificate not working**
-- Ensure certificate is in `us-east-1` region for CloudFront
+- Ensure certificate is in `ap-south-1` region for CloudFront
 - Check that DNS validation is complete
 - Verify CNAME records are correct
 

@@ -110,12 +110,12 @@ JWT_SECRET=your-local-secret
 [default]
 aws_access_key_id = AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key = your-secret-key
-region = us-east-1
+region = ap-south-1
 
 [production]
 aws_access_key_id = AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key = different-secret-key
-region = us-east-1
+region = ap-south-1
 ```
 
 **3. Use the credentials in code**
@@ -125,7 +125,7 @@ const AWS = require('aws-sdk');
 
 // This will automatically use credentials from ~/.aws/credentials
 const s3 = new AWS.S3({
-  region: process.env.AWS_REGION || 'us-east-1'
+  region: process.env.AWS_REGION || 'ap-south-1'
 });
 ```
 

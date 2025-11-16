@@ -43,7 +43,7 @@ aws configure
 # Enter:
 # AWS Access Key ID: (from AWS Console -> IAM)
 # AWS Secret Access Key: (from AWS Console -> IAM)
-# Default region: us-east-1
+# Default region: ap-south-1
 # Default output format: json
 ```
 
@@ -183,7 +183,7 @@ cd backend
 # Initialize EB application
 eb init cropwise-backend \
   --platform "Node.js 18 running on 64bit Amazon Linux 2023" \
-  --region us-east-1
+  --region ap-south-1
 
 # Create environment
 eb create cropwise-production \

@@ -9,7 +9,7 @@
   "containerDefinitions": [
     {
       "name": "backend",
-      "image": "ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:latest",
+      "image": "ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:latest",
       "essential": true,
       "portMappings": [
         {
@@ -30,46 +30,46 @@
       "secrets": [
         {
           "name": "DB_HOST",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/db-host"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/db-host"
         },
         {
           "name": "DB_PORT",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/db-port"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/db-port"
         },
         {
           "name": "DB_NAME",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/db-name"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/db-name"
         },
         {
           "name": "DB_USER",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/db-user"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/db-user"
         },
         {
           "name": "DB_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/db-password"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/db-password"
         },
         {
           "name": "REDIS_HOST",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/redis-host"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/redis-host"
         },
         {
           "name": "JWT_SECRET",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/jwt-secret"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/jwt-secret"
         },
         {
           "name": "GOOGLE_CLIENT_ID",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/google-client-id"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/google-client-id"
         },
         {
           "name": "GOOGLE_CLIENT_SECRET",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:cropwise/google-client-secret"
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:ACCOUNT_ID:secret:cropwise/google-client-secret"
         }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/cropwise-backend",
-          "awslogs-region": "us-east-1",
+          "awslogs-region": "ap-south-1",
           "awslogs-stream-prefix": "ecs"
         }
       },

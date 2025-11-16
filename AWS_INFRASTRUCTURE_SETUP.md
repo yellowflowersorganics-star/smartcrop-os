@@ -71,20 +71,20 @@ You'll create separate AWS resources for **Development**, **Staging**, and **Pro
 
 You'll see something like:
 ```
-123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend
 ```
 
 **Save this!** You'll use it with different tags:
 ```
 # Development
-123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:dev
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:dev
 
 # Staging
-123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:stage
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:stage
 
 # Production (versioned)
-123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:v1.0.0
-123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:prod (latest)
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:v1.0.0
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:prod (latest)
 ```
 
 ### **1.4 Set Up Lifecycle Policy (Optional but Recommended)**
@@ -262,9 +262,9 @@ You should now see 3 clusters:
 5. **Network Mapping:**
    - **VPC**: Default VPC (same as target group)
    - **Mappings**: Select **at least 2 availability zones**
-     - ✅ us-east-1a
-     - ✅ us-east-1b
-     - ⭕ us-east-1c (optional)
+     - ✅ ap-south-1a
+     - ✅ ap-south-1b
+     - ⭕ ap-south-1c (optional)
 
 6. **Security Groups:**
    - Click **"Create new security group"**
@@ -297,7 +297,7 @@ You should now see 3 clusters:
 - Wait 2-5 minutes for status to become **Active**
 - Note the DNS name:
   ```
-  cropwise-dev-alb-1234567890.us-east-1.elb.amazonaws.com
+  cropwise-dev-alb-1234567890.ap-south-1.elb.amazonaws.com
   ```
 - **This is your development backend API URL!**
 
@@ -322,7 +322,7 @@ Repeat the process for staging:
 
 #### **DNS Name:**
 ```
-cropwise-stage-alb-9876543210.us-east-1.elb.amazonaws.com
+cropwise-stage-alb-9876543210.ap-south-1.elb.amazonaws.com
 ```
 
 ---
@@ -344,9 +344,9 @@ cropwise-stage-alb-9876543210.us-east-1.elb.amazonaws.com
 - Name: `cropwise-prod-alb`
 - Scheme: Internet-facing
 - **Network mapping**: All 3 availability zones (for high availability)
-  - ✅ us-east-1a
-  - ✅ us-east-1b
-  - ✅ us-east-1c
+  - ✅ ap-south-1a
+  - ✅ ap-south-1b
+  - ✅ ap-south-1c
 - Security group: Create `cropwise-prod-alb-sg`
   - **Inbound rules**:
     ```
@@ -362,7 +362,7 @@ cropwise-stage-alb-9876543210.us-east-1.elb.amazonaws.com
 
 #### **DNS Name:**
 ```
-cropwise-prod-alb-5555555555.us-east-1.elb.amazonaws.com
+cropwise-prod-alb-5555555555.ap-south-1.elb.amazonaws.com
 ```
 
 ---
@@ -381,13 +381,13 @@ You should now have 3 ALBs:
 Add these to your GitHub Secrets or `.env`:
 ```bash
 # Development
-BACKEND_URL_DEV=http://cropwise-dev-alb-XXX.us-east-1.elb.amazonaws.com
+BACKEND_URL_DEV=http://cropwise-dev-alb-XXX.ap-south-1.elb.amazonaws.com
 
 # Staging
-BACKEND_URL_STAGE=http://cropwise-stage-alb-XXX.us-east-1.elb.amazonaws.com
+BACKEND_URL_STAGE=http://cropwise-stage-alb-XXX.ap-south-1.elb.amazonaws.com
 
 # Production
-BACKEND_URL_PROD=http://cropwise-prod-alb-XXX.us-east-1.elb.amazonaws.com
+BACKEND_URL_PROD=http://cropwise-prod-alb-XXX.ap-south-1.elb.amazonaws.com
 ```
 
 **Note**: For production, you'll want to add a custom domain and SSL (covered in a separate guide)
@@ -416,7 +416,7 @@ BACKEND_URL_PROD=http://cropwise-prod-alb-XXX.us-east-1.elb.amazonaws.com
 - **Container name**: `cropwise-backend-dev`
 - **Image URI**: Your ECR URI from Step 1.4
   ```
-  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:dev
+  123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:dev
   ```
 - **Port mappings**: 3000 (TCP)
 
@@ -456,7 +456,7 @@ Repeat the process with staging-specific values:
 - **Container name**: `cropwise-backend-stage`
 - **Image URI**: 
   ```
-  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:stage
+  123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:stage
   ```
 - **Port mappings**: 3000 (TCP)
 
@@ -492,7 +492,7 @@ Repeat the process with production-specific values:
 - **Container name**: `cropwise-backend-prod`
 - **Image URI**: Use version tags for production
   ```
-  123456789012.dkr.ecr.us-east-1.amazonaws.com/cropwise-backend:v1.0.0
+  123456789012.dkr.ecr.ap-south-1.amazonaws.com/cropwise-backend:v1.0.0
   # Or use 'prod' tag for latest production build
   ```
 - **Port mappings**: 3000 (TCP)
@@ -590,7 +590,7 @@ MQTT_BROKER_URL = mqtt://cropwise-prod-mqtt:1883
 
 ```powershell
 # Test health endpoint
-curl http://cropwise-dev-alb-XXXXXXXXXX.us-east-1.elb.amazonaws.com/health
+curl http://cropwise-dev-alb-XXXXXXXXXX.ap-south-1.elb.amazonaws.com/health
 ```
 
 Expected response:
@@ -725,13 +725,13 @@ You should now have 3 services running:
 
 ```powershell
 # Test Development
-curl http://cropwise-dev-alb-XXX.us-east-1.elb.amazonaws.com/health
+curl http://cropwise-dev-alb-XXX.ap-south-1.elb.amazonaws.com/health
 
 # Test Staging
-curl http://cropwise-stage-alb-XXX.us-east-1.elb.amazonaws.com/health
+curl http://cropwise-stage-alb-XXX.ap-south-1.elb.amazonaws.com/health
 
 # Test Production
-curl http://cropwise-prod-alb-XXX.us-east-1.elb.amazonaws.com/health
+curl http://cropwise-prod-alb-XXX.ap-south-1.elb.amazonaws.com/health
 ```
 
 Expected responses should show correct environment:
@@ -763,7 +763,7 @@ Expected responses should show correct environment:
 2. Configure:
    - **Bucket name**: `cropwise-dev-frontend` (must be globally unique)
      - If taken, try: `cropwise-dev-frontend-2025` or `cropwise-dev-YOUR_COMPANY`
-   - **AWS Region**: us-east-1 (same as other resources)
+   - **AWS Region**: ap-south-1 (same as other resources)
    - **Object Ownership**: ACLs disabled (recommended)
    - **Block Public Access settings**: 
      - ⚠️ **UNCHECK** "Block all public access" (CloudFront needs access)
@@ -788,7 +788,7 @@ Expected responses should show correct environment:
 5. Click **"Save changes"**
 6. Note the **Bucket website endpoint**: 
    ```
-   http://cropwise-dev-frontend.s3-website-us-east-1.amazonaws.com
+   http://cropwise-dev-frontend.s3-website-ap-south-1.amazonaws.com
    ```
 
 #### **Configure Bucket Policy:**
@@ -824,7 +824,7 @@ Repeat for staging:
 1. Click **"Create bucket"**
 2. Configure:
    - **Bucket name**: `cropwise-stage-frontend`
-   - **Region**: us-east-1
+   - **Region**: ap-south-1
    - **Block Public Access**: UNCHECK all
    - **Bucket Versioning**: ⭕ Disable
    - **Encryption**: ✅ Enable (SSE-S3)
@@ -843,7 +843,7 @@ Production bucket with best practices:
 1. Click **"Create bucket"**
 2. Configure:
    - **Bucket name**: `cropwise-prod-frontend`
-   - **Region**: us-east-1
+   - **Region**: ap-south-1
    - **Block Public Access**: UNCHECK all
    - **Bucket Versioning**: ✅ **Enable** (important for rollback)
    - **Default encryption**: ✅ Enable (SSE-S3 or SSE-KMS for extra security)
@@ -893,233 +893,638 @@ echo "<h1>CropWise Dev Frontend</h1>" > index.html
 aws s3 cp index.html s3://cropwise-dev-frontend/
 
 # Test in browser:
-# http://cropwise-dev-frontend.s3-website-us-east-1.amazonaws.com
+# http://cropwise-dev-frontend.s3-website-ap-south-1.amazonaws.com
 ```
 
 ---
 
-## 🌐 STEP 7: Create CloudFront Distribution
+## 🌐 STEP 7: Create CloudFront Distributions
 
-**What it is**: CDN for fast global delivery of your frontend
+**What it is**: Global CDN (Content Delivery Network) for fast frontend delivery worldwide
+
+**Strategy**: Create **3 separate CloudFront distributions** for each S3 bucket
 
 ### **7.1 Go to CloudFront Console**
 👉 https://console.aws.amazon.com/cloudfront/home
 
-### **7.2 Create Distribution**
+---
+
+### **7.2 Create Development Distribution**
 
 1. Click **"Create distribution"**
 
-**Origin Settings:**
-- **Origin domain**: Select your S3 bucket from dropdown
-  - `cropwise-dev-frontend.s3.us-east-1.amazonaws.com`
+#### **Origin Settings:**
+- **Origin domain**: Select from dropdown:
+  - `cropwise-dev-frontend.s3.ap-south-1.amazonaws.com`
 - **Origin path**: Leave empty
-- **Origin access**: Public (or Origin Access Control for more security)
+- **Name**: Auto-generated (fine as-is)
+- **Origin access**: Public (simpler for dev)
+- **Enable Origin Shield**: ⭕ No (not needed for dev)
 
-**Default Cache Behavior:**
-- **Viewer protocol policy**: Redirect HTTP to HTTPS
+#### **Default Cache Behavior:**
+- **Path pattern**: Default (*)
+- **Compress objects automatically**: ✅ Yes
+- **Viewer protocol policy**: **Redirect HTTP to HTTPS**
 - **Allowed HTTP methods**: GET, HEAD, OPTIONS
-- **Cache policy**: CachingOptimized
-- **Origin request policy**: CORS-S3Origin (if using CORS)
+- **Restrict viewer access**: ⭕ No
+- **Cache key and origin requests**:
+  - **Cache policy**: CachingOptimized
+  - **Origin request policy**: None (or CORS-S3Origin if using API calls)
+- **Response headers policy**: None
 
-**Settings:**
-- **Price class**: Use all edge locations (or choose cheaper option)
-- **Alternate domain name (CNAME)**: Leave empty (no custom domain yet)
-- **Custom SSL certificate**: Default CloudFront Certificate
+#### **Function Associations:**
+- Leave empty (no edge functions for now)
+
+#### **Settings:**
+- **Price class**: Use all edge locations (or "US, Canada, Europe" to save cost)
+- **AWS WAF web ACL**: ⭕ Do not enable (not needed for dev)
+- **Alternate domain name (CNAME)**: Leave empty (use CloudFront URL)
+- **Custom SSL certificate**: Default CloudFront Certificate (*.cloudfront.net)
+- **Supported HTTP versions**: HTTP/2, HTTP/3
 - **Default root object**: `index.html`
+- **Standard logging**: ⭕ Off (save cost for dev)
+- **IPv6**: ✅ On
+- **Description**: CropWise Development Frontend
+- **Tags**:
+  - Key: `Environment`, Value: `development`
+  - Key: `Project`, Value: `cropwise`
 
 2. Click **"Create distribution"**
 
-### **7.3 Wait for Deployment**
+#### **Wait for Deployment:**
+- Status will show **"Deploying"** for 5-15 minutes
+- When complete, status changes to **"Enabled"**
+- **Do not close the browser!** You need the distribution details
 
-- Status will show "Deploying" for 5-15 minutes
-- When complete, status changes to "Enabled"
+#### **Get Your Frontend URL:**
 
-### **7.4 Get Your Frontend URL**
-
-You'll see:
+You'll see the **Distribution domain name**:
 ```
-Distribution domain name: d111111abcdef8.cloudfront.net
-```
-
-**This is your frontend URL!** Save it!
-
-Example:
-```
-https://d111111abcdef8.cloudfront.net
+d1a2b3c4d5e6f7.cloudfront.net
 ```
 
-### **7.5 Add Error Pages (Important for SPAs)**
+**This is your DEV frontend URL!**
+```
+https://d1a2b3c4d5e6f7.cloudfront.net
+```
 
-1. Click your distribution
-2. **Error pages** tab
+#### **Add Error Pages (Critical for SPAs - React/Vue/Angular):**
+
+1. Click your distribution ID
+2. Go to **Error pages** tab
 3. Click **"Create custom error response"**
-4. Configure:
-   - **HTTP error code**: 403
+4. Configure for 403 errors:
+   - **HTTP error code**: 403 (Forbidden)
    - **Customize error response**: Yes
    - **Response page path**: `/index.html`
-   - **HTTP response code**: 200
-5. Click **"Create"**
-6. Repeat for error code 404
+   - **HTTP response code**: 200 (OK)
+   - Click **"Create custom error response"**
 
-This ensures your SPA routing works correctly.
+5. Click **"Create custom error response"** again
+6. Configure for 404 errors:
+   - **HTTP error code**: 404 (Not Found)
+   - **Customize error response**: Yes
+   - **Response page path**: `/index.html`
+   - **HTTP response code**: 200 (OK)
+   - Click **"Create custom error response"**
 
-### **7.6 Copy Distribution ID**
+⚠️ **Why?** SPAs use client-side routing. Without this, refreshing `/dashboard` returns 404. This fix redirects all 404s to index.html, letting React Router handle routing.
 
-You'll see something like: `E1234ABCDEFGH`
+#### **Copy Distribution ID:**
 
-**Add this to GitHub Secrets:**
+Find the **Distribution ID** (e.g., `E1234ABCDEFGH`) and save it.
+
+---
+
+### **7.3 Create Staging Distribution**
+
+Repeat for staging:
+
+1. Click **"Create distribution"**
+2. **Origin domain**: `cropwise-stage-frontend.s3.ap-south-1.amazonaws.com`
+3. **Settings**: Same as development
+   - **Description**: CropWise Staging Frontend
+   - **Tags**: `Environment=staging`
+4. **Create** → Wait 5-15 minutes
+5. **Error pages**: Add custom error responses for 403 and 404
+6. **Distribution domain**: 
+   ```
+   d9x8y7z6w5v4u3.cloudfront.net
+   ```
+7. **Distribution ID**: `E5678MNOPQRST`
+
+---
+
+### **7.4 Create Production Distribution**
+
+Production with enhanced settings:
+
+1. Click **"Create distribution"**
+2. **Origin domain**: `cropwise-prod-frontend.s3.ap-south-1.amazonaws.com`
+
+#### **Production-Specific Settings:**
+
+- **Price class**: Use all edge locations (best performance)
+- **AWS WAF web ACL**: ✅ Consider enabling for DDoS protection (costs extra)
+- **Standard logging**: ✅ **Enable**
+  - **S3 bucket**: Create new `cropwise-prod-cloudfront-logs`
+  - **Log prefix**: `cloudfront/`
+  - **Cookie logging**: Off
+- **Description**: CropWise Production Frontend
+- **Tags**: `Environment=production`, `CostCenter=cropwise-prod`
+
+3. **Create** → Wait 10-20 minutes (production may take longer)
+4. **Error pages**: Add custom error responses for 403 and 404 (critical!)
+5. **Distribution domain**:
+   ```
+   d3t2s1r0q9p8o7.cloudfront.net
+   ```
+6. **Distribution ID**: `E9012UVWXYZAB`
+
+---
+
+### **7.5 Verify All Distributions**
+
+You should now have 3 CloudFront distributions:
+
 ```
-Name: CLOUDFRONT_DEV_DISTRIBUTION_ID
-Value: E1234ABCDEFGH
+✅ Development
+   Distribution ID: E1234ABCDEFGH
+   URL: https://d1a2b3c4d5e6f7.cloudfront.net
+   Origin: cropwise-dev-frontend
+
+✅ Staging
+   Distribution ID: E5678MNOPQRST
+   URL: https://d9x8y7z6w5v4u3.cloudfront.net
+   Origin: cropwise-stage-frontend
+
+✅ Production
+   Distribution ID: E9012UVWXYZAB
+   URL: https://d3t2s1r0q9p8o7.cloudfront.net
+   Origin: cropwise-prod-frontend
 ```
 
-👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions/new
+---
 
-### **7.7 Repeat for Production**
+### **7.6 Test CloudFront Distributions**
 
-Create production distribution for `cropwise-prod-frontend` bucket
+Upload a test file and verify CDN caching:
+
+```powershell
+# Create test index.html
+echo "<h1>CropWise Dev - It Works!</h1>" > index.html
+
+# Upload to dev bucket
+aws s3 cp index.html s3://cropwise-dev-frontend/ --cache-control "max-age=300"
+
+# Test CloudFront URL (wait 60 seconds for propagation)
+# Open in browser:
+# https://d1a2b3c4d5e6f7.cloudfront.net
+```
+
+Expected: You should see "CropWise Dev - It Works!"
+
+---
+
+### **7.7 Invalidate Cache (When Deploying)**
+
+After deploying new frontend code, invalidate CloudFront cache:
+
+```powershell
+# Invalidate development
+aws cloudfront create-invalidation \
+  --distribution-id E1234ABCDEFGH \
+  --paths "/*"
+
+# Invalidate staging
+aws cloudfront create-invalidation \
+  --distribution-id E5678MNOPQRST \
+  --paths "/*"
+
+# Invalidate production
+aws cloudfront create-invalidation \
+  --distribution-id E9012UVWXYZAB \
+  --paths "/*"
+```
+
+**Note**: First 1,000 invalidations per month are free, then $0.005 per path.
 
 ---
 
 ## ✅ STEP 8: Update GitHub Secrets
 
-Add these new secrets based on the resources you created:
+Add all environment-specific secrets to GitHub Actions:
 
-### **Frontend URLs**
+👉 https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
 
-```
-Name: VITE_API_URL
-Value: http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com
-```
-
-### **CloudFront Distribution IDs**
+### **ECR Repository**
 
 ```
-Name: CLOUDFRONT_DEV_DISTRIBUTION_ID
-Value: E1234ABCDEFGH (from Step 7.6)
-
-Name: CLOUDFRONT_PROD_DISTRIBUTION_ID  
-Value: E5678IJKLMNOP (production distribution)
+Name: AWS_ECR_REPOSITORY
+Value: cropwise-backend
 ```
 
-👉 Update at: https://github.com/yellowflowersorganics-star/cropwise/settings/secrets/actions
+### **Development Environment Secrets**
+
+```
+Name: BACKEND_URL_DEV
+Value: http://cropwise-dev-alb-XXXXXXXXXX.ap-south-1.elb.amazonaws.com
+
+Name: FRONTEND_URL_DEV
+Value: https://d1a2b3c4d5e6f7.cloudfront.net
+
+Name: CLOUDFRONT_DISTRIBUTION_ID_DEV
+Value: E1234ABCDEFGH
+
+Name: S3_BUCKET_DEV
+Value: cropwise-dev-frontend
+
+Name: ECS_CLUSTER_DEV
+Value: cropwise-dev-cluster
+
+Name: ECS_SERVICE_DEV
+Value: cropwise-backend-dev-service
+
+Name: ECS_TASK_DEFINITION_DEV
+Value: cropwise-backend-dev
+```
+
+### **Staging Environment Secrets**
+
+```
+Name: BACKEND_URL_STAGE
+Value: http://cropwise-stage-alb-YYYYYYYYYY.ap-south-1.elb.amazonaws.com
+
+Name: FRONTEND_URL_STAGE
+Value: https://d9x8y7z6w5v4u3.cloudfront.net
+
+Name: CLOUDFRONT_DISTRIBUTION_ID_STAGE
+Value: E5678MNOPQRST
+
+Name: S3_BUCKET_STAGE
+Value: cropwise-stage-frontend
+
+Name: ECS_CLUSTER_STAGE
+Value: cropwise-stage-cluster
+
+Name: ECS_SERVICE_STAGE
+Value: cropwise-backend-stage-service
+
+Name: ECS_TASK_DEFINITION_STAGE
+Value: cropwise-backend-stage
+```
+
+### **Production Environment Secrets**
+
+```
+Name: BACKEND_URL_PROD
+Value: http://cropwise-prod-alb-ZZZZZZZZZZ.ap-south-1.elb.amazonaws.com
+
+Name: FRONTEND_URL_PROD
+Value: https://d3t2s1r0q9p8o7.cloudfront.net
+
+Name: CLOUDFRONT_DISTRIBUTION_ID_PROD
+Value: E9012UVWXYZAB
+
+Name: S3_BUCKET_PROD
+Value: cropwise-prod-frontend
+
+Name: ECS_CLUSTER_PROD
+Value: cropwise-prod-cluster
+
+Name: ECS_SERVICE_PROD
+Value: cropwise-backend-prod-service
+
+Name: ECS_TASK_DEFINITION_PROD
+Value: cropwise-backend-prod
+```
+
+### **Database URLs (Already Added)**
+
+```
+✅ DATABASE_URL_DEV   (from RDS setup)
+✅ DATABASE_URL_STAGE (from RDS setup)
+✅ DATABASE_URL_PROD  (from RDS setup)
+```
+
+### **Other Secrets (Already Added)**
+
+```
+✅ AWS_REGION (ap-south-1)
+✅ AWS_ACCESS_KEY_ID
+✅ AWS_SECRET_ACCESS_KEY
+✅ JWT_SECRET
+✅ SESSION_SECRET
+✅ GOOGLE_CLIENT_ID
+✅ GOOGLE_CLIENT_SECRET
+```
+
+---
+
+### **Quick Add Script**
+
+Run this in PowerShell (replace values with your actual resources):
+
+```powershell
+# Set your repository
+$REPO = "yellowflowersorganics-star/cropwise"
+
+# Development
+gh secret set BACKEND_URL_DEV --body "http://YOUR-DEV-ALB.elb.amazonaws.com" --repo $REPO
+gh secret set FRONTEND_URL_DEV --body "https://YOUR-DEV-CLOUDFRONT.cloudfront.net" --repo $REPO
+gh secret set CLOUDFRONT_DISTRIBUTION_ID_DEV --body "YOUR-DEV-DIST-ID" --repo $REPO
+gh secret set S3_BUCKET_DEV --body "cropwise-dev-frontend" --repo $REPO
+gh secret set ECS_CLUSTER_DEV --body "cropwise-dev-cluster" --repo $REPO
+gh secret set ECS_SERVICE_DEV --body "cropwise-backend-dev-service" --repo $REPO
+gh secret set ECS_TASK_DEFINITION_DEV --body "cropwise-backend-dev" --repo $REPO
+
+# Staging
+gh secret set BACKEND_URL_STAGE --body "http://YOUR-STAGE-ALB.elb.amazonaws.com" --repo $REPO
+gh secret set FRONTEND_URL_STAGE --body "https://YOUR-STAGE-CLOUDFRONT.cloudfront.net" --repo $REPO
+gh secret set CLOUDFRONT_DISTRIBUTION_ID_STAGE --body "YOUR-STAGE-DIST-ID" --repo $REPO
+gh secret set S3_BUCKET_STAGE --body "cropwise-stage-frontend" --repo $REPO
+gh secret set ECS_CLUSTER_STAGE --body "cropwise-stage-cluster" --repo $REPO
+gh secret set ECS_SERVICE_STAGE --body "cropwise-backend-stage-service" --repo $REPO
+gh secret set ECS_TASK_DEFINITION_STAGE --body "cropwise-backend-stage" --repo $REPO
+
+# Production
+gh secret set BACKEND_URL_PROD --body "http://YOUR-PROD-ALB.elb.amazonaws.com" --repo $REPO
+gh secret set FRONTEND_URL_PROD --body "https://YOUR-PROD-CLOUDFRONT.cloudfront.net" --repo $REPO
+gh secret set CLOUDFRONT_DISTRIBUTION_ID_PROD --body "YOUR-PROD-DIST-ID" --repo $REPO
+gh secret set S3_BUCKET_PROD --body "cropwise-prod-frontend" --repo $REPO
+gh secret set ECS_CLUSTER_PROD --body "cropwise-prod-cluster" --repo $REPO
+gh secret set ECS_SERVICE_PROD --body "cropwise-backend-prod-service" --repo $REPO
+gh secret set ECS_TASK_DEFINITION_PROD --body "cropwise-backend-prod" --repo $REPO
+
+# ECR Repository
+gh secret set AWS_ECR_REPOSITORY --body "cropwise-backend" --repo $REPO
+```
 
 ---
 
 ## 🔐 STEP 9: Update Google OAuth
 
-Add your actual AWS URLs to Google Cloud Console:
+Add all environment URLs to Google Cloud Console:
 
 1. Go to: https://console.cloud.google.com/apis/credentials
 2. Click your OAuth 2.0 Client ID
 3. **Add Authorized JavaScript Origins:**
    ```
-   https://d111111abcdef8.cloudfront.net
+   # Local Development
    http://localhost:8080
+   http://localhost:3000
+   
+   # AWS Development
+   https://d1a2b3c4d5e6f7.cloudfront.net
+   
+   # AWS Staging
+   https://d9x8y7z6w5v4u3.cloudfront.net
+   
+   # AWS Production
+   https://d3t2s1r0q9p8o7.cloudfront.net
    ```
+
 4. **Add Authorized Redirect URIs:**
    ```
-   http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com/api/auth/google/callback
-   https://d111111abcdef8.cloudfront.net/auth/google/callback
+   # Local Development
    http://localhost:3000/api/auth/google/callback
+   
+   # AWS Development Backend
+   http://cropwise-dev-alb-XXX.ap-south-1.elb.amazonaws.com/api/auth/google/callback
+   
+   # AWS Development Frontend
+   https://d1a2b3c4d5e6f7.cloudfront.net/auth/google/callback
+   
+   # AWS Staging Backend
+   http://cropwise-stage-alb-YYY.ap-south-1.elb.amazonaws.com/api/auth/google/callback
+   
+   # AWS Staging Frontend
+   https://d9x8y7z6w5v4u3.cloudfront.net/auth/google/callback
+   
+   # AWS Production Backend
+   http://cropwise-prod-alb-ZZZ.ap-south-1.elb.amazonaws.com/api/auth/google/callback
+   
+   # AWS Production Frontend
+   https://d3t2s1r0q9p8o7.cloudfront.net/auth/google/callback
    ```
+
 5. Click **"Save"**
+
+⚠️ **Important**: Replace the CloudFront and ALB URLs with your actual URLs from Steps 3 and 7!
 
 ---
 
 ## 🚀 STEP 10: Deploy!
 
-Now you're ready to deploy:
+Now you're ready to deploy to all environments:
 
 ```powershell
-cd C:\Users\praghav\cropwise
+cd C:\Users\praghav\smartcrop-os
 
-# Deploy to development
+# Deploy to Development
 git checkout develop
 git push origin develop
 
-# Watch deployment
+# Deploy to Staging
+git checkout staging
+git push origin staging
+
+# Deploy to Production
+git checkout main
+git push origin main
+
+# Watch deployments
 start https://github.com/yellowflowersorganics-star/cropwise/actions
 ```
 
----
-
-## 📋 Infrastructure Checklist
-
-Before deploying, verify you've created:
-
-### **Development Environment**
-- [x] ECR Repository: `cropwise-backend-dev`
-- [x] ECS Cluster: `cropwise-dev-cluster`
-- [x] ECS Task Definition: `cropwise-backend-dev`
-- [x] ECS Service: `cropwise-backend-dev`
-- [x] Application Load Balancer: `cropwise-dev-alb`
-- [x] Target Group: `cropwise-dev-backend-tg`
-- [x] S3 Bucket: `cropwise-dev-frontend`
-- [x] CloudFront Distribution
-- [x] RDS PostgreSQL: `cropwise-production-db`
-
-### **Production Environment**
-- [ ] Same resources with `-prod` suffix
-
-### **GitHub Secrets Updated**
-- [ ] `VITE_API_URL` (ALB URL)
-- [ ] `CLOUDFRONT_DEV_DISTRIBUTION_ID`
-- [ ] `CLOUDFRONT_PROD_DISTRIBUTION_ID`
-
-### **Google OAuth Updated**
-- [ ] Added CloudFront URL to authorized origins
-- [ ] Added ALB URL to redirect URIs
+Your CI/CD pipeline will automatically:
+1. Build Docker images
+2. Push to ECR with appropriate tags (dev/stage/prod)
+3. Deploy backend to ECS
+4. Build and deploy frontend to S3
+5. Invalidate CloudFront cache
 
 ---
 
-## 💰 Cost Estimate
+## 📋 Complete Infrastructure Checklist
 
-With all infrastructure:
+Verify all resources are created for each environment:
+
+### **✅ ECR (Shared)**
+- [ ] Repository: `cropwise-backend`
+- [ ] Lifecycle policy configured
+
+### **✅ Development Environment**
+- [ ] RDS: `cropwise-dev-db` (PostgreSQL)
+- [ ] ECS Cluster: `cropwise-dev-cluster`
+- [ ] ECS Task Definition: `cropwise-backend-dev`
+- [ ] ECS Service: `cropwise-backend-dev-service` (1 task)
+- [ ] Application Load Balancer: `cropwise-dev-alb`
+- [ ] Target Group: `cropwise-dev-backend-tg`
+- [ ] ALB Security Group: `cropwise-dev-alb-sg`
+- [ ] ECS Security Group: `cropwise-dev-ecs-sg`
+- [ ] S3 Bucket: `cropwise-dev-frontend`
+- [ ] CloudFront Distribution (with error pages for SPA)
+- [ ] CloudWatch Log Group: `/ecs/cropwise-backend-dev`
+
+### **✅ Staging Environment**
+- [ ] RDS: `cropwise-stage-db` (PostgreSQL)
+- [ ] ECS Cluster: `cropwise-stage-cluster`
+- [ ] ECS Task Definition: `cropwise-backend-stage`
+- [ ] ECS Service: `cropwise-backend-stage-service` (1 task)
+- [ ] Application Load Balancer: `cropwise-stage-alb`
+- [ ] Target Group: `cropwise-stage-backend-tg`
+- [ ] ALB Security Group: `cropwise-stage-alb-sg`
+- [ ] ECS Security Group: `cropwise-stage-ecs-sg`
+- [ ] S3 Bucket: `cropwise-stage-frontend`
+- [ ] CloudFront Distribution (with error pages for SPA)
+- [ ] CloudWatch Log Group: `/ecs/cropwise-backend-stage`
+- [ ] Container Insights enabled
+
+### **✅ Production Environment**
+- [ ] RDS: `cropwise-prod-db` (PostgreSQL, Multi-AZ)
+- [ ] ECS Cluster: `cropwise-prod-cluster`
+- [ ] ECS Task Definition: `cropwise-backend-prod`
+- [ ] ECS Service: `cropwise-backend-prod-service` (2+ tasks, auto-scaling)
+- [ ] Application Load Balancer: `cropwise-prod-alb` (deletion protection)
+- [ ] Target Group: `cropwise-prod-backend-tg`
+- [ ] ALB Security Group: `cropwise-prod-alb-sg`
+- [ ] ECS Security Group: `cropwise-prod-ecs-sg`
+- [ ] S3 Bucket: `cropwise-prod-frontend` (versioning enabled)
+- [ ] CloudFront Distribution (with logging and error pages)
+- [ ] CloudWatch Log Group: `/ecs/cropwise-backend-prod`
+- [ ] Container Insights enabled
+- [ ] ALB Access Logs enabled
+
+### **✅ GitHub Secrets (25 total)**
+- [ ] `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
+- [ ] `AWS_ECR_REPOSITORY`
+- [ ] `DATABASE_URL_DEV`, `DATABASE_URL_STAGE`, `DATABASE_URL_PROD`
+- [ ] `BACKEND_URL_DEV`, `BACKEND_URL_STAGE`, `BACKEND_URL_PROD`
+- [ ] `FRONTEND_URL_DEV`, `FRONTEND_URL_STAGE`, `FRONTEND_URL_PROD`
+- [ ] `CLOUDFRONT_DISTRIBUTION_ID_DEV`, `CLOUDFRONT_DISTRIBUTION_ID_STAGE`, `CLOUDFRONT_DISTRIBUTION_ID_PROD`
+- [ ] `S3_BUCKET_DEV`, `S3_BUCKET_STAGE`, `S3_BUCKET_PROD`
+- [ ] `ECS_CLUSTER_DEV`, `ECS_CLUSTER_STAGE`, `ECS_CLUSTER_PROD`
+- [ ] `ECS_SERVICE_DEV`, `ECS_SERVICE_STAGE`, `ECS_SERVICE_PROD`
+- [ ] `ECS_TASK_DEFINITION_DEV`, `ECS_TASK_DEFINITION_STAGE`, `ECS_TASK_DEFINITION_PROD`
+- [ ] `JWT_SECRET`, `SESSION_SECRET`
+- [ ] `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+
+### **✅ Google OAuth Configured**
+- [ ] Added all 3 CloudFront URLs to authorized origins
+- [ ] Added all 6 redirect URIs (3 backends + 3 frontends)
+
+---
+
+## 💰 Complete Cost Estimate
+
+### **Per Environment Breakdown**
+
+#### **Development Environment**
+```
+RDS (db.t3.micro): $15/month (or FREE)
+ECS Fargate (0.25 vCPU, 512MB, 1 task): $6/month
+ALB: $22/month
+S3 (minimal usage): $1/month
+CloudFront (minimal traffic): $5/month
+Data Transfer: $3/month
+────────────────────────────────────────
+Development Total: ~$52/month ($37 with Free Tier)
+```
+
+#### **Staging Environment**
+```
+RDS (db.t3.small): $35/month
+ECS Fargate (0.5 vCPU, 1GB, 1 task): $12/month
+ALB: $22/month
+S3 (moderate usage): $2/month
+CloudFront (moderate traffic): $10/month
+Data Transfer: $5/month
+Container Insights: $2/month
+────────────────────────────────────────
+Staging Total: ~$88/month
+```
+
+#### **Production Environment**
+```
+RDS (db.t3.medium Multi-AZ): $133/month
+ECS Fargate (1 vCPU, 2GB, 2 tasks): $72/month
+ALB (with access logs): $25/month
+S3 (high usage + logs): $5/month
+CloudFront (high traffic + logs): $25/month
+Data Transfer: $15/month
+Container Insights: $5/month
+ALB/CloudFront Logs Storage: $3/month
+────────────────────────────────────────
+Production Total: ~$283/month
+```
+
+### **Total Monthly Cost (All 3 Environments)**
+```
+Development:    $52  ($37 with Free Tier)
+Staging:        $88
+Production:    $283
+────────────────────────────────────────
+TOTAL:         $423/month ($408 with Free Tier)
+               ~$5,076/year (~$4,896 with Free Tier)
+```
+
+### **Cost Optimization for Smaller Scale**
+
+If you're just getting started:
 
 ```
-ECS Fargate (1 task, 0.5 vCPU, 1GB RAM): ~$15/month
-Application Load Balancer: ~$18/month
-RDS db.t3.micro: ~$15/month
-S3 Storage (first 50GB free): ~$1/month
-CloudFront (first 1TB free): ~$0-5/month
-Data Transfer: ~$5-10/month
+# Budget-Friendly Setup
+Development:   $37/month (Free Tier RDS, minimal Fargate)
+Staging:       $0 (skip initially, test on dev)
+Production:    $120/month (Single-AZ RDS, 1 Fargate task)
+────────────────────────────────────────
+Budget Total:  ~$157/month
+               ~$1,884/year
 
-Total: ~$55-70/month (development)
-Total: ~$110-140/month (dev + production)
+# When to upgrade:
+- Add staging when team > 3 people
+- Add Multi-AZ when revenue > $5k/month
+- Scale Fargate tasks when CPU > 70%
 ```
 
----
+### **Additional Costs to Consider**
 
-## 🎯 Your Final URLs
-
-After setup, you'll have:
-
-**Development:**
-- Frontend: `https://d111111abcdef8.cloudfront.net`
-- Backend: `http://cropwise-dev-alb-123456789.us-east-1.elb.amazonaws.com`
-- Database: `cropwise-production-db.xxx.us-east-1.rds.amazonaws.com`
-
-**Production:**
-- Frontend: `https://d222222abcdef9.cloudfront.net`
-- Backend: `http://cropwise-prod-alb-987654321.us-east-1.elb.amazonaws.com`
-- Database: Same RDS instance (or create separate for prod)
+- **Custom Domain**: $12-50/year (Route 53 + domain)
+- **SSL Certificate**: FREE (AWS Certificate Manager)
+- **Monitoring/Alerts**: $5-10/month (CloudWatch alarms)
+- **Backup Storage**: $2-5/month (S3 for backups)
+- **WAF (DDoS Protection)**: $5-20/month (if enabled)
 
 ---
 
-## 🔄 Adding Custom Domain Later
+## 📊 Resource Summary Table
 
-When you buy a domain:
+| Resource | Development | Staging | Production | Total |
+|----------|-------------|---------|------------|-------|
+| **RDS PostgreSQL** | db.t3.micro<br>20GB | db.t3.small<br>50GB | db.t3.medium Multi-AZ<br>100GB | 3 databases |
+| **ECS Clusters** | cropwise-dev-cluster | cropwise-stage-cluster | cropwise-prod-cluster | 3 clusters |
+| **ECS Tasks** | 0.25 vCPU, 512MB<br>1 task | 0.5 vCPU, 1GB<br>1 task | 1 vCPU, 2GB<br>2 tasks + autoscaling | 4-12 tasks total |
+| **Load Balancers** | cropwise-dev-alb | cropwise-stage-alb | cropwise-prod-alb | 3 ALBs |
+| **S3 Buckets** | cropwise-dev-frontend | cropwise-stage-frontend | cropwise-prod-frontend<br>(versioned) | 3 buckets |
+| **CloudFront** | 1 distribution | 1 distribution | 1 distribution<br>(with logging) | 3 distributions |
+| **Monthly Cost** | ~$52 | ~$88 | ~$283 | ~$423 |
 
-1. **Register domain** (Route 53, Namecheap, etc.)
-2. **Request SSL certificate** in ACM (AWS Certificate Manager)
-3. **Add CNAME to CloudFront** distribution
-4. **Create Route 53 records** pointing to CloudFront
-5. **Update Google OAuth** with new domain
-6. **Update VITE_API_URL** secret
+---
+
+## 🎯 Next Steps
+
+1. **Complete this infrastructure setup** for all 3 environments
+2. **Test each environment** individually
+3. **Update GitHub Secrets** with all URLs and IDs
+4. **Configure Google OAuth** with all URLs
+5. **Test CI/CD pipeline** with a small change
+6. **Monitor costs** in AWS Cost Explorer
+7. **Set up billing alerts** ($100, $200, $400)
+8. **Document** any environment-specific configurations
 
 ---
 
 **Created**: November 14, 2025  
-**Status**: Ready for Infrastructure Setup
-
+**Last Updated**: November 16, 2025  
+**For**: CropWise - Complete Multi-Environment AWS Infrastructure
