@@ -1,6 +1,6 @@
 # 🌾 CropWise
 
-**Smart Farming Platform for Modern Agriculture**
+**Universal Farm Management Platform for All Agriculture Types**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/yellowflowersorganics-star/cropwise)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -8,7 +8,7 @@
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15%2B-blue.svg)](https://www.postgresql.org/)
 [![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
 
-> **Make wise farming decisions with IoT-powered crop management, real-time monitoring, and intelligent analytics.**
+> **Make wise farming decisions with IoT-powered management for indoor, outdoor, hydroponic, aquaculture, and all farm types - from hobby to commercial scale.**
 
 [🚀 Quick Start](#-quick-start) • [📚 Documentation](#-documentation) • [🎯 Features](#-features) • [🖼️ Demo](#-screenshots) • [💬 Support](#-support)
 
@@ -16,19 +16,20 @@
 
 ## 🌟 Overview
 
-CropWise is a comprehensive, cloud-native platform for vertical farms and modern agriculture operations. From IoT sensor monitoring to harvest tracking and profitability analysis, CropWise provides everything you need to grow smarter and scale faster.
+CropWise is a comprehensive, cloud-native platform for **all types of farms** - from hobby to commercial scale. Whether you manage indoor farms, outdoor operations, hydroponic systems, aquaculture, vertical farms, or greenhouses, CropWise provides everything you need to grow smarter and scale faster. From IoT sensor monitoring to harvest tracking and profitability analysis, CropWise adapts to your farming needs.
 
 ### **Key Highlights**
 
-- 🌐 **Full-Stack Solution**: Complete backend API + responsive frontend
-- 🤖 **IoT Integration**: ESP32, Raspberry Pi, MQTT support
-- 📊 **Real-Time Monitoring**: Environmental sensors + equipment control
-- 📈 **Advanced Analytics**: Yield trends, profitability, bio-efficiency
-- 👥 **Team Management**: Employee tracking, RBAC, task assignments
-- 📱 **Mobile-Ready**: Responsive design, React Native compatible
-- ☁️ **Cloud-Native**: AWS-ready with automated CI/CD
+- 🌐 **Universal Platform**: Works for indoor, outdoor, hydroponic, aquaculture, and all farm types
+- 📏 **Scalable**: From hobby farms to commercial operations
+- 🤖 **IoT Integration**: ESP32, Raspberry Pi, MQTT support for real-time monitoring
+- 📊 **Smart Monitoring**: Environmental sensors, water quality, climate control
+- 📈 **Advanced Analytics**: Yield trends, profitability, growth tracking, ROI analysis
+- 👥 **Team Management**: Employee tracking, RBAC, task assignments, labor costs
+- 📱 **Mobile-Ready**: Responsive design, works on any device
+- ☁️ **Cloud-Native**: AWS-ready with automated CI/CD, or self-hosted
 - 🔐 **Enterprise Security**: JWT auth, Google OAuth, data encryption
-- 🧠 **AI-Ready**: PostgreSQL + pgvector + TimescaleDB for ML
+- 🧠 **AI-Ready**: PostgreSQL + pgvector + TimescaleDB for ML and predictions
 
 ---
 
@@ -306,6 +307,20 @@ Sequential setup guides (4-6 hours total):
 
 ## 🎓 Use Cases
 
+### **Indoor Farming** 🏭
+- Controlled environment agriculture
+- Multi-zone management
+- Climate control automation
+- Year-round production tracking
+- Energy usage monitoring
+
+### **Vertical Farming** 🌿
+- Multi-level cultivation
+- Hydroponic/aeroponic systems
+- Light cycle automation
+- Nutrient solution tracking
+- Space optimization
+
 ### **Mushroom Farming** 🍄
 - Multi-stage cultivation (incubation → fruiting)
 - Per-flush harvest tracking
@@ -313,19 +328,47 @@ Sequential setup guides (4-6 hours total):
 - Contamination alerts
 - Quality grading (A, B, C)
 
-### **Vertical Farming** 🌿
-- Multi-zone management
-- Hydroponic/aeroponic support
-- Light cycle automation
-- Nutrient solution tracking
-- Crop rotation planning
-
 ### **Greenhouse Operations** 🏡
 - Climate control automation
 - Irrigation scheduling
 - Pest & disease tracking
 - Labor efficiency metrics
 - Customer order management
+
+### **Hydroponic Farms** 💧
+- Nutrient solution management
+- pH and EC monitoring
+- Water quality tracking
+- Root zone temperature control
+- Automated feeding schedules
+
+### **Aquaculture** 🐟
+- Water quality monitoring (pH, DO, temperature)
+- Feed management and scheduling
+- Growth rate tracking
+- Harvest planning
+- Disease detection and alerts
+
+### **Outdoor Farms** 🌾
+- Field management
+- Weather integration
+- Crop rotation planning
+- Soil monitoring
+- Irrigation scheduling
+
+### **Hobby Farms** 🏡
+- Simple setup and management
+- Basic tracking features
+- Mobile-friendly interface
+- Cost tracking
+- Small-scale operations
+
+### **Commercial Operations** 🏢
+- Multi-farm management
+- Advanced analytics
+- Team collaboration
+- Compliance reporting
+- Integration with business systems
 
 ### **Research & Development** 🔬
 - Recipe experimentation
