@@ -37,9 +37,17 @@ CropWise is a comprehensive, cloud-native platform for **all types of farms** - 
 
 ### **🎯 New to CropWise? Start Here!**
 
-**👉 Complete Setup Guide**: **[0-START-HERE.md](0-START-HERE.md)** 
+**👉 Phase-by-Phase Setup Guide**: **[docs/setup/README.md](docs/setup/README.md)** 
 
-This guide takes you from zero to production in 10 sequential steps (4-6 hours total).
+We've organized setup into **4 easy-to-follow phases** for better tracking:
+- **Phase 1**: Foundation (GitHub + Local Dev) - 1.5 hrs
+- **Phase 2**: Cloud Infrastructure (AWS Setup) - 2-3 hrs
+- **Phase 3**: Integrations (OAuth + Communications) - 1.5 hrs
+- **Phase 4**: Production Deployment - 2-3 hrs
+
+**Total**: 4-6 hours from zero to production
+
+**Alternative**: [0-START-HERE.md](0-START-HERE.md) - Single guide with all 10 steps
 
 ---
 

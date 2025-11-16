@@ -59,11 +59,24 @@ Before you begin, ensure you have:
 
 ---
 
-## 🛣️ Setup Flow (Sequential)
+## 🛣️ Setup Flow (Phase-Based)
 
-Follow these steps **in order**. Each step has a detailed guide.
+**📖 Complete Phase-by-Phase Guide**: [`docs/setup/README.md`](docs/setup/README.md)
 
-### **Phase 1: Foundation (30 mins)**
+For easier tracking, we've organized the 10 steps into **4 logical phases**:
+
+| Phase | Focus | Time | Steps |
+|-------|-------|------|-------|
+| **[Phase 1](docs/setup/PHASE-1-FOUNDATION.md)** | Foundation | 1-1.5 hrs | 1-2 |
+| **[Phase 2](docs/setup/PHASE-2-CLOUD-INFRASTRUCTURE.md)** | Cloud Infrastructure | 2-3 hrs | 3-5 |
+| **[Phase 3](docs/setup/PHASE-3-INTEGRATIONS.md)** | Integrations | 1-1.5 hrs | 6-7 |
+| **[Phase 4](docs/setup/PHASE-4-PRODUCTION-DEPLOYMENT.md)** | Production | 2-3 hrs | 8-10 |
+
+**Prefer detailed step-by-step?** Continue reading below for individual steps.
+
+---
+
+### **Phase 1: Foundation (1-1.5 hours)**
 
 #### **Step 1: GitHub Repository Setup**
 📄 **Guide**: [`docs/setup/01-github-setup.md`](docs/setup/01-github-setup.md)
